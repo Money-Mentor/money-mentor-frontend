@@ -24,7 +24,7 @@ export default class App extends React.Component {
 const AppStackNavigator = createStackNavigator({
   // Login: Login,
   // Signup: Signup,
-  Link: Link,
+  // Link: Link,
   Quiz: Quiz
   }
 );
