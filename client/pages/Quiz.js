@@ -3,55 +3,44 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  TouchableOpacity
+  TouchableOpacity, 
+  Button
 } from "react-native";
-import { questions } from "../data";
+import { questions } from "../data";import 'expo'
+import { shuffle } from "../common"
+import Result from './Result'
 
 export default class Quiz extends React.Component {
   constructor() {
+    super()
     this.state = {
-      questions,
-      currentQuestion: [] // => [5, 3]
+      questions: shuffle(questions),
+      question: questions.pop().question
     };
-    // this.randomQuestion = this.randomQuestion.bind(this)
+    this.nextQuestion = this.nextQuestion.bind(this);
   }
 
-  randomQuestion() {
-    const random = Math.floor(Math.random() * questions.length);
-    if (!currentQuestion[random]) {
-      // currentQuestion.push(random);
-      this.setState({
-        currentQuestion: [...currentQuestion, random]
-      });
-    }
+  nextQuestion (event) {
+    const nextState = {...this.state}
+    nextState.question = nextState.questions.pop() ? nextState.questions.pop().question : null
+
+    this.setState(nextState)
   }
+
 
   render() {
+    const questionView = (
+      <View>
+        <Text>{this.state.question}</Text>
+        <TouchableOpacity style={styles.button} onPress={() => this.nextQuestion()}>
+          <Text style={styles.buttonText}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    )
+
     return (
       <View style={styles.container}>
-        {this.state.questions.map(question => {
-          this.randomQuestion();
-          return (
-            {
-              if (this.state.questions[x].id === this.currentQuestion[this.currentQuestion.length - 1]) {
-
-              }
-            }
-            <View>
-              <Text>
-                {
-                  this.state.questions[
-                    this.currentQuestion[this.currentQuestion.length - 1]
-                  ].question
-                }
-              </Text>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Next</Text>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
+        {this.state.question === null ? <Result /> : questionView}
       </View>
     );
   }
