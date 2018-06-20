@@ -6,7 +6,7 @@ import {
   TouchableOpacity, 
   Button
 } from "react-native";
-import { questions } from "../data";import 'expo'
+import { questions } from "../data"
 import { shuffle } from "../common"
 import Result from './Result'
 
@@ -15,20 +15,22 @@ export default class Quiz extends React.Component {
     super()
     this.state = {
       questions: shuffle(questions),
-      question: questions.pop().question
+      question: questions[0].question
     };
     this.nextQuestion = this.nextQuestion.bind(this);
   }
 
   nextQuestion (event) {
     const nextState = {...this.state}
-    nextState.question = nextState.questions.pop() ? nextState.questions.pop().question : null
-
+    const lastQuestion = nextState.questions.pop()
+    nextState.question = lastQuestion && nextState.questions.length >= 2 ? lastQuestion.question : null
     this.setState(nextState)
   }
 
 
   render() {
+    console.log('state questions', this.state.questions.length)
+
     const questionView = (
       <View>
         <Text>{this.state.question}</Text>
