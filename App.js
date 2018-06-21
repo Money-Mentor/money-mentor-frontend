@@ -28,6 +28,7 @@ const AppStackNavigator = createStackNavigator({
   // Login: Login,
   // Signup: Signup,
   Link: App,
+  // Link: Link,
   Quiz: Quiz
 })
 
