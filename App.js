@@ -6,7 +6,7 @@ import { createStackNavigator } from 'react-navigation'
 
 import store from './client/store/store'
 import Quiz from './client/screens/Quiz'
-import Link from './client/screens/Link'
+import App from './client/screens/Link'
 
 export default class App extends React.Component {
   render() {
@@ -27,7 +27,7 @@ export default class App extends React.Component {
 const AppStackNavigator = createStackNavigator({
   // Login: Login,
   // Signup: Signup,
-  Link: Link,
+  Link: App,
   Quiz: Quiz
 })
 

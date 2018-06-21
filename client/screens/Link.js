@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native'
 import PlaidAuthenticator from 'react-native-plaid-link'
 import { connect } from 'react-redux'
 
 import { sendToken } from '../store/token'
 import Quiz from './Quiz'
 
-class Link extends React.Component {
+class App extends React.Component {
   state = {
     data: {},
     status: 'LOGIN_BUTTON'
@@ -49,37 +49,6 @@ class Link extends React.Component {
     console.log('onLoadEnd', props)
   }
 
-  // componentDidUpdate(prevState) {
-  //   console.log('**Component Did Update this.state.data:', this.state.data)
-  //   console.log('***prevState.data', prevState.data)
-  //   if (this.state.data === prevState.data) {
-  //     // this URL will change
-  //     this.fetch('https://localhost:8080/api/users/plaid', {
-  //       method: 'POST',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         public_token: this.state.data.metadata.public_token
-  //       })
-  //     })
-  //       .then(response => response.json())
-  //       .then(responseData => {
-  //         console.log(responseData)
-  //       })
-  //       .catch(error => {
-  //         console.log('Error: ', error.message)
-  //       })
-
-  //     this.props.navigation.navigate('Quiz', {
-  //       title: 'Quiz'
-  //     })
-  //   }
-
-  // publicToken = 'public-sandbox-93e6261f-13b8-48b5-8b11-26360fb9fa8a'
-  // }
-
   renderLogin() {
     return (
       <PlaidAuthenticator
@@ -102,44 +71,21 @@ class Link extends React.Component {
     this.props.dispatchedSendToken(this.state.data.metadata.public_token)
 
     return (
-      <Quiz />
-      // <View style={styles.container}>
-      //   <Text style={styles.paragraph}>Institution</Text>
-      //   <Text style={styles.value}>
-      //     {this.state.data.metadata.institution.name}
-      //   </Text>
-      //   <Text style={styles.paragraph}>Institution ID</Text>
-      //   <Text style={styles.value}>
-      //     {this.state.data.metadata.institution.institution_id}
-      //   </Text>
-      //   <Text style={styles.paragraph}>Token</Text>
-      //   <Text style={styles.value}>
-      //     {this.state.data.metadata.public_token}
-      //   </Text>
-      // </View>
+      // <Quiz />
+      <View>
+        <Text>You linked your bank account successfully!</Text>
+        <Button
+          onPress={() =>
+            this.props.navigation.navigate('Quiz', { title: 'Quiz' })
+          }
+        >
+          Let's get started!
+        </Button>
+      </View>
     )
   }
 
   onMessage = data => {
-    // console.log(data)
-    /*
-      Response example for success
-      {
-        "action": "plaid_link-undefined::connected",
-        "metadata": {
-          "account": {
-            "id": null,
-            "name": null
-          },
-          "account_id": null,
-          "public_token": "public-sandbox-e697e666-9ac2-4538-b152-7e56a4e59365",
-          "institution": {
-            "name": "Chase",
-            "institution_id": "ins_3"
-          }
-        }
-      }
-    */
     this.setState({
       data,
       status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
@@ -178,4 +124,4 @@ const mapDispatch = dispatch => {
 export default connect(
   null,
   mapDispatch
-)(Link)
+)(App)
