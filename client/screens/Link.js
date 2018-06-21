@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { sendToken } from '../store/token'
 import Quiz from './Quiz'
 
-class App extends React.Component {
+class Link extends React.Component {
   state = {
     data: {},
     status: 'LOGIN_BUTTON'
@@ -124,4 +124,4 @@ const mapDispatch = dispatch => {
 export default connect(
   null,
   mapDispatch
-)(App)
+)(Link)
