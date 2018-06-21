@@ -1,29 +1,30 @@
-import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native'
-import PlaidAuthenticator from 'react-native-plaid-link'
-import { connect } from 'react-redux'
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import PlaidAuthenticator from 'react-native-plaid-link';
+import { connect } from 'react-redux';
+import Button from 'react-native-button';
 
-import { sendToken } from '../store/token'
-import Quiz from './Quiz'
+import { sendToken } from '../store/token';
+import Quiz from './Quiz';
 
 class Link extends React.Component {
   state = {
     data: {},
-    status: 'LOGIN_BUTTON'
-  }
+    status: 'LOGIN_BUTTON',
+  };
 
   render() {
-    console.log(this.state.status)
+    console.log(this.state.status);
 
     switch (this.state.status) {
       case 'CONNECTED':
-        console.log('connected')
-        return this.renderDetails()
+        console.log('connected');
+        return this.renderDetails();
       case 'LOGIN_BUTTON':
       case 'EXIT':
-        return this.renderButton()
+        return this.renderButton();
       default:
-        return this.renderLogin()
+        return this.renderLogin();
     }
   }
 
@@ -34,20 +35,20 @@ class Link extends React.Component {
           <Text style={styles.paragraph}>Login with Plaid</Text>
         </TouchableOpacity>
       </View>
-    )
-  }
+    );
+  };
 
   onLoadStart = props => {
-    console.log('onLoadStart', props)
-  }
+    console.log('onLoadStart', props);
+  };
 
   onLoad = props => {
-    console.log('onLoad', props)
-  }
+    console.log('onLoad', props);
+  };
 
   onLoadEnd = props => {
-    console.log('onLoadEnd', props)
-  }
+    console.log('onLoadEnd', props);
+  };
 
   renderLogin() {
     return (
@@ -60,38 +61,35 @@ class Link extends React.Component {
         onLoadStart={this.onLoadStart}
         onLoadEnd={this.onLoadEnd}
       />
-    )
+    );
   }
 
   renderDetails() {
-    console.log(
-      'public token from renderDetails',
-      this.state.data.metadata.public_token
-    )
-    this.props.dispatchedSendToken(this.state.data.metadata.public_token)
+    this.props.dispatchedSendToken(this.state.data.metadata.public_token);
 
     return (
-      // <Quiz />
-      <View>
+      <View style={styles.container}>
         <Text>You linked your bank account successfully!</Text>
         <Button
-          onPress={() =>
-            this.props.navigation.navigate('Quiz', { title: 'Quiz' })
-          }
+        onPress={() =>
+          this.props.navigation.navigate('Quiz', { title: 'Quiz' })
+        }
         >
           Let's get started!
         </Button>
       </View>
-    )
+    );
   }
 
   onMessage = data => {
     this.setState({
       data,
-      status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
-    })
-    console.log('this.state onMessage handler', this.state)
-  }
+      status: data.action
+        .substr(data.action.lastIndexOf(':') + 1)
+        .toUpperCase(),
+    });
+    console.log('this.state onMessage handler', this.state);
+  };
 }
 
 const styles = StyleSheet.create({
@@ -100,28 +98,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 24,
-    backgroundColor: '#ecf0f1'
+    backgroundColor: '#ecf0f1',
   },
   paragraph: {
     fontSize: 18,
     marginBottom: 5,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e'
+    color: '#34495e',
   },
   value: {
     marginBottom: 20,
-    textAlign: 'center'
-  }
-})
+    textAlign: 'center',
+  },
+});
 
 const mapDispatch = dispatch => {
   return {
-    dispatchedSendToken: token => dispatch(sendToken(token))
-  }
-}
+    dispatchedSendToken: token => dispatch(sendToken(token)),
+  };
+};
 
 export default connect(
   null,
   mapDispatch
-)(Link)
+)(Link);

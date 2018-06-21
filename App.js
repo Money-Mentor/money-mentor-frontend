@@ -1,12 +1,15 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { Provider } from 'react-redux'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
 
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation';
 
-import store from './client/store/store'
-import Quiz from './client/screens/Quiz'
-import Link from './client/screens/Link'
+import store from './client/store/store';
+import Quiz from './client/screens/Quiz';
+import Link from './client/screens/Link';
+import Initial from './client/screens/Initial';
+import Login from './client/screens/Login';
+import Signup from './client/screens/Signup';
 
 export default class App extends React.Component {
   render() {
@@ -20,23 +23,23 @@ export default class App extends React.Component {
       //   <Text>Changes you make will automatically reload.</Text>
       //   <Text>Shake your phone to open the developer menu.</Text>
       // </View>
-    )
+    );
   }
 }
 
 const AppStackNavigator = createStackNavigator({
-  // Login: Login,
-  // Signup: Signup,
-  Link: Link,
-  // Link: Link,
-  Quiz: Quiz
-})
+  Inital: { screen: Initial },
+  Login: { screen: Login },
+  Signup: { screen: Signup },
+  Link: { screen: Link },
+  Quiz: { screen: Quiz },
+});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
+    justifyContent: 'center',
+  },
+});

@@ -4,7 +4,7 @@ import { questions } from '../data'
 import { shuffle } from '../common'
 import Result from './Result'
 
-export default class Quiz extends React.Component {
+export default class Quiz extends Component {
   constructor() {
     super()
     this.state = {
