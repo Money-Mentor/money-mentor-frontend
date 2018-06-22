@@ -10,6 +10,7 @@ import Link from './client/screens/Link';
 import Initial from './client/screens/Initial';
 import Login from './client/screens/Login';
 import Signup from './client/screens/Signup';
+import Result from './client/screens/Result';
 
 export default class App extends React.Component {
   render() {
@@ -33,6 +34,7 @@ const AppStackNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Link: { screen: Link },
   Quiz: { screen: Quiz },
+  Result: { screen: Result }
 });
 
 const styles = StyleSheet.create({
@@ -40,6 +42,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });

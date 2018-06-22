@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View
-} from "react-native";
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class Result extends React.Component {
+  static navigationOptions = {
+    title: 'Result'
+  };
 
   render() {
     return (
@@ -19,7 +18,7 @@ export default class Result extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
