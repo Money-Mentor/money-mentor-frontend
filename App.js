@@ -11,6 +11,7 @@ import Initial from './client/screens/Initial';
 import Login from './client/screens/Login';
 import Signup from './client/screens/Signup';
 import Home from './client/screens/Home';
+import AccountsOverview from './client/screens/AccountsOverview';
 
 export default class App extends React.Component {
   render() {
@@ -37,7 +38,8 @@ const AppStackNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Link: { screen: Link },
   Quiz: { screen: Quiz },
-  Home: { screen: Home }
+  Home: { screen: Home },
+  AccountsOverview: { screen: AccountsOverview }
 });
 
 
