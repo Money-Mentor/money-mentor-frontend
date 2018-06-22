@@ -8,14 +8,11 @@ import Result from './Result';
 export default class Quiz extends Component {
   constructor() {
     super();
-
     const shuffledQuestions = shuffle(questions);
-    const firstQuestion = shuffledQuestions[0];
-
     this.state = {
       questions: shuffledQuestions,
-      question: firstQuestion.question,
-      personality: firstQuestion.personality,
+      question: shuffledQuestions[0].question,
+      personality: shuffledQuestions[0].personality,
       result: {
         'Social Value Spender': 0,
         'Cash Splasher': 0,
@@ -25,31 +22,33 @@ export default class Quiz extends Component {
       value: 0
     };
     this.nextQuestion = this.nextQuestion.bind(this);
-    this.handleResult = this.handleResult.bind(this);
   }
 
-  nextQuestion(event) {
-    const nextState = { ...this.state };
-    const lastQuestion = nextState.questions.pop();
-    nextState.question =
-      lastQuestion && nextState.questions.length >= 2
-        ? lastQuestion.question
-        : null;
-    this.setState(nextState);
-  }
+  nextQuestion() {
+    this.state.questions.shift();
+    const newQuestions = this.state.questions;
 
-  handleResult() {
-    const personality = this.state.personality;
-    const value = this.state.value;
-    console.log('this should be the set value!!!!!', value);
+    if (this.state.questions.length > 0) {
+      const newQuestion = newQuestions[0].question;
+      const newPersonality = newQuestions[0].personality;
 
-    const result = { ...this.state.result };
-    console.log('result *****', result);
-    result[personality] += value;
-    console.log('this should be new sum *****', result[personality]);
-    this.setState({ result: result }, () => {
-      console.log(this.state);
-    });
+      const personality = this.state.personality;
+      const currValue = this.state.value;
+      const newValue = this.state.result[personality] + currValue;
+      const newResult = { ...this.state.result, [personality]: newValue };
+
+      this.setState({
+        questions: newQuestions,
+        question: newQuestion,
+        personality: newPersonality,
+        result: newResult,
+        value: 0
+      });
+
+      setTimeout(() => console.log('**** Updated State:', this.state), 1000);
+    } else {
+      this.props.navigation.navigate('Result', { title: 'Result' });
+    }
   }
 
   static navigationOptions = {
@@ -57,7 +56,7 @@ export default class Quiz extends Component {
   };
 
   render() {
-    const questionView = (
+    return (
       <View>
         <Text>{this.state.question}</Text>
         {/* <Text style={styles.leftValue}>Strongly Disagree</Text>
@@ -65,6 +64,7 @@ export default class Quiz extends Component {
         <Text style={styles.rightValue}>Strongly Agree</Text> */}
         <Slider
           value={this.state.value}
+          defaultValue={0}
           onValueChange={value => this.setState({ value })}
           step={1}
           minimumValue={-3}
@@ -73,18 +73,11 @@ export default class Quiz extends Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            this.handleResult();
             this.nextQuestion();
           }}
         >
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
-      </View>
-    );
-
-    return (
-      <View style={styles.container}>
-        {this.state.question === null ? <Result /> : questionView}
       </View>
     );
   }
