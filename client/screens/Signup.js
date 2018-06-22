@@ -1,41 +1,63 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { signup } from '../store/user';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import Button from 'react-native-button';
+import {
+  FormLabel,
+  FormInput,
+  FormValidationMessage,
+  Button,
+} from 'react-native-elements';
 
-export default class Signup extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
-    this.input = '';
-    this.handleChange = this.handleChange.bind(this);
+    this.state = { email: '', password: '' };
   }
-  handleChange(formData) {
-    formData.email;
-    formData.password;
-  }
+
   render() {
     return (
       <View>
-        <Text>Signup</Text>
+        <Text>Login</Text>
         <FormLabel>Email</FormLabel>
         <FormInput
-          ref={input => (this.input = input)}
-          onChangeText={this.handleChange}
+          onChangeText={text => this.setState({ email: text })}
+          value={this.state.email}
+          placeholder="Email"
         />
-        <FormValidationMessage>
-          {'This field is required'}
-        </FormValidationMessage>
+        <FormLabel>Password</FormLabel>
+        <FormInput
+          onChangeText={text => this.setState({ password: text })}
+          value={this.state.password}
+          placeholder="Password"
+          secureTextEntry={true}
+          ref={input => (this.password = input)}
+        />
         <Button
           raised
           buttonStyle={{ backgroundColor: '#118C8B', borderRadius: 10 }}
           textStyle={{ textAlign: 'center' }}
-          title={`Login`}
+          title={`Submit`}
           onPress={() =>
-            this.props.navigation.navigate('Signup', { title: 'Signup' })
+            this.props.handleSubmit(this.state.email, this.state.password)
           }
         >
-          Signup
+          Submit
         </Button>
       </View>
     );
   }
 }
+
+const mapDispatch = dispatch => {
+  return {
+    handleSubmit(email, password) {
+      dispatch(signup(email, password));
+    },
+  };
+};
+
+export default connect(
+  null,
+  mapDispatch
+)(Signup);

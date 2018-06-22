@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { createStackNavigator } from 'react-navigation';
 
-import store from './client/store/store';
+import store from './client/store/index';
 import Quiz from './client/screens/Quiz';
 import Link from './client/screens/Link';
 import Initial from './client/screens/Initial';

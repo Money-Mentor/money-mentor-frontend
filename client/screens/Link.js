@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Button from 'react-native-button';
 
 import { sendToken } from '../store/token';
-import Quiz from './Quiz';
 
 class Link extends React.Component {
   state = {
