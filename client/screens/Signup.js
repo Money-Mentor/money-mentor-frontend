@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button,
+  Button
 } from 'react-native-elements';
 
 class Signup extends Component {
@@ -21,13 +21,21 @@ class Signup extends Component {
         <Text>Login</Text>
         <FormLabel>Email</FormLabel>
         <FormInput
-          onChangeText={text => this.setState({ email: text })}
+          onChangeText={text =>
+            this.setState({
+              email: text
+            })
+          }
           value={this.state.email}
           placeholder="Email"
         />
         <FormLabel>Password</FormLabel>
         <FormInput
-          onChangeText={text => this.setState({ password: text })}
+          onChangeText={text =>
+            this.setState({
+              password: text
+            })
+          }
           value={this.state.password}
           placeholder="Password"
           secureTextEntry={true}
@@ -38,9 +46,11 @@ class Signup extends Component {
           buttonStyle={{ backgroundColor: '#118C8B', borderRadius: 10 }}
           textStyle={{ textAlign: 'center' }}
           title={`Submit`}
-          onPress={() =>
-            this.props.handleSubmit(this.state.email, this.state.password)
-          }
+          onPress={() => {
+            this.props.handleSubmit(this.state.email, this.state.password);
+
+            this.props.navigation.navigate('Link', { title: 'Link' });
+          }}
         >
           Submit
         </Button>
@@ -53,7 +63,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password) {
       dispatch(signup(email, password));
-    },
+    }
   };
 };
 
