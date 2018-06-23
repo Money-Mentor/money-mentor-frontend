@@ -9,8 +9,8 @@ const setAcctTransData = data => ({ type: SET_ACCT_TRANS_DATA, data })
 export const fetchAcctTransData = () => {
   return async dispatch => {
     try {
-      const res = await axios.put(
-        'http://localhost:8080/api/plaid',
+      const res = await axios.get(
+        'http://localhost:8080/api/accTrans',
       )
       dispatch(setAcctTransData(res.data))
     } catch (err) {

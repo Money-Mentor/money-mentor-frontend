@@ -40,7 +40,7 @@ const AppStackNavigator = createStackNavigator({
   Link: { screen: Link },
   Quiz: { screen: Quiz },
   Home: { screen: Home },
-  AccountsOverview: { screen: AccountsOverview }
+  AccountsOverview: { screen: AccountsOverview },
   Result: { screen: Result }
 });
 
