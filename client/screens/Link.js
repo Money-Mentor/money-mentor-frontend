@@ -13,11 +13,8 @@ class Link extends React.Component {
   };
 
   render() {
-    console.log(this.state.status);
-
     switch (this.state.status) {
       case 'CONNECTED':
-        console.log('connected');
         return this.renderDetails();
       case 'LOGIN_BUTTON':
       case 'EXIT':
@@ -37,18 +34,6 @@ class Link extends React.Component {
     );
   };
 
-  onLoadStart = props => {
-    console.log('onLoadStart', props);
-  };
-
-  onLoad = props => {
-    console.log('onLoad', props);
-  };
-
-  onLoadEnd = props => {
-    console.log('onLoadEnd', props);
-  };
-
   renderLogin() {
     return (
       <PlaidAuthenticator
@@ -56,9 +41,6 @@ class Link extends React.Component {
         publicKey="bc8a1ae90c8899639cdfd58c69af10"
         env="sandbox"
         product="auth,transactions"
-        onLoad={this.onLoad}
-        onLoadStart={this.onLoadStart}
-        onLoadEnd={this.onLoadEnd}
         clientName="MoneyMentor"
       />
     );
@@ -86,7 +68,6 @@ class Link extends React.Component {
       data,
       status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
     });
-    console.log('this.state onMessage handler', this.state);
   };
 }
 

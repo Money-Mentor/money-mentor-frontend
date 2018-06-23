@@ -10,10 +10,14 @@ import Link from './client/screens/Link';
 import Initial from './client/screens/Initial';
 import Login from './client/screens/Login';
 import Signup from './client/screens/Signup';
+import Home from './client/screens/Home';
+import AccountsOverview from './client/screens/AccountsOverview';
 import Result from './client/screens/Result';
 
 export default class App extends React.Component {
   render() {
+    const { isLoggedIn } = this.props;
+
     return (
       <Provider store={store}>
         <AppStackNavigator />
@@ -34,6 +38,8 @@ const AppStackNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Link: { screen: Link },
   Quiz: { screen: Quiz },
+  Home: { screen: Home },
+  AccountsOverview: { screen: AccountsOverview },
   Result: { screen: Result }
 });
 

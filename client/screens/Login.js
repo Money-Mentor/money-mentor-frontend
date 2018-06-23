@@ -38,8 +38,10 @@ class Login extends Component {
           buttonStyle={{ backgroundColor: '#118C8B', borderRadius: 10 }}
           textStyle={{ textAlign: 'center' }}
           title={`Submit`}
-          onPress={() =>
+          onPress={() => {
             this.props.handleSubmit(this.state.email, this.state.password)
+            this.props.navigation.navigate('Home', { title: 'Home' });
+          }
           }
         >
           Submit
