@@ -9,9 +9,10 @@ const personality = personalityResults => {
       max = value;
       personality = key;
     } else if (value === max) {
-      return "Inconclusive";
+      personality = 'Inconclusive';
     }
   }
-  return key;
+  return personality;
 };
 
+export default personality;
