@@ -16,7 +16,7 @@ import Result from './client/screens/Result';
 
 export default class App extends React.Component {
   render() {
-    const { isLoggedIn } = this.props
+    const { isLoggedIn } = this.props;
 
     return (
       <Provider store={store}>
@@ -32,7 +32,6 @@ export default class App extends React.Component {
   }
 }
 
-
 const AppStackNavigator = createStackNavigator({
   Inital: { screen: Initial },
   Login: { screen: Login },
@@ -43,8 +42,6 @@ const AppStackNavigator = createStackNavigator({
   AccountsOverview: { screen: AccountsOverview },
   Result: { screen: Result }
 });
-
-
 
 const styles = StyleSheet.create({
   container: {

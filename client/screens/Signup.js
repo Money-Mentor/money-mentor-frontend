@@ -18,7 +18,7 @@ class Signup extends Component {
   render() {
     return (
       <View>
-        <Text>Login</Text>
+        <Text>Signup</Text>
         <FormLabel>Email</FormLabel>
         <FormInput
           onChangeText={text =>
