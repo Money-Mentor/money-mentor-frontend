@@ -3,9 +3,11 @@ import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import Slider from 'react-native-slider';
 import { questions } from '../data';
 import { shuffle } from '../common';
-import Result from './Result';
+import { connect } from 'react-redux';
+import { getQuizPersonality } from '../store/personality';
+import personality from '../personality';
 
-export default class Quiz extends Component {
+class Quiz extends Component {
   constructor() {
     super();
     const shuffledQuestions = shuffle(questions);
@@ -47,6 +49,9 @@ export default class Quiz extends Component {
 
       setTimeout(() => console.log('**** Updated State:', this.state), 1000);
     } else {
+      const quizPersonality = personality(this.state.result);
+
+      this.props.dispatchedGetQuiz(quizPersonality);
       this.props.navigation.navigate('Result', { title: 'Result' });
     }
   }
@@ -59,9 +64,6 @@ export default class Quiz extends Component {
     return (
       <View>
         <Text>{this.state.question}</Text>
-        {/* <Text style={styles.leftValue}>Strongly Disagree</Text>
-        <Text style={styles.center}>Neutral</Text>
-        <Text style={styles.rightValue}>Strongly Agree</Text> */}
         <Slider
           value={this.state.value}
           defaultValue={0}
@@ -131,3 +133,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 });
+
+const mapDispatch = dispatch => {
+  return {
+    dispatchedGetQuiz: result => dispatch(getQuizPersonality(result))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatch
+)(Quiz);
