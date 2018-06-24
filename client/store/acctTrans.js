@@ -23,7 +23,7 @@ const initialState = {}
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    
+
     case SET_ACCT_TRANS_DATA:
       return action.data
 

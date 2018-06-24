@@ -47,7 +47,6 @@ class Quiz extends Component {
         value: 0
       });
 
-      setTimeout(() => console.log('**** Updated State:', this.state), 1000);
     } else {
       const quizPersonality = personality(this.state.result);
 

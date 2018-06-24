@@ -17,16 +17,18 @@ class Login extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Login</Text>
         <FormLabel>Email</FormLabel>
         <FormInput
+        containerStyle={{ width: '80%' }}
           onChangeText={text => this.setState({ email: text })}
           value={this.state.email}
           placeholder="Email"
         />
         <FormLabel>Password</FormLabel>
         <FormInput
+        containerStyle={{ width: '80%' }}
           onChangeText={text => this.setState({ password: text })}
           value={this.state.password}
           placeholder="Password"
@@ -63,3 +65,12 @@ export default connect(
   null,
   mapDispatch
 )(Login);
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#C2D3DA',
+  },
+});

@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button
+  Button,
 } from 'react-native-elements';
 
 class Signup extends Component {
@@ -17,43 +17,45 @@ class Signup extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Signup</Text>
-        <FormLabel>Email</FormLabel>
-        <FormInput
-          onChangeText={text =>
-            this.setState({
-              email: text
-            })
-          }
-          value={this.state.email}
-          placeholder="Email"
-        />
-        <FormLabel>Password</FormLabel>
-        <FormInput
-          onChangeText={text =>
-            this.setState({
-              password: text
-            })
-          }
-          value={this.state.password}
-          placeholder="Password"
-          secureTextEntry={true}
-          ref={input => (this.password = input)}
-        />
-        <Button
-          raised
-          buttonStyle={{ backgroundColor: '#118C8B', borderRadius: 10 }}
-          textStyle={{ textAlign: 'center' }}
-          title={`Submit`}
-          onPress={() => {
-            this.props.handleSubmit(this.state.email, this.state.password);
+          <FormInput
+            containerStyle={{ width: '80%' }}
+            onChangeText={text =>
+              this.setState({
+                email: text,
+              })
+            }
+            value={this.state.email}
+            placeholder="Email"
+          />
+          <FormInput
+            containerStyle={{ width: '80%' }}
+            onChangeText={text =>
+              this.setState({
+                password: text,
+              })
+            }
+            value={this.state.password}
+            placeholder="Password"
+            secureTextEntry={true}
+            ref={input => (this.password = input)}
+          />
+        <View style={{ padding: 10 }}>
+          <Button
+            raised
+            buttonStyle={{ backgroundColor: '#118C8B', borderRadius: 10 }}
+            textStyle={{ textAlign: 'center' }}
+            title={`Submit`}
+            onPress={() => {
+              this.props.handleSubmit(this.state.email, this.state.password);
 
-            this.props.navigation.navigate('Link', { title: 'Link' });
-          }}
-        >
-          Submit
-        </Button>
+              this.props.navigation.navigate('Link', { title: 'Link' });
+            }}
+          >
+            Submit
+          </Button>
+        </View>
       </View>
     );
   }
@@ -63,7 +65,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password) {
       dispatch(signup(email, password));
-    }
+    },
   };
 };
 
@@ -71,3 +73,12 @@ export default connect(
   null,
   mapDispatch
 )(Signup);
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#C2D3DA',
+  },
+});
