@@ -12,8 +12,6 @@ class Result extends React.Component {
   componentDidMount() {
     this.props.user.personalityType = this.props.personality;
     const updatedUser = this.props.user;
-    console.log('************ updatedUser here', updatedUser);
-
     this.props.dispatchedSetPersonality(this.props.user.id, updatedUser);
   }
 
