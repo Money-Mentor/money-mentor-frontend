@@ -1,18 +1,20 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Provider } from 'react-redux';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Provider } from "react-redux";
 
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from "react-navigation";
 
-import store from './client/store/index';
-import Quiz from './client/screens/Quiz';
-import Link from './client/screens/Link';
-import Initial from './client/screens/Initial';
-import Login from './client/screens/Login';
-import Signup from './client/screens/Signup';
-import Home from './client/screens/Home';
-import AccountsOverview from './client/screens/AccountsOverview';
-import Result from './client/screens/Result';
+import store from "./client/store/index";
+import {
+  Quiz,
+  Link,
+  Initial,
+  Login,
+  Signup,
+  Home,
+  AccountsOverview,
+  Result
+} from "./client";
 
 export default class App extends React.Component {
   render() {
@@ -46,8 +48,8 @@ const AppStackNavigator = createStackNavigator({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
