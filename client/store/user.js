@@ -5,6 +5,7 @@ import axios from 'axios';
  */
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
+const UPDATE_USER_PERSONALITY = 'UPDATE_USER_PERSONALITY';
 
 /**
  * INITIAL STATE
@@ -16,6 +17,7 @@ const defaultUser = {};
  */
 const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
+const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
 
 /**
  * THUNK CREATORS
@@ -57,6 +59,21 @@ export const logout = () => dispatch =>
     })
     .catch(err => console.log(err));
 
+export const updateUserPersonality = (userId, user) => {
+  return async dispatch => {
+    try {
+      console.log('this should be updated user *****', user);
+      const res = await axios.put(`http://localhost:8080/api/users/${userId}`, {
+        user
+      });
+      console.log('what is my data here***', res.data);
+      dispatch(setPersonality(res.data));
+    } catch (err) {
+      console.log('Error updating user personality: ', err.message);
+    }
+  };
+};
+
 /**
  * REDUCER
  */
@@ -66,6 +83,8 @@ export default function(state = defaultUser, action) {
       return action.user;
     case REMOVE_USER:
       return defaultUser;
+    case UPDATE_USER_PERSONALITY:
+      return action.user;
     default:
       return state;
   }
