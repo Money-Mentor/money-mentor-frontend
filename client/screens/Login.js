@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button,
+  Button
 } from 'react-native-elements';
 
 class Login extends Component {
@@ -41,7 +41,9 @@ class Login extends Component {
             title={`Submit`}
             onPress={() => {
               this.props.handleSubmit(this.state.email, this.state.password);
-              this.props.navigation.navigate('Home', { title: 'Home' });
+              this.props.navigation.navigate('BudgetSetup', {
+                title: 'BudgetSetup'
+              });
             }}
           >
             Submit
@@ -56,7 +58,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password) {
       dispatch(login(email, password));
-    },
+    }
   };
 };
 
@@ -70,6 +72,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#C2D3DA',
-  },
+    backgroundColor: '#C2D3DA'
+  }
 });

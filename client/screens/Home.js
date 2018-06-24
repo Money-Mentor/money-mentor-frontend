@@ -45,8 +45,8 @@ class Home extends React.Component {
               zIndex: 2,
               fontSize: 36,
               top: '40%',
-              left: '35%',
-            },
+              left: '35%'
+            }
           ]}
         >
           ${remainingbudget}
@@ -58,8 +58,8 @@ class Home extends React.Component {
               zIndex: 2,
               fontSize: 12,
               top: '45%',
-              left: '33%',
-            },
+              left: '33%'
+            }
           ]}
         >
           Remaining Spendable
@@ -77,7 +77,7 @@ class Home extends React.Component {
           title={`Go To Account Overview`}
           onPress={() => {
             this.props.navigation.navigate('AccountsOverview', {
-              title: 'AccountsOverview',
+              title: 'AccountsOverview'
             });
           }}
         />
@@ -89,13 +89,13 @@ class Home extends React.Component {
 const mapState = state => {
   return {
     account: state.acctTrans.accounts,
-    trans: state.acctTrans.trans,
+    trans: state.acctTrans.trans
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#C2D3DA',
+    backgroundColor: '#C2D3DA'
   },
   circle: {
     width: 250,
@@ -118,17 +118,17 @@ const styles = StyleSheet.create({
     borderWidth: 8,
     borderColor: '#F1F3F2',
     overflow: 'hidden',
-    backgroundColor: '#c4805a',
+    backgroundColor: '#c4805a'
   },
   circleLine: {
     borderBottomColor: '#C2D3DA',
-    borderBottomWidth: 2,
+    borderBottomWidth: 2
   },
   circleFill: {
     backgroundColor: '#f19a6a',
     width: '100%',
     bottom: 0,
-    position: 'absolute',
+    position: 'absolute'
   },
   text: {
     alignSelf: 'center',
@@ -136,13 +136,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     fontWeight: 'bold',
-    position: 'absolute',
+    position: 'absolute'
   },
   smallerText: {
     alignSelf: 'center',
     color: '#585A56',
     textAlign: 'center',
     alignItems: 'center',
-    fontWeight: 'bold',
-  },
+    fontWeight: 'bold'
+  }
 });
