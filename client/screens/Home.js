@@ -19,15 +19,17 @@ class Home extends React.Component {
   }
 
   render() {
-    const { account, trans } = this.props;
+    const { trans } = this.props;
     const today = new Date().getDate();
     const datePercentage = `${Math.floor((today / 30) * 100)}%`;
-    const totalBudget = 1500; //get value based on user
-    const spent = 500; //get value based on transactions
+    const totalBudget = 10000; //get value based on user
+    const spent =
+      trans &&
+      trans
+        .filter(item => item.amount > 0)
+        .reduce((acc, num) => acc + num.amount, 0); //get value based on transactions
     const remainingbudget = totalBudget - spent;
-    const budgetPercentage = `${Math.floor(
-      (remainingbudget / totalBudget) * 100
-    )}%`;
+    const budgetPercentage = `${Math.floor((spent / totalBudget) * 100)}%`;
     return (
       <View style={styles.container}>
         <View style={styles.circle}>
@@ -45,11 +47,13 @@ class Home extends React.Component {
               zIndex: 2,
               fontSize: 36,
               top: '40%',
-              left: '35%',
+              left: '33%',
             },
           ]}
         >
-          ${remainingbudget}
+          {remainingbudget >= 0
+            ? `$${remainingbudget}`
+            : `-$${Math.abs(remainingbudget)}`}
         </Text>
         <Text
           style={[
@@ -65,22 +69,26 @@ class Home extends React.Component {
           Remaining Spendable
         </Text>
         <Text style={[styles.smallerText, { fontSize: 24 }]}>
-          ${Math.floor(remainingbudget / this.getMonthDaysLeft())}
+          {remainingbudget >= 0
+            ? `$${Math.floor(remainingbudget / this.getMonthDaysLeft())}`
+            : '$0'}
         </Text>
         <Text style={[styles.smallerText, { fontSize: 12 }]}>
           Daily Spendable
         </Text>
-        <Button
-          raised
-          buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
-          textStyle={{ textAlign: 'center' }}
-          title={`Go To Account Overview`}
-          onPress={() => {
-            this.props.navigation.navigate('AccountsOverview', {
-              title: 'AccountsOverview',
-            });
-          }}
-        />
+        <View style={{ padding: 10 }}>
+          <Button
+            raised
+            buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+            textStyle={{ textAlign: 'center' }}
+            title={`Go To Account Overview`}
+            onPress={() => {
+              this.props.navigation.navigate('AccountsOverview', {
+                title: 'AccountsOverview',
+              });
+            }}
+          />
+        </View>
       </View>
     );
   }

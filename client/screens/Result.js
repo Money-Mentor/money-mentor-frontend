@@ -35,8 +35,8 @@ class Result extends React.Component {
               source={{ uri: personalityType.imageUrl }}
               resizeMode="stretch"
             />
-            <Text>{personalityType.name}</Text>
-            <Text>{personalityType.description}</Text>
+            <Text style={[styles.smallerText, { fontSize: 24 }]}>{personalityType.name}</Text>
+            <Text style={[styles.smallerText, { fontSize: 12 }]}>{personalityType.description}</Text>
           </View>
         )}
       </View>
@@ -48,8 +48,16 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+    backgroundColor: '#C2D3DA',
+  },
+  smallerText: {
+    alignSelf: 'center',
+    color: '#585A56',
+    textAlign: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+  },
 });
 
 const mapState = state => {
