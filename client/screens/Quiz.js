@@ -61,7 +61,7 @@ class Quiz extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>{this.state.question}</Text>
         <Slider
           value={this.state.value}
@@ -92,12 +92,12 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     backgroundColor: '#C2D3DA',
   },
 
   inputBox: {
-    width: 300,
+    width: 200,
     height: 50,
     backgroundColor: 'rgba(255,255,255,0.2)',
     borderRadius: 25,
