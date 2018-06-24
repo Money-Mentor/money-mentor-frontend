@@ -14,7 +14,7 @@ class Result extends React.Component {
     const updatedUser = this.props.user;
     console.log('************ updatedUser here', updatedUser);
 
-    this.props.dispatchedSetPersonality(+this.props.user.id, updatedUser);
+    this.props.dispatchedSetPersonality(this.props.user.id, updatedUser);
   }
 
   render() {
