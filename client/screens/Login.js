@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button
+  Button,
 } from 'react-native-elements';
 
 class Login extends Component {
@@ -17,35 +17,36 @@ class Login extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Login</Text>
-        <FormLabel>Email</FormLabel>
         <FormInput
+          containerStyle={{ width: '80%' }}
           onChangeText={text => this.setState({ email: text })}
           value={this.state.email}
           placeholder="Email"
         />
-        <FormLabel>Password</FormLabel>
         <FormInput
+          containerStyle={{ width: '80%' }}
           onChangeText={text => this.setState({ password: text })}
           value={this.state.password}
           placeholder="Password"
           secureTextEntry={true}
           ref={input => (this.password = input)}
         />
-        <Button
-          raised
-          buttonStyle={{ backgroundColor: '#118C8B', borderRadius: 10 }}
-          textStyle={{ textAlign: 'center' }}
-          title={`Submit`}
-          onPress={() => {
-            this.props.handleSubmit(this.state.email, this.state.password)
-            this.props.navigation.navigate('Home', { title: 'Home' })
-          }
-          }
-        >
-          Submit
-        </Button>
+        <View style={{ padding: 10 }}>
+          <Button
+            raised
+            buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+            textStyle={{ textAlign: 'center' }}
+            title={`Submit`}
+            onPress={() => {
+              this.props.handleSubmit(this.state.email, this.state.password);
+              this.props.navigation.navigate('Home', { title: 'Home' });
+            }}
+          >
+            Submit
+          </Button>
+        </View>
       </View>
     );
   }
@@ -55,7 +56,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password) {
       dispatch(login(email, password));
-    }
+    },
   };
 };
 
@@ -63,3 +64,12 @@ export default connect(
   null,
   mapDispatch
 )(Login);
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#C2D3DA',
+  },
+});
