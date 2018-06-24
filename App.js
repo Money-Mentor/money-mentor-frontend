@@ -5,12 +5,14 @@ import { Provider } from "react-redux";
 import { createStackNavigator } from "react-navigation";
 
 import store from "./client/store/index";
+// import Signup from "./client/screens/signup";
+
 import {
   Quiz,
   Link,
   Initial,
   Login,
-  Signup,
+  // Signup,
   Home,
   AccountsOverview,
   Result
@@ -37,7 +39,7 @@ export default class App extends React.Component {
 const AppStackNavigator = createStackNavigator({
   Inital: { screen: Initial },
   Login: { screen: Login },
-  Signup: { screen: Signup },
+  // Signup: { screen: Signup },
   Link: { screen: Link },
   Quiz: { screen: Quiz },
   Home: { screen: Home },
