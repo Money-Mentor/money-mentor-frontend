@@ -1,26 +1,78 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAcctTransData } from '../store';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
 
 class Home extends React.Component {
   componentDidMount() {
     this.props.fetchAcctTransData();
+    this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
+  }
+
+  getMonthDaysLeft() {
+    let date = new Date();
+    return (
+      new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() -
+      date.getDate()
+    );
   }
 
   render() {
     const { account, trans } = this.props;
+    const today = new Date().getDate();
+    const datePercentage = `${Math.floor((today / 30) * 100)}%`;
+    const totalBudget = 1500; //get value based on user
+    const spent = 500; //get value based on transactions
+    const remainingbudget = totalBudget - spent;
+    const budgetPercentage = `${Math.floor(
+      (remainingbudget / totalBudget) * 100
+    )}%`;
     return (
       <View style={styles.container}>
         <View style={styles.circle}>
-          <View style={[styles.circleFill, { height: '10%', zIndex: 0 }]} />
-          <View style={[styles.circleLine, { height: '10%', zIndex: 1 }]} />
-          <Text style={[styles.text, { zIndex: 2 }]}>$1,000</Text>
-          <Text style={[styles.smallerText, { zIndex: 2 }]}>Remaining Spendable</Text>
+          <View
+            style={[styles.circleLine, { height: datePercentage, zIndex: 1 }]}
+          />
+          <View
+            style={[styles.circleFill, { top: budgetPercentage, zIndex: 0 }]}
+          />
         </View>
+        <Text
+          style={[
+            styles.text,
+            {
+              zIndex: 2,
+              fontSize: 36,
+              top: '40%',
+              left: '35%',
+            },
+          ]}
+        >
+          ${remainingbudget}
+        </Text>
+        <Text
+          style={[
+            styles.text,
+            {
+              zIndex: 2,
+              fontSize: 12,
+              top: '45%',
+              left: '33%',
+            },
+          ]}
+        >
+          Remaining Spendable
+        </Text>
+        <Text style={[styles.smallerText, { fontSize: 24 }]}>
+          ${Math.floor(remainingbudget / this.getMonthDaysLeft())}
+        </Text>
+        <Text style={[styles.smallerText, { fontSize: 12 }]}>
+          Daily Spendable
+        </Text>
         <Button
           raised
-          buttonStyle={{ backgroundColor: '#118C8B', borderRadius: 10 }}
+          buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
           textStyle={{ textAlign: 'center' }}
           title={`Go To Account Overview`}
           onPress={() => {
@@ -63,41 +115,34 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     borderRadius: 250 / 2,
-    borderWidth: 6,
+    borderWidth: 8,
     borderColor: '#F1F3F2',
     overflow: 'hidden',
-    backgroundColor: '#F14D49',
+    backgroundColor: '#c4805a',
   },
   circleLine: {
     borderBottomColor: '#C2D3DA',
     borderBottomWidth: 2,
   },
   circleFill: {
-    backgroundColor: '#F2746B',
+    backgroundColor: '#f19a6a',
     width: '100%',
     bottom: 0,
-    // position: 'absolute',
+    position: 'absolute',
   },
   text: {
-    fontSize: 36,
     alignSelf: 'center',
     color: '#F1F3F2',
     textAlign: 'center',
     alignItems: 'center',
     fontWeight: 'bold',
     position: 'absolute',
-    top: '40%',
-    left: '25%',
   },
   smallerText: {
-    fontSize: 12,
     alignSelf: 'center',
-    color: '#F1F3F2',
+    color: '#585A56',
     textAlign: 'center',
     alignItems: 'center',
     fontWeight: 'bold',
-    position: 'absolute',
-    top: '60%',
-    left: '25%',
-  }
+  },
 });

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Button } from 'react-native-elements';
 import Slider from 'react-native-slider';
 import { questions } from '../data';
 import { shuffle } from '../common';
@@ -19,9 +20,9 @@ class Quiz extends Component {
         'Social Value Spender': 0,
         'Cash Splasher': 0,
         Hoarder: 0,
-        Ostrich: 0
+        Ostrich: 0,
       },
-      value: 0
+      value: 0,
     };
     this.nextQuestion = this.nextQuestion.bind(this);
   }
@@ -44,9 +45,8 @@ class Quiz extends Component {
         question: newQuestion,
         personality: newPersonality,
         result: newResult,
-        value: 0
+        value: 0,
       });
-
     } else {
       const quizPersonality = personality(this.state.result);
 
@@ -56,7 +56,7 @@ class Quiz extends Component {
   }
 
   static navigationOptions = {
-    title: 'Quiz'
+    title: 'Quiz',
   };
 
   render() {
@@ -71,14 +71,18 @@ class Quiz extends Component {
           minimumValue={-3}
           maximumValue={3}
         />
-        <TouchableOpacity
+        <Button
+          raised
+          buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+          textStyle={{ textAlign: 'center' }}
+          title={`Next`}
           style={styles.button}
           onPress={() => {
             this.nextQuestion();
           }}
         >
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
+          Next
+        </Button>
       </View>
     );
   }
@@ -88,7 +92,8 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#C2D3DA',
   },
 
   inputBox: {
@@ -100,42 +105,40 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#ffffff',
     marginVertical: 10,
-    textAlign: 'center'
+    textAlign: 'center',
   },
 
   button: {
-    backgroundColor: '#4f9b94',
-    borderRadius: 25,
-    width: 300,
+    width: 150,
     marginVertical: 10,
-    paddingVertical: 13
+    paddingVertical: 13,
   },
 
   buttonText: {
     fontSize: 16,
     fontWeight: '500',
     color: '#ffffff',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 
   leftValue: {
     flex: 1,
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
 
   rightValue: {
     flex: 1,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   center: {
     flex: 1,
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 const mapDispatch = dispatch => {
   return {
-    dispatchedGetQuiz: result => dispatch(getQuizPersonality(result))
+    dispatchedGetQuiz: result => dispatch(getQuizPersonality(result)),
   };
 };
 

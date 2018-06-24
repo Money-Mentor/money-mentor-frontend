@@ -2,14 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import PlaidAuthenticator from 'react-native-plaid-link';
 import { connect } from 'react-redux';
-import Button from 'react-native-button';
+import { Button } from 'react-native-elements';
 
 import { sendToken } from '../store/token';
 
 class Link extends React.Component {
   state = {
     data: {},
-    status: 'LOGIN_BUTTON'
+    status: 'LOGIN_BUTTON',
   };
 
   render() {
@@ -53,6 +53,10 @@ class Link extends React.Component {
       <View style={styles.container}>
         <Text>Next Step: Take Our Quiz</Text>
         <Button
+          raised
+          buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+          textStyle={{ textAlign: 'center' }}
+          title={`Let's get started!`}
           onPress={() =>
             this.props.navigation.navigate('Quiz', { title: 'Quiz' })
           }
@@ -66,7 +70,9 @@ class Link extends React.Component {
   onMessage = data => {
     this.setState({
       data,
-      status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
+      status: data.action
+        .substr(data.action.lastIndexOf(':') + 1)
+        .toUpperCase(),
     });
   };
 }
@@ -77,24 +83,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 24,
-    backgroundColor: '#ecf0f1'
+    backgroundColor: '#C2D3DA',
   },
   paragraph: {
     fontSize: 18,
     marginBottom: 5,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e'
+    color: '#34495e',
   },
   value: {
     marginBottom: 20,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 const mapDispatch = dispatch => {
   return {
-    dispatchedSendToken: token => dispatch(sendToken(token))
+    dispatchedSendToken: token => dispatch(sendToken(token)),
   };
 };
 

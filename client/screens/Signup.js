@@ -44,7 +44,7 @@ class Signup extends Component {
         <View style={{ padding: 10 }}>
           <Button
             raised
-            buttonStyle={{ backgroundColor: '#118C8B', borderRadius: 10 }}
+            buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
             textStyle={{ textAlign: 'center' }}
             title={`Submit`}
             onPress={() => {

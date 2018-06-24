@@ -10,7 +10,7 @@ const Initial = props => {
         <Button
           raised
           buttonStyle={{
-            backgroundColor: '#118C8B',
+            backgroundColor: '#92B1BD',
             borderRadius: 10,
             width: '90%',
           }}
@@ -25,7 +25,7 @@ const Initial = props => {
         <Button
           raised
           buttonStyle={{
-            backgroundColor: '#118C8B',
+            backgroundColor: '#92B1BD',
             borderRadius: 10,
             width: '90%',
           }}
