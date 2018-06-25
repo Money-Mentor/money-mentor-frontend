@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../store/user';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import {
   FormLabel,
   FormInput,
@@ -18,18 +18,34 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Login</Text>
+            <Image source={require('../../public/img/logo.png')} />
+      <Text style={styles.text}>Login</Text>
         <FormInput
-          containerStyle={{ width: '80%' }}
+          containerStyle={{ width: '80%', paddingTop: 10 }}
+          inputStyle={{
+            height: 60,
+            borderColor: '#92B1BD',
+            borderWidth: 2,
+            borderRadius: 15,
+            width: '100%',
+          }}
           onChangeText={text => this.setState({ email: text })}
           value={this.state.email}
-          placeholder="Email"
+          placeholder="   Email"
         />
         <FormInput
-          containerStyle={{ width: '80%' }}
+          containerStyle={{ width: '80%', paddingTop: 10 }}
+          inputStyle={{
+            height: 60,
+            borderColor: '#92B1BD',
+            borderWidth: 2,
+            borderRadius: 15,
+            width: '100%',
+          }}
+          leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
           onChangeText={text => this.setState({ password: text })}
           value={this.state.password}
-          placeholder="Password"
+          placeholder="   Password"
           secureTextEntry={true}
           ref={input => (this.password = input)}
         />
@@ -71,5 +87,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#C2D3DA',
+  },
+  text: {
+    alignSelf: 'center',
+    color: '#585A56',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
 });

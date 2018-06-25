@@ -20,25 +20,47 @@ class Home extends React.Component {
 
   render() {
     const { trans } = this.props;
-    const today = new Date().getDate();
-    const datePercentage = `${Math.floor((today / 30) * 100)}%`;
+    //date and month calculation
+    const month = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    const date = new Date();
+    const today = `${month[date.getMonth()]} ${date.getDate()}`;
+
+    // location of the date relative to the circle
+    const dateHeight = `${date.getDate() + 26}%`;
+
+    //shows the line on the circle based on the date
+    const dateCircle = `${Math.floor((date.getDate() / 30) * 100)}%`;
+
     const totalBudget = 10000; //get value based on user
     const spent =
       trans &&
       trans
         .filter(item => item.amount > 0)
-        .reduce((acc, num) => acc + num.amount, 0); //get value based on transactions
+        .reduce((acc, num) => acc + num.amount, 0);
     const remainingbudget = totalBudget - spent;
-    const budgetPercentage = `${Math.floor((spent / totalBudget) * 100)}%`;
+
+    //shows how much was spent as a fill inside the circle
+    const budgetCircle = `${Math.floor((spent / totalBudget) * 100)}%`;
     return (
       <View style={styles.container}>
         <View style={styles.circle}>
           <View
-            style={[styles.circleLine, { height: datePercentage, zIndex: 1 }]}
+            style={[styles.circleLine, { height: dateCircle, zIndex: 1 }]}
           />
-          <View
-            style={[styles.circleFill, { top: budgetPercentage, zIndex: 0 }]}
-          />
+          <View style={[styles.circleFill, { top: budgetCircle, zIndex: 0 }]} />
         </View>
         <Text
           style={[
@@ -67,6 +89,11 @@ class Home extends React.Component {
           ]}
         >
           Remaining Spendable
+        </Text>
+        <Text
+          style={[styles.dateText, { top: dateHeight, left: '85%', zIndex: 2 }]}
+        >
+          {today}
         </Text>
         <Text style={[styles.smallerText, { fontSize: 24 }]}>
           {remainingbudget >= 0
@@ -129,7 +156,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#c4805a',
   },
   circleLine: {
-    borderBottomColor: '#C2D3DA',
+    borderBottomColor: '#F1F3F2',
     borderBottomWidth: 2,
   },
   circleFill: {
@@ -141,6 +168,14 @@ const styles = StyleSheet.create({
   text: {
     alignSelf: 'center',
     color: '#F1F3F2',
+    textAlign: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    position: 'absolute',
+  },
+  dateText: {
+    alignSelf: 'center',
+    color: '#585A56',
     textAlign: 'center',
     alignItems: 'center',
     fontWeight: 'bold',

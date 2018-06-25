@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import Slider from 'react-native-slider';
 import { questions } from '../data';
@@ -62,8 +62,14 @@ class Quiz extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.state.question}</Text>
+      <View style={{alignItems: 'center', padding: 40}}>
+        <Image
+          source={require('../../public/img/logo.png')}
+        />
+      </View>
+        <Text style={styles.text}>{this.state.question}</Text>
         <Slider
+          style={styles.slider}
           value={this.state.value}
           defaultValue={0}
           onValueChange={value => this.setState({ value })}
@@ -92,10 +98,22 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
-    // alignItems: 'center',
     backgroundColor: '#C2D3DA',
   },
-
+  text: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    color: '#585A56',
+    fontWeight: 'bold',
+    fontSize: 20,
+    width: '80%',
+  },
+  slider: {
+    marginLeft: 20,
+    marginRight: 20,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
   inputBox: {
     width: 200,
     height: 50,
@@ -112,6 +130,7 @@ const styles = StyleSheet.create({
     width: 150,
     marginVertical: 10,
     paddingVertical: 13,
+    alignSelf: 'center',
   },
 
   buttonText: {

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 
 const Initial = props => {
   return (
     <View style={styles.container}>
-      <Text>Money Mentor</Text>
+      <Image source={require('../../public/img/logo.png')} />
+      <Text style={styles.text}>Money Mentor</Text>
+      <View style={{ padding: 40 }}>
+
       <View style={{ padding: 10 }}>
         <Button
           raised
@@ -38,6 +41,7 @@ const Initial = props => {
           Signup
         </Button>
       </View>
+      </View>
     </View>
   );
 };
@@ -50,5 +54,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#C2D3DA',
+  },
+  text: {
+    alignSelf: 'center',
+    color: '#585A56',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
 });
