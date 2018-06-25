@@ -29,6 +29,7 @@ class Signup extends Component {
             borderRadius: 15,
             width: '100%',
           }}
+          // Write a handleChange - should we have a handleChange instead of inline? Similar to web app - is it possible?
           onChangeText={text =>
             this.setState({
               email: text,
@@ -103,3 +104,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+
+// Be consistent with styling - styling in one condensed place, easier to read

@@ -18,9 +18,37 @@ class Home extends React.Component {
     );
   }
 
-  render() {
+  totalSpent() {
+    const date = new Date();
     const { trans } = this.props;
-    //date and month calculation
+
+    const fotmatMonth = month => {
+      month++;
+      return month < 10 ? '0' + month : month;
+    };
+    let startDate = new Date(date.getFullYear(), date.getMonth(), 1);
+    let startDateString = `${startDate.getFullYear()}-${fotmatMonth(
+      startDate.getMonth()
+    )}-01`;
+
+    const spent =
+      trans &&
+      trans
+        .filter(item => item.amount > 0 && item.date > startDateString)
+        .reduce((acc, num) => acc + num.amount, 0);
+    console.log(
+      trans &&
+        trans.filter(item => item.amount > 0 && item.date > startDateString)
+    );
+    return spent;
+  }
+
+  remainingbudget() {
+    const { totalBudget } = this.props;
+    return totalBudget - this.totalSpent();
+  }
+
+  getDay() {
     const month = [
       'Jan',
       'Feb',
@@ -36,31 +64,59 @@ class Home extends React.Component {
       'Dec',
     ];
     const date = new Date();
-    const today = `${month[date.getMonth()]} ${date.getDate()}`;
+    return `${month[date.getMonth()]} ${date.getDate()}`;
+  }
 
+  dateCircleHeight() {
+    const date = new Date();
+    return Math.floor((date.getDate() / 30) * 100);
+  }
+
+  budgetCircleHeight() {
+    const { totalBudget } = this.props;
+    return Math.floor((this.totalSpent() / totalBudget) * 100);
+  }
+
+  budgetStatus() {
+    if (this.dateCircleHeight() > this.budgetCircleHeight()) {
+      return 'Nice! Looks like you are right on track';
+    } else if (this.remainingbudget() < 0) {
+      return 'Oops! You spent your budget already';
+    } else {
+      return 'Oh no! Your spendable is more than you daily budget';
+    }
+  }
+
+  render() {
+    console.log(
+      'date height: ',
+      this.dateCircleHeight(),
+      'budget height: ',
+      this.budgetCircleHeight()
+    );
+    const { totalBudget } = this.props;
+    const date = new Date();
     // location of the date relative to the circle
     const dateHeight = `${date.getDate() + 26}%`;
 
-    //shows the line on the circle based on the date
-    const dateCircle = `${Math.floor((date.getDate() / 30) * 100)}%`;
-
-    const totalBudget = 10000; //get value based on user
-    const spent =
-      trans &&
-      trans
-        .filter(item => item.amount > 0)
-        .reduce((acc, num) => acc + num.amount, 0);
-    const remainingbudget = totalBudget - spent;
-
-    //shows how much was spent as a fill inside the circle
-    const budgetCircle = `${Math.floor((spent / totalBudget) * 100)}%`;
     return (
       <View style={styles.container}>
+        <Text style={[styles.smallerText, { fontSize: 14 }]}>
+          {this.budgetStatus()}
+        </Text>
         <View style={styles.circle}>
           <View
-            style={[styles.circleLine, { height: dateCircle, zIndex: 1 }]}
+            style={[
+              styles.circleLine,
+              { height: `${this.dateCircleHeight()}%`, zIndex: 1 },
+            ]}
           />
-          <View style={[styles.circleFill, { top: budgetCircle, zIndex: 0 }]} />
+          <View
+            style={[
+              styles.circleFill,
+              { top: `${this.budgetCircleHeight()}%`, zIndex: 0 },
+            ]}
+          />
         </View>
         <Text
           style={[
@@ -69,13 +125,13 @@ class Home extends React.Component {
               zIndex: 2,
               fontSize: 36,
               top: '40%',
-              left: '33%',
+              left: '35%',
             },
           ]}
         >
-          {remainingbudget >= 0
-            ? `$${remainingbudget}`
-            : `-$${Math.abs(remainingbudget)}`}
+          {this.remainingbudget() >= 0
+            ? `$${this.remainingbudget()}`
+            : `-$${Math.abs(this.remainingbudget())}`}
         </Text>
         <Text
           style={[
@@ -93,16 +149,34 @@ class Home extends React.Component {
         <Text
           style={[styles.dateText, { top: dateHeight, left: '85%', zIndex: 2 }]}
         >
-          {today}
+          {this.getDay()}
         </Text>
-        <Text style={[styles.smallerText, { fontSize: 24 }]}>
-          {remainingbudget >= 0
-            ? `$${Math.floor(remainingbudget / this.getMonthDaysLeft())}`
-            : '$0'}
-        </Text>
-        <Text style={[styles.smallerText, { fontSize: 12 }]}>
-          Daily Spendable
-        </Text>
+        <View
+          style={{
+            flexDirection: 'row',
+          }}
+        >
+          <View>
+            <Text style={[styles.smallerText, { fontSize: 18 }]}>
+              ${totalBudget}
+            </Text>
+            <Text style={[styles.smallerText, { fontSize: 12 }]}>Total</Text>
+            <Text style={[styles.smallerText, { fontSize: 12 }]}>Budget</Text>
+          </View>
+          <View>
+            <Text style={[styles.smallerText, { fontSize: 18 }]}>
+              {this.remainingbudget() >= 0
+                ? `$${Math.floor(
+                    this.remainingbudget() / this.getMonthDaysLeft()
+                  )}`
+                : '$0'}
+            </Text>
+            <Text style={[styles.smallerText, { fontSize: 12 }]}>Daily</Text>
+            <Text style={[styles.smallerText, { fontSize: 12 }]}>
+              Spendable
+            </Text>
+          </View>
+        </View>
         <View style={{ padding: 10 }}>
           <Button
             raised
@@ -125,6 +199,7 @@ const mapState = state => {
   return {
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
+    totalBudget: 4000,
   };
 };
 
@@ -166,26 +241,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   text: {
-    alignSelf: 'center',
     color: '#F1F3F2',
-    textAlign: 'center',
-    alignItems: 'center',
     fontWeight: 'bold',
     position: 'absolute',
   },
   dateText: {
-    alignSelf: 'center',
     color: '#585A56',
-    textAlign: 'center',
-    alignItems: 'center',
     fontWeight: 'bold',
     position: 'absolute',
   },
   smallerText: {
     alignSelf: 'center',
     color: '#585A56',
-    textAlign: 'center',
-    alignItems: 'center',
     fontWeight: 'bold',
   },
 });
