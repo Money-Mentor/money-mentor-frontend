@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../store/user';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import {
   FormLabel,
   FormInput,
@@ -18,7 +18,8 @@ class Signup extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Signup</Text>
+        <Image source={require('../../public/img/logo.png')} />
+        <Text style={styles.text}>Signup</Text>
         <FormInput
           containerStyle={{ width: '80%', paddingTop: 10 }}
           inputStyle={{
@@ -94,5 +95,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#C2D3DA',
+  },
+  text: {
+    alignSelf: 'center',
+    color: '#585A56',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
 });

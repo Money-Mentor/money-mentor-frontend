@@ -6,7 +6,7 @@ import { updateUserPersonality } from '../store/user';
 
 class Result extends React.Component {
   static navigationOptions = {
-    title: 'Result'
+    title: 'Result',
   };
 
   componentDidMount() {
@@ -30,13 +30,17 @@ class Result extends React.Component {
                 height: 150,
                 width: 150,
                 borderWidth: 1,
-                borderRadius: 75
+                borderRadius: 75,
               }}
               source={{ uri: personalityType.imageUrl }}
               resizeMode="stretch"
             />
-            <Text style={[styles.smallerText, { fontSize: 24 }]}>{personalityType.name}</Text>
-            <Text style={[styles.smallerText, { fontSize: 12 }]}>{personalityType.description}</Text>
+            <Text style={[styles.smallerText, { fontSize: 24}]}>
+              {personalityType.name}
+            </Text>
+            <Text style={[styles.smallerText, { fontSize: 12 }]}>
+              {personalityType.description}
+            </Text>
           </View>
         )}
       </View>
@@ -57,20 +61,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     fontWeight: 'bold',
+    padding:20
   },
 });
 
 const mapState = state => {
   return {
     user: state.user,
-    personality: state.personality
+    personality: state.personality,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     dispatchedSetPersonality: (userId, user) =>
-      dispatch(updateUserPersonality(userId, user))
+      dispatch(updateUserPersonality(userId, user)),
   };
 };
 

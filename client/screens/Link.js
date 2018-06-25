@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import PlaidAuthenticator from 'react-native-plaid-link';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
@@ -28,7 +28,14 @@ class Link extends React.Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={() => this.setState({ status: '' })}>
-          <Text style={styles.paragraph}>Login with Plaid</Text>
+          <Image
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            source={require('../../public/img/logo.png')}
+          />
+          <Text style={styles.text}>Login with Plaid</Text>
         </TouchableOpacity>
       </View>
     );
@@ -51,7 +58,14 @@ class Link extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text>Next Step: Take Our Quiz</Text>
+        <Image
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          source={require('../../public/img/logo.png')}
+        />
+        <Text style={styles.text}>Next Step: Take Our Quiz</Text>
         <Button
           raised
           buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
@@ -85,12 +99,11 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     backgroundColor: '#C2D3DA',
   },
-  paragraph: {
-    fontSize: 18,
-    marginBottom: 5,
+  text: {
+    alignSelf: 'center',
+    color: '#585A56',
     fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
+    fontSize: 20,
   },
   value: {
     marginBottom: 20,
