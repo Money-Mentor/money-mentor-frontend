@@ -19,28 +19,42 @@ class Signup extends Component {
     return (
       <View style={styles.container}>
         <Text>Signup</Text>
-          <FormInput
-            containerStyle={{ width: '80%' }}
-            onChangeText={text =>
-              this.setState({
-                email: text,
-              })
-            }
-            value={this.state.email}
-            placeholder="Email"
-          />
-          <FormInput
-            containerStyle={{ width: '80%' }}
-            onChangeText={text =>
-              this.setState({
-                password: text,
-              })
-            }
-            value={this.state.password}
-            placeholder="Password"
-            secureTextEntry={true}
-            ref={input => (this.password = input)}
-          />
+        <FormInput
+          containerStyle={{ width: '80%', paddingTop: 10 }}
+          inputStyle={{
+            height: 60,
+            borderColor: '#92B1BD',
+            borderWidth: 2,
+            borderRadius: 15,
+            width: '100%',
+          }}
+          onChangeText={text =>
+            this.setState({
+              email: text,
+            })
+          }
+          value={this.state.email}
+          placeholder="   Email"
+        />
+        <FormInput
+          containerStyle={{ width: '80%', paddingTop: 10 }}
+          inputStyle={{
+            height: 60,
+            borderColor: '#92B1BD',
+            borderWidth: 2,
+            borderRadius: 15,
+            width: '100%',
+          }}
+          onChangeText={text =>
+            this.setState({
+              password: text,
+            })
+          }
+          value={this.state.password}
+          placeholder="   Password"
+          secureTextEntry={true}
+          ref={input => (this.password = input)}
+        />
         <View style={{ padding: 10 }}>
           <Button
             raised
