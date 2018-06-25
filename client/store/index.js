@@ -19,6 +19,16 @@ const middleware = composeWithDevTools(
 );
 const store = createStore(reducer, middleware);
 
+//choose heroku or back-end
+const processEnv = 'heroku';
+
+export const server =
+  processEnv === 'back-end'
+    ? 'http://localhost:8080'
+    : 'http://money-mentor.herokuapp.com';
+
+
+
 export default store;
 export * from './token';
 export * from './user';
