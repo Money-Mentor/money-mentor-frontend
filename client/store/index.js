@@ -6,12 +6,14 @@ import token from './token';
 import user from './user';
 import personality from './personality';
 import acctTrans from './acctTrans';
+import budget from './budget';
 
 const reducer = combineReducers({
   token,
   user,
   personality,
-  acctTrans
+  acctTrans,
+  budget
 });
 
 const middleware = composeWithDevTools(
@@ -24,3 +26,4 @@ export * from './token';
 export * from './user';
 export * from './personality';
 export * from './acctTrans';
+export * from './budget';
