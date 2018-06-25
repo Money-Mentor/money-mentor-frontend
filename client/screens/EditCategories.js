@@ -4,23 +4,23 @@ import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setBudget } from '../store';
 
-class BudgetSetup extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      income: 0,
-      staticCosts: 0,
-      savings: 0,
-      spendingBudget: 0
-    };
-  }
+export default class EditCategories extends React.Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     income: 0,
+  //     staticCosts: 0,
+  //     savings: 0,
+  //     spendingBudget: 0
+  //   };
+  // }
 
   render() {
     
     return (
       <View>
-        <Text>Tell us a little about your finances.</Text>
-        <Text>What is your income?</Text>
+        <Text>Edit Budget Categories</Text>
+        {/* <Text>What is your income?</Text>
         <FormInput
           containerStyle={{ width: '80%' }}
           onChangeText={income =>
@@ -63,22 +63,22 @@ class BudgetSetup extends React.Component {
           >
             Submit
           </Button>
-        </View>
+        </View> */}
       </View>
     );
   }
 }
 
-const mapState = state => {
-  return {
-    budget: state.budget
-  };
-};
+// const mapState = state => {
+//   return {
+//     budget: state.budget
+//   };
+// };
 
-const mapDispatch = dispatch => {
-  return {
-    setBudget: budget => dispatch(setBudget(budget)),
-  };
-};
+// const mapDispatch = dispatch => {
+//   return {
+//     setBudget: budget => dispatch(setBudget(budget)),
+//   };
+// };
 
-export default connect(mapState, mapDispatch)(BudgetSetup);
+// export default connect(mapState, mapDispatch)(EditCategories);

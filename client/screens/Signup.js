@@ -50,7 +50,7 @@ class Signup extends Component {
             onPress={() => {
               this.props.handleSubmit(this.state.email, this.state.password);
 
-              this.props.navigation.navigate('BudgetSetup', { title: 'BudgetSetup' });
+              this.props.navigation.navigate('Link', { title: 'Link' });
             }}
           >
             Submit

@@ -4,16 +4,16 @@ import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setBudget } from '../store';
 
-class EditCategories extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     income: 0,
-  //     staticCosts: 0,
-  //     savings: 0,
-  //     spendingBudget: 0
-  //   };
-  // }
+class BudgetSetup extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      income: 0,
+      staticCosts: 0,
+      savings: 0,
+      spendingBudget: 0
+    };
+  }
 
   render() {
     
@@ -29,7 +29,26 @@ class EditCategories extends React.Component {
           value={this.state.income}
           placeholder="Income"
         />
-
+        <Text>
+          What are your static costs? (i.e. rent, utilities, insurance, etc.)
+        </Text>
+        <FormInput
+          containerStyle={{ width: '80%' }}
+          onChangeText={staticCosts =>
+            this.setState({staticCosts: +staticCosts})
+          }
+          value={this.state.staticCosts}
+          placeholder="Static Costs"
+          />
+        <Text>How much would you like to save?</Text>
+        <FormInput
+          containerStyle={{ width: '80%' }}
+          onChangeText={savings =>
+            this.setState({savings: +savings})
+          }
+          value={this.state.savings}
+          placeholder="Savings"
+        />
         <View>
           <Button
             raised
@@ -62,4 +81,4 @@ const mapDispatch = dispatch => {
   };
 };
 
-export default connect(mapState, mapDispatch)(EditCategories);
+export default connect(mapState, mapDispatch)(BudgetSetup);
