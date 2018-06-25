@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button,
+  Button
 } from 'react-native-elements';
 
 class Login extends Component {
@@ -57,7 +57,9 @@ class Login extends Component {
             title={`Submit`}
             onPress={() => {
               this.props.handleSubmit(this.state.email, this.state.password);
-              this.props.navigation.navigate('Home', { title: 'Home' });
+              this.props.navigation.navigate('Home', {
+                title: 'Home'
+              });
             }}
           >
             Submit
@@ -72,7 +74,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password) {
       dispatch(login(email, password));
-    },
+    }
   };
 };
 

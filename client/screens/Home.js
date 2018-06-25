@@ -125,8 +125,8 @@ class Home extends React.Component {
               zIndex: 2,
               fontSize: 36,
               top: '40%',
-              left: '35%',
-            },
+              left: '35%'
+            }
           ]}
         >
           {this.remainingbudget() >= 0
@@ -140,8 +140,8 @@ class Home extends React.Component {
               zIndex: 2,
               fontSize: 12,
               top: '45%',
-              left: '33%',
-            },
+              left: '33%'
+            }
           ]}
         >
           Remaining Spendable
@@ -205,7 +205,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#C2D3DA',
+    backgroundColor: '#C2D3DA'
   },
   circle: {
     width: 250,
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     borderWidth: 8,
     borderColor: '#F1F3F2',
     overflow: 'hidden',
-    backgroundColor: '#c4805a',
+    backgroundColor: '#c4805a'
   },
   circleLine: {
     borderBottomColor: '#F1F3F2',
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f19a6a',
     width: '100%',
     bottom: 0,
-    position: 'absolute',
+    position: 'absolute'
   },
   text: {
     color: '#F1F3F2',
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   dateText: {
     color: '#585A56',
     fontWeight: 'bold',
-    position: 'absolute',
+    position: 'absolute'
   },
   smallerText: {
     alignSelf: 'center',
