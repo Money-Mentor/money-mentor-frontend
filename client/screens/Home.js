@@ -97,7 +97,7 @@ class Home extends React.Component {
     const { totalBudget } = this.props;
     const date = new Date();
     // location of the date relative to the circle
-    const dateHeight = `${date.getDate() + 26}%`;
+    const dateHeight = `${date.getDate() + 27}%`;
 
     return (
       <View style={styles.container}>
