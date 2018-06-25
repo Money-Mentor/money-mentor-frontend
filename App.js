@@ -12,10 +12,12 @@ import {
   Link,
   Initial,
   Login,
-  // Signup,
+  Signup,
   Home,
+  Main,
   AccountsOverview,
-  Result
+  Result,
+  Navbar
 } from "./client";
 
 export default class App extends React.Component {
@@ -39,9 +41,11 @@ export default class App extends React.Component {
 const AppStackNavigator = createStackNavigator({
   Inital: { screen: Initial },
   Login: { screen: Login },
-  // Signup: { screen: Signup },
+  Signup: { screen: Signup },
   Link: { screen: Link },
   Quiz: { screen: Quiz },
+  Navbar: { screen: Navbar },
+  Main: { screen: Main },
   Home: { screen: Home },
   AccountsOverview: { screen: AccountsOverview },
   Result: { screen: Result }

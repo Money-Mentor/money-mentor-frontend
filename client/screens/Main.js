@@ -5,13 +5,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-elements";
 import { Navbar, Home } from "../";
 
-class Home extends React.Component {
+class Main extends React.Component {
   render() {
-    return (
-      <View>
-        <Navbar />
-        <Home />
-      </View>
-    );
+    return <Navbar />;
   }
 }
+
+export default Main;
