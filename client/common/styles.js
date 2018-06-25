@@ -35,6 +35,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  linkLogoLocation: {
+    position: 'absolute',
+    top: -200,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   homePageContainer: {
     flex: 1,
     alignItems: 'center',
@@ -44,7 +53,7 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: colorTheme.blue.dark,
     borderRadius: 10,
-    width: '90%',
+    width: '100%',
   },
   circle: {
     width: 250,
@@ -70,6 +79,31 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
   },
+  questionContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    backgroundColor: '#C2D3DA',
+  },
+  questionText: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    color: '#585A56',
+    fontWeight: 'bold',
+    fontSize: 20,
+    width: '80%',
+  },
+  questionButton: {
+    width: 150,
+    marginVertical: 10,
+    paddingVertical: 13,
+    alignSelf: 'center',
+  },
+  slider: {
+    marginLeft: 20,
+    marginRight: 20,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
   dateText: {
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
@@ -79,6 +113,13 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
+  },
+  budgetSetupText: {
+    color: colorTheme.grey.dark,
+    fontWeight: 'bold',
+    fontSize: 16,
+    paddingTop: 10,
+    width: '80%'
   },
   budgetStatus: {
     fontWeight: 'bold',
@@ -96,5 +137,5 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 15,
     width: '100%',
-  }
+  },
 });
