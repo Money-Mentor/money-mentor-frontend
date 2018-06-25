@@ -62,11 +62,9 @@ class Quiz extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <View style={{alignItems: 'center', padding: 40}}>
-        <Image
-          source={require('../../public/img/logo.png')}
-        />
-      </View>
+        <View style={{ alignItems: 'center', padding: 40 }}>
+          <Image source={require('../../public/img/logo.png')} />
+        </View>
         <Text style={styles.text}>{this.state.question}</Text>
         <Slider
           style={styles.slider}

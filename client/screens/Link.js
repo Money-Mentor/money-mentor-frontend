@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
 
 const mapDispatch = dispatch => {
   return {
+    // rename to same thing - shorthand
     dispatchedSendToken: token => dispatch(sendToken(token)),
   };
 };
