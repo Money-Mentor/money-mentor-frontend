@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { server } from './index';
 
 /**
  * ACTION TYPES
@@ -25,7 +26,7 @@ const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
 
 export const login = (email, password) => dispatch =>
   axios
-    .post(`http://localhost:8080/auth/login`, { email, password })
+    .post(`${server}/auth/login`, { email, password })
     .then(
       res => {
         dispatch(getUser(res.data));
@@ -39,7 +40,7 @@ export const login = (email, password) => dispatch =>
 
 export const signup = (email, password) => dispatch =>
   axios
-    .post(`http://localhost:8080/auth/signup`, { email, password })
+    .post(`${server}/auth/signup`, { email, password })
     .then(
       res => {
         dispatch(getUser(res.data));
@@ -58,7 +59,7 @@ export const signup = (email, password) => dispatch =>
 
 export const logout = () => dispatch =>
   axios
-    .post('http://localhost:8080/api/auth/logout')
+    .post(`${server}/api/auth/logout`)
     .then(_ => {
       dispatch(removeUser());
     })
