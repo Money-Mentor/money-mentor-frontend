@@ -20,7 +20,7 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware);
 
 //choose heroku or back-end
-const processEnv = 'back-end';
+const processEnv = 'heroku';
 
 export const server =
   processEnv === 'back-end'
