@@ -118,8 +118,8 @@ class Home extends React.Component {
               zIndex: 2,
               fontSize: 36,
               top: '40%',
-              left: '35%',
-            },
+              left: '35%'
+            }
           ]}
         >
           {this.remainingbudget() >= 0
@@ -133,8 +133,8 @@ class Home extends React.Component {
               zIndex: 2,
               fontSize: 12,
               top: '45%',
-              left: '33%',
-            },
+              left: '33%'
+            }
           ]}
         >
           Remaining Spendable
@@ -198,7 +198,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 

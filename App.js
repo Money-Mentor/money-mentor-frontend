@@ -13,6 +13,8 @@ import Signup from './client/screens/Signup';
 import Home from './client/screens/Home';
 import AccountsOverview from './client/screens/AccountsOverview';
 import Result from './client/screens/Result';
+import BudgetSetup from './client/screens/BudgetSetup';
+import EditCategories from './client/screens/EditCategories';
 
 export default class App extends React.Component {
   render() {
@@ -35,6 +37,8 @@ const AppStackNavigator = createStackNavigator({
   Home: { screen: Home },
   AccountsOverview: { screen: AccountsOverview },
   Result: { screen: Result },
+  BudgetSetup: { screen: BudgetSetup },
+  EditCategories: { screen: EditCategories }
 });
 
 const styles = StyleSheet.create({
