@@ -1,34 +1,44 @@
-import axios from 'axios'
+import axios from 'axios';
 
 // Action Types
-const UPDATE_BUDGET = 'UPDATE_BUDGET'
+const GET_BUDGET = 'GET_BUDGET';
+const UPDATE_BUDGET = 'UPDATE_BUDGET';
 
 // Action Creators
-const updateBudget = data => ({ type: UPDATE_BUDGET, data })
+const getBudget = budget => ({ type: GET_BUDGET, budget });
+const updateBudget = budget => ({ type: UPDATE_BUDGET, budget });
 
-export const setBudget = (budget) => {
-
+export const fetchBudget = userId => {
   return async dispatch => {
     try {
-      const res = await axios.put(
-        'http://localhost:8080/api/budget', budget
-      )
-      dispatch(updateBudget(res.data))
+      const res = await axios.get(`http://localhost:8080/api/budget/${userId}`);
+      dispatch(getBudget(res.data));
     } catch (err) {
-      console.log('Error fetching budget: ', err.message)
+      console.log('Error fetching budget: ', err.message);
     }
-  }
-}
+  };
+};
 
-const initialState = {}
+export const setBudget = budget => {
+  return async dispatch => {
+    try {
+      const res = await axios.put('http://localhost:8080/api/budget', budget);
+      dispatch(updateBudget(res.data));
+    } catch (err) {
+      console.log('Error setting budget: ', err.message);
+    }
+  };
+};
+
+const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-
+    case GET_BUDGET:
+      return action.budget;
     case UPDATE_BUDGET:
-      return action.data
-
+      return action.budget;
     default:
-      return state
+      return state;
   }
-}
+};

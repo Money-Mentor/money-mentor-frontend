@@ -42,4 +42,3 @@ const AppStackNavigator = createStackNavigator({
   // IndividualAccount: { screen: IndividualAccount },
   CategoryPie: { screen: CategoryPie }
 });
-
