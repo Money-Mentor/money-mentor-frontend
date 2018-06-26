@@ -17,14 +17,28 @@ export const colorTheme = {
   grey: {
     dark: '#585A56',
   },
+  pink: {
+    light: '#F5CAC3',
+    dark: '#F28482'
+  },
+  mint: {
+    light: '#D4F2D2',
+    medium: '#84A59D'
+  },
+  purple: '#BEB7D7'
 };
 
 export const pieColor =
   [colorTheme.orange.medium,
+    colorTheme.pink.light,
+    colorTheme.mint.medium,
+    colorTheme.pink.dark,
+    colorTheme.blue.dark,
+    colorTheme.purple,
+    colorTheme.mint.light,
     '#f2edd7',
     '#b87ca5',
     '#7c87b8',
-    colorTheme.blue.dark,
     '#d7f2df',
     '#f1dd6a']
 

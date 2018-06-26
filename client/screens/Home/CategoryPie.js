@@ -10,18 +10,6 @@ import Pie from './Pie';
 import { pieColor, colorTheme } from '../../common/styles';
 
 
-const data = {
-  spendingsLastMonth: [
-  {"number":  4, "name": 'Fun activities'},
-  {"number": 7, "name": 'Dog'},
-  {"number": 16, "name": 'Food'},
-  {"number": 23, "name": 'Car'},
-  {"number": 42, "name": 'Rent'},
-  {"number":  4, "name": 'Misc'},
-  {"number":  4, "name": 'Other'},
-  ]
-}
-
 type State = {
   activeIndex: number,
   spendingsPerYear: any
@@ -37,10 +25,25 @@ class CategoryPie extends Component {
       activeIndex: 0,
     };
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
+    this.getData = this.getData.bind(this)
   }
 
   _onPieItemSelected(newIndex){
     this.setState({...this.state, activeIndex: newIndex});
+  }
+
+  getData() {
+    const { budget } = this.props
+    const pieData = budget && [
+    {"number": budget.community, "name": 'Community'},
+    {"number": budget.foodAndDrink, "name": 'Food & Drink'},
+    {"number": budget.healthcare, "name": 'Healthcare'},
+    {"number": budget.recreation, "name": 'Recreation'},
+    {"number": budget.service, "name": 'Service'},
+    {"number": budget.shops, "name": 'Shops'},
+    {"number": budget.travel, "name": 'Travel'},
+    ]
+    return pieData
   }
 
   render() {
@@ -58,7 +61,7 @@ class CategoryPie extends Component {
             colors={pieColor}
             width={width}
             height={height}
-            data={data.spendingsLastMonth} />
+            data={this.getData()} />
         </View>
       </ScrollView>
     );
@@ -67,15 +70,11 @@ class CategoryPie extends Component {
 
 const mapState = state => {
   return {
-    account: state.acctTrans.accounts,
-    trans: state.acctTrans.trans,
-    totalBudget: 4000,
+    budget: state.acctTrans.budget
   };
 };
 
 export default connect(mapState)(CategoryPie);
-
-
 
 
 
