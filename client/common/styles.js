@@ -56,9 +56,9 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   circle: {
-    width: 250,
-    height: 250,
-    borderRadius: 250 / 2,
+    width: 225,
+    height: 225,
+    borderRadius: 225 / 2,
     borderWidth: 8,
     borderColor: colorTheme.white.snow,
     overflow: 'hidden',
@@ -141,6 +141,9 @@ export const styles = StyleSheet.create({
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     position: 'absolute',
+
+    left: '80%',
+    zIndex: 2,
   },
   smallerText: {
     alignSelf: 'center',
@@ -151,6 +154,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '75%',
     justifyContent: 'space-around',
+    paddingTop:10
   },
   homePageSmallText: {
     alignSelf: 'center',
