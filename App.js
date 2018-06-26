@@ -15,9 +15,9 @@ import {
   Signup,
   Home,
   Main,
-  AccountsOverview,
   Result,
-  Navbar
+  Navbar,
+  Accounts
 } from "./client";
 
 export default class App extends React.Component {
@@ -41,7 +41,7 @@ const AppStackNavigator = createStackNavigator({
   Navbar: { screen: Navbar },
   Main: { screen: Main },
   Home: { screen: Home },
-  AccountsOverview: { screen: AccountsOverview },
+  Accounts: {screen: Accounts},
   Result: { screen: Result },
 });
 
