@@ -40,6 +40,20 @@ const Initial = props => {
         >
           Signup
         </Button>
+
+        <Button
+          raised
+          buttonStyle={{
+            backgroundColor: '#92B1BD',
+            borderRadius: 10,
+            width: '90%',
+          }}
+          textStyle={{ textAlign: 'center' }}
+          title={`Home`}
+          onPress={() =>
+            props.navigation.navigate('Home', { title: 'Home' })
+          }
+        />
       </View>
       </View>
     </View>

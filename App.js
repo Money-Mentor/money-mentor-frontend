@@ -13,12 +13,14 @@ import {
   Initial,
   Login,
   Signup,
-  Home,
+  // Home,
   Main,
   Result,
   Navbar,
   Accounts
 } from "./client";
+
+import Home from './client/screens/Home'
 
 export default class App extends React.Component {
   render() {
