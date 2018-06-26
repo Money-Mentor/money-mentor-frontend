@@ -74,6 +74,26 @@ export const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute',
   },
+  cirleBigText: {
+    color: colorTheme.white.snow,
+    fontWeight: 'bold',
+    position: 'absolute',
+    zIndex: 2,
+    top: '37%',
+    fontSize: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cirleSmallText: {
+    color: colorTheme.white.snow,
+    fontWeight: 'bold',
+    position: 'absolute',
+    zIndex: 2,
+    top: '43%',
+    fontSize: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   text: {
     color: colorTheme.white.snow,
     fontWeight: 'bold',
@@ -119,11 +139,14 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     paddingTop: 10,
-    width: '80%'
+    width: '80%',
   },
   budgetStatus: {
     fontWeight: 'bold',
     color: colorTheme.grey.dark,
+    fontSize: 18,
+    position: 'absolute',
+    top: 125,
   },
   initialScreenText: {
     alignSelf: 'center',

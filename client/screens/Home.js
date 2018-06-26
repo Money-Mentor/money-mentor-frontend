@@ -92,7 +92,7 @@ class Home extends React.Component {
     const { totalBudget } = this.props;
     const date = new Date();
     // location of the date relative to the circle
-    const dateHeight = `${date.getDate() + 27}%`;
+    const dateHeight = `${date.getDate() + 26}%`;
 
     return (
       <View style={styles.homePageContainer}>
@@ -111,34 +111,12 @@ class Home extends React.Component {
             ]}
           />
         </View>
-        <Text
-          style={[
-            styles.text,
-            {
-              zIndex: 2,
-              fontSize: 36,
-              top: '40%',
-              left: '35%'
-            }
-          ]}
-        >
+        <Text style={styles.cirleBigText}>
           {this.remainingbudget() >= 0
             ? `$${this.remainingbudget()}`
             : `-$${Math.abs(this.remainingbudget())}`}
         </Text>
-        <Text
-          style={[
-            styles.text,
-            {
-              zIndex: 2,
-              fontSize: 12,
-              top: '45%',
-              left: '33%'
-            }
-          ]}
-        >
-          Remaining Spendable
-        </Text>
+        <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
         <Text
           style={[styles.dateText, { top: dateHeight, left: '85%', zIndex: 2 }]}
         >
@@ -147,6 +125,8 @@ class Home extends React.Component {
         <View
           style={{
             flexDirection: 'row',
+            width: '75%',
+            justifyContent: 'space-around',
           }}
         >
           <View>
@@ -198,7 +178,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())
+    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
   };
 };
 
