@@ -163,6 +163,7 @@ class Home extends React.Component {
 
 const mapState = state => {
   return {
+    user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
     budget: state.budget,
@@ -172,6 +173,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
+    fetchBudget: userId => dispatch(fetchBudget(userId)),
     fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };

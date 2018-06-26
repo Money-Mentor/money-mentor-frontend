@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../store';
@@ -10,15 +10,33 @@ class EditCategories extends React.Component {
   constructor() {
     super();
     this.state = {
-      budget: {
-        foodAndDrink: 35,
-        travel: 10,
-        recreation: 15,
-        healthcare: 10,
-        service: 10,
-        community: 10,
-        shops: 10
-      }
+      categories: [
+        {
+          foodAndDrink: 35,
+          description: 'Includes groceries, restaurants, bars, nightlife, etc.'
+        },
+        { travel: 10, description: 'Includes gas, commuting, etc.' },
+        {
+          recreation: 15,
+          description: 'Includes doctor visits, prescriptions, physicians, etc.'
+        },
+        {
+          healthcare: 10,
+          description: 'Includes doctor visits, prescriptions, physicians, etc.'
+        },
+        {
+          service: 10,
+          description: ''
+        },
+        {
+          community: 10,
+          description: ''
+        },
+        {
+          shops: 10,
+          description: ''
+        }
+      ]
     };
   }
 
@@ -27,49 +45,74 @@ class EditCategories extends React.Component {
   }
 
   render() {
+    console.log('****************CATEGORIES:', this.state.categories);
     return (
-      <View style={styles.container}>
+      <ScrollView>
         {this.props.budget.id && (
           <View>
-            <View style={styles.logoLocation}>
-              <Image source={require('../../public/img/logo.png')} />
-              <Text style={styles.initialScreenText}>
-                You have {this.props.budget.spendingBudget} for your monthly
-                spending budget.
+            <View>
+              <View style={styles.logoLocation}>
+                <Image source={require('../../public/img/logo.png')} />
+              </View>
+              <Text>Edit Categories:</Text>
+              <Text>
+                Below are Penny the Pig's recommendations to get started -
+                adjust the sliders to personalize your budget!
               </Text>
-              <Text style={styles.budgetSetupText}>
-                Here is the recommended budget setup:
-              </Text>
-              <Text>Food and Drink:</Text>
-              {/* <Slider
-                style={styles.slider}
-                value={this.state.budget.foodAndDrink}
-                defaultValue={35}
-                // onValueChange={value => this.setState({ foodAndDrink: value })}
-                step={1}
-                minimumValue={0}
-                maximumValue={100}
-              /> */}
             </View>
-            <View style={{ padding: 10 }}>
-              <Button
-                raised
-                buttonStyle={styles.button}
-                textStyle={{ textAlign: 'center' }}
-                title={`Submit`}
-                onPress={() => {
-                  this.props.setBudget(this.state.budget);
-                  this.props.navigation.navigate('Home', {
-                    title: 'Home'
-                  });
-                }}
-              >
-                Finished!
-              </Button>
-            </View>
+
+            {/* All Categories */}
+            {this.state.categories.map(category => {
+              let key = Object.keys(category)[0];
+              return (
+                <View key={key}>
+                  <Text>{key}</Text>
+                  <Text>{category.description}</Text>
+                  <Slider
+                    value={category[key]}
+                    onSlidingComplete={value => {
+                      // let index = this.state.categories.indexOf()
+                      // let index = this.state.categories.findIndex(
+                      //   x => x[key] === this.state.categories[key]
+                      // );
+                      // if (index === -1) {
+                      //   console.log('Uh oh!');
+                      // }
+                      // const changedObj = this.state.categories[index];
+                      // changedObj.key = value;
+                      // console.log('***** NEW OBJ', changedObj);
+                      // this.setState({
+                      //   categories: [
+                      //     ...this.state.categories.slice(0, index),
+                      //     Object.assign({}, this.state.categories[key], value),
+                      //     ...this.state.categories.slice(index + 1)
+                      //   ]
+                      // });
+                    }}
+                    step={1}
+                    minimumValue={0}
+                    maximumValue={100}
+                  />
+                </View>
+              );
+            })}
+
+            {/* Button */}
+            <Button
+              raised
+              buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+              textStyle={{ textAlign: 'center' }}
+              title={`Submit`}
+              onPress={() => {
+                this.props.setBudget(this.state.budget);
+                this.props.navigation.navigate('Home', { title: 'Home' });
+              }}
+            >
+              Finished!
+            </Button>
           </View>
         )}
-      </View>
+      </ScrollView>
     );
   }
 }

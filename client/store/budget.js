@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { server } from './index';
 
 // Action Types
 const GET_BUDGET = 'GET_BUDGET';
