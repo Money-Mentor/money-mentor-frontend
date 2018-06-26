@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
-import { styles } from '../common/styles';
+import { styles } from '../../common/styles';
 
 class IndividualAccount extends React.Component {
   constructor(props) {

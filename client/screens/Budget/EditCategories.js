@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { setBudget } from '../store';
+import { setBudget } from '../../store';
 
 export default class EditCategories extends React.Component {
   // constructor() {
@@ -16,7 +16,7 @@ export default class EditCategories extends React.Component {
   // }
 
   render() {
-    
+
     return (
       <View>
         <Text>Edit Budget Categories</Text>

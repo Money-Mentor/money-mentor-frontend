@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import Slider from 'react-native-slider';
-import { questions } from '../data';
-import { shuffle } from '../common';
+import { questions } from '../../data';
+import { shuffle } from '../../common';
 import { connect } from 'react-redux';
-import { getQuizPersonality } from '../store/personality';
-import personality from '../personality';
-import { styles } from '../common/styles';
+import { getQuizPersonality } from '../../store/personality';
+import personality from '../../personality';
+import { styles } from '../../common/styles';
 
 class Quiz extends Component {
   constructor() {
@@ -64,7 +64,7 @@ class Quiz extends Component {
     return (
       <View style={styles.questionContainer}>
         <View style={styles.logoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
+          <Image source={require('../../../public/img/logo.png')} />
         </View>
         <Text style={styles.questionText}>{this.state.question}</Text>
         <Slider

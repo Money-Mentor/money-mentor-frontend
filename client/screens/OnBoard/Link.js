@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import PlaidAuthenticator from 'react-native-plaid-link';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
-import { styles } from '../common/styles';
+import { styles } from '../../common/styles';
 
-import { sendToken } from '../store/token';
+import { sendToken } from '../../store/token';
 
 class Link extends React.Component {
   state = {
@@ -23,13 +23,13 @@ class Link extends React.Component {
       default:
         return this.renderLogin();
     }
-  } 
+  }
 
   renderButton = () => {
     return (
       <View style={styles.container}>
         <View style={styles.linkLogoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
+          <Image source={require('../../../public/img/logo.png')} />
         </View>
         <Button
           raised
@@ -60,8 +60,8 @@ class Link extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
-          <Text style={styles.initialScreenText}>Next Step: Take Our Quiz</Text>
+          <Image source={require('../../../public/img/logo.png')} />
+          <Text style={styles.h1}>Next Step: Take Our Quiz</Text>
         </View>
         <Button
           raised

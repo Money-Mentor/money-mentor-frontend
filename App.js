@@ -43,29 +43,49 @@ import {
 // import EditCategories from './client/screens/EditCategories';
 // import IndividualAccount from './client/screens/IndividualAccount';
 
+import { Font } from "expo";
+
 export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      fontLoaded: false
+    };
+  }
+  async componentDidMount() {
+    await Font.loadAsync({
+      logo: require("./public/fonts/logo.otf")
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <AppStackNavigator />
+        {this.state.fontLoaded ? (
+          <AppStackNavigator />
+        ) : (
+          <View>
+            <Text>Loading..</Text>
+          </View>
+        )}
       </Provider>
     );
   }
 }
 
 const AppStackNavigator = createStackNavigator({
-  // Inital: { screen: Initial },
-  // Login: { screen: Login },
-  // Signup: { screen: Signup },
-  // Link: { screen: Link },
-  // Quiz: { screen: Quiz },
-  // Navbar: { screen: Navbar },
-  // Main: { screen: Main },
+  Inital: { screen: Initial },
+  Login: { screen: Login },
+  Signup: { screen: Signup },
+  Link: { screen: Link },
+  Quiz: { screen: Quiz },
+  Navbar: { screen: Navbar },
+  Main: { screen: Main },
   Home: { screen: Home },
-  Accounts: {screen: Accounts},
+  Accounts: { screen: Accounts },
   Result: { screen: Result },
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories },
-  IndividualAccount: { screen: IndividualAccount },
+  IndividualAccount: { screen: IndividualAccount }
 });
-
