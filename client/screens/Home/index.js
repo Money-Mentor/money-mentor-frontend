@@ -118,7 +118,7 @@ class Home extends React.Component {
             styles.dateText,
             {
               top: dateHeight,
-              left: '85%',
+              left: '84%',
               zIndex: 2,
             },
           ]}

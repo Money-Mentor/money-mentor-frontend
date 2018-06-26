@@ -54,13 +54,13 @@ export default class App extends React.Component {
 }
 
 const AppStackNavigator = createStackNavigator({
-  Inital: { screen: Initial },
-  Login: { screen: Login },
-  Signup: { screen: Signup },
-  Link: { screen: Link },
-  Quiz: { screen: Quiz },
-  Navbar: { screen: Navbar },
-  Main: { screen: Main },
+  // Inital: { screen: Initial },
+  // Login: { screen: Login },
+  // Signup: { screen: Signup },
+  // Link: { screen: Link },
+  // Quiz: { screen: Quiz },
+  // Navbar: { screen: Navbar },
+  // Main: { screen: Main },
   Home: { screen: Home },
   Accounts: {screen: Accounts},
   Result: { screen: Result },

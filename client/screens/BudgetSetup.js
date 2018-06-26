@@ -19,15 +19,12 @@ class BudgetSetup extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.logoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
-          <Text style={styles.initialScreenText}>
+         <Text style={styles.initialScreenText}>
             Tell us a little about your finances.
           </Text>
-        </View>
         <Text style={styles.budgetSetupText}>What is your income?</Text>
         <FormInput
-          containerStyle={{ width: '80%', paddingTop: 5 }}
+          containerStyle={{ width: '80%', paddingTop: 2 }}
           inputStyle={styles.formInput}
           onChangeText={income => this.setState({ income: +income })}
           value={this.state.income}
@@ -37,7 +34,7 @@ class BudgetSetup extends React.Component {
           What are your static costs? (i.e. rent, utilities, insurance, etc.)
         </Text>
         <FormInput
-          containerStyle={{ width: '80%', paddingTop: 10 }}
+          containerStyle={{ width: '80%', paddingTop: 2 }}
           inputStyle={styles.formInput}
           onChangeText={staticCosts =>
             this.setState({ staticCosts: +staticCosts })
@@ -47,7 +44,7 @@ class BudgetSetup extends React.Component {
         />
         <Text style={styles.budgetSetupText}>How much would you like to save?</Text>
         <FormInput
-          containerStyle={{ width: '80%', paddingTop:5 }}
+          containerStyle={{ width: '80%', paddingTop:2 }}
           inputStyle={styles.formInput}
           onChangeText={savings => this.setState({ savings: +savings })}
           value={this.state.savings}
@@ -71,7 +68,7 @@ class BudgetSetup extends React.Component {
             Submit
           </Button>
         </View>
-      </View>
+        </View>
     );
   }
 }
