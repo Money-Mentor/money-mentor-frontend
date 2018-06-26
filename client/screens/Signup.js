@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button,
+  Button
 } from 'react-native-elements';
 import { styles } from '../common/styles';
 
@@ -28,7 +28,7 @@ class Signup extends Component {
           inputStyle={styles.formInput}
           onChangeText={text =>
             this.setState({
-              email: text,
+              email: text
             })
           }
           value={this.state.email}
@@ -39,7 +39,7 @@ class Signup extends Component {
           inputStyle={styles.formInput}
           onChangeText={text =>
             this.setState({
-              password: text,
+              password: text
             })
           }
           value={this.state.password}
@@ -71,7 +71,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password) {
       dispatch(signup(email, password));
-    },
+    }
   };
 };
 
