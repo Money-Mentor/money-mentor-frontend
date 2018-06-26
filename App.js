@@ -13,19 +13,38 @@ import {
   Initial,
   Login,
   Signup,
-  // Home,
+  Home,
   Main,
   Result,
   Navbar,
-  Accounts
+  Accounts,
+  BudgetSetup,
+  EditCategories,
+  IndividualAccount
 } from "./client";
 
-import Home from './client/screens/Home'
+// import Home from './client/screens/Home'
+// import React from 'react';
+// import { StyleSheet, Text, View } from 'react-native';
+// import { Provider } from 'react-redux';
+
+// import { createStackNavigator } from 'react-navigation';
+
+// import store from './client/store/index';
+// import Quiz from './client/screens/Quiz';
+// import Link from './client/screens/Link';
+// import Initial from './client/screens/Initial';
+// import Login from './client/screens/Login';
+// import Signup from './client/screens/Signup';
+// import Home from './client/screens/Home';
+// import AccountsOverview from './client/screens/AccountsOverview';
+// import Result from './client/screens/Result';
+// import BudgetSetup from './client/screens/BudgetSetup';
+// import EditCategories from './client/screens/EditCategories';
+// import IndividualAccount from './client/screens/IndividualAccount';
 
 export default class App extends React.Component {
   render() {
-    const { isLoggedIn } = this.props;
-
     return (
       <Provider store={store}>
         <AppStackNavigator />
@@ -45,13 +64,8 @@ const AppStackNavigator = createStackNavigator({
   Home: { screen: Home },
   Accounts: {screen: Accounts},
   Result: { screen: Result },
+  BudgetSetup: { screen: BudgetSetup },
+  EditCategories: { screen: EditCategories },
+  IndividualAccount: { screen: IndividualAccount },
 });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

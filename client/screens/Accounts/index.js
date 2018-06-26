@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
-// import { fetchAcctTransData } from '../../store';
+import { styles } from '../../common/styles';
 
 class Accounts extends React.Component {
   render() {
     const { account, trans } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View style={styles.accountOverviewContainer}>
         <List>
           {/* <Text>Account Overview</Text> */}
           {account &&
@@ -18,6 +18,12 @@ class Accounts extends React.Component {
                 key={account.id}
                 title={account.name}
                 rightTitle={`$ ${account.current_balance}`}
+                onPress={() =>
+                  this.props.navigation.navigate('IndividualAccount', {
+                    title: 'IndividualAccount',
+                    accountId: account.account_id,
+                  })
+                }
               />
             ))}
         </List>
@@ -34,10 +40,3 @@ const mapState = state => {
 };
 
 export default connect(mapState)(Accounts);
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: '#C2D3DA',
-  },
-});

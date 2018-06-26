@@ -68,11 +68,9 @@ export const logout = () => dispatch =>
 export const updateUserPersonality = (userId, user) => {
   return async dispatch => {
     try {
-      console.log('this should be updated user *****', user);
       const res = await axios.put(`http://localhost:8080/api/users/${userId}`, {
         user,
       });
-      console.log('what is my data here***', res.data);
       dispatch(setPersonality(res.data));
     } catch (err) {
       console.log('Error updating user personality: ', err.message);

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../store/user';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button,
+  Button
 } from 'react-native-elements';
+import { styles } from '../common/styles';
 
 class Login extends Component {
   constructor(props) {
@@ -18,30 +19,20 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-            <Image source={require('../../public/img/logo.png')} />
-      <Text style={styles.text}>Login</Text>
+        <View style={styles.logoLocation}>
+          <Image source={require('../../public/img/logo.png')} />
+          <Text style={styles.initialScreenText}>Login</Text>
+        </View>
         <FormInput
           containerStyle={{ width: '80%', paddingTop: 10 }}
-          inputStyle={{
-            height: 60,
-            borderColor: '#92B1BD',
-            borderWidth: 2,
-            borderRadius: 15,
-            width: '100%',
-          }}
+          inputStyle={styles.formInput}
           onChangeText={text => this.setState({ email: text })}
           value={this.state.email}
           placeholder="   Email"
         />
         <FormInput
           containerStyle={{ width: '80%', paddingTop: 10 }}
-          inputStyle={{
-            height: 60,
-            borderColor: '#92B1BD',
-            borderWidth: 2,
-            borderRadius: 15,
-            width: '100%',
-          }}
+          inputStyle={styles.formInput}
           leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
           onChangeText={text => this.setState({ password: text })}
           value={this.state.password}
@@ -52,7 +43,7 @@ class Login extends Component {
         <View style={{ padding: 10 }}>
           <Button
             raised
-            buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+            buttonStyle={styles.button}
             textStyle={{ textAlign: 'center' }}
             title={`Submit`}
             onPress={() => {
@@ -72,7 +63,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password) {
       dispatch(login(email, password));
-    },
+    }
   };
 };
 
@@ -80,18 +71,3 @@ export default connect(
   null,
   mapDispatch
 )(Login);
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#C2D3DA',
-  },
-  text: {
-    alignSelf: 'center',
-    color: '#585A56',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-});

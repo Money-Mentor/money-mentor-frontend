@@ -17,3 +17,7 @@ export { default as Budget } from "./screens/Budget";
 
 // Profile
 export { default as Profile } from "./screens/Profile";
+
+export { default as BudgetSetup } from "./screens/BudgetSetup";
+export { default as EditCategories } from "./screens/EditCategories";
+export { default as IndividualAccount } from "./screens/IndividualAccount";
