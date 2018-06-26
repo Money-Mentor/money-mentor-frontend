@@ -1,84 +1,94 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { setBudget } from '../store';
+import { fetchBudget, setBudget } from '../store';
+import { styles } from '../common/styles';
+import Slider from 'react-native-slider';
 
-export default class EditCategories extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     income: 0,
-  //     staticCosts: 0,
-  //     savings: 0,
-  //     spendingBudget: 0
-  //   };
-  // }
+class EditCategories extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      budget: {
+        foodAndDrink: 35,
+        travel: 10,
+        recreation: 15,
+        healthcare: 10,
+        service: 10,
+        community: 10,
+        shops: 10
+      }
+    };
+  }
+
+  componentDidMount() {
+    this.props.fetchBudget(this.props.user.id);
+  }
 
   render() {
-    
     return (
-      <View>
-        <Text>Edit Budget Categories</Text>
-        {/* <Text>What is your income?</Text>
-        <FormInput
-          containerStyle={{ width: '80%' }}
-          onChangeText={income =>
-            this.setState({income: +income})
-          }
-          value={this.state.income}
-          placeholder="Income"
-        />
-        <Text>
-          What are your static costs? (i.e. rent, utilities, insurance, etc.)
-        </Text>
-        <FormInput
-          containerStyle={{ width: '80%' }}
-          onChangeText={staticCosts =>
-            this.setState({staticCosts: +staticCosts})
-          }
-          value={this.state.staticCosts}
-          placeholder="Static Costs"
-          />
-        <Text>How much would you like to save?</Text>
-        <FormInput
-          containerStyle={{ width: '80%' }}
-          onChangeText={savings =>
-            this.setState({savings: +savings})
-          }
-          value={this.state.savings}
-          placeholder="Savings"
-        />
-        <View>
-          <Button
-            raised
-            buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
-            textStyle={{ textAlign: 'center' }}
-            title={`Submit`}
-            onPress={() => {
-              const spendingBudget = this.state.income - this.state.staticCosts - this.state.savings
-              this.props.setBudget({...this.state, spendingBudget});
-              this.props.navigation.navigate('Home', { title: 'Home' });
-            }}
-          >
-            Submit
-          </Button>
-        </View> */}
+      <View style={styles.container}>
+        {this.props.budget.id && (
+          <View>
+            <View style={styles.logoLocation}>
+              <Image source={require('../../public/img/logo.png')} />
+              <Text style={styles.initialScreenText}>
+                You have {this.props.budget.spendingBudget} for your monthly
+                spending budget.
+              </Text>
+              <Text style={styles.budgetSetupText}>
+                Here is the recommended budget setup:
+              </Text>
+              <Text>Food and Drink:</Text>
+              {/* <Slider
+                style={styles.slider}
+                value={this.state.budget.foodAndDrink}
+                defaultValue={35}
+                // onValueChange={value => this.setState({ foodAndDrink: value })}
+                step={1}
+                minimumValue={0}
+                maximumValue={100}
+              /> */}
+            </View>
+            <View style={{ padding: 10 }}>
+              <Button
+                raised
+                buttonStyle={styles.button}
+                textStyle={{ textAlign: 'center' }}
+                title={`Submit`}
+                onPress={() => {
+                  this.props.setBudget(this.state.budget);
+                  this.props.navigation.navigate('Home', {
+                    title: 'Home'
+                  });
+                }}
+              >
+                Finished!
+              </Button>
+            </View>
+          </View>
+        )}
       </View>
     );
   }
 }
 
-// const mapState = state => {
-//   return {
-//     budget: state.budget
-//   };
-// };
+const mapState = state => {
+  return {
+    user: state.user,
+    budget: state.budget
+  };
+};
 
-// const mapDispatch = dispatch => {
-//   return {
-//     setBudget: budget => dispatch(setBudget(budget)),
-//   };
-// };
+const mapDispatch = dispatch => {
+  return {
+    fetchBudget: userId => dispatch(fetchBudget(userId)),
+    setBudget: budget => dispatch(setBudget(budget))
+  };
+};
 
-// export default connect(mapState, mapDispatch)(EditCategories);
+export default connect(
+  mapState,
+  mapDispatch
+)(EditCategories);

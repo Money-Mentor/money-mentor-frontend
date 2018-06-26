@@ -38,6 +38,5 @@ const AppStackNavigator = createStackNavigator({
   Result: { screen: Result },
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories },
-  IndividualAccount: { screen: IndividualAccount },
+  IndividualAccount: { screen: IndividualAccount }
 });
-

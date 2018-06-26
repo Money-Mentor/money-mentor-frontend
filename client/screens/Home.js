@@ -58,7 +58,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec',
+      'Dec'
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -97,13 +97,13 @@ class Home extends React.Component {
           <View
             style={[
               styles.circleLine,
-              { height: `${this.dateCircleHeight()}%`, zIndex: 1 },
+              { height: `${this.dateCircleHeight()}%`, zIndex: 1 }
             ]}
           />
           <View
             style={[
               styles.circleFill,
-              { top: `${this.budgetCircleHeight()}%`, zIndex: 0 },
+              { top: `${this.budgetCircleHeight()}%`, zIndex: 0 }
             ]}
           />
         </View>
@@ -119,19 +119,19 @@ class Home extends React.Component {
             {
               top: dateHeight,
               left: '85%',
-              zIndex: 2,
-            },
+              zIndex: 2
+            }
           ]}
         >
           {this.getDay()}
         </Text>
         <View style={styles.homePagesmallTextAlign}>
-          <View >
+          <View>
             <Text style={styles.homePageSmallText}>${totalBudget}</Text>
             <Text style={styles.homePageSmallestText}>Total</Text>
-            <Text style={styles.homePageSmallestText} >Budget</Text>
+            <Text style={styles.homePageSmallestText}>Budget</Text>
           </View>
-          <View >
+          <View>
             <Text style={styles.homePageSmallText}>
               {this.remainingbudget() >= 0
                 ? `$${Math.floor(
@@ -151,7 +151,7 @@ class Home extends React.Component {
             title={`Go To Account Overview`}
             onPress={() => {
               this.props.navigation.navigate('AccountsOverview', {
-                title: 'AccountsOverview',
+                title: 'AccountsOverview'
               });
             }}
           />
@@ -165,13 +165,14 @@ const mapState = state => {
   return {
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    totalBudget: 4000,
+    budget: state.budget,
+    totalBudget: 4000
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
