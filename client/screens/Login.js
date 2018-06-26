@@ -48,9 +48,7 @@ class Login extends Component {
             title={`Submit`}
             onPress={() => {
               this.props.handleSubmit(this.state.email, this.state.password);
-              this.props.navigation.navigate('Home', {
-                title: 'Home'
-              });
+              this.props.navigation.navigate('Main', { title: 'Main' });
             }}
           >
             Submit

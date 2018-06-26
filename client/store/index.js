@@ -13,7 +13,7 @@ const reducer = combineReducers({
   user,
   personality,
   acctTrans,
-  budget
+  budget,
 });
 
 const middleware = composeWithDevTools(
@@ -28,8 +28,6 @@ export const server =
   processEnv === 'back-end'
     ? 'http://localhost:8080'
     : 'http://money-mentor.herokuapp.com';
-
-
 
 export default store;
 export * from './token';

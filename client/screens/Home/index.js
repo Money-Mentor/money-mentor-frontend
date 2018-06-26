@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAcctTransData } from '../store';
+import { fetchAcctTransData } from '../../store';
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
-import { styles } from '../common/styles';
+import { styles } from '../../common/styles';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -88,7 +88,8 @@ class Home extends React.Component {
     const { totalBudget } = this.props;
     const date = new Date();
     // location of the date relative to the circle
-    const dateHeight = `${date.getDate() + 26}%`;
+    // `${date.getDate() + 25}%`
+    const dateHeight = `${(date.getDate() * 1.13) + 21}%`;
 
     return (
       <View style={styles.homePageContainer}>
@@ -118,20 +119,18 @@ class Home extends React.Component {
             styles.dateText,
             {
               top: dateHeight,
-              left: '85%',
-              zIndex: 2,
             },
           ]}
         >
           {this.getDay()}
         </Text>
         <View style={styles.homePagesmallTextAlign}>
-          <View >
+          <View>
             <Text style={styles.homePageSmallText}>${totalBudget}</Text>
             <Text style={styles.homePageSmallestText}>Total</Text>
-            <Text style={styles.homePageSmallestText} >Budget</Text>
+            <Text style={styles.homePageSmallestText}>Budget</Text>
           </View>
-          <View >
+          <View>
             <Text style={styles.homePageSmallText}>
               {this.remainingbudget() >= 0
                 ? `$${Math.floor(
@@ -165,7 +164,7 @@ const mapState = state => {
   return {
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    totalBudget: 4000,
+    totalBudget:3500,
   };
 };
 
