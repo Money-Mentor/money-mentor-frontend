@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { pieColor } from '../../common/styles';
+import { pieColor, colorTheme } from '../../common/styles';
 
 const {
   Surface,
@@ -103,9 +103,9 @@ class Pie extends React.Component {
     const y = this.props.pieHeight / 2 + margin;
 
     return (
-      <View width={this.props.width} height={this.props.height}>
-        <Surface width={this.props.width} height={this.props.height}>
-           <Group x={x} y={y}>
+      <View style={{alignSelf: 'center', justifyContent: 'center',}}>
+        <Surface width="400" height="400">
+           <Group x={x+70} y={y+10}>
            {
               this.props.data.map( (item, index) =>
               (<AnimShape
@@ -117,7 +117,7 @@ class Pie extends React.Component {
             }
            </Group>
         </Surface>
-        <View style={{position: 'absolute', top:margin, left: 2*margin + this.props.pieWidth}}>
+        <View style={{alignSelf: 'center'}}>
           {
             this.props.data.map( (item, index) =>
             {

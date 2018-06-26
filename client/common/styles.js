@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const colorTheme = {
+export const colorTheme = {
   orange: {
     light: '#f2dfd7',
     medium: '#f19A6A',
@@ -20,20 +20,20 @@ const colorTheme = {
 };
 
 export const pieColor =
-  ['#F19A6A',
-    '#C2D3DA',
-    '#D8DBE2',
-    '#F2DFD7',
-    '#7CA5B8',
+  [colorTheme.orange.medium,
+    '#f2edd7',
+    '#b87ca5',
+    '#7c87b8',
+    colorTheme.blue.dark,
     '#d7f2df',
-    '#f2edd7']
+    '#f1dd6a']
 
 export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#C2D3DA',
+    backgroundColor: colorTheme.blue.medium,
   },
   logoLocation: {
     position: 'absolute',
@@ -111,7 +111,7 @@ export const styles = StyleSheet.create({
   questionContainer: {
     flexGrow: 1,
     justifyContent: 'center',
-    backgroundColor: '#C2D3DA',
+    backgroundColor: colorTheme.blue.medium,
   },
   questionText: {
     alignSelf: 'center',
@@ -202,7 +202,7 @@ export const styles = StyleSheet.create({
   },
   accountOverviewContainer: {
     flexGrow: 1,
-    backgroundColor: '#C2D3DA',
+    backgroundColor: colorTheme.blue.medium,
   },
   label: {
     fontSize: 15,

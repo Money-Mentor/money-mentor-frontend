@@ -29,17 +29,17 @@ export default class App extends React.Component {
 }
 
 const AppStackNavigator = createStackNavigator({
-  Inital: { screen: Initial },
-  Login: { screen: Login },
-  Signup: { screen: Signup },
-  Link: { screen: Link },
-  Quiz: { screen: Quiz },
-  Home: { screen: Home },
-  AccountsOverview: { screen: AccountsOverview },
-  Result: { screen: Result },
-  BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories },
-  IndividualAccount: { screen: IndividualAccount },
+  // Inital: { screen: Initial },
+  // Login: { screen: Login },
+  // Signup: { screen: Signup },
+  // Link: { screen: Link },
+  // Quiz: { screen: Quiz },
+  // Home: { screen: Home },
+  // AccountsOverview: { screen: AccountsOverview },
+  // Result: { screen: Result },
+  // BudgetSetup: { screen: BudgetSetup },
+  // EditCategories: { screen: EditCategories },
+  // IndividualAccount: { screen: IndividualAccount },
   CategoryPie: { screen: CategoryPie }
 });
 

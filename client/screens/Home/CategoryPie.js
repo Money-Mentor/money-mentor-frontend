@@ -5,18 +5,20 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Pie from './Pie';
-import { pieColor } from '../../common/styles';
+import { pieColor, colorTheme } from '../../common/styles';
 
 
 const data = {
   spendingsLastMonth: [
-  {"number":  8, "name": 'Fun activities'},
+  {"number":  4, "name": 'Fun activities'},
   {"number": 7, "name": 'Dog'},
   {"number": 16, "name": 'Food'},
   {"number": 23, "name": 'Car'},
   {"number": 42, "name": 'Rent'},
   {"number":  4, "name": 'Misc'},
+  {"number":  4, "name": 'Other'},
   ]
 }
 
@@ -25,7 +27,7 @@ type State = {
   spendingsPerYear: any
 }
 
-export default class CategoryPie extends Component {
+class CategoryPie extends Component {
 
   state: State;
 
@@ -42,16 +44,16 @@ export default class CategoryPie extends Component {
   }
 
   render() {
-    const height = 200;
+    const height = 800;
     const width = 500;
 
     return (
       <ScrollView>
         <View style={styles.container} >
-          <Text style={styles.chart_title}>Distribution of spending this month</Text>
+          <Text style={styles.chart_title}>Spending By Category</Text>
           <Pie
-            pieWidth={150}
-            pieHeight={150}
+            pieWidth={225}
+            pieHeight={225}
             onItemSelected={this._onPieItemSelected}
             colors={pieColor}
             width={width}
@@ -63,19 +65,33 @@ export default class CategoryPie extends Component {
   }
 }
 
+const mapState = state => {
+  return {
+    account: state.acctTrans.accounts,
+    trans: state.acctTrans.trans,
+    totalBudget: 4000,
+  };
+};
+
+export default connect(mapState)(CategoryPie);
+
+
+
+
 
 const styles = {
   container: {
-    backgroundColor:'whitesmoke',
-    marginTop: 21,
+    backgroundColor:colorTheme.blue.medium,
+    flexgrow: 1,
+    justifyContent: 'center',
   },
   chart_title : {
-    paddingTop: 15,
+    paddingTop: 50,
     textAlign: 'center',
-    paddingBottom: 5,
+    // paddingBottom: 5,
     paddingLeft: 5,
     fontSize: 18,
-    backgroundColor:'white',
+    backgroundColor:colorTheme.blue.medium,
     color: 'grey',
     fontWeight:'bold',
   }
