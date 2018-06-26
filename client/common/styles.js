@@ -19,6 +19,15 @@ const colorTheme = {
   },
 };
 
+export const pieColor =
+  ['#F19A6A',
+    '#C2D3DA',
+    '#D8DBE2',
+    '#F2DFD7',
+    '#7CA5B8',
+    '#d7f2df',
+    '#f2edd7']
+
 export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -194,5 +203,17 @@ export const styles = StyleSheet.create({
   accountOverviewContainer: {
     flexGrow: 1,
     backgroundColor: '#C2D3DA',
+  },
+  label: {
+    fontSize: 15,
+    marginTop: 5,
+    fontWeight: 'normal',
+  },
+  pieContainer: {
+    margin:20
+  },
+  categoryPieContainer: {
+    marginTop:21,
+    backgroundColor:colorTheme.white.snow
   }
 });

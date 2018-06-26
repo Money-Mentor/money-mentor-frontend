@@ -155,6 +155,19 @@ class Home extends React.Component {
               });
             }}
           />
+
+          <Button
+            raised
+            buttonStyle={styles.button}
+            textStyle={{ textAlign: 'center' }}
+            title={`Go To CategoryPie`}
+            onPress={() => {
+              this.props.navigation.navigate('CategoryPie', {
+                title: 'CategoryPie',
+              });
+            }}
+          />
+
         </View>
       </View>
     );

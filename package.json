@@ -19,7 +19,10 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "art": "^0.10.2",
     "axios": "^0.18.0",
+    "d3": "^5.5.0",
+    "d3-shape": "^1.2.0",
     "expo": "^27.0.1",
     "prop-types": "^15.6.2",
     "react": "16.3.1",
