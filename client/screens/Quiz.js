@@ -7,6 +7,7 @@ import { shuffle } from '../common';
 import { connect } from 'react-redux';
 import { getQuizPersonality } from '../store/personality';
 import personality from '../personality';
+import { styles } from '../common/styles';
 
 class Quiz extends Component {
   constructor() {
@@ -61,11 +62,11 @@ class Quiz extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={{ alignItems: 'center', padding: 40 }}>
+      <View style={styles.questionContainer}>
+        <View style={styles.logoLocation}>
           <Image source={require('../../public/img/logo.png')} />
         </View>
-        <Text style={styles.text}>{this.state.question}</Text>
+        <Text style={styles.questionText}>{this.state.question}</Text>
         <Slider
           style={styles.slider}
           value={this.state.value}
@@ -75,12 +76,27 @@ class Quiz extends Component {
           minimumValue={-3}
           maximumValue={3}
         />
+        <View style={styles.sliderTextAlign}>
+          <View>
+            <Text style={styles.sliderSmallText}> Strongly</Text>
+            <Text style={styles.sliderSmallText}> Disagree</Text>
+          </View>
+
+          <View>
+            <Text style={styles.sliderSmallText}> Neutral /</Text>
+            <Text style={styles.sliderSmallText}> Not Sure</Text>
+          </View>
+          <View>
+            <Text style={styles.sliderSmallText}> Strongly</Text>
+            <Text style={styles.sliderSmallText}> Agree</Text>
+          </View>
+        </View>
         <Button
           raised
-          buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+          buttonStyle={styles.button}
           textStyle={{ textAlign: 'center' }}
           title={`Next`}
-          style={styles.button}
+          style={styles.questionButton}
           onPress={() => {
             this.nextQuestion();
           }}
@@ -91,67 +107,6 @@ class Quiz extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    backgroundColor: '#C2D3DA',
-  },
-  text: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    color: '#585A56',
-    fontWeight: 'bold',
-    fontSize: 20,
-    width: '80%',
-  },
-  slider: {
-    marginLeft: 20,
-    marginRight: 20,
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
-  inputBox: {
-    width: 200,
-    height: 50,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderRadius: 25,
-    paddingHorizontal: 16,
-    fontSize: 16,
-    color: '#ffffff',
-    marginVertical: 10,
-    textAlign: 'center',
-  },
-
-  button: {
-    width: 150,
-    marginVertical: 10,
-    paddingVertical: 13,
-    alignSelf: 'center',
-  },
-
-  buttonText: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#ffffff',
-    textAlign: 'center',
-  },
-
-  leftValue: {
-    flex: 1,
-    justifyContent: 'flex-start',
-  },
-
-  rightValue: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  center: {
-    flex: 1,
-    alignItems: 'center',
-  },
-});
 
 const mapDispatch = dispatch => {
   return {

@@ -8,6 +8,7 @@ import {
   FormValidationMessage,
   Button,
 } from 'react-native-elements';
+import { styles } from '../common/styles';
 
 class Signup extends Component {
   constructor(props) {
@@ -18,18 +19,13 @@ class Signup extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../../public/img/logo.png')} />
-        <Text style={styles.text}>Signup</Text>
+        <View style={styles.logoLocation}>
+          <Image source={require('../../public/img/logo.png')} />
+          <Text style={styles.initialScreenText}>Signup</Text>
+        </View>
         <FormInput
           containerStyle={{ width: '80%', paddingTop: 10 }}
-          inputStyle={{
-            height: 60,
-            borderColor: '#92B1BD',
-            borderWidth: 2,
-            borderRadius: 15,
-            width: '100%',
-          }}
-          // Write a handleChange - should we have a handleChange instead of inline? Similar to web app - is it possible?
+          inputStyle={styles.formInput}
           onChangeText={text =>
             this.setState({
               email: text,
@@ -40,13 +36,7 @@ class Signup extends Component {
         />
         <FormInput
           containerStyle={{ width: '80%', paddingTop: 10 }}
-          inputStyle={{
-            height: 60,
-            borderColor: '#92B1BD',
-            borderWidth: 2,
-            borderRadius: 15,
-            width: '100%',
-          }}
+          inputStyle={styles.formInput}
           onChangeText={text =>
             this.setState({
               password: text,
@@ -60,7 +50,7 @@ class Signup extends Component {
         <View style={{ padding: 10 }}>
           <Button
             raised
-            buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+            buttonStyle={styles.button}
             textStyle={{ textAlign: 'center' }}
             title={`Submit`}
             onPress={() => {
@@ -89,20 +79,5 @@ export default connect(
   null,
   mapDispatch
 )(Signup);
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#C2D3DA',
-  },
-  text: {
-    alignSelf: 'center',
-    color: '#585A56',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-});
 
 // Be consistent with styling - styling in one condensed place, easier to read
