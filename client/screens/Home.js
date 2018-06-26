@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAcctTransData } from '../store';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import { styles } from '../common/styles';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -88,22 +89,14 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(
-      'date height: ',
-      this.dateCircleHeight(),
-      'budget height: ',
-      this.budgetCircleHeight()
-    );
     const { totalBudget } = this.props;
     const date = new Date();
     // location of the date relative to the circle
     const dateHeight = `${date.getDate() + 26}%`;
 
     return (
-      <View style={styles.container}>
-        <Text style={[styles.smallerText, { fontSize: 14 }]}>
-          {this.budgetStatus()}
-        </Text>
+      <View style={styles.homePageContainer}>
+        <Text style={styles.budgetStatus}>{this.budgetStatus()}</Text>
         <View style={styles.circle}>
           <View
             style={[
@@ -118,34 +111,12 @@ class Home extends React.Component {
             ]}
           />
         </View>
-        <Text
-          style={[
-            styles.text,
-            {
-              zIndex: 2,
-              fontSize: 36,
-              top: '40%',
-              left: '35%'
-            }
-          ]}
-        >
+        <Text style={styles.cirleBigText}>
           {this.remainingbudget() >= 0
             ? `$${this.remainingbudget()}`
             : `-$${Math.abs(this.remainingbudget())}`}
         </Text>
-        <Text
-          style={[
-            styles.text,
-            {
-              zIndex: 2,
-              fontSize: 12,
-              top: '45%',
-              left: '33%'
-            }
-          ]}
-        >
-          Remaining Spendable
-        </Text>
+        <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
         <Text
           style={[styles.dateText, { top: dateHeight, left: '85%', zIndex: 2 }]}
         >
@@ -154,6 +125,8 @@ class Home extends React.Component {
         <View
           style={{
             flexDirection: 'row',
+            width: '75%',
+            justifyContent: 'space-around',
           }}
         >
           <View>
@@ -180,7 +153,7 @@ class Home extends React.Component {
         <View style={{ padding: 10 }}>
           <Button
             raised
-            buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+            buttonStyle={styles.button}
             textStyle={{ textAlign: 'center' }}
             title={`Go To Account Overview`}
             onPress={() => {
@@ -205,7 +178,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())
+    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
   };
 };
 
@@ -213,46 +186,3 @@ export default connect(
   mapState,
   mapDispatch
 )(Home);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#C2D3DA'
-  },
-  circle: {
-    width: 250,
-    height: 250,
-    borderRadius: 250 / 2,
-    borderWidth: 8,
-    borderColor: '#F1F3F2',
-    overflow: 'hidden',
-    backgroundColor: '#c4805a'
-  },
-  circleLine: {
-    borderBottomColor: '#F1F3F2',
-    borderBottomWidth: 2,
-  },
-  circleFill: {
-    backgroundColor: '#f19a6a',
-    width: '100%',
-    bottom: 0,
-    position: 'absolute'
-  },
-  text: {
-    color: '#F1F3F2',
-    fontWeight: 'bold',
-    position: 'absolute',
-  },
-  dateText: {
-    color: '#585A56',
-    fontWeight: 'bold',
-    position: 'absolute'
-  },
-  smallerText: {
-    alignSelf: 'center',
-    color: '#585A56',
-    fontWeight: 'bold',
-  },
-});
