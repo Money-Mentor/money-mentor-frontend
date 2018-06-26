@@ -119,10 +119,23 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   slider: {
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 10,
     alignItems: 'stretch',
     justifyContent: 'center',
+  },
+  sliderTextAlign: {
+    flexDirection: 'row',
+    marginLeft: 25,
+    marginRight: 25,
+    justifyContent: 'space-between',
+  },
+  sliderSmallText: {
+    alignSelf: 'center',
+    color: colorTheme.grey.dark,
+    fontWeight: 'bold',
+    fontSize: 12,
   },
   dateText: {
     color: colorTheme.grey.dark,
@@ -133,6 +146,23 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
+  },
+  homePagesmallTextAlign: {
+    flexDirection: 'row',
+    width: '75%',
+    justifyContent: 'space-around',
+  },
+  homePageSmallText: {
+    alignSelf: 'center',
+    color: colorTheme.grey.dark,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  homePageSmallestText: {
+    alignSelf: 'center',
+    color: colorTheme.grey.dark,
+    fontWeight: 'bold',
+    fontSize: 12,
   },
   budgetSetupText: {
     color: colorTheme.grey.dark,
@@ -161,4 +191,8 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     width: '100%',
   },
+  accountOverviewContainer: {
+    flexGrow: 1,
+    backgroundColor: '#C2D3DA',
+  }
 });

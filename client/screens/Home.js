@@ -37,10 +37,6 @@ class Home extends React.Component {
       trans
         .filter(item => item.amount > 0 && item.date > startDateString)
         .reduce((acc, num) => acc + num.amount, 0);
-    console.log(
-      trans &&
-        trans.filter(item => item.amount > 0 && item.date > startDateString)
-    );
     return spent;
   }
 
@@ -118,36 +114,33 @@ class Home extends React.Component {
         </Text>
         <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
         <Text
-          style={[styles.dateText, { top: dateHeight, left: '85%', zIndex: 2 }]}
+          style={[
+            styles.dateText,
+            {
+              top: dateHeight,
+              left: '85%',
+              zIndex: 2,
+            },
+          ]}
         >
           {this.getDay()}
         </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '75%',
-            justifyContent: 'space-around',
-          }}
-        >
-          <View>
-            <Text style={[styles.smallerText, { fontSize: 18 }]}>
-              ${totalBudget}
-            </Text>
-            <Text style={[styles.smallerText, { fontSize: 12 }]}>Total</Text>
-            <Text style={[styles.smallerText, { fontSize: 12 }]}>Budget</Text>
+        <View style={styles.homePagesmallTextAlign}>
+          <View >
+            <Text style={styles.homePageSmallText}>${totalBudget}</Text>
+            <Text style={styles.homePageSmallestText}>Total</Text>
+            <Text style={styles.homePageSmallestText} >Budget</Text>
           </View>
-          <View>
-            <Text style={[styles.smallerText, { fontSize: 18 }]}>
+          <View >
+            <Text style={styles.homePageSmallText}>
               {this.remainingbudget() >= 0
                 ? `$${Math.floor(
                     this.remainingbudget() / this.getMonthDaysLeft()
                   )}`
                 : '$0'}
             </Text>
-            <Text style={[styles.smallerText, { fontSize: 12 }]}>Daily</Text>
-            <Text style={[styles.smallerText, { fontSize: 12 }]}>
-              Spendable
-            </Text>
+            <Text style={styles.homePageSmallestText}>Daily</Text>
+            <Text style={styles.homePageSmallestText}>Spendable</Text>
           </View>
         </View>
         <View style={{ padding: 10 }}>

@@ -76,6 +76,21 @@ class Quiz extends Component {
           minimumValue={-3}
           maximumValue={3}
         />
+        <View style={styles.sliderTextAlign}>
+          <View>
+            <Text style={styles.sliderSmallText}> Strongly</Text>
+            <Text style={styles.sliderSmallText}> Disagree</Text>
+          </View>
+
+          <View>
+            <Text style={styles.sliderSmallText}> Neutral /</Text>
+            <Text style={styles.sliderSmallText}> Not Sure</Text>
+          </View>
+          <View>
+            <Text style={styles.sliderSmallText}> Strongly</Text>
+            <Text style={styles.sliderSmallText}> Agree</Text>
+          </View>
+        </View>
         <Button
           raised
           buttonStyle={styles.button}

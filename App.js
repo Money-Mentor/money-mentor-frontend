@@ -15,11 +15,10 @@ import AccountsOverview from './client/screens/AccountsOverview';
 import Result from './client/screens/Result';
 import BudgetSetup from './client/screens/BudgetSetup';
 import EditCategories from './client/screens/EditCategories';
+import IndividualAccount from './client/screens/IndividualAccount';
 
 export default class App extends React.Component {
   render() {
-    const { isLoggedIn } = this.props;
-
     return (
       <Provider store={store}>
         <AppStackNavigator />
@@ -29,23 +28,16 @@ export default class App extends React.Component {
 }
 
 const AppStackNavigator = createStackNavigator({
-  // Inital: { screen: Initial },
-  // Login: { screen: Login },
-  // Signup: { screen: Signup },
-  // Link: { screen: Link },
-  // Quiz: { screen: Quiz },
+  Inital: { screen: Initial },
+  Login: { screen: Login },
+  Signup: { screen: Signup },
+  Link: { screen: Link },
+  Quiz: { screen: Quiz },
   Home: { screen: Home },
   AccountsOverview: { screen: AccountsOverview },
   Result: { screen: Result },
   BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories }
+  EditCategories: { screen: EditCategories },
+  IndividualAccount: { screen: IndividualAccount },
 });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
