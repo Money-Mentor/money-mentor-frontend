@@ -7,7 +7,7 @@ import { Button } from 'react-native-elements';
 
 class Result extends React.Component {
   static navigationOptions = {
-    title: 'Result',
+    title: 'Result'
   };
 
   componentDidMount() {
@@ -31,28 +31,30 @@ class Result extends React.Component {
                 height: 150,
                 width: 150,
                 borderWidth: 1,
-                borderRadius: 75,
+                borderRadius: 75
               }}
               source={{ uri: personalityType.imageUrl }}
               resizeMode="stretch"
             />
-            <Text style={[styles.smallerText, { fontSize: 24}]}>
+            <Text style={[styles.smallerText, { fontSize: 24 }]}>
               {personalityType.name}
             </Text>
             <Text style={[styles.smallerText, { fontSize: 12 }]}>
               {personalityType.description}
             </Text>
             <Button
-            raised
-            buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
-            textStyle={{ textAlign: 'center' }}
-            title={`Submit`}
-            onPress={() => {
-              this.props.navigation.navigate('BudgetSetup', { title: 'BudgetSetup' });
-            }}
-          >
-          Let's set up your budget!
-          </Button>
+              raised
+              buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+              textStyle={{ textAlign: 'center' }}
+              title={`Submit`}
+              onPress={() => {
+                this.props.navigation.navigate('BudgetSetup', {
+                  title: 'BudgetSetup'
+                });
+              }}
+            >
+              Let's set up your budget!
+            </Button>
           </View>
         )}
       </View>
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#C2D3DA',
+    backgroundColor: '#C2D3DA'
   },
   smallerText: {
     alignSelf: 'center',
@@ -73,21 +75,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     fontWeight: 'bold',
-    padding:20
-  },
+    padding: 20
+  }
 });
 
 const mapState = state => {
   return {
     user: state.user,
-    personality: state.personality,
+    personality: state.personality
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     dispatchedSetPersonality: (userId, user) =>
-      dispatch(updateUserPersonality(userId, user)),
+      dispatch(updateUserPersonality(userId, user))
   };
 };
 
