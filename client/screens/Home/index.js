@@ -94,7 +94,7 @@ class Home extends React.Component {
     const date = new Date();
     // location of the date relative to the circle
     // `${date.getDate() + 25}%`
-    const dateHeight = `${date.getDate() * 1.13 + 21}%`;
+    const dateHeight = `${date.getDate() * 1.13 + 27}%`;
 
     return (
       <View style={styles.homePageContainer}>
