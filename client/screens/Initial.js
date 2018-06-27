@@ -7,7 +7,7 @@ const Initial = props => {
   return (
     <View style={styles.container}>
       <View style={styles.logoLocation}>
-        <Image source={require('../../public/img/logo.png')} />
+        <Image style={styles.logo} source={require('../../public/img/logo.png')} />
         <Text style={styles.initialScreenText}>Money Mentor</Text>
       </View>
       <View style={{ padding: 40 }}>

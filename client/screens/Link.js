@@ -23,13 +23,13 @@ class Link extends React.Component {
       default:
         return this.renderLogin();
     }
-  } 
+  }
 
   renderButton = () => {
     return (
       <View style={styles.container}>
         <View style={styles.linkLogoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
         </View>
         <Button
           raised
@@ -60,7 +60,7 @@ class Link extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
           <Text style={styles.initialScreenText}>Next Step: Take Our Quiz</Text>
         </View>
         <Button
@@ -87,26 +87,6 @@ class Link extends React.Component {
     });
   };
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     paddingTop: 24,
-//     backgroundColor: '#C2D3DA',
-//   },
-//   text: {
-//     alignSelf: 'center',
-//     color: '#585A56',
-//     fontWeight: 'bold',
-//     fontSize: 20,
-//   },
-//   value: {
-//     marginBottom: 20,
-//     textAlign: 'center',
-//   },
-// });
 
 const mapDispatch = dispatch => {
   return {

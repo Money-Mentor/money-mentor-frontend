@@ -19,28 +19,29 @@ export const colorTheme = {
   },
   pink: {
     light: '#F5CAC3',
-    dark: '#F28482'
+    dark: '#F28482',
   },
   mint: {
     light: '#D4F2D2',
-    medium: '#84A59D'
+    medium: '#84A59D',
   },
-  purple: '#BEB7D7'
+  purple: '#BEB7D7',
 };
 
-export const pieColor =
-  [colorTheme.orange.medium,
-    colorTheme.pink.light,
-    colorTheme.mint.medium,
-    colorTheme.pink.dark,
-    colorTheme.blue.dark,
-    colorTheme.purple,
-    colorTheme.mint.light,
-    '#f2edd7',
-    '#b87ca5',
-    '#7c87b8',
-    '#d7f2df',
-    '#f1dd6a']
+export const pieColor = [
+  colorTheme.orange.medium,
+  colorTheme.pink.dark,
+  colorTheme.mint.light,
+  colorTheme.pink.light,
+  colorTheme.mint.medium,
+  colorTheme.blue.dark,
+  colorTheme.purple,
+  '#f2edd7',
+  '#b87ca5',
+  '#7c87b8',
+  '#d7f2df',
+  '#f1dd6a',
+];
 
 export const styles = StyleSheet.create({
   container: {
@@ -49,9 +50,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colorTheme.blue.medium,
   },
+  logo: {
+    width: 200,
+    height: 115,
+  },
   logoLocation: {
     position: 'absolute',
-    top: -350,
+    top: -375,
     left: 0,
     right: 0,
     bottom: 0,
@@ -177,7 +182,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '75%',
     justifyContent: 'space-around',
-    paddingTop:10
+    paddingTop: 10,
   },
   homePageSmallText: {
     alignSelf: 'center',
@@ -197,7 +202,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     paddingTop: 10,
-    width: '80%'
+    width: '80%',
   },
   budgetStatus: {
     fontWeight: 'bold',
@@ -223,16 +228,8 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: colorTheme.blue.medium,
   },
-  label: {
-    fontSize: 15,
-    marginTop: 5,
-    fontWeight: 'normal',
-  },
-  pieContainer: {
-    margin:20
-  },
   categoryPieContainer: {
-    marginTop:21,
-    backgroundColor:colorTheme.white.snow
-  }
+    marginTop: 21,
+    backgroundColor: colorTheme.white.snow,
+  },
 });

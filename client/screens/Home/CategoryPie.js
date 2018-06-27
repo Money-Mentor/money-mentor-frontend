@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import Pie from './Pie';
 import { pieColor, colorTheme } from '../../common/styles';
@@ -25,23 +25,51 @@ class CategoryPie extends Component {
     this.setState({ ...this.state, activeIndex: newIndex });
   }
 
-  getData() {
-    const { budget } = this.props;
-    const pieData = budget && [
-      { number: budget.community, name: 'Community' },
-      { number: budget.foodAndDrink, name: 'Food & Drink' },
-      { number: budget.healthcare, name: 'Healthcare' },
-      { number: budget.recreation, name: 'Recreation' },
-      { number: budget.service, name: 'Service' },
-      { number: budget.shops, name: 'Shops' },
-      { number: budget.travel, name: 'Travel' },
+  spendingByCategory() {
+    const { transactions } = this.props;
+    let categories = [
+      'Community',
+      'Food and Drink',
+      'Healthcare',
+      'Recreation',
+      'Service',
+      'Shops',
+      'Travel',
     ];
-    return pieData;
+    let categoryTotals = [];
+    let totalByCategory;
+    let total = 0;
+
+    for (let i = 0; i < categories.length; i++) {
+      totalByCategory =
+        transactions &&
+        transactions
+          .filter(item => item.category1 === categories[i])
+          .reduce((acc, num) => acc + num.amount, 0);
+      total += totalByCategory;
+      totalByCategory && categoryTotals.push({ number: totalByCategory, name: categories[i] });
+    }
+
+    return [categoryTotals, total];
+  }
+
+  getData() {
+    let [spendingByCategory, total] = this.spendingByCategory();
+    let percent;
+    let spendingByCategoryPercentArr = [];
+
+    spendingByCategory.map(category => {
+      percent = Math.round((category.number / total) * 100);
+      spendingByCategoryPercentArr.push({
+        number: percent,
+        name: category.name,
+      });
+    });
+
+    return spendingByCategoryPercentArr;
   }
 
   render() {
-    const height = 800;
-    const width = 500;
 
     return (
       <ScrollView>
@@ -52,8 +80,6 @@ class CategoryPie extends Component {
             pieHeight={225}
             onItemSelected={this._onPieItemSelected}
             colors={pieColor}
-            width={width}
-            height={height}
             data={this.getData()}
           />
         </View>
@@ -65,6 +91,7 @@ class CategoryPie extends Component {
 const mapState = state => {
   return {
     budget: state.acctTrans.budget,
+    transactions: state.acctTrans.trans,
   };
 };
 
@@ -73,7 +100,6 @@ export default connect(mapState)(CategoryPie);
 const styles = {
   container: {
     backgroundColor: colorTheme.blue.medium,
-    flexgrow: 1,
     justifyContent: 'center',
   },
   chart_title: {

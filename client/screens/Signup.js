@@ -20,7 +20,7 @@ class Signup extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
           <Text style={styles.initialScreenText}>Signup</Text>
         </View>
         <FormInput
