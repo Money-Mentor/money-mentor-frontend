@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
   },
   logoLocation: {
     position: 'absolute',
-    top: -500,
+    top: -350,
     left: 0,
     right: 0,
     bottom: 0,
@@ -79,9 +79,9 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   circle: {
-    width: 250,
-    height: 250,
-    borderRadius: 250 / 2,
+    width: 225,
+    height: 225,
+    borderRadius: 225 / 2,
     borderWidth: 8,
     borderColor: colorTheme.white.snow,
     overflow: 'hidden',
@@ -112,7 +112,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     zIndex: 2,
-    top: '43%',
+    top: '44%',
     fontSize: 14,
     justifyContent: 'center',
     alignItems: 'center',
@@ -164,6 +164,9 @@ export const styles = StyleSheet.create({
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     position: 'absolute',
+
+    left: '80%',
+    zIndex: 2,
   },
   smallerText: {
     alignSelf: 'center',
@@ -174,6 +177,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '75%',
     justifyContent: 'space-around',
+    paddingTop:10
   },
   homePageSmallText: {
     alignSelf: 'center',
@@ -187,19 +191,20 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 12,
   },
+
   budgetSetupText: {
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     fontSize: 16,
     paddingTop: 10,
-    width: '80%',
+    width: '80%'
   },
   budgetStatus: {
     fontWeight: 'bold',
     color: colorTheme.grey.dark,
     fontSize: 18,
     position: 'absolute',
-    top: 125,
+    top: 75,
   },
   initialScreenText: {
     alignSelf: 'center',

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAcctTransData } from '../store';
+import { fetchAcctTransData } from '../../store';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
-import { styles } from '../common/styles';
+import { styles } from '../../common/styles';
+import { createStackNavigator } from 'react-navigation';
+import CategoryPie from './CategoryPie';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -59,7 +60,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec'
+      'Dec',
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -87,11 +88,13 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log('These are my Props', this.props);
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
     // location of the date relative to the circle
-    const dateHeight = `${date.getDate() + 26}%`;
+    // `${date.getDate() + 25}%`
+    const dateHeight = `${date.getDate() * 1.13 + 27}%`;
 
     return (
       <View style={styles.homePageContainer}>
@@ -136,9 +139,7 @@ class Home extends React.Component {
             styles.dateText,
             {
               top: dateHeight,
-              left: '85%',
-              zIndex: 2
-            }
+            },
           ]}
         >
           {this.getDay()}
@@ -163,21 +164,6 @@ class Home extends React.Component {
             <Text style={styles.homePageSmallestText}>Spendable</Text>
           </View>
         </View>
-
-        {/*---------------- BUTTON TO REMOVE!!!!!!!!!!! ------------*/}
-        <View style={{ padding: 10 }}>
-          <Button
-            raised
-            buttonStyle={styles.button}
-            textStyle={{ textAlign: 'center' }}
-            title={`Go To Account Overview`}
-            onPress={() => {
-              this.props.navigation.navigate('AccountsOverview', {
-                title: 'AccountsOverview'
-              });
-            }}
-          />
-        </View>
       </View>
     );
   }
@@ -198,7 +184,14 @@ const mapDispatch = dispatch => {
   };
 };
 
-export default connect(
+const HomeConnect = connect(
   mapState,
   mapDispatch
 )(Home);
+
+export default HomeConnect;
+
+export const HomeStack = createStackNavigator({
+  Home: { screen: HomeConnect },
+  CategoryPie: { screen: CategoryPie },
+});

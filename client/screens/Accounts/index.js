@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
-import { styles } from '../common/styles';
+import {createStackNavigator} from 'react-navigation'
+import { styles } from '../../common/styles';
+import IndividualAccount from './IndividualAccount'
 
-class AccountsOverview extends React.Component {
+class Accounts extends React.Component {
   render() {
     const { account, trans } = this.props;
 
@@ -39,4 +41,10 @@ const mapState = state => {
   };
 };
 
-export default connect(mapState)(AccountsOverview);
+const AccountsConnect = connect(mapState)(Accounts);
+export default AccountsConnect
+
+export const  AccountStack = createStackNavigator({
+  Accounts: {screen: AccountsConnect},
+  IndividualAccount: {screen: IndividualAccount }
+})
