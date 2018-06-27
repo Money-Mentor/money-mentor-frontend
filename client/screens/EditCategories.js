@@ -49,11 +49,7 @@ class EditCategories extends React.Component {
           description: 'Includes presents, clothes, accessories, etc.',
         },
       ],
-<<<<<<< HEAD
       maximum: 100,
-=======
-      remaining: 0
->>>>>>> master
     };
     this.toTitle = this.toTitle.bind(this);
   }
@@ -125,11 +121,7 @@ class EditCategories extends React.Component {
                               return elem;
                             }
                           }),
-<<<<<<< HEAD
                           maximum: prevState.maximum - value,
-=======
-                          remaining: newRemaining
->>>>>>> master
                         }));
                       }}
                       step={5}
