@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Pie from './Pie';
 import { pieColor, colorTheme } from '../../common/styles';
@@ -25,6 +26,18 @@ class CategoryPie extends Component {
     this.setState({ ...this.state, activeIndex: newIndex });
   }
 
+  getTransByCategory() {
+    const { transactions } = this.props;
+    const dataArray = this.getData();
+    const selectedCategory = dataArray[this.state.activeIndex].name;
+    const categorytrans =
+      transactions &&
+      transactions.filter(
+        transaction => transaction.category1 === selectedCategory
+      );
+    return categorytrans;
+  }
+
   spendingByCategory() {
     const { transactions } = this.props;
     let categories = [
@@ -47,7 +60,8 @@ class CategoryPie extends Component {
           .filter(item => item.category1 === categories[i])
           .reduce((acc, num) => acc + num.amount, 0);
       total += totalByCategory;
-      totalByCategory && categoryTotals.push({ number: totalByCategory, name: categories[i] });
+      totalByCategory &&
+        categoryTotals.push({ number: totalByCategory, name: categories[i] });
     }
 
     return [categoryTotals, total];
@@ -70,7 +84,7 @@ class CategoryPie extends Component {
   }
 
   render() {
-
+    const categorytrans = this.getTransByCategory();
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -83,6 +97,17 @@ class CategoryPie extends Component {
             data={this.getData()}
           />
         </View>
+        <List>
+          {categorytrans &&
+            categorytrans.map(transaction => (
+              <ListItem
+                key={transaction.id}
+                title={transaction.name}
+                subtitle={transaction.categoty1}
+                rightTitle={`$ ${transaction.amount}`}
+              />
+            ))}
+        </List>
       </ScrollView>
     );
   }
