@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
 import { styles } from '../../common/styles';
+import IndividualAccount from './IndividualAccount'
+import {createStackNavigator} from 'react-navigation'
 
 class Accounts extends React.Component {
   render() {
@@ -39,4 +41,10 @@ const mapState = state => {
   };
 };
 
-export default connect(mapState)(Accounts);
+const AccountsConnect = connect(mapState)(Accounts);
+export default AccountsConnect
+
+export const  AccountStack = createStackNavigator({
+  Accounts: {screen: AccountsConnect},
+  IndividualAccount: {screen: IndividualAccount }
+})
