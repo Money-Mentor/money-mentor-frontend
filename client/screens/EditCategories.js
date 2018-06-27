@@ -67,7 +67,6 @@ class EditCategories extends React.Component {
   }
 
   render() {
-    console.log('****************CATEGORIES:', this.state.categories);
     return (
       <ScrollView>
         <View style={styles.container}>

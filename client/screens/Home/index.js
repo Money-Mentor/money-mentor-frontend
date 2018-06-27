@@ -5,6 +5,11 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { styles } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
+import { Button } from 'react-native-elements';
+import Quiz from '../Quiz';
+import Result from '../Result';
+import BudgetSetup from '../BudgetSetup';
+import EditCategories from '../EditCategories';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -60,7 +65,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec',
+      'Dec'
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -88,7 +93,6 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log('These are my Props', this.props);
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
@@ -98,7 +102,33 @@ class Home extends React.Component {
 
     return (
       <View style={styles.homePageContainer}>
-        <Text style={styles.budgetStatus}>{this.budgetStatus()}</Text>
+        {this.props.user.personalityType ? (
+          <Button
+            raised
+            textStyle={{ textAlign: 'center' }}
+            title={`View Your Financial Personality`}
+            onPress={() => {
+              this.props.navigation.navigate('Result', {
+                title: 'Result'
+              });
+            }}
+          />
+        ) : (
+          <View>
+            <Text>Looks like you haven't taken our quiz. Take it now!</Text>
+            <Button
+              raised
+              textStyle={{ textAlign: 'center' }}
+              title={`Take the Quiz!`}
+              onPress={() => {
+                this.props.navigation.navigate('Quiz', {
+                  title: 'Quiz'
+                });
+              }}
+            />
+          </View>
+        )}
+        <Text>{this.budgetStatus()}</Text>
 
         {/*---------------- Home Budget Circle starts ------------*/}
         <TouchableOpacity
@@ -138,8 +168,8 @@ class Home extends React.Component {
           style={[
             styles.dateText,
             {
-              top: dateHeight,
-            },
+              top: dateHeight
+            }
           ]}
         >
           {this.getDay()}
@@ -193,5 +223,9 @@ export default HomeConnect;
 
 export const HomeStack = createStackNavigator({
   Home: { screen: HomeConnect },
-  CategoryPie: { screen: CategoryPie },
+  Quiz: { screen: Quiz },
+  Result: { screen: Result },
+  BudgetSetup: { screen: BudgetSetup },
+  EditCategories: { screen: EditCategories },
+  CategoryPie: { screen: CategoryPie }
 });
