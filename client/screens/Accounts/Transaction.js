@@ -70,3 +70,5 @@ class Transaction extends React.Component {
 }
 
 export default Transaction;
+
+// https://moduscreate.com/blog/expanding-and-collapsing-elements-using-animations-in-react-native/

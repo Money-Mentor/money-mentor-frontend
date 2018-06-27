@@ -251,3 +251,5 @@ export const styles = StyleSheet.create({
 export const estyles = EStyleSheet.create({
   transInner: { flex: 1, alignSelf: 'stretch', width: '50%' },
 });
+
+//https://github.com/vitalets/react-native-extended-stylesheet#percents
