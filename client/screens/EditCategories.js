@@ -49,7 +49,11 @@ class EditCategories extends React.Component {
           description: 'Includes presents, clothes, accessories, etc.',
         },
       ],
+<<<<<<< HEAD
       maximum: 100,
+=======
+      remaining: 0
+>>>>>>> master
     };
     this.toTitle = this.toTitle.bind(this);
   }
@@ -88,14 +92,14 @@ class EditCategories extends React.Component {
                   Edit Categories:
                 </Text>
                 <Text>
-                  You have {this.props.budget.spendingBudget} for your spending
+                  You have ${this.props.budget.spendingBudget} for your spending
                   budget per month.
                 </Text>
                 <Text>
                   Below are Penny the Pig's recommendations to get started -
                   adjust the sliders to personalize your budget!
                 </Text>
-                <Text>Percentage Remaining: {this.state.maximum}</Text>
+                <Text>Percentage Remaining: {this.state.remaining}%</Text>
               </View>
 
               {/* All Categories */}
@@ -110,6 +114,8 @@ class EditCategories extends React.Component {
                       style={styles.slider}
                       value={category.percentage}
                       onSlidingComplete={value => {
+                        const newRemaining =
+                          this.state.remaining - (value - category.percentage);
                         this.setState(prevState => ({
                           categories: [...prevState.categories].map(elem => {
                             if (elem.name === category.name) {
@@ -119,13 +125,18 @@ class EditCategories extends React.Component {
                               return elem;
                             }
                           }),
+<<<<<<< HEAD
                           maximum: prevState.maximum - value,
+=======
+                          remaining: newRemaining
+>>>>>>> master
                         }));
                       }}
-                      step={1}
+                      step={5}
                       minimumValue={0}
                       maximumValue={100}
                     />
+                    <Text>Current Value: {category.percentage}%</Text>
                   </View>
                 );
               })}
@@ -138,7 +149,7 @@ class EditCategories extends React.Component {
                 title={`Finished!`}
                 onPress={() => {
                   this.props.setBudget(this.state.budget);
-                  this.props.navigation.navigate('Home', { title: 'Home' });
+                  this.props.navigation.navigate('Main', { title: 'Main' });
                 }}
               >
                 Finished!
