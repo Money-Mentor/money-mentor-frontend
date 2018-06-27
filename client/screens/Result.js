@@ -42,7 +42,7 @@ class Result extends React.Component {
             <Text style={[styles.smallerText, { fontSize: 12 }]}>
               {personalityType.description}
             </Text>
-            <Button
+            {/* <Button
               raised
               buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
               textStyle={{ textAlign: 'center' }}
@@ -52,7 +52,7 @@ class Result extends React.Component {
                   title: 'BudgetSetup'
                 });
               }}
-            />
+            /> */}
           </View>
         )}
       </View>

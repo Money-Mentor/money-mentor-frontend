@@ -10,6 +10,8 @@ import Quiz from '../Quiz';
 import Result from '../Result';
 import BudgetSetup from '../BudgetSetup';
 import EditCategories from '../EditCategories';
+import Retirement from './Retirement';
+import RetirementResults from './RetirementResults';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -106,11 +108,9 @@ class Home extends React.Component {
           <Button
             raised
             textStyle={{ textAlign: 'center' }}
-            title={`View Your Financial Personality`}
+            title={`You're a ${this.props.user.personalityType}: See Details`}
             onPress={() => {
-              this.props.navigation.navigate('Result', {
-                title: 'Result'
-              });
+              this.props.navigation.navigate('Result', { title: 'Result' });
             }}
           />
         ) : (
@@ -121,9 +121,7 @@ class Home extends React.Component {
               textStyle={{ textAlign: 'center' }}
               title={`Take the Quiz!`}
               onPress={() => {
-                this.props.navigation.navigate('Quiz', {
-                  title: 'Quiz'
-                });
+                this.props.navigation.navigate('Quiz', { title: 'Quiz' });
               }}
             />
           </View>
@@ -164,14 +162,7 @@ class Home extends React.Component {
         <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
 
         {/*---------------- Home Budget Date Position ------------*/}
-        <Text
-          style={[
-            styles.dateText,
-            {
-              top: dateHeight
-            }
-          ]}
-        >
+        <Text style={[styles.dateText, { top: dateHeight }]}>
           {this.getDay()}
         </Text>
 
@@ -192,6 +183,19 @@ class Home extends React.Component {
             </Text>
             <Text style={styles.homePageSmallestText}>Daily</Text>
             <Text style={styles.homePageSmallestText}>Spendable</Text>
+          </View>
+
+          {/*-------------- Retirement Comparison ------------*/}
+          <View>
+            <Button
+              raised
+              title={`How are you with retirement?`}
+              onPress={() => {
+                this.props.navigation.navigate('Retirement', {
+                  title: 'Retirement'
+                });
+              }}
+            />
           </View>
         </View>
       </View>
@@ -227,5 +231,7 @@ export const HomeStack = createStackNavigator({
   Result: { screen: Result },
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories },
-  CategoryPie: { screen: CategoryPie }
+  CategoryPie: { screen: CategoryPie },
+  Retirement: { screen: Retirement },
+  RetirementResults: { screen: RetirementResults }
 });
