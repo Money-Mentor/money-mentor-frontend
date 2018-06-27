@@ -60,7 +60,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec',
+      'Dec'
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -134,14 +134,7 @@ class Home extends React.Component {
         <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
 
         {/*---------------- Home Budget Date Position ------------*/}
-        <Text
-          style={[
-            styles.dateText,
-            {
-              top: dateHeight,
-            },
-          ]}
-        >
+        <Text style={[styles.dateText, { top: dateHeight }]}>
           {this.getDay()}
         </Text>
 
@@ -193,5 +186,5 @@ export default HomeConnect;
 
 export const HomeStack = createStackNavigator({
   Home: { screen: HomeConnect },
-  CategoryPie: { screen: CategoryPie },
+  CategoryPie: { screen: CategoryPie }
 });

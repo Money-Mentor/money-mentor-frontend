@@ -13,21 +13,21 @@ class BudgetSetup extends React.Component {
       staticCosts: 0,
       savings: 0,
       spendingBudget: 0,
+      retirement: 0
     };
   }
 
   render() {
     return (
       <View style={styles.container}>
-         <Text style={styles.initialScreenText}>
-            Tell us a little about your finances.
-          </Text>
+        <Text style={styles.initialScreenText}>
+          Tell us a little about your finances.
+        </Text>
         <Text style={styles.budgetSetupText}>What is your income?</Text>
         <FormInput
           containerStyle={{ width: '80%', paddingTop: 2 }}
           inputStyle={styles.formInput}
           onChangeText={income => this.setState({ income: +income })}
-          value={this.state.income}
           placeholder="Income"
         />
         <Text style={styles.budgetSetupText}>
@@ -39,16 +39,27 @@ class BudgetSetup extends React.Component {
           onChangeText={staticCosts =>
             this.setState({ staticCosts: +staticCosts })
           }
-          value={this.state.staticCosts}
           placeholder="Static Costs"
         />
-        <Text style={styles.budgetSetupText}>How much would you like to save?</Text>
+        <Text style={styles.budgetSetupText}>
+          How much would you like to save?
+        </Text>
         <FormInput
-          containerStyle={{ width: '80%', paddingTop:2 }}
+          containerStyle={{ width: '80%', paddingTop: 2 }}
           inputStyle={styles.formInput}
           onChangeText={savings => this.setState({ savings: +savings })}
-          value={this.state.savings}
           placeholder="Savings"
+        />
+        <Text style={styles.budgetSetupText}>
+          How much is currently in your retirement savings?
+        </Text>
+        <FormInput
+          containerStyle={{ width: '80%', paddingTop: 2 }}
+          inputStyle={styles.formInput}
+          onChangeText={retirement =>
+            this.setState({ retirement: +retirement })
+          }
+          placeholder="Retirement"
         />
         <View style={{ padding: 10 }}>
           <Button
@@ -61,27 +72,27 @@ class BudgetSetup extends React.Component {
                 this.state.income - this.state.staticCosts - this.state.savings;
               this.props.setBudget({ ...this.state, spendingBudget });
               this.props.navigation.navigate('EditCategories', {
-                title: 'EditCategories',
+                title: 'EditCategories'
               });
             }}
           >
             Submit
           </Button>
         </View>
-        </View>
+      </View>
     );
   }
 }
 
 const mapState = state => {
   return {
-    budget: state.budget,
+    budget: state.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    setBudget: budget => dispatch(setBudget(budget)),
+    setBudget: budget => dispatch(setBudget(budget))
   };
 };
 
