@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 export const colorTheme = {
   orange: {
@@ -19,28 +20,29 @@ export const colorTheme = {
   },
   pink: {
     light: '#F5CAC3',
-    dark: '#F28482'
+    dark: '#F28482',
   },
   mint: {
     light: '#D4F2D2',
-    medium: '#84A59D'
+    medium: '#84A59D',
   },
-  purple: '#BEB7D7'
+  purple: '#BEB7D7',
 };
 
-export const pieColor =
-  [colorTheme.orange.medium,
-    colorTheme.pink.light,
-    colorTheme.mint.medium,
-    colorTheme.pink.dark,
-    colorTheme.blue.dark,
-    colorTheme.purple,
-    colorTheme.mint.light,
-    '#f2edd7',
-    '#b87ca5',
-    '#7c87b8',
-    '#d7f2df',
-    '#f1dd6a']
+export const pieColor = [
+  colorTheme.orange.medium,
+  colorTheme.pink.light,
+  colorTheme.mint.medium,
+  colorTheme.pink.dark,
+  colorTheme.blue.dark,
+  colorTheme.purple,
+  colorTheme.mint.light,
+  '#f2edd7',
+  '#b87ca5',
+  '#7c87b8',
+  '#d7f2df',
+  '#f1dd6a',
+];
 
 export const styles = StyleSheet.create({
   container: {
@@ -177,7 +179,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '75%',
     justifyContent: 'space-around',
-    paddingTop:10
+    paddingTop: 10,
   },
   homePageSmallText: {
     alignSelf: 'center',
@@ -197,7 +199,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     paddingTop: 10,
-    width: '80%'
+    width: '80%',
   },
   budgetStatus: {
     fontWeight: 'bold',
@@ -229,10 +231,23 @@ export const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
   pieContainer: {
-    margin:20
+    margin: 20,
   },
   categoryPieContainer: {
-    marginTop:21,
-    backgroundColor:colorTheme.white.snow
-  }
+    marginTop: 21,
+    backgroundColor: colorTheme.white.snow,
+  },
+
+  // Transaction
+  trans: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    paddingVertical: '20',
+  },
+});
+
+export const estyles = EStyleSheet.create({
+  transInner: { flex: 1, alignSelf: 'stretch', width: '50%' },
 });

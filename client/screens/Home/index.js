@@ -88,7 +88,7 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log('These are my Props', this.props);
+    console.log('==========', this.props)
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
