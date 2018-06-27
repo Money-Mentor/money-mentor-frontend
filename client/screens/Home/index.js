@@ -8,7 +8,6 @@ import CategoryPie from './CategoryPie';
 
 class Home extends React.Component {
   componentDidMount() {
-    console.log('this.props.user in compdidmount', this.props.user);
     this.props.fetchAcctTransData();
     this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
   }
@@ -97,11 +96,6 @@ class Home extends React.Component {
     // `${date.getDate() + 25}%`
     const dateHeight = `${date.getDate() * 1.13 + 21}%`;
 
-    console.log(
-      '**********HOME PROPS- budget***********',
-      this.props.budget && this.props.budget.spendingBudget
-    );
-
     return (
       <View style={styles.homePageContainer}>
         <Text style={styles.budgetStatus}>{this.budgetStatus()}</Text>
@@ -111,7 +105,7 @@ class Home extends React.Component {
           onPress={() => {
             this.props.navigation.navigate('CategoryPie', {
               title: 'CategoryPie',
-              budget: budget,
+              budget: budget
             });
           }}
         >
@@ -119,13 +113,13 @@ class Home extends React.Component {
             <View
               style={[
                 styles.circleLine,
-                { height: `${this.dateCircleHeight()}%`, zIndex: 1 },
+                { height: `${this.dateCircleHeight()}%`, zIndex: 1 }
               ]}
             />
             <View
               style={[
                 styles.circleFill,
-                { top: `${this.budgetCircleHeight()}%`, zIndex: 0 },
+                { top: `${this.budgetCircleHeight()}%`, zIndex: 0 }
               ]}
             />
           </View>
@@ -177,15 +171,16 @@ class Home extends React.Component {
 
 const mapState = state => {
   return {
+    user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    budget: state.acctTrans.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 

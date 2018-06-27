@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import { FormInput, Button } from 'react-native-elements';
+import { View, Text, Image, ScrollView } from 'react-native';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../store';
 import { styles } from '../common/styles';
@@ -10,16 +10,56 @@ class EditCategories extends React.Component {
   constructor() {
     super();
     this.state = {
-      budget: {
-        foodAndDrink: 35,
-        travel: 10,
-        recreation: 15,
-        healthcare: 10,
-        service: 10,
-        community: 10,
-        shops: 10
-      }
+      categories: [
+        {
+          name: 'foodAndDrink',
+          percentage: 35,
+          description: 'Includes groceries, restaurants, bars, nightlife, etc.'
+        },
+        {
+          name: 'travel',
+          percentage: 10,
+          description: 'Includes gas, commuting, subway, train, bus, etc.'
+        },
+        {
+          name: 'recreation',
+          percentage: 15,
+          description: 'Includes doctor visits, prescriptions, physicians, etc.'
+        },
+        {
+          name: 'healthcare',
+          percentage: 10,
+          description: 'Includes doctor visits, prescriptions, physicians, etc.'
+        },
+        {
+          name: 'service',
+          percentage: 10,
+          description: 'Includes self-care, etc.'
+        },
+        {
+          name: 'community',
+          percentage: 10,
+          description: 'Includes donations, etc.'
+        },
+        {
+          name: 'shops',
+          percentage: 10,
+          description: 'Includes presents, clothes, accessories, etc.'
+        }
+      ],
+      maximum: 100
     };
+    this.toTitle = this.toTitle.bind(this);
+  }
+
+  toTitle(str, separator) {
+    separator = typeof separator === 'undefined' ? ' ' : separator;
+    return str
+      .replace(/([a-z\d])([A-Z])/g, '$1' + separator + '$2')
+      .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + separator + '$2')
+      .replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
   }
 
   componentDidMount() {
@@ -27,49 +67,79 @@ class EditCategories extends React.Component {
   }
 
   render() {
+    console.log('****************CATEGORIES:', this.state.categories);
     return (
-      <View style={styles.container}>
-        {this.props.budget.id && (
-          <View>
-            <View style={styles.logoLocation}>
-              <Image source={require('../../public/img/logo.png')} />
-              <Text style={styles.initialScreenText}>
-                You have {this.props.budget.spendingBudget} for your monthly
-                spending budget.
-              </Text>
-              <Text style={styles.budgetSetupText}>
-                Here is the recommended budget setup:
-              </Text>
-              <Text>Food and Drink:</Text>
-              {/* <Slider
-                style={styles.slider}
-                value={this.state.budget.foodAndDrink}
-                defaultValue={35}
-                // onValueChange={value => this.setState({ foodAndDrink: value })}
-                step={1}
-                minimumValue={0}
-                maximumValue={100}
-              /> */}
-            </View>
-            <View style={{ padding: 10 }}>
+      <ScrollView>
+        <View style={styles.container}>
+          {this.props.budget.id && (
+            <View>
+              <View>
+                <View>
+                  <Image source={require('../../public/img/logo.png')} />
+                </View>
+                <Text style={[styles.smallerText, { fontSize: 24 }]}>
+                  Edit Categories:
+                </Text>
+                <Text>
+                  You have {this.props.budget.spendingBudget} for your spending
+                  budget per month.
+                </Text>
+                <Text>
+                  Below are Penny the Pig's recommendations to get started -
+                  adjust the sliders to personalize your budget!
+                </Text>
+                <Text>Percentage Remaining: {this.state.maximum}</Text>
+              </View>
+
+              {/* All Categories */}
+              {this.state.categories.map(category => {
+                return (
+                  <View key={category.name}>
+                    <Text style={[styles.smallerText, { fontSize: 16 }]}>
+                      {this.toTitle(category.name)}
+                    </Text>
+                    <Text>{category.description}</Text>
+                    <Slider
+                      style={styles.slider}
+                      value={category.percentage}
+                      onSlidingComplete={value => {
+                        this.setState(prevState => ({
+                          categories: [...prevState.categories].map(elem => {
+                            if (elem.name === category.name) {
+                              elem.percentage = value;
+                              return elem;
+                            } else {
+                              return elem;
+                            }
+                          }),
+                          maximum: prevState.maximum - value
+                        }));
+                      }}
+                      step={1}
+                      minimumValue={0}
+                      maximumValue={100}
+                    />
+                  </View>
+                );
+              })}
+
+              {/* Button */}
               <Button
                 raised
-                buttonStyle={styles.button}
+                buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
                 textStyle={{ textAlign: 'center' }}
-                title={`Submit`}
+                title={`Finished!`}
                 onPress={() => {
                   this.props.setBudget(this.state.budget);
-                  this.props.navigation.navigate('Home', {
-                    title: 'Home'
-                  });
+                  this.props.navigation.navigate('Home', { title: 'Home' });
                 }}
               >
                 Finished!
               </Button>
             </View>
-          </View>
-        )}
-      </View>
+          )}
+        </View>
+      </ScrollView>
     );
   }
 }

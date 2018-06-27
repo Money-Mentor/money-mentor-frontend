@@ -69,7 +69,7 @@ export const updateUserPersonality = (userId, user) => {
   return async dispatch => {
     try {
       const res = await axios.put(`http://localhost:8080/api/users/${userId}`, {
-        user,
+        user
       });
       dispatch(setPersonality(res.data));
     } catch (err) {
