@@ -20,6 +20,7 @@ import {
   Accounts,
   BudgetSetup,
   EditCategories,
+  Individual,
   IndividualAccount
 } from "./client";
 
@@ -75,17 +76,23 @@ export default class App extends React.Component {
 }
 
 const AppStackNavigator = createStackNavigator({
+  // On Board
   Inital: { screen: Initial },
   Login: { screen: Login },
   Signup: { screen: Signup },
   Link: { screen: Link },
   Quiz: { screen: Quiz },
+  Result: { screen: Result },
+  BudgetSetup: { screen: BudgetSetup },
+
   Navbar: { screen: Navbar },
   Main: { screen: Main },
   Home: { screen: Home },
-  Accounts: { screen: Accounts },
-  Result: { screen: Result },
-  BudgetSetup: { screen: BudgetSetup },
+
+  //Accounts
+  Accounts: { screen: props => <Accounts {...props} navigation={this.props.navigation}/> },
+  Individual: { screen: Individual },
+  IndividualAccount: { screen: IndividualAccount },
   EditCategories: { screen: EditCategories },
-  IndividualAccount: { screen: IndividualAccount }
 });
+

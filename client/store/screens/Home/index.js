@@ -142,6 +142,19 @@ class Home extends React.Component {
             <Text style={styles.homePageSmallestText}>Spendable</Text>
           </View>
         </View>
+        <View style={{ padding: 10 }}>
+          <Button
+            raised
+            buttonStyle={styles.button}
+            textStyle={{ textAlign: 'center' }}
+            title={`Go To Account Overview`}
+            onPress={() => {
+              this.props.navigation.navigate('AccountsOverview', {
+                title: 'AccountsOverview',
+              });
+            }}
+          />
+        </View>
       </View>
     );
   }

@@ -23,11 +23,11 @@ class IndividualAccount extends React.Component {
                   title={transaction.name}
                   subtitle={transaction.categoty1}
                   rightTitle={`$ ${transaction.amount}`}
-                  onPress={() =>
-                    this.props.navigation.navigate('IndividualAccount', {
-                      title: 'IndividualAccount',
-                    })
-                  }
+                  // onPress={() =>
+                  //   this.props.navigation.navigate('IndividualAccount', {
+                  //     title: 'IndividualAccount',
+                  //   })
+                  // }
                 />
               ))}
         </List>

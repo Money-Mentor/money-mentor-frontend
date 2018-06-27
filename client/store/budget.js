@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { server } from './index';
 
 // Action Types
 const UPDATE_BUDGET = 'UPDATE_BUDGET'
@@ -11,7 +12,7 @@ export const setBudget = (budget) => {
   return async dispatch => {
     try {
       const res = await axios.put(
-        'http://localhost:8080/api/budget', budget
+        `${server}/api/budget`, budget
       )
       dispatch(updateBudget(res.data))
     } catch (err) {
