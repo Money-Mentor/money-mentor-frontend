@@ -244,12 +244,12 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignSelf: 'stretch',
     flexDirection: 'row',
-    paddingVertical: '20',
+    // paddingVertical: '20',
   },
 });
 
-export const estyles = EStyleSheet.create({
-  transInner: { flex: 1, alignSelf: 'stretch', width: '50%' },
-});
+// export const estyles = EStyleSheet.create({
+//   transInner: { flex: 1, alignSelf: 'stretch', width: '50%' },
+// });
 
 //https://github.com/vitalets/react-native-extended-stylesheet#percents
