@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const colorTheme = {
+export const colorTheme = {
   orange: {
     light: '#f2dfd7',
     medium: '#f19A6A',
@@ -17,14 +17,37 @@ const colorTheme = {
   grey: {
     dark: '#585A56',
   },
+  pink: {
+    light: '#F5CAC3',
+    dark: '#F28482'
+  },
+  mint: {
+    light: '#D4F2D2',
+    medium: '#84A59D'
+  },
+  purple: '#BEB7D7'
 };
+
+export const pieColor =
+  [colorTheme.orange.medium,
+    colorTheme.pink.light,
+    colorTheme.mint.medium,
+    colorTheme.pink.dark,
+    colorTheme.blue.dark,
+    colorTheme.purple,
+    colorTheme.mint.light,
+    '#f2edd7',
+    '#b87ca5',
+    '#7c87b8',
+    '#d7f2df',
+    '#f1dd6a']
 
 export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#C2D3DA',
+    backgroundColor: colorTheme.blue.medium,
   },
   logoLocation: {
     position: 'absolute',
@@ -102,7 +125,7 @@ export const styles = StyleSheet.create({
   questionContainer: {
     flexGrow: 1,
     justifyContent: 'center',
-    backgroundColor: '#C2D3DA',
+    backgroundColor: colorTheme.blue.medium,
   },
   questionText: {
     alignSelf: 'center',
@@ -193,6 +216,18 @@ export const styles = StyleSheet.create({
   },
   accountOverviewContainer: {
     flexGrow: 1,
-    backgroundColor: '#C2D3DA',
+    backgroundColor: colorTheme.blue.medium,
+  },
+  label: {
+    fontSize: 15,
+    marginTop: 5,
+    fontWeight: 'normal',
+  },
+  pieContainer: {
+    margin:20
+  },
+  categoryPieContainer: {
+    marginTop:21,
+    backgroundColor:colorTheme.white.snow
   }
 });

@@ -16,6 +16,7 @@ import Result from './client/screens/Result';
 import BudgetSetup from './client/screens/BudgetSetup';
 import EditCategories from './client/screens/EditCategories';
 import IndividualAccount from './client/screens/IndividualAccount';
+import CategoryPie from './client/screens/Home/CategoryPie'
 
 export default class App extends React.Component {
   render() {
@@ -38,5 +39,6 @@ const AppStackNavigator = createStackNavigator({
   Result: { screen: Result },
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories },
-  IndividualAccount: { screen: IndividualAccount }
+  IndividualAccount: { screen: IndividualAccount },
+  CategoryPie: { screen: CategoryPie }
 });

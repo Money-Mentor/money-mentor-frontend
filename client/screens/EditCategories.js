@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
-import { FormInput, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../store';
 import { styles } from '../common/styles';
@@ -12,32 +12,54 @@ class EditCategories extends React.Component {
     this.state = {
       categories: [
         {
-          foodAndDrink: 35,
+          name: 'foodAndDrink',
+          percentage: 35,
           description: 'Includes groceries, restaurants, bars, nightlife, etc.'
         },
-        { travel: 10, description: 'Includes gas, commuting, etc.' },
         {
-          recreation: 15,
+          name: 'travel',
+          percentage: 10,
+          description: 'Includes gas, commuting, subway, train, bus, etc.'
+        },
+        {
+          name: 'recreation',
+          percentage: 15,
           description: 'Includes doctor visits, prescriptions, physicians, etc.'
         },
         {
-          healthcare: 10,
+          name: 'healthcare',
+          percentage: 10,
           description: 'Includes doctor visits, prescriptions, physicians, etc.'
         },
         {
-          service: 10,
-          description: ''
+          name: 'service',
+          percentage: 10,
+          description: 'Includes self-care, etc.'
         },
         {
-          community: 10,
-          description: ''
+          name: 'community',
+          percentage: 10,
+          description: 'Includes donations, etc.'
         },
         {
-          shops: 10,
-          description: ''
+          name: 'shops',
+          percentage: 10,
+          description: 'Includes presents, clothes, accessories, etc.'
         }
-      ]
+      ],
+      maximum: 100
     };
+    this.toTitle = this.toTitle.bind(this);
+  }
+
+  toTitle(str, separator) {
+    separator = typeof separator === 'undefined' ? ' ' : separator;
+    return str
+      .replace(/([a-z\d])([A-Z])/g, '$1' + separator + '$2')
+      .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + separator + '$2')
+      .replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
   }
 
   componentDidMount() {
@@ -48,70 +70,75 @@ class EditCategories extends React.Component {
     console.log('****************CATEGORIES:', this.state.categories);
     return (
       <ScrollView>
-        {this.props.budget.id && (
-          <View>
+        <View style={styles.container}>
+          {this.props.budget.id && (
             <View>
-              <View style={styles.logoLocation}>
-                <Image source={require('../../public/img/logo.png')} />
-              </View>
-              <Text>Edit Categories:</Text>
-              <Text>
-                Below are Penny the Pig's recommendations to get started -
-                adjust the sliders to personalize your budget!
-              </Text>
-            </View>
-
-            {/* All Categories */}
-            {this.state.categories.map(category => {
-              let key = Object.keys(category)[0];
-              return (
-                <View key={key}>
-                  <Text>{key}</Text>
-                  <Text>{category.description}</Text>
-                  <Slider
-                    value={category[key]}
-                    onSlidingComplete={value => {
-                      // let index = this.state.categories.indexOf()
-                      // let index = this.state.categories.findIndex(
-                      //   x => x[key] === this.state.categories[key]
-                      // );
-                      // if (index === -1) {
-                      //   console.log('Uh oh!');
-                      // }
-                      // const changedObj = this.state.categories[index];
-                      // changedObj.key = value;
-                      // console.log('***** NEW OBJ', changedObj);
-                      // this.setState({
-                      //   categories: [
-                      //     ...this.state.categories.slice(0, index),
-                      //     Object.assign({}, this.state.categories[key], value),
-                      //     ...this.state.categories.slice(index + 1)
-                      //   ]
-                      // });
-                    }}
-                    step={1}
-                    minimumValue={0}
-                    maximumValue={100}
-                  />
+              <View>
+                <View>
+                  <Image source={require('../../public/img/logo.png')} />
                 </View>
-              );
-            })}
+                <Text style={[styles.smallerText, { fontSize: 24 }]}>
+                  Edit Categories:
+                </Text>
+                <Text>
+                  You have {this.props.budget.spendingBudget} for your spending
+                  budget per month.
+                </Text>
+                <Text>
+                  Below are Penny the Pig's recommendations to get started -
+                  adjust the sliders to personalize your budget!
+                </Text>
+                <Text>Percentage Remaining: {this.state.maximum}</Text>
+              </View>
 
-            {/* Button */}
-            <Button
-              raised
-              buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
-              textStyle={{ textAlign: 'center' }}
-              title={`Submit`}
-              onPress={() => {
-                this.props.setBudget(this.state.budget);
-                this.props.navigation.navigate('Home', { title: 'Home' });
-              }}
-            >
-              Finished!
-            </Button>
-          </View>
-        )}
+              {/* All Categories */}
+              {this.state.categories.map(category => {
+                return (
+                  <View key={category.name}>
+                    <Text style={[styles.smallerText, { fontSize: 16 }]}>
+                      {this.toTitle(category.name)}
+                    </Text>
+                    <Text>{category.description}</Text>
+                    <Slider
+                      style={styles.slider}
+                      value={category.percentage}
+                      onSlidingComplete={value => {
+                        this.setState(prevState => ({
+                          categories: [...prevState.categories].map(elem => {
+                            if (elem.name === category.name) {
+                              elem.percentage = value;
+                              return elem;
+                            } else {
+                              return elem;
+                            }
+                          }),
+                          maximum: prevState.maximum - value
+                        }));
+                      }}
+                      step={1}
+                      minimumValue={0}
+                      maximumValue={100}
+                    />
+                  </View>
+                );
+              })}
+
+              {/* Button */}
+              <Button
+                raised
+                buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
+                textStyle={{ textAlign: 'center' }}
+                title={`Finished!`}
+                onPress={() => {
+                  this.props.setBudget(this.state.budget);
+                  this.props.navigation.navigate('Home', { title: 'Home' });
+                }}
+              >
+                Finished!
+              </Button>
+            </View>
+          )}
+        </View>
       </ScrollView>
     );
   }
