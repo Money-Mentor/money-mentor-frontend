@@ -1,12 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-// import { Home, Accounts, Budget, Profile } from "../";
-import Home from './Home';
 import Budget from './Budget';
-import Accounts from './Accounts';
 import Profile from './Profile';
 import { AccountStack } from './Accounts';
+import { HomeStack } from './Home';
 
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
@@ -26,7 +23,7 @@ const profileIcon = ({ tintColor }) => (
 const Navbar = createMaterialBottomTabNavigator(
   {
     Home: {
-      screen: Home,
+      screen: HomeStack,
       navigationOptions: {
         tabBarIcon: homeIcon,
       },

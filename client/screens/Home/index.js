@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAcctTransData } from '../store';
+import { fetchAcctTransData } from '../../store';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
 import { styles } from '../../common/styles';
+import { createStackNavigator } from 'react-navigation';
+import CategoryPie from './CategoryPie';
 
 class Home extends React.Component {
   componentDidMount() {
-    console.log('this.props.user in compdidmount', this.props.user)
+    console.log('this.props.user in compdidmount', this.props.user);
     this.props.fetchAcctTransData();
     this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
   }
@@ -43,7 +44,7 @@ class Home extends React.Component {
 
   remainingbudget() {
     const { budget } = this.props;
-    const totalBudget = budget && budget.spendingBudget
+    const totalBudget = budget && budget.spendingBudget;
     return totalBudget - this.totalSpent();
   }
 
@@ -60,7 +61,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec'
+      'Dec',
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -73,7 +74,7 @@ class Home extends React.Component {
 
   budgetCircleHeight() {
     const { budget } = this.props;
-    const totalBudget = budget && budget.spendingBudget
+    const totalBudget = budget && budget.spendingBudget;
     return Math.floor((this.totalSpent() / totalBudget) * 100);
   }
 
@@ -88,14 +89,18 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log('These are my Props', this.props);
     const { budget } = this.props;
-    const totalBudget = budget && budget.spendingBudget
+    const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
     // location of the date relative to the circle
     // `${date.getDate() + 25}%`
-    const dateHeight = `${(date.getDate() * 1.13) + 21}%`;
+    const dateHeight = `${date.getDate() * 1.13 + 21}%`;
 
-    console.log('**********HOME PROPS- budget***********',this.props.budget && this.props.budget.spendingBudget)
+    console.log(
+      '**********HOME PROPS- budget***********',
+      this.props.budget && this.props.budget.spendingBudget
+    );
 
     return (
       <View style={styles.homePageContainer}>
@@ -103,26 +108,27 @@ class Home extends React.Component {
 
         {/*---------------- Home Budget Circle starts ------------*/}
         <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('CategoryPie', {
-                title: 'CategoryPie',
-                budget: budget
-              });
-            }} >
-        <View style={styles.circle}>
-          <View
-            style={[
-              styles.circleLine,
-              { height: `${this.dateCircleHeight()}%`, zIndex: 1 }
-            ]}
-          />
-          <View
-            style={[
-              styles.circleFill,
-              { top: `${this.budgetCircleHeight()}%`, zIndex: 0 }
-            ]}
-          />
-        </View>
+          onPress={() => {
+            this.props.navigation.navigate('CategoryPie', {
+              title: 'CategoryPie',
+              budget: budget,
+            });
+          }}
+        >
+          <View style={styles.circle}>
+            <View
+              style={[
+                styles.circleLine,
+                { height: `${this.dateCircleHeight()}%`, zIndex: 1 },
+              ]}
+            />
+            <View
+              style={[
+                styles.circleFill,
+                { top: `${this.budgetCircleHeight()}%`, zIndex: 0 },
+              ]}
+            />
+          </View>
         </TouchableOpacity>
 
         {/*---------------- Home Budget Circle Text ------------*/}
@@ -164,22 +170,6 @@ class Home extends React.Component {
             <Text style={styles.homePageSmallestText}>Spendable</Text>
           </View>
         </View>
-
-        {/*---------------- BUTTON TO REMOVE!!!!!!!!!!! ------------*/}
-        <View style={{ padding: 10 }}>
-          <Button
-            raised
-            buttonStyle={styles.button}
-            textStyle={{ textAlign: 'center' }}
-            title={`Go To Account Overview`}
-            onPress={() => {
-              this.props.navigation.navigate('AccountsOverview', {
-                title: 'AccountsOverview'
-              });
-            }}
-          />
-
-        </View>
       </View>
     );
   }
@@ -199,7 +189,14 @@ const mapDispatch = dispatch => {
   };
 };
 
-export default connect(
+const HomeConnect = connect(
   mapState,
   mapDispatch
 )(Home);
+
+export default HomeConnect;
+
+export const HomeStack = createStackNavigator({
+  Home: { screen: HomeConnect },
+  CategoryPie: { screen: CategoryPie },
+});
