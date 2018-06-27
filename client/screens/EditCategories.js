@@ -14,38 +14,40 @@ class EditCategories extends React.Component {
         {
           name: 'foodAndDrink',
           percentage: 35,
-          description: 'Includes groceries, restaurants, bars, nightlife, etc.'
+          description: 'Includes groceries, restaurants, bars, nightlife, etc.',
         },
         {
           name: 'travel',
           percentage: 10,
-          description: 'Includes gas, commuting, subway, train, bus, etc.'
+          description: 'Includes gas, commuting, subway, train, bus, etc.',
         },
         {
           name: 'recreation',
           percentage: 15,
-          description: 'Includes doctor visits, prescriptions, physicians, etc.'
+          description:
+            'Includes doctor visits, prescriptions, physicians, etc.',
         },
         {
           name: 'healthcare',
           percentage: 10,
-          description: 'Includes doctor visits, prescriptions, physicians, etc.'
+          description:
+            'Includes doctor visits, prescriptions, physicians, etc.',
         },
         {
           name: 'service',
           percentage: 10,
-          description: 'Includes self-care, etc.'
+          description: 'Includes self-care, etc.',
         },
         {
           name: 'community',
           percentage: 10,
-          description: 'Includes donations, etc.'
+          description: 'Includes donations, etc.',
         },
         {
           name: 'shops',
           percentage: 10,
-          description: 'Includes presents, clothes, accessories, etc.'
-        }
+          description: 'Includes presents, clothes, accessories, etc.',
+        },
       ],
       maximum: 0
     };
@@ -74,13 +76,19 @@ class EditCategories extends React.Component {
             <View>
               <View>
                 <View>
-                  <Image source={require('../../public/img/logo.png')} />
+                  <Image
+                    style={[
+                      styles.logo,
+                      { marginLeft: 'auto', marginRight: 'auto' },
+                    ]}
+                    source={require('../../public/img/logo.png')}
+                  />
                 </View>
                 <Text style={[styles.smallerText, { fontSize: 24 }]}>
                   Edit Categories:
                 </Text>
                 <Text>
-                  You have {this.props.budget.spendingBudget} for your spending
+                  You have ${this.props.budget.spendingBudget} for your spending
                   budget per month.
                 </Text>
                 <Text>
@@ -113,13 +121,14 @@ class EditCategories extends React.Component {
                               return elem;
                             }
                           }),
-                          maximum: prevState.maximum - value
+                          maximum: prevState.maximum - value,
                         }));
                       }}
                       step={5}
                       minimumValue={0}
                       maximumValue={100}
                     />
+                    <Text>Current Value: {category.percentage}%</Text>
                   </View>
                 );
               })}
@@ -132,7 +141,7 @@ class EditCategories extends React.Component {
                 title={`Finished!`}
                 onPress={() => {
                   this.props.setBudget(this.state.budget);
-                  this.props.navigation.navigate('Home', { title: 'Home' });
+                  this.props.navigation.navigate('Main', { title: 'Main' });
                 }}
               >
                 Finished!
@@ -148,14 +157,14 @@ class EditCategories extends React.Component {
 const mapState = state => {
   return {
     user: state.user,
-    budget: state.budget
+    budget: state.budget,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     fetchBudget: userId => dispatch(fetchBudget(userId)),
-    setBudget: budget => dispatch(setBudget(budget))
+    setBudget: budget => dispatch(setBudget(budget)),
   };
 };
 

@@ -29,7 +29,7 @@ class Link extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.linkLogoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
         </View>
         <Button
           raised
@@ -60,7 +60,8 @@ class Link extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
+          <Text style={styles.initialScreenText}>Next Step: Take Our Quiz</Text>
         </View>
         <Button
           raised

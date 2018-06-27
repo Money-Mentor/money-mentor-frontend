@@ -27,7 +27,6 @@ class BudgetSetup extends React.Component {
           containerStyle={{ width: '80%', paddingTop: 2 }}
           inputStyle={styles.formInput}
           onChangeText={income => this.setState({ income: +income })}
-          value={this.state.income}
           placeholder="Income"
         />
         <Text style={styles.budgetSetupText}>
@@ -39,7 +38,6 @@ class BudgetSetup extends React.Component {
           onChangeText={staticCosts =>
             this.setState({ staticCosts: +staticCosts })
           }
-          value={this.state.staticCosts}
           placeholder="Static Costs"
         />
         <Text style={styles.budgetSetupText}>
@@ -49,8 +47,18 @@ class BudgetSetup extends React.Component {
           containerStyle={{ width: '80%', paddingTop: 2 }}
           inputStyle={styles.formInput}
           onChangeText={savings => this.setState({ savings: +savings })}
-          value={this.state.savings}
           placeholder="Savings"
+        />
+        <Text style={styles.budgetSetupText}>
+          How much is currently in your retirement savings?
+        </Text>
+        <FormInput
+          containerStyle={{ width: '80%', paddingTop: 2 }}
+          inputStyle={styles.formInput}
+          onChangeText={retirement =>
+            this.setState({ retirement: +retirement })
+          }
+          placeholder="Retirement"
         />
         <View style={{ padding: 10 }}>
           <Button

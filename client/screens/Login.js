@@ -20,7 +20,7 @@ class Login extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image source={require('../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
           <Text style={styles.initialScreenText}>Login</Text>
         </View>
         <FormInput
@@ -48,7 +48,9 @@ class Login extends Component {
             title={`Submit`}
             onPress={() => {
               this.props.handleSubmit(this.state.email, this.state.password);
-              this.props.navigation.navigate('Main', { title: 'Main' });
+              this.props.navigation.navigate('Main', {
+                title: 'Main'
+              });
             }}
           >
             Submit
