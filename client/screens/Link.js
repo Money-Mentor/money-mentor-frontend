@@ -10,7 +10,7 @@ import { sendToken } from '../store/token';
 class Link extends React.Component {
   state = {
     data: {},
-    status: 'LOGIN_BUTTON',
+    status: 'LOGIN_BUTTON'
   };
 
   render() {
@@ -35,7 +35,7 @@ class Link extends React.Component {
           raised
           buttonStyle={styles.button}
           textStyle={{ textAlign: 'center' }}
-          title={`Let's link your Bank Account`}
+          title={`Let's Link Your Bank Account`}
           onPress={() => this.setState({ status: '' })}
         />
       </View>
@@ -55,7 +55,7 @@ class Link extends React.Component {
   }
 
   renderDetails() {
-    this.props.dispatchedSendToken(this.state.data.metadata.public_token);
+    this.props.sendToken(this.state.data.metadata.public_token);
 
     return (
       <View style={styles.container}>
@@ -67,13 +67,20 @@ class Link extends React.Component {
           raised
           buttonStyle={styles.button}
           textStyle={{ textAlign: 'center' }}
+          title={`Add another bank account.`}
+          onPress={() =>
+            this.props.navigation.navigate('Link', { title: 'Link' })
+          }
+        />
+        <Button
+          raised
+          buttonStyle={styles.button}
+          textStyle={{ textAlign: 'center' }}
           title={`Let's get started!`}
           onPress={() =>
-            this.props.navigation.navigate('Quiz', { title: 'Quiz' })
+            this.props.navigation.navigate('Main', { title: 'Main' })
           }
-        >
-          Let's get started!
-        </Button>
+        />
       </View>
     );
   }
@@ -81,9 +88,7 @@ class Link extends React.Component {
   onMessage = data => {
     this.setState({
       data,
-      status: data.action
-        .substr(data.action.lastIndexOf(':') + 1)
-        .toUpperCase(),
+      status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
     });
   };
 }
@@ -91,7 +96,7 @@ class Link extends React.Component {
 const mapDispatch = dispatch => {
   return {
     // rename to same thing - shorthand
-    dispatchedSendToken: token => dispatch(sendToken(token)),
+    sendToken: token => dispatch(sendToken(token))
   };
 };
 

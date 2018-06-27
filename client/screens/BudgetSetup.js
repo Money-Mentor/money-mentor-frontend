@@ -12,8 +12,7 @@ class BudgetSetup extends React.Component {
       income: 0,
       staticCosts: 0,
       savings: 0,
-      spendingBudget: 0,
-      retirement: 0
+      spendingBudget: 0
     };
   }
 
@@ -75,9 +74,7 @@ class BudgetSetup extends React.Component {
                 title: 'EditCategories'
               });
             }}
-          >
-            Submit
-          </Button>
+          />
         </View>
       </View>
     );

@@ -49,7 +49,7 @@ class EditCategories extends React.Component {
           description: 'Includes presents, clothes, accessories, etc.',
         },
       ],
-      maximum: 100,
+      maximum: 0
     };
     this.toTitle = this.toTitle.bind(this);
   }
@@ -95,7 +95,9 @@ class EditCategories extends React.Component {
                   Below are Penny the Pig's recommendations to get started -
                   adjust the sliders to personalize your budget!
                 </Text>
-                <Text>Percentage Remaining: {this.state.remaining}%</Text>
+                <Text style={[styles.smallerText, { fontSize: 20 }]}>
+                  Percentage Remaining: {this.state.maximum}
+                </Text>
               </View>
 
               {/* All Categories */}
@@ -103,15 +105,13 @@ class EditCategories extends React.Component {
                 return (
                   <View key={category.name}>
                     <Text style={[styles.smallerText, { fontSize: 16 }]}>
-                      {this.toTitle(category.name)}
+                      {this.toTitle(category.name)} : {category.percentage}%
                     </Text>
                     <Text>{category.description}</Text>
                     <Slider
                       style={styles.slider}
                       value={category.percentage}
                       onSlidingComplete={value => {
-                        const newRemaining =
-                          this.state.remaining - (value - category.percentage);
                         this.setState(prevState => ({
                           categories: [...prevState.categories].map(elem => {
                             if (elem.name === category.name) {

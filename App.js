@@ -33,8 +33,6 @@ const AuthenticationNavigator = createStackNavigator({
   Login: { screen: Login },
   Signup: { screen: Signup },
   Link: { screen: Link },
-  Quiz: { screen: Quiz },
-  Result: { screen: Result },
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories },
 });
