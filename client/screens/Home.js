@@ -7,7 +7,6 @@ import { styles } from '../common/styles';
 
 class Home extends React.Component {
   componentDidMount() {
-    console.log('this.props.user in compdidmount', this.props.user)
     this.props.fetchAcctTransData();
     this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
   }
@@ -23,7 +22,7 @@ class Home extends React.Component {
   totalSpent() {
     const date = new Date();
     const { trans } = this.props;
-   
+
     const formatMonth = month => {
       month++;
       return month < 10 ? '0' + month : month;
@@ -43,7 +42,7 @@ class Home extends React.Component {
 
   remainingbudget() {
     const { budget } = this.props;
-    const totalBudget = budget && budget.spendingBudget
+    const totalBudget = budget && budget.spendingBudget;
     return totalBudget - this.totalSpent();
   }
 
@@ -73,7 +72,7 @@ class Home extends React.Component {
 
   budgetCircleHeight() {
     const { budget } = this.props;
-    const totalBudget = budget && budget.spendingBudget
+    const totalBudget = budget && budget.spendingBudget;
     return Math.floor((this.totalSpent() / totalBudget) * 100);
   }
 
@@ -89,39 +88,38 @@ class Home extends React.Component {
 
   render() {
     const { budget } = this.props;
-    const totalBudget = budget && budget.spendingBudget
+    const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
     // location of the date relative to the circle
     const dateHeight = `${date.getDate() + 26}%`;
 
-    console.log('**********HOME PROPS- budget***********',this.props.budget && this.props.budget.spendingBudget)
-
     return (
       <View style={styles.homePageContainer}>
         <Text style={styles.budgetStatus}>{this.budgetStatus()}</Text>
-        
+
         {/*---------------- Home Budget Circle starts ------------*/}
-        <TouchableOpacity 
-            onPress={() => {
-              this.props.navigation.navigate('CategoryPie', {
-                title: 'CategoryPie',
-                budget: budget
-              });
-            }} >
-        <View style={styles.circle}>
-          <View
-            style={[
-              styles.circleLine,
-              { height: `${this.dateCircleHeight()}%`, zIndex: 1 }
-            ]}
-          />
-          <View
-            style={[
-              styles.circleFill,
-              { top: `${this.budgetCircleHeight()}%`, zIndex: 0 }
-            ]}
-          />
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('CategoryPie', {
+              title: 'CategoryPie',
+              budget: budget
+            });
+          }}
+        >
+          <View style={styles.circle}>
+            <View
+              style={[
+                styles.circleLine,
+                { height: `${this.dateCircleHeight()}%`, zIndex: 1 }
+              ]}
+            />
+            <View
+              style={[
+                styles.circleFill,
+                { top: `${this.budgetCircleHeight()}%`, zIndex: 0 }
+              ]}
+            />
+          </View>
         </TouchableOpacity>
 
         {/*---------------- Home Budget Circle Text ------------*/}
@@ -131,7 +129,7 @@ class Home extends React.Component {
             : `-$${Math.abs(this.remainingbudget())}`}
         </Text>
         <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
-        
+
         {/*---------------- Home Budget Date Position ------------*/}
         <Text
           style={[
@@ -179,7 +177,6 @@ class Home extends React.Component {
               });
             }}
           />
-
         </View>
       </View>
     );
@@ -188,15 +185,16 @@ class Home extends React.Component {
 
 const mapState = state => {
   return {
+    user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    budget: state.acctTrans.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
