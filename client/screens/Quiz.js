@@ -64,7 +64,10 @@ class Quiz extends Component {
     return (
       <View style={styles.questionContainer}>
         <View style={styles.logoLocation}>
-          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
+          <Image
+            style={styles.logo}
+            source={require('../../public/img/logo.png')}
+          />
         </View>
         <Text style={styles.questionText}>{this.state.question}</Text>
         <Slider

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Button, Divider, FormInput } from 'react-native-elements';
+import { colorTheme } from '../../common/styles';
 
 class Retirement extends React.Component {
   constructor() {
@@ -17,13 +18,17 @@ class Retirement extends React.Component {
     };
   }
 
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
+
   render() {
     const age = ['Under 35', '35-44', '45-54', '55+'];
     const marital = ['Single', 'Married'];
     const home = ['Yes', 'No'];
     const child = ['Yes', 'No'];
     const num = ['0-5', '6-10', '11-14', '15-20', '21+'];
-    
+
     return (
       <View>
         <Text>Retirement</Text>

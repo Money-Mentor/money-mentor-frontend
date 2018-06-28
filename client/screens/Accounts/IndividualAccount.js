@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
-import { styles } from '../../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 
 class IndividualAccount extends React.Component {
   constructor(props) {
     super(props);
   }
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
   render() {
     const { transactions } = this.props;
     const accountId = this.props.navigation.getParam('accountId');

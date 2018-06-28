@@ -3,7 +3,7 @@ import { View, Text, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../store';
-import { styles } from '../common/styles';
+import { styles, colorTheme } from '../common/styles';
 import Slider from 'react-native-slider';
 
 class EditCategories extends React.Component {
@@ -53,7 +53,10 @@ class EditCategories extends React.Component {
     };
     this.toTitle = this.toTitle.bind(this);
   }
-
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
+  
   toTitle(str, separator) {
     separator = typeof separator === 'undefined' ? ' ' : separator;
     return str

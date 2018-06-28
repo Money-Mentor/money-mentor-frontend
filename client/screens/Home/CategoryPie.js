@@ -12,7 +12,9 @@ type State = {
 
 class CategoryPie extends Component {
   state: State;
-
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +23,6 @@ class CategoryPie extends Component {
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
     this.getData = this.getData.bind(this);
   }
-
   _onPieItemSelected(newIndex) {
     this.setState({ ...this.state, activeIndex: newIndex });
   }

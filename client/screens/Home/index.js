@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAcctTransData } from '../../store';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { styles } from '../../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
 import { Button, Card, Icon } from 'react-native-elements';
@@ -14,6 +14,9 @@ import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
 
 class Home extends React.Component {
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
   componentDidMount() {
     this.props.fetchAcctTransData();
     this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
