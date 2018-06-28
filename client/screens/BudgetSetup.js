@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setBudget } from '../store';
-import { styles } from '../common/styles';
+import { styles, colorTheme } from '../common/styles';
 
 class BudgetSetup extends React.Component {
   constructor() {
@@ -15,6 +15,9 @@ class BudgetSetup extends React.Component {
       spendingBudget: 0
     };
   }
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
 
   render() {
     return (

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import PlaidAuthenticator from 'react-native-plaid-link';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
-import { styles } from '../../common/styles';
+import { styles , colorTheme} from '../../common/styles';
 
 import { sendToken } from '../../store/token';
 
@@ -12,6 +12,12 @@ class Link extends React.Component {
     data: {},
     status: 'LOGIN_BUTTON'
   };
+  static navigationOptions = {
+    title: 'Money Mentor',
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerTitleStyle: { color: colorTheme.grey.dark },
+  }
+
 
   render() {
     switch (this.state.status) {
@@ -63,15 +69,6 @@ class Link extends React.Component {
           <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
           <Text style={styles.initialScreenText}>Next Step: Take Our Quiz</Text>
         </View>
-        <Button
-          raised
-          buttonStyle={styles.button}
-          textStyle={{ textAlign: 'center' }}
-          title={`Add another bank account.`}
-          onPress={() =>
-            this.props.navigation.navigate('Link', { title: 'Link' })
-          }
-        />
         <Button
           raised
           buttonStyle={styles.button}

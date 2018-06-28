@@ -3,10 +3,13 @@ import { Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import BudgetSetup from '../BudgetSetup';
-import EditCategories from './EditCategories';
-import { styles } from '../../common/styles';
+import EditCategories from '../EditCategories';
+import { styles, colorTheme } from '../../common/styles';
 
 class Budget extends React.Component {
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
   render() {
     return (
       <View>

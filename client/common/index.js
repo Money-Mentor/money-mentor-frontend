@@ -8,3 +8,14 @@ export const shuffle = arr => {
   }
   return r;
 };
+
+export const transactionIconType = {
+  'Car Service': 'directions-car',
+  Restaurants: 'restaurant',
+  'Credit Card': 'credit-card',
+  'Gyms and Fitness Centers': 'fitness-center',
+  Deposit: 'attach-money',
+  'Airlines and Aviation Services': 'flight',
+  Bicycles: 'directions-bike',
+  Bar: 'local-drink',
+};

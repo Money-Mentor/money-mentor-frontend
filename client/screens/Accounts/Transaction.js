@@ -1,8 +1,10 @@
 import React from "react";
 import { ListItem } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { styles, estyles } from "../../common/styles";
+import { styles } from "../../common/styles";
 import { Text, View } from "react-native";
+import { Button } from "react-native-elements";
+import { transactionIconType } from '../../common/index';
 
 class Transaction extends React.Component {
   constructor() {
@@ -37,11 +39,11 @@ class Transaction extends React.Component {
 
     const info = (
       <View style={styles.transBody}>
-        <View style={estyles.transInner}>
+        <View>
           <Text style={{ fontWeight: "bold" }}> Date: </Text>
           <Text>{transaction.date}</Text>
         </View>
-        <View style={estyles.transInner}>
+        <View>
           <Text style={{ fontWeight: "bold" }}> Category: </Text>
           <Text>
             {transaction.category1}, {transaction.category2}
@@ -65,6 +67,9 @@ class Transaction extends React.Component {
           rightTitle={`$ ${transaction.amount}`}
           onPress={() => this.toggle()}
           rightIcon={<Icon name={icon} />}
+          leftIcon={{
+            name: transactionIconType[transaction.category2]
+          }}
         />
 
         {this.state.expanded && info}

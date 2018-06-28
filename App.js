@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-
+import {View, Text} from 'react-native'
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 
 import store from './client/store/index';

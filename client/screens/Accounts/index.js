@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import { styles } from '../../common/styles';
-import IndividualAccount from './IndividualAccount';
+import {createStackNavigator} from 'react-navigation'
+import { styles, colorTheme } from '../../common/styles';
+import IndividualAccount from './IndividualAccount'
 
-
-class Accounts extends React.Component {heroku
+class Accounts extends React.Component {
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
   render() {
-    const { account, trans } = this.props;
+    const { account } = this.props;
 
     return (
       <View style={styles.accountOverviewContainer}>

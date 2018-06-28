@@ -8,12 +8,17 @@ import {
   FormValidationMessage,
   Button
 } from 'react-native-elements';
-import { styles } from '../../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = { email: '', password: '' };
+  }
+  static navigationOptions = {
+    title: 'Money Mentor',
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerTitleStyle: { color: colorTheme.grey.dark },
   }
 
   render() {

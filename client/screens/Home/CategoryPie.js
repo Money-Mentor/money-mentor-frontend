@@ -3,7 +3,8 @@ import { Text, ScrollView, View } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Pie from './Pie';
-import { pieColor, colorTheme } from '../../common/styles';
+import { styles, pieColor, colorTheme } from '../../common/styles';
+import { transactionIconType } from '../../common/index';
 
 type State = {
   activeIndex: number,
@@ -12,7 +13,9 @@ type State = {
 
 class CategoryPie extends Component {
   state: State;
-
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +24,6 @@ class CategoryPie extends Component {
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
     this.getData = this.getData.bind(this);
   }
-
   _onPieItemSelected(newIndex) {
     this.setState({ ...this.state, activeIndex: newIndex });
   }
@@ -86,9 +88,11 @@ class CategoryPie extends Component {
   render() {
     const categorytrans = this.getTransByCategory();
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
         <View style={styles.container}>
-          <Text style={styles.chart_title}>Spending By Category</Text>
+          <Text style={[styles.homePageSmallText, { paddingBottom: 10 }]}>
+            Spending By Category
+          </Text>
           <Pie
             pieWidth={225}
             pieHeight={225}
@@ -98,13 +102,16 @@ class CategoryPie extends Component {
           />
         </View>
         <List>
+          <Text style={styles.transactionTitle}>Transactions</Text>
           {categorytrans &&
             categorytrans.map(transaction => (
               <ListItem
                 key={transaction.id}
                 title={transaction.name}
-                subtitle={transaction.categoty1}
                 rightTitle={`$ ${transaction.amount}`}
+                leftIcon={{
+                  name: transactionIconType[transaction.category2],
+                }}
               />
             ))}
         </List>
@@ -121,19 +128,3 @@ const mapState = state => {
 };
 
 export default connect(mapState)(CategoryPie);
-
-const styles = {
-  container: {
-    backgroundColor: colorTheme.blue.medium,
-    justifyContent: 'center',
-  },
-  chart_title: {
-    paddingTop: 50,
-    textAlign: 'center',
-    paddingLeft: 5,
-    fontSize: 18,
-    backgroundColor: colorTheme.blue.medium,
-    color: 'grey',
-    fontWeight: 'bold',
-  },
-};
