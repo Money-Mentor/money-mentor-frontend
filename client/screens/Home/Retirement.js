@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Button, Divider, FormInput } from 'react-native-elements';
+import { colorTheme } from '../../common/styles';
 
 // We may not need this library anymore !!
 import RadioGroup from 'react-native-custom-radio-group';
@@ -19,6 +20,10 @@ class Retirement extends React.Component {
       balance: 0
     };
   }
+
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
 
   render() {
     const ageGroup = [

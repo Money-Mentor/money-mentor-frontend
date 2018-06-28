@@ -3,9 +3,9 @@ import { Text, ScrollView, View } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Pie from './Pie';
-import { pieColor, colorTheme } from '../../common/styles';
+import { styles, pieColor, colorTheme } from '../../common/styles';
+import { transactionIconType, startDateString } from '../../common/index';
 import StackedBar from './StackedBar';
-// import { StackedBarChart } from 'react-native-svg-charts';
 
 type State = {
   activeIndex: number,
@@ -14,6 +14,9 @@ type State = {
 
 class CategoryPie extends Component {
   state: State;
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
+  };
 
   constructor(props) {
     super(props);
@@ -40,7 +43,9 @@ class CategoryPie extends Component {
     return categorytrans;
   }
 
+  // [[{number: 1600, name: category}, ...], total]
   spendingByCategory() {
+    let startDate = startDateString();
     const { transactions } = this.props;
     let categories = [
       'Community',
@@ -59,7 +64,9 @@ class CategoryPie extends Component {
       totalByCategory =
         transactions &&
         transactions
-          .filter(item => item.category1 === categories[i])
+          .filter(
+            item => item.category1 === categories[i] && item.date > startDate
+          )
           .reduce((acc, num) => acc + num.amount, 0);
       total += totalByCategory;
       totalByCategory &&
@@ -69,6 +76,7 @@ class CategoryPie extends Component {
     return [categoryTotals, total];
   }
 
+  // Get Total. Division. Get to Percentage by category.
   getData() {
     let [spendingByCategory, total] = this.spendingByCategory();
     let percent;
@@ -88,10 +96,11 @@ class CategoryPie extends Component {
   render() {
     const categorytrans = this.getTransByCategory();
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
         <View style={styles.container}>
-          <Text style={styles.chart_title}>Spending By Category</Text>
-          {/* Pie Chart */}
+          <Text style={[styles.homePageSmallText, { paddingBottom: 10 }]}>
+            Spending By Category
+          </Text>
           <Pie
             pieWidth={225}
             pieHeight={225}
@@ -103,18 +112,21 @@ class CategoryPie extends Component {
 
         {/* Progress Bars */}
         <View>
-          <StackedBar spendingByCategory={this.spendingByCategory()} />
+          <StackedBar spendingByCategory={this.spendingByCategory()} getData={this.getData()}/>
         </View>
 
         {/* Transaction Details List */}
         <List>
+          <Text style={styles.transactionTitle}>Transactions</Text>
           {categorytrans &&
             categorytrans.map(transaction => (
               <ListItem
                 key={transaction.id}
                 title={transaction.name}
-                subtitle={transaction.categoty1}
                 rightTitle={`$ ${transaction.amount}`}
+                leftIcon={{
+                  name: transactionIconType[transaction.category2]
+                }}
               />
             ))}
         </List>
@@ -131,19 +143,3 @@ const mapState = state => {
 };
 
 export default connect(mapState)(CategoryPie);
-
-const styles = {
-  container: {
-    backgroundColor: colorTheme.blue.medium,
-    justifyContent: 'center'
-  },
-  chart_title: {
-    paddingTop: 50,
-    textAlign: 'center',
-    paddingLeft: 5,
-    fontSize: 18,
-    backgroundColor: colorTheme.blue.medium,
-    color: 'grey',
-    fontWeight: 'bold'
-  }
-};

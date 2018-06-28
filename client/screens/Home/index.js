@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAcctTransData } from '../../store';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { styles } from '../../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
 import { Button, Card, Icon } from 'react-native-elements';
@@ -12,8 +12,13 @@ import BudgetSetup from '../BudgetSetup';
 import EditCategories from '../EditCategories';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
+import { startDateString } from '../../common/index';
 
 class Home extends React.Component {
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
+  };
+
   componentDidMount() {
     this.props.fetchAcctTransData();
     this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
@@ -28,22 +33,13 @@ class Home extends React.Component {
   }
 
   totalSpent() {
-    const date = new Date();
     const { trans } = this.props;
-
-    const formatMonth = month => {
-      month++;
-      return month < 10 ? '0' + month : month;
-    };
-    let startDate = new Date(date.getFullYear(), date.getMonth(), 1);
-    let startDateString = `${startDate.getFullYear()}-${formatMonth(
-      startDate.getMonth()
-    )}-01`;
+    let startDate = startDateString();
 
     const spent =
       trans &&
       trans
-        .filter(item => item.amount > 0 && item.date > startDateString)
+        .filter(item => item.amount > 0 && item.date > startDate)
         .reduce((acc, num) => acc + num.amount, 0);
     return spent;
   }
@@ -67,7 +63,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec',
+      'Dec'
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -98,31 +94,36 @@ class Home extends React.Component {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
-    //${date.getDate() + 20}
     const dateHeight = `${date.getDate() * 3.1 - 3}%`;
 
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
         <View style={styles.homePageContainer}>
-          <Card title="Welcome" containerStyle={styles.card}>
-            <Text style={{ marginBottom: 10 }}>How are you doing today?</Text>
-          </Card>
+          {/*---------------- Quiz and budget setup ------------*/}
           {!this.props.user.personalityType ? (
             <View>
-              <Text>Looks like you haven't taken our quiz. Take it now!</Text>
-              <Button
-                raised
-                buttonStyle={styles.button}
-                textStyle={{ textAlign: 'center' }}
-                title={`Take the Quiz!`}
-                onPress={() => {
-                  this.props.navigation.navigate('Quiz', { title: 'Quiz' });
-                }}
-              />
+              <Card containerStyle={styles.card}>
+                <Text style={styles.homePageQuiz}>
+                  Looks like you haven't taken our quiz.{' '}
+                </Text>
+                <Text style={styles.homePageQuiz}>Take it now!</Text>
+                <Button
+                  raised
+                  buttonStyle={styles.button}
+                  textStyle={{ textAlign: 'center' }}
+                  title={`Take the Quiz!`}
+                  onPress={() => {
+                    this.props.navigation.navigate('Quiz', { title: 'Quiz' });
+                  }}
+                />
+              </Card>
             </View>
-          )
-        : <View/>}
-          <Text>{this.budgetStatus()}</Text>
+          ) : (
+            <View />
+          )}
+          <Text style={[styles.homePageSmallText, { paddingVertical: 10 }]}>
+            {this.budgetStatus()}
+          </Text>
 
           {/*---------------- Home Budget Circle starts ------------*/}
           <View>
@@ -130,7 +131,7 @@ class Home extends React.Component {
               onPress={() => {
                 this.props.navigation.navigate('CategoryPie', {
                   title: 'CategoryPie',
-                  budget: budget,
+                  budget: budget
                 });
               }}
             >
@@ -138,13 +139,13 @@ class Home extends React.Component {
                 <View
                   style={[
                     styles.circleLine,
-                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 },
+                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 }
                   ]}
                 />
                 <View
                   style={[
                     styles.circleFill,
-                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 },
+                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 }
                   ]}
                 />
               </View>
@@ -165,10 +166,10 @@ class Home extends React.Component {
                 styles.dateLine,
                 {
                   position: 'absolute',
-                  top: `${date.getDate() * 3.1 + 3}%`,
+                  top: `${date.getDate() * 3.1 + 2.7}%`,
                   left: '30%',
-                  width: '50%',
-                },
+                  width: '50%'
+                }
               ]}
             />
             <Text style={[styles.dateText, { top: dateHeight }]}>
@@ -205,7 +206,7 @@ class Home extends React.Component {
                 title={`How are you with retirement?`}
                 onPress={() => {
                   this.props.navigation.navigate('Retirement', {
-                    title: 'Retirement',
+                    title: 'Retirement'
                   });
                 }}
               />
@@ -222,13 +223,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    budget: state.acctTrans.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
@@ -247,5 +248,5 @@ export const HomeStack = createStackNavigator({
   EditCategories: { screen: EditCategories },
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults },
+  RetirementResults: { screen: RetirementResults }
 });

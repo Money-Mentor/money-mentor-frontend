@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
-import { styles } from '../../common/styles';
+import { styles, colorTheme } from '../../common/styles';
+import { transactionIconType } from '../../common/index';
 
 class IndividualAccount extends React.Component {
   constructor(props) {
     super(props);
   }
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
+
   render() {
     const { transactions } = this.props;
     const accountId = this.props.navigation.getParam('accountId');
@@ -21,8 +26,11 @@ class IndividualAccount extends React.Component {
                 <ListItem
                   key={transaction.id}
                   title={transaction.name}
-                  subtitle={transaction.categoty1}
+                  subtitle={transaction.category1}
                   rightTitle={`$ ${transaction.amount}`}
+                  leftIcon={{
+                    name: transactionIconType[transaction.category2],
+                  }}
                   // onPress={() =>
                   //   this.props.navigation.navigate('IndividualAccount', {
                   //     title: 'IndividualAccount',
