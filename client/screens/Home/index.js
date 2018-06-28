@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAcctTransData } from '../../store';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { styles } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
-import { Button } from 'react-native-elements';
+import { Button, Card, Icon } from 'react-native-elements';
 import Quiz from '../Quiz';
 import Result from '../Result';
 import BudgetSetup from '../BudgetSetup';
@@ -67,7 +67,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec'
+      'Dec',
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -98,107 +98,121 @@ class Home extends React.Component {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
-    // location of the date relative to the circle
-    // `${date.getDate() + 25}%`
-    const dateHeight = `${date.getDate() * 1.13 + 27}%`;
+    //${date.getDate() + 20}
+    const dateHeight = `${date.getDate() * 3.1 - 3}%`;
 
     return (
-      <View style={styles.homePageContainer}>
-        {this.props.user.personalityType ? (
-          <Button
-            raised
-            textStyle={{ textAlign: 'center' }}
-            title={`You're a ${this.props.user.personalityType}: See Details`}
-            onPress={() => {
-              this.props.navigation.navigate('Result', { title: 'Result' });
-            }}
-          />
-        ) : (
+      <ScrollView>
+        <View style={styles.homePageContainer}>
+          <Card title="Welcome" containerStyle={styles.card}>
+            <Text style={{ marginBottom: 10 }}>How are you doing today?</Text>
+          </Card>
+          {!this.props.user.personalityType ? (
+            <View>
+              <Text>Looks like you haven't taken our quiz. Take it now!</Text>
+              <Button
+                raised
+                buttonStyle={styles.button}
+                textStyle={{ textAlign: 'center' }}
+                title={`Take the Quiz!`}
+                onPress={() => {
+                  this.props.navigation.navigate('Quiz', { title: 'Quiz' });
+                }}
+              />
+            </View>
+          )
+        : <View/>}
+          <Text>{this.budgetStatus()}</Text>
+
+          {/*---------------- Home Budget Circle starts ------------*/}
           <View>
-            <Text>Looks like you haven't taken our quiz. Take it now!</Text>
-            <Button
-              raised
-              textStyle={{ textAlign: 'center' }}
-              title={`Take the Quiz!`}
+            <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate('Quiz', { title: 'Quiz' });
-              }}
-            />
-          </View>
-        )}
-        <Text>{this.budgetStatus()}</Text>
-
-        {/*---------------- Home Budget Circle starts ------------*/}
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('CategoryPie', {
-              title: 'CategoryPie',
-              budget: budget
-            });
-          }}
-        >
-          <View style={styles.circle}>
-            <View
-              style={[
-                styles.circleLine,
-                { height: `${this.dateCircleHeight()}%`, zIndex: 1 }
-              ]}
-            />
-            <View
-              style={[
-                styles.circleFill,
-                { top: `${this.budgetCircleHeight()}%`, zIndex: 0 }
-              ]}
-            />
-          </View>
-        </TouchableOpacity>
-
-        {/*---------------- Home Budget Circle Text ------------*/}
-        <Text style={styles.cirleBigText}>
-          {this.remainingbudget() >= 0
-            ? `$${this.remainingbudget()}`
-            : `-$${Math.abs(this.remainingbudget())}`}
-        </Text>
-        <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
-
-        {/*---------------- Home Budget Date Position ------------*/}
-        <Text style={[styles.dateText, { top: dateHeight }]}>
-          {this.getDay()}
-        </Text>
-
-        {/*---------------- Total Budget & Daily Spendable ------------*/}
-        <View style={styles.homePagesmallTextAlign}>
-          <View>
-            <Text style={styles.homePageSmallText}>${totalBudget}</Text>
-            <Text style={styles.homePageSmallestText}>Total</Text>
-            <Text style={styles.homePageSmallestText}>Budget</Text>
-          </View>
-          <View>
-            <Text style={styles.homePageSmallText}>
-              {this.remainingbudget() >= 0
-                ? `$${Math.floor(
-                    this.remainingbudget() / this.getMonthDaysLeft()
-                  )}`
-                : '$0'}
-            </Text>
-            <Text style={styles.homePageSmallestText}>Daily</Text>
-            <Text style={styles.homePageSmallestText}>Spendable</Text>
-          </View>
-
-          {/*-------------- Retirement Comparison ------------*/}
-          <View>
-            <Button
-              raised
-              title={`How are you with retirement?`}
-              onPress={() => {
-                this.props.navigation.navigate('Retirement', {
-                  title: 'Retirement'
+                this.props.navigation.navigate('CategoryPie', {
+                  title: 'CategoryPie',
+                  budget: budget,
                 });
               }}
+            >
+              <View style={[styles.circle, { zIndex: 1 }]}>
+                <View
+                  style={[
+                    styles.circleLine,
+                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.circleFill,
+                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 },
+                  ]}
+                />
+              </View>
+            </TouchableOpacity>
+
+            {/*---------------- Home Budget Circle Text ------------*/}
+
+            <Text style={styles.cirleBigText}>
+              {this.remainingbudget() >= 0
+                ? `$${this.remainingbudget()}`
+                : `-$${Math.abs(this.remainingbudget())}`}
+            </Text>
+            <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
+
+            {/*---------------- Home Budget Date Position ------------*/}
+            <View
+              style={[
+                styles.dateLine,
+                {
+                  position: 'absolute',
+                  top: `${date.getDate() * 3.1 + 3}%`,
+                  left: '30%',
+                  width: '50%',
+                },
+              ]}
             />
+            <Text style={[styles.dateText, { top: dateHeight }]}>
+              {this.getDay()}
+            </Text>
+          </View>
+
+          {/*---------------- Total Budget & Daily Spendable ------------*/}
+          <View>
+            <View style={styles.homePagesmallTextAlign}>
+              <View>
+                <Text style={styles.homePageSmallText}>${totalBudget}</Text>
+                <Text style={styles.homePageSmallestText}>Total</Text>
+                <Text style={styles.homePageSmallestText}>Budget</Text>
+              </View>
+              <View>
+                <Text style={styles.homePageSmallText}>
+                  {this.remainingbudget() >= 0
+                    ? `$${Math.floor(
+                        this.remainingbudget() / this.getMonthDaysLeft()
+                      )}`
+                    : '$0'}
+                </Text>
+                <Text style={styles.homePageSmallestText}>Daily</Text>
+                <Text style={styles.homePageSmallestText}>Spendable</Text>
+              </View>
+            </View>
+
+            {/*-------------- Retirement Comparison ------------*/}
+            <View style={{ padding: 10 }}>
+              <Button
+                buttonStyle={styles.button}
+                raised
+                title={`How are you with retirement?`}
+                onPress={() => {
+                  this.props.navigation.navigate('Retirement', {
+                    title: 'Retirement',
+                  });
+                }}
+              />
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -208,13 +222,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget
+    budget: state.acctTrans.budget,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())
+    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
   };
 };
 
@@ -233,5 +247,5 @@ export const HomeStack = createStackNavigator({
   EditCategories: { screen: EditCategories },
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults }
+  RetirementResults: { screen: RetirementResults },
 });

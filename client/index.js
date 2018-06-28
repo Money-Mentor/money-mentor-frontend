@@ -7,7 +7,6 @@ export { default as Quiz } from "./screens/Quiz";
 export { default as Result } from "./screens/Result";
 export { default as Signup } from "./screens/Signup";
 export { default as Navbar } from "./screens/Navbar";
-export { default as Main } from "./screens/Main";
 
 // Accounts
 export { default as Accounts } from "./screens/Accounts";

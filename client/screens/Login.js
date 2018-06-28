@@ -49,7 +49,7 @@ class Login extends Component {
             onPress={() => {
               this.props.handleSubmit(this.state.email, this.state.password);
               this.props.navigation.navigate('Main', {
-                title: 'Main'
+                title: 'Navbar'
               });
             }}
           >
