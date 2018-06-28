@@ -2,13 +2,14 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
-import BudgetSetup from '../BudgetSetup';
-import EditCategories from '../EditCategories';
+import BudgetSetup from './BudgetSetup';
+import EditCategories from './EditCategories';
+import Home from '../Home';
 import { styles, colorTheme } from '../../common/styles';
 
 class Budget extends React.Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
   render() {
     return (
@@ -44,6 +45,8 @@ class Budget extends React.Component {
 export default Budget;
 
 export const BudgetStack = createStackNavigator({
+  Budget: { screen: Budget },
   BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories }
+  EditCategories: { screen: EditCategories },
+  Home: { screen: Home }
 });

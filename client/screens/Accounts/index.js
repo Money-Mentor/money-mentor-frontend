@@ -19,17 +19,18 @@ class Accounts extends React.Component {
           {/* <Text>Account Overview</Text> */}
           {account &&
             account.map(account => (
-              <ListItem
-                key={account.id}
-                title={account.name}
-                rightTitle={`$ ${account.current_balance}`}
-                onPress={() =>
-                  this.props.navigation.navigate('IndividualAccount', {
-                    title: 'IndividualAccount',
-                    accountId: account.account_id,
-                  })
-                }
-              />
+
+                <ListItem
+                  key={account.id}
+                  title={account.name}
+                  rightTitle={`$ ${account.current_balance}`}
+                  onPress={() =>
+                    this.props.navigation.navigate('IndividualAccount', {
+                      title: 'IndividualAccount',
+                      accountId: account.account_id,
+                    })
+                  }
+                />
             ))}
         </List>
       </View>
@@ -40,14 +41,14 @@ class Accounts extends React.Component {
 const mapState = state => {
   return {
     account: state.acctTrans.accounts,
-    trans: state.acctTrans.trans,
+    trans: state.acctTrans.trans
   };
 };
 
 const AccountsConnect = connect(mapState)(Accounts);
-export default AccountsConnect
+export default AccountsConnect;
 
-export const  AccountStack = createStackNavigator({
-  Accounts: {screen: AccountsConnect},
-  IndividualAccount: {screen: IndividualAccount }
-})
+export const AccountStack = createStackNavigator({
+  Accounts: { screen: AccountsConnect },
+  IndividualAccount: { screen: IndividualAccount },
+});
