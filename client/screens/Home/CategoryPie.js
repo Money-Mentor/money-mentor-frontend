@@ -4,10 +4,12 @@ import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Pie from './Pie';
 import { pieColor, colorTheme } from '../../common/styles';
+import StackedBar from './StackedBar';
+// import { StackedBarChart } from 'react-native-svg-charts';
 
 type State = {
   activeIndex: number,
-  spendingsPerYear: any,
+  spendingsPerYear: any
 };
 
 class CategoryPie extends Component {
@@ -16,7 +18,7 @@ class CategoryPie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0,
+      activeIndex: 0
     };
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
     this.getData = this.getData.bind(this);
@@ -47,7 +49,7 @@ class CategoryPie extends Component {
       'Recreation',
       'Service',
       'Shops',
-      'Travel',
+      'Travel'
     ];
     let categoryTotals = [];
     let totalByCategory;
@@ -76,7 +78,7 @@ class CategoryPie extends Component {
       percent = Math.round((category.number / total) * 100);
       spendingByCategoryPercentArr.push({
         number: percent,
-        name: category.name,
+        name: category.name
       });
     });
 
@@ -89,6 +91,7 @@ class CategoryPie extends Component {
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.chart_title}>Spending By Category</Text>
+          {/* Pie Chart */}
           <Pie
             pieWidth={225}
             pieHeight={225}
@@ -97,6 +100,13 @@ class CategoryPie extends Component {
             data={this.getData()}
           />
         </View>
+
+        {/* Progress Bars */}
+        <View>
+          <StackedBar spendingByCategory={this.spendingByCategory()} />
+        </View>
+
+        {/* Transaction Details List */}
         <List>
           {categorytrans &&
             categorytrans.map(transaction => (
@@ -116,7 +126,7 @@ class CategoryPie extends Component {
 const mapState = state => {
   return {
     budget: state.acctTrans.budget,
-    transactions: state.acctTrans.trans,
+    transactions: state.acctTrans.trans
   };
 };
 
@@ -125,7 +135,7 @@ export default connect(mapState)(CategoryPie);
 const styles = {
   container: {
     backgroundColor: colorTheme.blue.medium,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   chart_title: {
     paddingTop: 50,
@@ -134,6 +144,6 @@ const styles = {
     fontSize: 18,
     backgroundColor: colorTheme.blue.medium,
     color: 'grey',
-    fontWeight: 'bold',
-  },
+    fontWeight: 'bold'
+  }
 };
