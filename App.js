@@ -17,6 +17,11 @@ import {
 } from './client';
 
 export default class App extends React.Component {
+  static navigationOptions = {
+    title: 'Money Mentor',
+    headerStyle: { backgroundColor: 'red' },
+    headerTitleStyle: { color: 'green' },
+  }
   render() {
     return (
       <Provider store={store}>
