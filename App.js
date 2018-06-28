@@ -7,18 +7,21 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import store from './client/store/index';
 
 import {
-  Quiz,
   Link,
   Initial,
   Login,
   Signup,
-  Main,
-  Result,
   BudgetSetup,
   EditCategories,
+  Navbar,
 } from './client';
 
 export default class App extends React.Component {
+  static navigationOptions = {
+    title: 'Money Mentor',
+    headerStyle: { backgroundColor: 'red' },
+    headerTitleStyle: { color: 'green' },
+  }
   render() {
     return (
       <Provider store={store}>
@@ -33,13 +36,11 @@ const AuthenticationNavigator = createStackNavigator({
   Login: { screen: Login },
   Signup: { screen: Signup },
   Link: { screen: Link },
-  Quiz: { screen: Quiz },
-  Result: { screen: Result },
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories },
 });
 
 const AppNavigator = createSwitchNavigator({
   Auth: { screen: AuthenticationNavigator },
-  Main: { screen: Main },
+  Main: { screen: Navbar },
 });

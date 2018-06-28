@@ -31,12 +31,12 @@ export const colorTheme = {
 
 export const pieColor = [
   colorTheme.orange.medium,
+  colorTheme.pink.dark,
+  colorTheme.mint.light,
   colorTheme.pink.light,
   colorTheme.mint.medium,
-  colorTheme.pink.dark,
   colorTheme.blue.dark,
   colorTheme.purple,
-  colorTheme.mint.light,
   '#f2edd7',
   '#b87ca5',
   '#7c87b8',
@@ -51,9 +51,17 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colorTheme.blue.medium,
   },
+  card: {
+    backgroundColor: colorTheme.blue.light,
+    width: '80%',
+  },
+  logo: {
+    width: 200,
+    height: 115,
+  },
   logoLocation: {
     position: 'absolute',
-    top: -350,
+    top: -375,
     left: 0,
     right: 0,
     bottom: 0,
@@ -81,16 +89,16 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   circle: {
-    width: 225,
-    height: 225,
-    borderRadius: 225 / 2,
+    width: 250,
+    height: 250,
+    borderRadius: 250 / 2,
     borderWidth: 8,
     borderColor: colorTheme.white.snow,
     overflow: 'hidden',
     backgroundColor: colorTheme.orange.dark,
   },
   circleLine: {
-    borderBottomColor: colorTheme.white.snow,
+    borderBottomColor: colorTheme.grey.dark,
     borderBottomWidth: 2,
   },
   circleFill: {
@@ -104,7 +112,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     zIndex: 2,
-    top: '37%',
+    top: '45%',
+    left: '20%',
     fontSize: 36,
     justifyContent: 'center',
     alignItems: 'center',
@@ -114,8 +123,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     zIndex: 2,
-    top: '44%',
+    top: '60%',
     fontSize: 14,
+    left: '15%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -166,9 +176,15 @@ export const styles = StyleSheet.create({
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     position: 'absolute',
-
-    left: '80%',
+    left: '67%',
     zIndex: 2,
+  },
+  dateLine: {
+    borderBottomColor: colorTheme.grey.dark,
+    borderBottomWidth: 1,
+    position: 'absolute',
+
+    zIndex: 3,
   },
   smallerText: {
     alignSelf: 'center',
@@ -185,7 +201,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 20,
   },
   homePageSmallestText: {
     alignSelf: 'center',
@@ -224,14 +240,6 @@ export const styles = StyleSheet.create({
   accountOverviewContainer: {
     flexGrow: 1,
     backgroundColor: colorTheme.blue.medium,
-  },
-  label: {
-    fontSize: 15,
-    marginTop: 5,
-    fontWeight: 'normal',
-  },
-  pieContainer: {
-    margin: 20,
   },
   categoryPieContainer: {
     marginTop: 21,

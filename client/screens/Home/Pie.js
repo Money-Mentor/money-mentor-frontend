@@ -25,8 +25,6 @@ const d3 = {
 import { scaleBand, scaleLinear } from 'd3-scale';
 
 type Props = {
-  height: number,
-  width: number,
   pieWidth: number,
   pieHeight: number,
   colors: any,
@@ -97,14 +95,10 @@ class Pie extends React.Component {
   }
 
   render() {
-    const margin = styles.container.margin;
-    const x = this.props.pieWidth / 2 + margin;
-    const y = this.props.pieHeight / 2 + margin;
-
     return (
       <View style={{ alignSelf: 'center', justifyContent: 'center' }}>
         <Surface width="400" height="400">
-          <Group x={x + 70} y={y + 10}>
+          <Group x={200} y={125}>
             {this.props.data.map((item, index) => (
               <AnimShape
                 key={'pie_shape_' + index}
@@ -114,7 +108,9 @@ class Pie extends React.Component {
             ))}
           </Group>
         </Surface>
-        <View style={{ alignSelf: 'center' }}>
+        <View
+          style={styles.textContainer}
+        >
           {this.props.data.map((item, index) => {
             var fontWeight =
               this.state.highlightedIndex == index ? 'bold' : 'normal';
@@ -127,7 +123,7 @@ class Pie extends React.Component {
                   <Text
                     style={[
                       styles.label,
-                      { color: this._color(index), fontWeight: fontWeight },
+                      {fontWeight: fontWeight },
                     ]}
                   >
                     {this._label(item)}: {this._value(item)}%
@@ -143,13 +139,16 @@ class Pie extends React.Component {
 }
 
 const styles = {
-  container: {
-    margin: 20,
+  textContainer: {
+    alignSelf: 'center',
+    position: 'absolute',
+    top: 275,
+    left: 145,
   },
   label: {
-    fontSize: 15,
+    fontSize: 18,
     marginTop: 5,
-    fontWeight: 'normal',
+    color: '#585A56'
   },
 };
 
