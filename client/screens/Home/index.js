@@ -6,10 +6,8 @@ import { styles, colorTheme } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
 import { Button, Card, Icon } from 'react-native-elements';
-import Quiz from '../Quiz';
-import Result from '../Result';
-import BudgetSetup from '../BudgetSetup';
-import EditCategories from '../EditCategories';
+import Quiz from './Quiz';
+import Result from './Result';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
 import { startDateString } from '../../common/index';
@@ -244,8 +242,6 @@ export const HomeStack = createStackNavigator({
   Home: { screen: HomeConnect },
   Quiz: { screen: Quiz },
   Result: { screen: Result },
-  BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories },
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
   RetirementResults: { screen: RetirementResults }

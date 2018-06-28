@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { setBudget } from '../store';
-import { styles, colorTheme } from '../common/styles';
+import { setBudget } from '../../store';
+import { styles, colorTheme } from '../../common/styles';
 
 class BudgetSetup extends React.Component {
   constructor() {
@@ -16,7 +16,7 @@ class BudgetSetup extends React.Component {
     };
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
   render() {

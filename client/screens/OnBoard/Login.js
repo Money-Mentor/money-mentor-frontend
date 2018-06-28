@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../store/user';
+import { login } from '../../store/user';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import {
   FormLabel,
@@ -8,7 +8,7 @@ import {
   FormValidationMessage,
   Button
 } from 'react-native-elements';
-import { styles, colorTheme } from '../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 
 class Login extends Component {
   constructor(props) {
@@ -25,8 +25,8 @@ class Login extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
-          <Text style={styles.initialScreenText}>Login</Text>
+          <Image source={require('../../../public/img/logo.png')} />
+          <Text style={styles.h1}>Login</Text>
         </View>
         <FormInput
           containerStyle={{ width: '80%', paddingTop: 10 }}
@@ -53,9 +53,7 @@ class Login extends Component {
             title={`Submit`}
             onPress={() => {
               this.props.handleSubmit(this.state.email, this.state.password);
-              this.props.navigation.navigate('Main', {
-                title: 'Navbar'
-              });
+              this.props.navigation.navigate('Main', { title: 'Main' });
             }}
           >
             Submit

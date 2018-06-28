@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { fetchBudget, setBudget } from '../store';
-import { styles, colorTheme } from '../common/styles';
+import { fetchBudget, setBudget } from '../../store';
+import { styles, colorTheme } from '../../common/styles';
 import Slider from 'react-native-slider';
 
 class EditCategories extends React.Component {
@@ -52,9 +52,9 @@ class EditCategories extends React.Component {
     this.toTitle = this.toTitle.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
-  
+
   toTitle(str, separator) {
     separator = typeof separator === 'undefined' ? ' ' : separator;
     return str
@@ -82,7 +82,7 @@ class EditCategories extends React.Component {
                       styles.logo,
                       { marginLeft: 'auto', marginRight: 'auto' }
                     ]}
-                    source={require('../../public/img/logo.png')}
+                    source={require('../../../public/img/logo.png')}
                   />
                 </View>
                 <Text style={[styles.smallerText, { fontSize: 24 }]}>
@@ -142,7 +142,7 @@ class EditCategories extends React.Component {
                 title={`Finished!`}
                 onPress={() => {
                   this.props.setBudget(this.state.budget);
-                  this.props.navigation.navigate('Main', { title: 'Navbar' });
+                  this.props.navigation.navigate('Home', { title: 'Home' });
                 }}
               >
                 Finished!
