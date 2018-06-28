@@ -4,6 +4,7 @@ import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Pie from './Pie';
 import { styles, pieColor, colorTheme } from '../../common/styles';
+import { transactionIconType } from '../../common/index';
 
 type State = {
   activeIndex: number,
@@ -87,9 +88,11 @@ class CategoryPie extends Component {
   render() {
     const categorytrans = this.getTransByCategory();
     return (
-      <ScrollView style={{backgroundColor: colorTheme.blue.medium}}>
+      <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
         <View style={styles.container}>
-          <Text style={[styles.homePageSmallText,{paddingBottom: 10}]}>Spending By Category</Text>
+          <Text style={[styles.homePageSmallText, { paddingBottom: 10 }]}>
+            Spending By Category
+          </Text>
           <Pie
             pieWidth={225}
             pieHeight={225}
@@ -99,14 +102,16 @@ class CategoryPie extends Component {
           />
         </View>
         <List>
-        <Text  style={styles.transactionTitle}>Transactions</Text>
+          <Text style={styles.transactionTitle}>Transactions</Text>
           {categorytrans &&
             categorytrans.map(transaction => (
               <ListItem
                 key={transaction.id}
                 title={transaction.name}
-                subtitle={transaction.categoty1}
                 rightTitle={`$ ${transaction.amount}`}
+                leftIcon={{
+                  name: transactionIconType[transaction.category2],
+                }}
               />
             ))}
         </List>
