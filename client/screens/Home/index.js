@@ -104,12 +104,14 @@ class Home extends React.Component {
     const dateHeight = `${date.getDate() * 3.1 - 3}%`;
 
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor: colorTheme.blue.medium}}>
         <View style={styles.homePageContainer}>
           {/*---------------- Quiz and budget setup ------------*/}
           {!this.props.user.personalityType ? (
             <View>
-              <Text>Looks like you haven't taken our quiz. Take it now!</Text>
+              <Card containerStyle={styles.card}>
+              <Text style={styles.homePageQuiz}>Looks like you haven't taken our quiz. </Text>
+              <Text style={styles.homePageQuiz}>Take it now!</Text>
               <Button
                 raised
                 buttonStyle={styles.button}
@@ -119,10 +121,11 @@ class Home extends React.Component {
                   this.props.navigation.navigate('Quiz', { title: 'Quiz' });
                 }}
               />
+              </Card>
             </View>
           )
         : <View/>}
-          <Text style={styles.questionText}>{this.budgetStatus()}</Text>
+          <Text style={[styles.homePageSmallText,{paddingVertical: 10}]}>{this.budgetStatus()}</Text>
 
           {/*---------------- Home Budget Circle starts ------------*/}
           <View>
@@ -165,7 +168,7 @@ class Home extends React.Component {
                 styles.dateLine,
                 {
                   position: 'absolute',
-                  top: `${date.getDate() * 3.1 + 3}%`,
+                  top: `${date.getDate() * 3.1 + 2.7}%`,
                   left: '30%',
                   width: '50%',
                 },

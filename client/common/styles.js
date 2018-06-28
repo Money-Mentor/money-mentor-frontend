@@ -51,9 +51,9 @@ export const styles = StyleSheet.create({
     backgroundColor: colorTheme.blue.medium,
   },
   card: {
-    backgroundColor: colorTheme.blue.light,
     width: '80%',
     borderRadius: 10,
+    top: -15
   },
   logo: {
     width: 200,
@@ -193,7 +193,7 @@ export const styles = StyleSheet.create({
   },
   homePagesmallTextAlign: {
     flexDirection: 'row',
-    width: '75%',
+
     justifyContent: 'space-around',
     paddingTop: 10,
   },
@@ -209,7 +209,12 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 12,
   },
-
+  homePageQuiz: {
+    alignSelf: 'center',
+    color: colorTheme.grey.dark,
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
   budgetSetupText: {
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
@@ -244,5 +249,32 @@ export const styles = StyleSheet.create({
   categoryPieContainer: {
     marginTop: 21,
     backgroundColor: colorTheme.white.snow,
+  },
+  textContainer: {
+    alignSelf: 'center',
+    position: 'absolute',
+    top: 275,
+    left: 145,
+  },
+  label: {
+    fontSize: 18,
+    marginTop: 5,
+    color: colorTheme.grey.dark
+  },
+  transactionTitle: {
+    paddingLeft:10,
+    paddingVertical:10,
+    fontWeight: '700',
+    backgroundColor: colorTheme.white.snow,
+    color: colorTheme.grey.dark,
+    fontSize: 18
+  },
+  chart_title: {
+    textAlign: 'center',
+    paddingLeft: 5,
+    fontSize: 18,
+    backgroundColor: colorTheme.blue.medium,
+    color: 'grey',
+    fontWeight: 'bold',
   },
 });
