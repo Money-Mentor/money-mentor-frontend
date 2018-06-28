@@ -141,7 +141,7 @@ class EditCategories extends React.Component {
                 title={`Finished!`}
                 onPress={() => {
                   this.props.setBudget(this.state.budget);
-                  this.props.navigation.navigate('Main', { title: 'Main' });
+                  this.props.navigation.navigate('Main', { title: 'Navbar' });
                 }}
               >
                 Finished!

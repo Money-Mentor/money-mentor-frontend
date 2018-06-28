@@ -107,7 +107,7 @@ class Home extends React.Component {
           <Card title="Welcome" containerStyle={styles.card}>
             <Text style={{ marginBottom: 10 }}>How are you doing today?</Text>
           </Card>
-          {!this.props.user.personalityType && (
+          {!this.props.user.personalityType ? (
             <View>
               <Text>Looks like you haven't taken our quiz. Take it now!</Text>
               <Button
@@ -120,7 +120,8 @@ class Home extends React.Component {
                 }}
               />
             </View>
-          )}
+          )
+        : <View/>}
           <Text>{this.budgetStatus()}</Text>
 
           {/*---------------- Home Budget Circle starts ------------*/}

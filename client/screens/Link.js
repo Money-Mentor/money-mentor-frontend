@@ -78,7 +78,7 @@ class Link extends React.Component {
           textStyle={{ textAlign: 'center' }}
           title={`Let's get started!`}
           onPress={() =>
-            this.props.navigation.navigate('Main', { title: 'Main' })
+            this.props.navigation.navigate('Main', { title: 'Navbar' })
           }
         />
       </View>

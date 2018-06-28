@@ -7,15 +7,13 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import store from './client/store/index';
 
 import {
-  Quiz,
   Link,
   Initial,
   Login,
   Signup,
-  Main,
-  Result,
   BudgetSetup,
   EditCategories,
+  Navbar,
 } from './client';
 
 export default class App extends React.Component {
@@ -39,5 +37,5 @@ const AuthenticationNavigator = createStackNavigator({
 
 const AppNavigator = createSwitchNavigator({
   Auth: { screen: AuthenticationNavigator },
-  Main: { screen: Main },
+  Main: { screen: Navbar },
 });
