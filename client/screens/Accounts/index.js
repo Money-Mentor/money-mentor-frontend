@@ -39,7 +39,7 @@ class Accounts extends React.Component {
 const mapState = state => {
   return {
     account: state.acctTrans.accounts,
-    trans: state.acctTrans.trans,
+    trans: state.acctTrans.trans
   };
 };
 

@@ -9,11 +9,9 @@ class IndividualAccount extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render() {
-    const { transactions, account } = this.props;
+    const { transactions } = this.props;
     const accountId = this.props.navigation.getParam('accountId');
-
     return (
       <View style={styles.accountOverviewContainer}>
         <List>
@@ -27,7 +25,7 @@ class IndividualAccount extends React.Component {
   }
 }
 
-const mapState = (state, ownProps) => {
+const mapState = state => {
   return {
     transactions: state.acctTrans.trans,
   };

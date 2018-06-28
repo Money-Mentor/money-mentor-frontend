@@ -16,16 +16,32 @@ import {
   Navbar,
 } from './client';
 
+import { Font } from "expo";
+
 export default class App extends React.Component {
-  static navigationOptions = {
-    title: 'Money Mentor',
-    headerStyle: { backgroundColor: 'red' },
-    headerTitleStyle: { color: 'green' },
+  constructor() {
+    super();
+    this.state = {
+      fontLoaded: false
+    };
   }
+  async componentDidMount() {
+    await Font.loadAsync({
+      logo: require("./public/fonts/logo.otf")
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <AppNavigator />
+        {this.state.fontLoaded ? (
+          <AppNavigator  />
+        ) : (
+          <View>
+            <Text>Loading..</Text>
+          </View>
+        )}
       </Provider>
     );
   }

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import BudgetSetup from '../BudgetSetup';
-import EditCategories from '../EditCategories';
+import EditCategories from './EditCategories';
 import { styles } from '../../common/styles';
 
 class Budget extends React.Component {

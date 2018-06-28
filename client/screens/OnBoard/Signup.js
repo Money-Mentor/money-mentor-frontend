@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signup } from '../store/user';
+import { signup } from '../../store/user';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import {
   FormLabel,
@@ -8,7 +8,7 @@ import {
   FormValidationMessage,
   Button
 } from 'react-native-elements';
-import { styles } from '../common/styles';
+import { styles } from '../../common/styles';
 
 class Signup extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Signup extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image style={styles.logo} source={require('../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
           <Text style={styles.initialScreenText}>Signup</Text>
         </View>
         <FormInput
