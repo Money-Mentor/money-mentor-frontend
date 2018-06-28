@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import {View, Text} from 'react-native'
+import { View, Text } from 'react-native';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 
 import store from './client/store/index';
@@ -12,10 +12,10 @@ import {
   Signup,
   BudgetSetup,
   EditCategories,
-  Navbar,
+  Navbar
 } from './client';
 
-import { Font } from "expo";
+import { Font } from 'expo';
 
 export default class App extends React.Component {
   constructor() {
@@ -26,7 +26,7 @@ export default class App extends React.Component {
   }
   async componentDidMount() {
     await Font.loadAsync({
-      logo: require("./public/fonts/logo.otf")
+      logo: require('./public/fonts/logo.otf')
     });
     this.setState({ fontLoaded: true });
   }
@@ -35,7 +35,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         {this.state.fontLoaded ? (
-          <AppNavigator  />
+          <AppNavigator />
         ) : (
           <View>
             <Text>Loading..</Text>
@@ -52,10 +52,10 @@ const AuthenticationNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Link: { screen: Link },
   BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories },
+  EditCategories: { screen: EditCategories }
 });
 
 const AppNavigator = createSwitchNavigator({
   Auth: { screen: AuthenticationNavigator },
-  Main: { screen: Navbar },
+  Main: { screen: Navbar }
 });

@@ -6,16 +6,14 @@ import { styles, colorTheme } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
 import { Button, Card, Icon } from 'react-native-elements';
-import Quiz from '../OnBoard/Quiz';
-import Result from '../OnBoard/Result';
-import BudgetSetup from '../BudgetSetup';
-import EditCategories from '../Budget/EditCategories';
+import Quiz from './Quiz';
+import Result from './Result';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
 
 class Home extends React.Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
   componentDidMount() {
     this.props.fetchAcctTransData();
@@ -70,7 +68,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec',
+      'Dec'
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -104,28 +102,33 @@ class Home extends React.Component {
     const dateHeight = `${date.getDate() * 3.1 - 3}%`;
 
     return (
-      <ScrollView style={{backgroundColor: colorTheme.blue.medium}}>
+      <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
         <View style={styles.homePageContainer}>
           {/*---------------- Quiz and budget setup ------------*/}
           {!this.props.user.personalityType ? (
             <View>
               <Card containerStyle={styles.card}>
-              <Text style={styles.homePageQuiz}>Looks like you haven't taken our quiz. </Text>
-              <Text style={styles.homePageQuiz}>Take it now!</Text>
-              <Button
-                raised
-                buttonStyle={styles.button}
-                textStyle={{ textAlign: 'center' }}
-                title={`Take the Quiz!`}
-                onPress={() => {
-                  this.props.navigation.navigate('Quiz', { title: 'Quiz' });
-                }}
-              />
+                <Text style={styles.homePageQuiz}>
+                  Looks like you haven't taken our quiz.{' '}
+                </Text>
+                <Text style={styles.homePageQuiz}>Take it now!</Text>
+                <Button
+                  raised
+                  buttonStyle={styles.button}
+                  textStyle={{ textAlign: 'center' }}
+                  title={`Take the Quiz!`}
+                  onPress={() => {
+                    this.props.navigation.navigate('Quiz', { title: 'Quiz' });
+                  }}
+                />
               </Card>
             </View>
-          )
-        : <View/>}
-          <Text style={[styles.homePageSmallText,{paddingVertical: 10}]}>{this.budgetStatus()}</Text>
+          ) : (
+            <View />
+          )}
+          <Text style={[styles.homePageSmallText, { paddingVertical: 10 }]}>
+            {this.budgetStatus()}
+          </Text>
 
           {/*---------------- Home Budget Circle starts ------------*/}
           <View>
@@ -133,7 +136,7 @@ class Home extends React.Component {
               onPress={() => {
                 this.props.navigation.navigate('CategoryPie', {
                   title: 'CategoryPie',
-                  budget: budget,
+                  budget: budget
                 });
               }}
             >
@@ -141,13 +144,13 @@ class Home extends React.Component {
                 <View
                   style={[
                     styles.circleLine,
-                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 },
+                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 }
                   ]}
                 />
                 <View
                   style={[
                     styles.circleFill,
-                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 },
+                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 }
                   ]}
                 />
               </View>
@@ -170,8 +173,8 @@ class Home extends React.Component {
                   position: 'absolute',
                   top: `${date.getDate() * 3.1 + 2.7}%`,
                   left: '30%',
-                  width: '50%',
-                },
+                  width: '50%'
+                }
               ]}
             />
             <Text style={[styles.dateText, { top: dateHeight }]}>
@@ -208,7 +211,7 @@ class Home extends React.Component {
                 title={`How are you with retirement?`}
                 onPress={() => {
                   this.props.navigation.navigate('Retirement', {
-                    title: 'Retirement',
+                    title: 'Retirement'
                   });
                 }}
               />
@@ -225,13 +228,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    budget: state.acctTrans.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
@@ -246,9 +249,7 @@ export const HomeStack = createStackNavigator({
   Home: { screen: HomeConnect },
   Quiz: { screen: Quiz },
   Result: { screen: Result },
-  BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories },
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults },
+  RetirementResults: { screen: RetirementResults }
 });

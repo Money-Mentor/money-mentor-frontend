@@ -73,9 +73,9 @@ class Link extends React.Component {
           raised
           buttonStyle={styles.button}
           textStyle={{ textAlign: 'center' }}
-          title={`Let's get started!`}
+          title={`Set Up Your Budget!`}
           onPress={() =>
-            this.props.navigation.navigate('Main', { title: 'Navbar' })
+            this.props.navigation.navigate('BudgetSetup', { title: 'BudgetSetup' })
           }
         />
       </View>
