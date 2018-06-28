@@ -53,6 +53,7 @@ export const styles = StyleSheet.create({
   card: {
     backgroundColor: colorTheme.blue.light,
     width: '80%',
+    borderRadius: 10,
   },
   logo: {
     width: 200,
@@ -111,7 +112,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     zIndex: 2,
-    top: '45%',
+    top: '35%',
     left: '20%',
     fontSize: 36,
     justifyContent: 'center',
@@ -122,7 +123,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     zIndex: 2,
-    top: '60%',
+    top: '50%',
     fontSize: 14,
     left: '15%',
     justifyContent: 'center',

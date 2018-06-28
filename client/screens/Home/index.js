@@ -101,15 +101,12 @@ class Home extends React.Component {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
-    //${date.getDate() + 20}
     const dateHeight = `${date.getDate() * 3.1 - 3}%`;
 
     return (
       <ScrollView>
         <View style={styles.homePageContainer}>
-          <Card title="Welcome" containerStyle={styles.card}>
-            <Text style={{ marginBottom: 10 }}>How are you doing today?</Text>
-          </Card>
+          {/*---------------- Quiz and budget setup ------------*/}
           {!this.props.user.personalityType ? (
             <View>
               <Text>Looks like you haven't taken our quiz. Take it now!</Text>
@@ -125,7 +122,7 @@ class Home extends React.Component {
             </View>
           )
         : <View/>}
-          <Text>{this.budgetStatus()}</Text>
+          <Text style={styles.questionText}>{this.budgetStatus()}</Text>
 
           {/*---------------- Home Budget Circle starts ------------*/}
           <View>
