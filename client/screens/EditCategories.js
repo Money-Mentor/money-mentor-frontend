@@ -56,7 +56,7 @@ class EditCategories extends React.Component {
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
-  
+
   toTitle(str, separator) {
     separator = typeof separator === 'undefined' ? ' ' : separator;
     return str

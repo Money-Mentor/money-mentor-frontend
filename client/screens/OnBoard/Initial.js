@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { Button, Header } from 'react-native-elements';
-import { styles, colorTheme } from '../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 
 class Initial extends Component {
   static navigationOptions = {
@@ -13,7 +13,7 @@ class Initial extends Component {
         <View style={styles.logoLocation}>
           <Image
             style={styles.logo}
-            source={require('../../public/img/logo.png')}
+            source={require('../../../public/img/logo.png')}
           />
           <Text style={styles.initialScreenText}>Money Mentor</Text>
         </View>

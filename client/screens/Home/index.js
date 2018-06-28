@@ -6,10 +6,10 @@ import { styles, colorTheme } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
 import { Button, Card, Icon } from 'react-native-elements';
-import Quiz from '../Quiz';
-import Result from '../Result';
+import Quiz from '../OnBoard/Quiz';
+import Result from '../OnBoard/Result';
 import BudgetSetup from '../BudgetSetup';
-import EditCategories from '../EditCategories';
+import EditCategories from '../Budget/EditCategories';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
 

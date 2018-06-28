@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
+import Transaction from './Transaction';
 import { styles, colorTheme } from '../../common/styles';
-import { transactionIconType } from '../../common/index';
 
 class IndividualAccount extends React.Component {
   constructor(props) {
@@ -22,22 +22,7 @@ class IndividualAccount extends React.Component {
           {transactions &&
             transactions
               .filter(transaction => transaction.accountId === accountId)
-              .map(transaction => (
-                <ListItem
-                  key={transaction.id}
-                  title={transaction.name}
-                  subtitle={transaction.category1}
-                  rightTitle={`$ ${transaction.amount}`}
-                  leftIcon={{
-                    name: transactionIconType[transaction.category2],
-                  }}
-                  // onPress={() =>
-                  //   this.props.navigation.navigate('IndividualAccount', {
-                  //     title: 'IndividualAccount',
-                  //   })
-                  // }
-                />
-              ))}
+              .map((transaction, key) => <Transaction key={key} transaction={transaction} />)})}
         </List>
       </View>
     );

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { personalityTypes } from '../data';
-import { updateUserPersonality } from '../store/user';
+import { personalityTypes } from '../../data';
+import { updateUserPersonality } from '../../store/user';
 import { Button } from 'react-native-elements';
 
 class Result extends React.Component {

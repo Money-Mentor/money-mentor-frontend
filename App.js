@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-
+import {View, Text} from 'react-native'
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 
 import store from './client/store/index';
@@ -15,11 +15,32 @@ import {
   Navbar,
 } from './client';
 
+import { Font } from "expo";
+
 export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      fontLoaded: false
+    };
+  }
+  async componentDidMount() {
+    await Font.loadAsync({
+      logo: require("./public/fonts/logo.otf")
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <AppNavigator />
+        {this.state.fontLoaded ? (
+          <AppNavigator  />
+        ) : (
+          <View>
+            <Text>Loading..</Text>
+          </View>
+        )}
       </Provider>
     );
   }
