@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
 export const colorTheme = {
   orange: {
@@ -287,4 +286,3 @@ export const styles = StyleSheet.create({
   },
 });
 
-//https://github.com/vitalets/react-native-extended-stylesheet#percents

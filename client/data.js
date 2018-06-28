@@ -96,3 +96,4 @@ export const personalityTypes = [
     Motivate yourself by putting your saving towards a reward, such as a holiday. As you become more confident, consider approaching a financial planner to discuss longer term investments and pensions.`
   }
 ];
+
