@@ -233,14 +233,21 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#585A56',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 50,
+    fontFamily: 'logo',
+  },
+  h1: {
+    alignSelf: 'center',
+    color: '#585A56',
+    fontWeight: 'bold',
+    fontSize: 30,
   },
   formInput: {
     height: 60,
     borderColor: '#92B1BD',
     borderWidth: 2,
     borderRadius: 15,
-    width: '100%',
+    width: '100%'
   },
   accountOverviewContainer: {
     flexGrow: 1,
@@ -278,3 +285,4 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+

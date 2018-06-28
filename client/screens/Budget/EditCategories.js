@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { fetchBudget, setBudget } from '../store';
-import { styles, colorTheme } from '../common/styles';
+import { fetchBudget, setBudget } from '../../store';
+import { styles, colorTheme } from '../../common/styles';
 import Slider from 'react-native-slider';
 
 class EditCategories extends React.Component {
@@ -14,49 +14,47 @@ class EditCategories extends React.Component {
         {
           name: 'foodAndDrink',
           percentage: 35,
-          description: 'Includes groceries, restaurants, bars, nightlife, etc.',
+          description: 'Includes groceries, restaurants, bars, nightlife, etc.'
         },
         {
           name: 'travel',
           percentage: 10,
-          description: 'Includes gas, commuting, subway, train, bus, etc.',
+          description: 'Includes gas, commuting, subway, train, bus, etc.'
         },
         {
           name: 'recreation',
           percentage: 15,
-          description:
-            'Includes doctor visits, prescriptions, physicians, etc.',
+          description: 'Includes doctor visits, prescriptions, physicians, etc.'
         },
         {
           name: 'healthcare',
           percentage: 10,
-          description:
-            'Includes doctor visits, prescriptions, physicians, etc.',
+          description: 'Includes doctor visits, prescriptions, physicians, etc.'
         },
         {
           name: 'service',
           percentage: 10,
-          description: 'Includes self-care, etc.',
+          description: 'Includes self-care, etc.'
         },
         {
           name: 'community',
           percentage: 10,
-          description: 'Includes donations, etc.',
+          description: 'Includes donations, etc.'
         },
         {
           name: 'shops',
           percentage: 10,
-          description: 'Includes presents, clothes, accessories, etc.',
-        },
+          description: 'Includes presents, clothes, accessories, etc.'
+        }
       ],
       maximum: 0
     };
     this.toTitle = this.toTitle.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
-  
+
   toTitle(str, separator) {
     separator = typeof separator === 'undefined' ? ' ' : separator;
     return str
@@ -82,9 +80,9 @@ class EditCategories extends React.Component {
                   <Image
                     style={[
                       styles.logo,
-                      { marginLeft: 'auto', marginRight: 'auto' },
+                      { marginLeft: 'auto', marginRight: 'auto' }
                     ]}
-                    source={require('../../public/img/logo.png')}
+                    source={require('../../../public/img/logo.png')}
                   />
                 </View>
                 <Text style={[styles.smallerText, { fontSize: 24 }]}>
@@ -124,7 +122,7 @@ class EditCategories extends React.Component {
                               return elem;
                             }
                           }),
-                          maximum: prevState.maximum - value,
+                          maximum: prevState.maximum - value
                         }));
                       }}
                       step={5}
@@ -144,7 +142,7 @@ class EditCategories extends React.Component {
                 title={`Finished!`}
                 onPress={() => {
                   this.props.setBudget(this.state.budget);
-                  this.props.navigation.navigate('Main', { title: 'Navbar' });
+                  this.props.navigation.navigate('Home', { title: 'Home' });
                 }}
               >
                 Finished!
@@ -160,14 +158,14 @@ class EditCategories extends React.Component {
 const mapState = state => {
   return {
     user: state.user,
-    budget: state.budget,
+    budget: state.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     fetchBudget: userId => dispatch(fetchBudget(userId)),
-    setBudget: budget => dispatch(setBudget(budget)),
+    setBudget: budget => dispatch(setBudget(budget))
   };
 };
 

@@ -97,12 +97,6 @@ export const personalityTypes = [
   },
 ];
 
-const personality = [
-  'Social Value Spender',
-  'Cash Splasher',
-  'Ostrich',
-  'Hoarder',
-];
 export const articles = [
   {
     name: '3 Alternative Budgeting Styles: Which One Suits You?',
@@ -223,3 +217,4 @@ export const articles = [
     imageUrl: 'https://mtn-s3.imgix.net/wp-content/uploads/diamond.jpg?auto=format%2Ccompress%2Cenhance&ixlib=php-1.1.0&w=330&s=7a44f2ea76e22d5038581079e98538e9'
   },
 ];
+

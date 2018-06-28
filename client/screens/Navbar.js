@@ -4,6 +4,7 @@ import Budget from './Budget';
 import Profile from './Profile';
 import { AccountStack } from './Accounts';
 import { HomeStack } from './Home';
+import { BudgetStack } from './Budget';
 
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
@@ -25,33 +26,33 @@ const Navbar = createMaterialBottomTabNavigator(
     Home: {
       screen: HomeStack,
       navigationOptions: {
-        tabBarIcon: homeIcon,
-      },
+        tabBarIcon: homeIcon
+      }
     },
     Budget: {
-      screen: Budget,
+      screen: BudgetStack,
       navigationOptions: {
-        tabBarIcon: budgetIcon,
-      },
+        tabBarIcon: budgetIcon
+      }
     },
     Accounts: {
       screen: AccountStack,
       navigationOptions: {
-        tabBarIcon: accountsIcon,
-      },
+        tabBarIcon: accountsIcon
+      }
     },
     Profile: {
       screen: Profile,
       navigationOptions: {
-        tabBarIcon: profileIcon,
-      },
-    },
+        tabBarIcon: profileIcon
+      }
+    }
   },
   {
     initialRouteName: 'Home',
     activeTintColor: '#efcdba',
     inactiveTintColor: '#FFFFFF',
-    barStyle: { backgroundColor: '#7CA5B8' },
+    barStyle: { backgroundColor: '#7CA5B8' }
   }
 );
 
