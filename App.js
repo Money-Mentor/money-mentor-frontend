@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
@@ -17,11 +16,6 @@ import {
 } from './client';
 
 export default class App extends React.Component {
-  static navigationOptions = {
-    title: 'Money Mentor',
-    headerStyle: { backgroundColor: 'red' },
-    headerTitleStyle: { color: 'green' },
-  }
   render() {
     return (
       <Provider store={store}>

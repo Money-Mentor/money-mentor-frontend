@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAcctTransData } from '../../store';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { styles } from '../../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
 import { Button, Card, Icon } from 'react-native-elements';
@@ -14,6 +14,9 @@ import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
 
 class Home extends React.Component {
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
   componentDidMount() {
     this.props.fetchAcctTransData();
     this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
@@ -98,18 +101,17 @@ class Home extends React.Component {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
-    //${date.getDate() + 20}
     const dateHeight = `${date.getDate() * 3.1 - 3}%`;
 
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor: colorTheme.blue.medium}}>
         <View style={styles.homePageContainer}>
-          <Card title="Welcome" containerStyle={styles.card}>
-            <Text style={{ marginBottom: 10 }}>How are you doing today?</Text>
-          </Card>
+          {/*---------------- Quiz and budget setup ------------*/}
           {!this.props.user.personalityType ? (
             <View>
-              <Text>Looks like you haven't taken our quiz. Take it now!</Text>
+              <Card containerStyle={styles.card}>
+              <Text style={styles.homePageQuiz}>Looks like you haven't taken our quiz. </Text>
+              <Text style={styles.homePageQuiz}>Take it now!</Text>
               <Button
                 raised
                 buttonStyle={styles.button}
@@ -119,10 +121,11 @@ class Home extends React.Component {
                   this.props.navigation.navigate('Quiz', { title: 'Quiz' });
                 }}
               />
+              </Card>
             </View>
           )
         : <View/>}
-          <Text>{this.budgetStatus()}</Text>
+          <Text style={[styles.homePageSmallText,{paddingVertical: 10}]}>{this.budgetStatus()}</Text>
 
           {/*---------------- Home Budget Circle starts ------------*/}
           <View>
@@ -165,7 +168,7 @@ class Home extends React.Component {
                 styles.dateLine,
                 {
                   position: 'absolute',
-                  top: `${date.getDate() * 3.1 + 3}%`,
+                  top: `${date.getDate() * 3.1 + 2.7}%`,
                   left: '30%',
                   width: '50%',
                 },

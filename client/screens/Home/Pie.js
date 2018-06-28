@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { pieColor, colorTheme } from '../../common/styles';
+import { styles, pieColor, colorTheme } from '../../common/styles';
 
 const { Surface, Group, Rectangle, Shape } = ART;
 
@@ -137,19 +137,5 @@ class Pie extends React.Component {
     );
   }
 }
-
-const styles = {
-  textContainer: {
-    alignSelf: 'center',
-    position: 'absolute',
-    top: 275,
-    left: 145,
-  },
-  label: {
-    fontSize: 18,
-    marginTop: 5,
-    color: '#585A56'
-  },
-};
 
 export default Pie;
