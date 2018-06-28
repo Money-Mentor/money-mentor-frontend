@@ -7,7 +7,7 @@ import { styles } from '../../common/styles';
 import IndividualAccount from './IndividualAccount';
 
 
-class Accounts extends React.Component {
+class Accounts extends React.Component {heroku
   render() {
     const { account, trans } = this.props;
 

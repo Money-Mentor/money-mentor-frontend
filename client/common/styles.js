@@ -254,17 +254,21 @@ export const styles = StyleSheet.create({
   },
 
   // Transaction
-  trans: {
+  transBody: {
     display: 'flex',
     flexWrap: 'wrap',
     alignSelf: 'stretch',
     flexDirection: 'row',
-    // paddingVertical: '20',
+    padding: 20,
+    backgroundColor: '#F2DFD7'
   },
 });
 
-// export const estyles = EStyleSheet.create({
-//   transInner: { flex: 1, alignSelf: 'stretch', width: '50%' },
-// });
+export const estyles = EStyleSheet.create({
+  transInner: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: '200px' },
+});
 
 //https://github.com/vitalets/react-native-extended-stylesheet#percents

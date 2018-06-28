@@ -1,32 +1,28 @@
-import React from 'react';
-import { ListItem } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { styles } from '../../common/styles';
-import { Text, View } from 'react-native';
+import React from "react";
+import { ListItem } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { styles, estyles } from "../../common/styles";
+import { Text, View } from "react-native";
 
 class Transaction extends React.Component {
   constructor() {
     super();
     this.state = {
-      expanded: false,
+      expanded: false
     };
     this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
-    this.state.expanded
-      ? this.setState({
-          expanded: false,
-        })
-      : this.setState({
-          expanded: true,
-        });
+    this.setState({
+      expanded: !this.state.expanded
+    });
   }
 
   render() {
     const icons = {
-      up: 'chevron-up',
-      down: 'chevron-down',
+      up: "chevron-up",
+      down: "chevron-down"
     };
 
     let icon = icons.down;
@@ -39,7 +35,27 @@ class Transaction extends React.Component {
 
     const transaction = this.props.transaction;
 
-    console.log('======', this.props.transaction);
+    const info = (
+      <View style={styles.transBody}>
+        <View style={estyles.transInner}>
+          <Text style={{ fontWeight: "bold" }}> Date: </Text>
+          <Text>{transaction.date}</Text>
+        </View>
+        <View style={estyles.transInner}>
+          <Text style={{ fontWeight: "bold" }}> Category: </Text>
+          <Text>
+            {transaction.category1}, {transaction.category2}
+          </Text>
+
+          <Button
+            raised
+            buttonStyle={{ backgroundColor: "#92B1BD", borderRadius: 10 }}
+            textStyle={{ textAlign: "center" }}
+            title={`Update`}
+          />
+        </View>
+      </View>
+    );
     return (
       <View>
         <ListItem
@@ -50,25 +66,11 @@ class Transaction extends React.Component {
           onPress={() => this.toggle()}
           rightIcon={<Icon name={icon} />}
         />
-        <View style={styles.trans}>
-          <View style={styles.estyles}>
-            <Text>{transaction.category1}</Text>
-          </View>
-          <View style={styles.estyles}>
-            <Text>{transaction.category1}</Text>
-          </View>
-          <View style={styles.estyles}>
-            <Text>{transaction.category1}</Text>
-          </View>
-          <View style={styles.estyles}>
-            <Text>{transaction.category1}</Text>
-          </View>
-        </View>
+
+        {this.state.expanded && info}
       </View>
     );
   }
 }
 
 export default Transaction;
-
-// https://moduscreate.com/blog/expanding-and-collapsing-elements-using-animations-in-react-native/
