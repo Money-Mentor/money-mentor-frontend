@@ -11,10 +11,11 @@ import Result from './Result';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
 import { startDateString } from '../../common/index';
+import ArticleCarousel from './ArticleCarousel';
 
 class Home extends React.Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
 
   componentDidMount() {
@@ -61,7 +62,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec'
+      'Dec',
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -129,7 +130,7 @@ class Home extends React.Component {
               onPress={() => {
                 this.props.navigation.navigate('CategoryPie', {
                   title: 'CategoryPie',
-                  budget: budget
+                  budget: budget,
                 });
               }}
             >
@@ -137,13 +138,13 @@ class Home extends React.Component {
                 <View
                   style={[
                     styles.circleLine,
-                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 }
+                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 },
                   ]}
                 />
                 <View
                   style={[
                     styles.circleFill,
-                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 }
+                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 },
                   ]}
                 />
               </View>
@@ -166,8 +167,8 @@ class Home extends React.Component {
                   position: 'absolute',
                   top: `${date.getDate() * 3.1 + 2.7}%`,
                   left: '30%',
-                  width: '50%'
-                }
+                  width: '50%',
+                },
               ]}
             />
             <Text style={[styles.dateText, { top: dateHeight }]}>
@@ -177,7 +178,7 @@ class Home extends React.Component {
 
           {/*---------------- Total Budget & Daily Spendable ------------*/}
           <View>
-            <View style={styles.homePagesmallTextAlign}>
+            <View style={styles.homePageBudgetTextAlign}>
               <View>
                 <Text style={styles.homePageSmallText}>${totalBudget}</Text>
                 <Text style={styles.homePageSmallestText}>Total</Text>
@@ -195,20 +196,10 @@ class Home extends React.Component {
                 <Text style={styles.homePageSmallestText}>Spendable</Text>
               </View>
             </View>
-
-            {/*-------------- Retirement Comparison ------------*/}
-            <View style={{ padding: 10 }}>
-              <Button
-                buttonStyle={styles.button}
-                raised
-                title={`How are you with retirement?`}
-                onPress={() => {
-                  this.props.navigation.navigate('Retirement', {
-                    title: 'Retirement'
-                  });
-                }}
-              />
-            </View>
+          </View>
+          {/*-------------- Article suggestions------------*/}
+          <View>
+            <ArticleCarousel />
           </View>
         </View>
       </ScrollView>
@@ -221,13 +212,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget
+    budget: state.acctTrans.budget,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())
+    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
   };
 };
 
@@ -244,5 +235,5 @@ export const HomeStack = createStackNavigator({
   Result: { screen: Result },
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults }
+  RetirementResults: { screen: RetirementResults },
 });
