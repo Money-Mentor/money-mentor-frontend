@@ -1,13 +1,13 @@
-import axios from 'axios';
-import { server } from './index';
+import axios from "axios";
+import { server } from "./index";
 
 // Action Types
-const SET_ACCT_TRANS_DATA = 'SEND_ACCT_TRANS_DATA';
-const CHANGE_TRANS = 'CHANGE_TRANS'
+const SET_ACCT_TRANS_DATA = "SEND_ACCT_TRANS_DATA";
+const CHANGE_TRANS = "CHANGE_TRANS";
 
 // Action Creators
 const setAcctTransData = data => ({ type: SET_ACCT_TRANS_DATA, data });
-const changeTrans = data => ({ type: CHANGE_TRANS, data });
+const changeTrans = transaction => ({ type: CHANGE_TRANS, transaction });
 
 export const fetchAcctTransData = () => {
   return async dispatch => {
@@ -15,7 +15,7 @@ export const fetchAcctTransData = () => {
       const res = await axios.get(`${server}/api/accTrans`);
       dispatch(setAcctTransData(res.data));
     } catch (err) {
-      console.log('Error fetching acct & trans data: ', err.message);
+      console.log("Error fetching acct & trans data: ", err.message);
     }
   };
 };
@@ -23,23 +23,38 @@ export const fetchAcctTransData = () => {
 export const updateTrans = newTrans => {
   return async dispatch => {
     try {
-      const res = await axios.put(`${server}/api/accTrans/${id}`, newTrans);
+      const res = await axios.put(`${server}/api/accTrans/${newTrans.id}`, newTrans);
       dispatch(changeTrans(res.data));
+      console.log('newTrans.id', newTrans.id)
+      console.log('newTrans.included', newTrans.included)
     } catch (err) {
-      console.log('Error updating transaction: ', err.message);
+      console.log("Error updating transaction: ", err.message);
     }
   };
 };
-
 
 const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_ACCT_TRANS_DATA:
-      return action.data;
-
+    return action.data;
+    case CHANGE_TRANS:
+      return {
+        ...initialState,
+        trans: [
+          state.trans.map(transaction => {
+            if (transaction.id === action.transaction.id) {
+              console.log('transaction====', action.transaction)
+              return action.transaction;
+            } else {
+              return transaction;
+            }
+          })
+        ]
+      };
     default:
       return state;
   }
+  console.log('Transaction after action creator:', state.trans)
 };

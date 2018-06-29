@@ -26,13 +26,11 @@ class Transaction extends React.Component {
     });
   }
 
-  categoryToggle(event) {
-    console.log(event)
-
-    // this.setState({
-    //   included: event.target.value
-    // })
-    // updateTrans({included: this.state.included, category: this.state.category})
+  async categoryToggle(boolean) {
+    await this.setState({
+      included: !this.state.included
+    })
+    await this.props.updateTrans({...this.props.transaction, included: this.state.included, category: this.state.category})
   }
 
 
@@ -67,7 +65,7 @@ class Transaction extends React.Component {
 
           <View>
           <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
-          <Switch value={true} onValueChange={this.categoryToggle}/>
+          <Switch value={this.state.included} onValueChange={this.categoryToggle}/>
         </View>
 
           <Button
@@ -99,4 +97,10 @@ class Transaction extends React.Component {
   }
 }
 
-export default Transaction;
+const mapDispatch = dispatch => {
+  return {
+    updateTrans: trans => dispatch(updateTrans(trans))
+  }
+}
+
+export default connect(null, mapDispatch)(Transaction);
