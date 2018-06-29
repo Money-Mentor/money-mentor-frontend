@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
   card: {
     width: '80%',
     borderRadius: 10,
-    top: -15
+    top: -15,
   },
   logo: {
     width: 200,
@@ -191,9 +191,9 @@ export const styles = StyleSheet.create({
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
   },
-  homePagesmallTextAlign: {
+  homePageBudgetTextAlign: {
     flexDirection: 'row',
-
+    width: '80%',
     justifyContent: 'space-around',
     paddingTop: 10,
   },
@@ -231,14 +231,14 @@ export const styles = StyleSheet.create({
   },
   initialScreenText: {
     alignSelf: 'center',
-    color: '#585A56',
+    color: colorTheme.grey.dark,
     fontWeight: 'bold',
     fontSize: 50,
     fontFamily: 'logo',
   },
   h1: {
     alignSelf: 'center',
-    color: '#585A56',
+    color: colorTheme.grey.dark,
     fontWeight: 'bold',
     fontSize: 30,
   },
@@ -247,7 +247,7 @@ export const styles = StyleSheet.create({
     borderColor: '#92B1BD',
     borderWidth: 2,
     borderRadius: 15,
-    width: '100%'
+    width: '100%',
   },
   accountOverviewContainer: {
     flexGrow: 1,
@@ -266,15 +266,15 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginTop: 5,
-    color: colorTheme.grey.dark
+    color: colorTheme.grey.dark,
   },
   transactionTitle: {
-    paddingLeft:10,
-    paddingVertical:10,
+    paddingLeft: 10,
+    paddingVertical: 10,
     fontWeight: '700',
     backgroundColor: colorTheme.white.snow,
     color: colorTheme.grey.dark,
-    fontSize: 18
+    fontSize: 18,
   },
   chart_title: {
     textAlign: 'center',
@@ -284,6 +284,30 @@ export const styles = StyleSheet.create({
     color: 'grey',
     fontWeight: 'bold',
   },
+  slide: {
+    alignItems: 'center',
+    height: 125,
+    width: 300,
+    justifyContent: 'center',
+    backgroundColor: colorTheme.white.snow,
+    marginVertical: 10,
+    paddingVertical: 10,
+    borderRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { height: 2 },
+    shadowOpacity: 0.3,
+  },
+  slideText: {
+    alignSelf: 'center',
+    color: colorTheme.grey.dark,
+    fontWeight: 'bold',
+    fontSize: 12,
+    padding: 5,
+  },
+  slideImage: {
+    alignSelf: 'center',
+    height: 100,
+    width: 300,
+    borderRadius: 10,
+  },
 });
-
-//https://github.com/vitalets/react-native-extended-stylesheet#percents

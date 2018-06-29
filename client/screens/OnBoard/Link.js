@@ -67,7 +67,7 @@ class Link extends React.Component {
       <View style={styles.container}>
         <View style={styles.logoLocation}>
           <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
-          <Text style={styles.initialScreenText}>Next Step: Take Our Quiz</Text>
+          <Text style={styles.h1}>Next Step: </Text>
         </View>
         <Button
           raised
