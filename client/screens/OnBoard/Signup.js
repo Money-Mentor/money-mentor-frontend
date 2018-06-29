@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button
+  Button,
 } from 'react-native-elements';
 import { styles, colorTheme } from '../../common/styles';
 
@@ -19,21 +19,24 @@ class Signup extends Component {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
     headerTitleStyle: { color: colorTheme.grey.dark },
-  }
+  };
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
-          <Text style={styles.initialScreenText}>Signup</Text>
+          <Image
+            style={styles.logo}
+            source={require('../../../public/img/logo.png')}
+          />
+          <Text style={styles.h1}>Signup</Text>
         </View>
         <FormInput
           containerStyle={{ width: '80%', paddingTop: 10 }}
           inputStyle={styles.formInput}
           onChangeText={text =>
             this.setState({
-              email: text
+              email: text,
             })
           }
           value={this.state.email}
@@ -44,7 +47,7 @@ class Signup extends Component {
           inputStyle={styles.formInput}
           onChangeText={text =>
             this.setState({
-              password: text
+              password: text,
             })
           }
           value={this.state.password}
@@ -76,7 +79,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password) {
       dispatch(signup(email, password));
-    }
+    },
   };
 };
 

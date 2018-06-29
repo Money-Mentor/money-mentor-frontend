@@ -39,7 +39,7 @@ class CategoryPie extends Component {
       );
     return categorytrans;
   }
-
+//[{number:1600, name: catergory}...],total of all buckets]
   spendingByCategory() {
     const { transactions } = this.props;
     let categories = [
