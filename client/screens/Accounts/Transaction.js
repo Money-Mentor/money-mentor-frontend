@@ -2,17 +2,22 @@ import React from "react";
 import { ListItem } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../../common/styles";
-import { Text, View } from "react-native";
+import { Text, View, Switch } from "react-native";
 import { Button } from "react-native-elements";
 import { transactionIconType } from '../../common/index';
+import { connect } from 'react-redux';
+import {updateTrans} from '../../store'
 
 class Transaction extends React.Component {
   constructor() {
     super();
     this.state = {
-      expanded: false
+      expanded: false,
+      included: true,
+      category: ''
     };
     this.toggle = this.toggle.bind(this);
+    this.categoryToggle = this.categoryToggle.bind(this);
   }
 
   toggle() {
@@ -20,6 +25,17 @@ class Transaction extends React.Component {
       expanded: !this.state.expanded
     });
   }
+
+  categoryToggle(event) {
+    console.log(event)
+
+    // this.setState({
+    //   included: event.target.value
+    // })
+    // updateTrans({included: this.state.included, category: this.state.category})
+  }
+
+
 
   render() {
     const icons = {
@@ -48,6 +64,11 @@ class Transaction extends React.Component {
           <Text>
             {transaction.category1}, {transaction.category2}
           </Text>
+
+          <View>
+          <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
+          <Switch value={true} onValueChange={this.categoryToggle}/>
+        </View>
 
           <Button
             raised
