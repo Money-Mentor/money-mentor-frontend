@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button
+  Button,
 } from 'react-native-elements';
 import { styles, colorTheme } from '../../common/styles';
 
@@ -21,7 +21,7 @@ class Login extends Component {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
     headerTitleStyle: { color: colorTheme.grey.dark },
-  }
+  };
 
   render() {
     return (
@@ -54,7 +54,11 @@ class Login extends Component {
             textStyle={{ textAlign: 'center' }}
             title={`Submit`}
             onPress={() => {
-              this.props.handleSubmit(this.state.email, this.state.password, this.props.navigation);
+              this.props.handleSubmit(
+                this.state.email,
+                this.state.password,
+                this.props.navigation
+              );
             }}
           >
             Submit
@@ -73,8 +77,10 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit: async (email, password, navigation) => {
       let pushToken = await Notifications.getExpoPushTokenAsync();
+      console.log(
+        'pushToken from Login ====================', pushToken);
       dispatch(login(email, password, pushToken, navigation));
-    }
+    },
   };
 };
 

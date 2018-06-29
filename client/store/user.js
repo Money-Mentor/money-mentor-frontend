@@ -26,7 +26,7 @@ const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
 
 export const login = (email, password, pushToken, navigation) => dispatch =>
   axios
-    .post(`${server}/auth/login`, { email, password })
+    .post(`${server}/auth/login`, { email, password, pushToken })
     .then(
       res => {
         dispatch(getUser(res.data));
@@ -39,9 +39,9 @@ export const login = (email, password, pushToken, navigation) => dispatch =>
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
-export const signup = (email, password) => dispatch =>
+export const signup = (email, password, pushToken) => dispatch =>
   axios
-    .post(`${server}/auth/signup`, { email, password })
+    .post(`${server}/auth/signup`, { email, password, pushToken })
     .then(
       res => {
         dispatch(getUser(res.data));
