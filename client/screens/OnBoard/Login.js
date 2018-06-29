@@ -54,8 +54,7 @@ class Login extends Component {
             textStyle={{ textAlign: 'center' }}
             title={`Submit`}
             onPress={() => {
-              this.props.handleSubmit(this.state.email, this.state.password);
-              this.props.navigation.navigate('Main', { title: 'Main' });
+              this.props.handleSubmit(this.state.email, this.state.password, this.props.navigation);
             }}
           >
             Submit
@@ -72,9 +71,9 @@ class Login extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit: async (email, password) => {
+    handleSubmit: async (email, password, navigation) => {
       let pushToken = await Notifications.getExpoPushTokenAsync();
-      dispatch(login(email, password, pushToken));
+      dispatch(login(email, password, pushToken, navigation));
     }
   };
 };

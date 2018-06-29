@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { server } from './index';
+import axios from "axios";
+import { server } from "./index";
 
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER';
-const REMOVE_USER = 'REMOVE_USER';
-const UPDATE_USER_PERSONALITY = 'UPDATE_USER_PERSONALITY';
+const GET_USER = "GET_USER";
+const REMOVE_USER = "REMOVE_USER";
+const UPDATE_USER_PERSONALITY = "UPDATE_USER_PERSONALITY";
 
 /**
  * INITIAL STATE
@@ -24,12 +24,13 @@ const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
  * THUNK CREATORS
  */
 
-export const login = (email, password) => dispatch =>
+export const login = (email, password, pushToken, navigation) => dispatch =>
   axios
     .post(`${server}/auth/login`, { email, password })
     .then(
       res => {
         dispatch(getUser(res.data));
+        navigation.navigate("Main", { title: "Main" });
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -73,7 +74,7 @@ export const updateUserPersonality = (userId, user) => {
       });
       dispatch(setPersonality(res.data));
     } catch (err) {
-      console.log('Error updating user personality: ', err.message);
+      console.log("Error updating user personality: ", err.message);
     }
   };
 };
