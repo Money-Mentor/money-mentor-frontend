@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { server } from './index';
-import { sendPushToken } from './pushToken';
 
 /**
  * ACTION TYPES
@@ -25,13 +24,12 @@ const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
  * THUNK CREATORS
  */
 
-export const login = (email, password, pushToken) => dispatch =>
+export const login = (email, password) => dispatch =>
   axios
-    .post(`${server}/auth/login`, { email, password, pushToken })
+    .post(`${server}/auth/login`, { email, password })
     .then(
       res => {
         dispatch(getUser(res.data));
-        dispatch(sendPushToken(res.data))
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -71,7 +69,7 @@ export const updateUserPersonality = (userId, user) => {
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/users/${userId}`, {
-        user
+        user,
       });
       dispatch(setPersonality(res.data));
     } catch (err) {
