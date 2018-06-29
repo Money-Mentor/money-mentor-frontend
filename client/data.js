@@ -99,61 +99,70 @@ export const personalityTypes = [
 
 export const articles = [
   {
-    name: '3 Alternative Budgeting Styles: Which One Suits You?',
+    title: '3 Alternative Budgeting Styles: Which One Suits You?',
     url:
       'https://www.investopedia.com/articles/pf/09/alternative-budgeting-styles.asp',
     personality: ['Social Value Spender', 'Cash Splasher', 'Ostrich'],
+    imageUrl: 'http://cashreload.com/wp-content/uploads/2016/10/budgeting1-1.jpg'
   },
   {
-    name: 'When is it okay to splurge?',
+    title: 'When is it okay to splurge?',
     url:
       'http://money.cnn.com/2018/06/21/pf/how-much-afford-splurge/index.html?iid=SF_LN',
     personality: ['Social Value Spender', 'Cash Splasher'],
+    imageUrl: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/wedding-splurge-1446967801.jpeg'
   },
   {
-    name: 'Money is more stressful than politics for Millennials',
+    title: 'Money is more stressful than politics for Millennials',
     url:
       'http://money.cnn.com/2018/06/27/pf/money-stress/index.html?iid=ob_article_footer_adblock',
     personality: ['Ostrich'],
+    imageUrl:'https://www.usnews.com/dims4/USNEWS/70fa62e/2147483647/crop/1200x800%2B0%2B0/resize/970x647/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2F2e%2F50%2F3eaf87ba4ad080e71619e9614973%2F150402-financialwoes-stock.jpg'
   },
   {
-    name: 'Should I pay off my debt or save for emergencies first?',
+    title: 'Should I pay off my debt or save for emergencies first?',
     url:
       'http://money.cnn.com/2018/06/07/pf/pay-off-debt-or-emergency-fund/index.html?iid=ob_article_footer_adblock',
     personality: ['Ostrich', 'Social Value Spender', 'Cash Splasher'],
+    imageUrl:'http://myconfidence.com/wp-content/uploads/2017/04/Pay-Down-Debt-Or-Save-For-Retirement--624x327.jpg'
   },
   {
-    name: '5-minute moves to make you feel more financially secure',
+    title: '5-minute moves to make you feel more financially secure',
     url:
       'http://money.cnn.com/2018/05/08/pf/regain-control-finances/index.html?iid=EL',
     personality: ['Social Value Spender', 'Cash Splasher'],
+    imageUrl:'https://c8.alamy.com/comp/F4FJ43/background-concept-wordcloud-illustration-of-financial-security-F4FJ43.jpg'
   },
   {
-    name: 'Why You Should Have an Emergency Fund',
+    title: 'Why You Should Have an Emergency Fund',
     url:
       'https://www.investopedia.com/advisor-network/articles/why-you-should-have-emergency-fund/',
     personality: ['Social Value Spender', 'Cash Splasher'],
+    imageUrl:'https://static.twentyoverten.com/5890de294c60b321005f392d/SJCVs01Dz/Emergency-Fund.jpg'
   },
 
   {
-    name: '5 Ways to Control Emotional Spending',
+    title: '5 Ways to Control Emotional Spending',
     url: 'https://www.investopedia.com/articles/pf/08/emotional-spending.asp',
     personality: ['Social Value Spender', 'Cash Splasher'],
+    imageUrl: 'http://www.malihanazrana.com/wp-content/uploads/2015/12/Emotional-Spending.jpg'
   },
   {
-    name: 'Get Organized and Clean Up Your Finances',
+    title: 'Get Organized and Clean Up Your Finances',
     url:
       'https://www.smartaboutmoney.org/Topics/Holidays-and-Money/Save-Money-This-Summer/Get-Organized-and-Clean-Up-Your-Finances',
     personality: ['Ostrich'],
+    imageUrl:'https://www.pdx.edu/student-financial/sites/www.pdx.edu.student-financial/files/styles/pdx_collage_large/public/financ.wellness.jpg?itok=e2vevXEN'
   },
   {
-    name: '8 Steps To An Organized Financial Life',
+    title: '8 Steps To An Organized Financial Life',
     url:
       'https://www.investopedia.com/articles/pf/10/8-tips-organize-finances.asp',
     personality: ['Ostrich'],
+    imageUrl: 'https://s.thestreet.com/files/tsc/v2008/photos/contrib/uploads/504a780a-227e-11e6-969a-1d07e7ab2c58_600x400.jpg'
   },
   {
-    name: 'Make Financial Wellness Part of Your Life Plan',
+    title: 'Make Financial Wellness Part of Your Life Plan',
     url:
       'https://www.investopedia.com/advisor-network/articles/make-financial-wellness-part-your-life-plan/',
     personality: [
@@ -162,59 +171,76 @@ export const articles = [
       'Ostrich',
       'Hoarder',
     ],
+    imageUrl: 'https://images.benefitspro.com/benefitspro/article/2017/04/17/growth-2-getty.jpg'
   },
   {
-    name: 'How to Start Investing: A Guide for Beginners',
+    title: 'How to Start Investing: A Guide for Beginners',
     url: 'https://www.nerdwallet.com/blog/investing/how-to-start-investing/',
     personality: ['Hoarder'],
+    imageUrl: 'https://www.nerdwallet.com/assets/blog/wp-content/uploads/2015/07/how-to-start-investing-a-guide-for-newbies-v2-story-570x225.jpg'
   },
   {
-    name: '5 Easy Ways To Start Investing With Little Money',
+    title: '5 Easy Ways To Start Investing With Little Money',
     url: 'https://www.moneyunder30.com/start-investing-with-little-money',
     personality: ['Social Value Spender', 'Cash Splasher'],
+    imageUrl: 'https://www.moneyunder30.com/images/2015/02/How-to-Start-Investing-When-You-Have-Very-Little-Money.jpg'
   },
   {
-    name: 'How to start investing',
+    title: 'How to start investing',
     url:
       'https://www.fidelity.com/viewpoints/personal-finance/how-to-start-investing',
     personality: ['Hoarder'],
+    imageUrl: 'https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2017/11/764/432/466c5033-shopping-dress-attire-wardrobe-consumers-retail.jpg?ve=1&tl=1'
   },
   {
-    name: 'Why Does Buying Stuff Make Us Feel Better?',
+    title: 'Why Does Buying Stuff Make Us Feel Better?',
     url:
       'https://www.foxbusiness.com/features/why-does-buying-stuff-make-us-feel-better',
     personality: ['Cash Splasher'],
+    imageUrl: 'https://s-i.huffpost.com/gen/3715318/images/n-CREDIT-CARDS-MALL-628x314.jpg'
   },
   {
-    name: '8 Reasons Why People Love Spending Money On What They Don’t Need',
+    title: '8 Reasons Why People Love Spending Money On What They Don’t Need',
     url:
       'https://www.aegisorganization.com/single-post/Reasons-Why-People-Love-Spending-Money-On-What-They-Dont-Need',
     personality: ['Cash Splasher'],
+    imageUrl: 'https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2014/08/12/101913928-94989168.530x298.jpg?v=1407853799'
   },
   {
-    name: 'Why You Should Stop Spending Money to Impress People',
+    title: 'Why You Should Stop Spending Money to Impress People',
     url:
       'https://www.thesimpledollar.com/stop-spending-money-to-impress-people/',
     personality: ['Cash Splasher'],
+    imageUrl: 'https://amp.businessinsider.com/images/562e4cc89dd7cc14008c4c67-1136-568.jpg'
+
   },
   {
-    name: 'The Secret to Happiness? Spend Money on Experiences, Not Things',
+    title: 'The Secret to Happiness? Spend Money on Experiences, Not Things',
     url:
       'https://www.forbes.com/sites/ilyapozin/2016/03/03/the-secret-to-happiness-spend-money-on-experiences-not-things/2/#5e328ea93557',
     personality: ['Cash Splasher'],
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw1GN0zBqNRzNMx5504uaNQagIjBtc_2UCilserFp0ExW7qg1C'
   },
   {
-    name: '10 Reasons Why People Spend Too Much',
+    title: '10 Reasons Why People Spend Too Much',
     url:
       'https://www.psychologytoday.com/us/blog/science-choice/201801/10-reasons-why-people-spend-too-much',
     personality: ['Social Value Spender'],
+    imageUrl: 'https://www.stretcher.com/resource/photos/shutterstock/shutterstock_88465894.jpg'
   },
   {
-    name: 'Stop Overspending on These 15 Things',
+    title: 'Stop Overspending on These 15 Things',
     url:
       'https://www.moneytalksnews.com/10-things-spend-too-much-and-cheaper-alternatives/',
     personality: ['Social Value Spender'],
-    imageUrl: 'https://mtn-s3.imgix.net/wp-content/uploads/diamond.jpg?auto=format%2Ccompress%2Cenhance&ixlib=php-1.1.0&w=330&s=7a44f2ea76e22d5038581079e98538e9'
+    imageUrl: 'https://mtn-s3.imgix.net/wp-content/uploads/diamond.jpg?auto=format%2Ccompress%2Cenhance&ixlib=php-1.1.0&w=1460&s=8a53051494d9355b24c8a7564f9eacb5'
+  },
+  {
+    title: '18 Simple Ways to Slam the Brakes on Impulse Buys',
+    url:
+      'https://www.moneytalksnews.com/slideshows/18-simple-ways-to-slam-the-brakes-on-impulse-buys/',
+    personality: ['Cash Splasher'],
+    imageUrl: 'https://mtn-s3.imgix.net/wp-content/uploads/novembershop.jpg?auto=format%2Ccompress%2Cenhance&ixlib=php-1.1.0&w=1460&s=9e40ee3ecd1583b37f0ff2c0d47d7f05'
   },
 ];
 

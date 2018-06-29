@@ -22,7 +22,7 @@ class BudgetSetup extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.initialScreenText}>
+        <Text style={styles.h1}>
           Tell us a little about your finances.
         </Text>
         <Text style={styles.budgetSetupText}>What is your income?</Text>
