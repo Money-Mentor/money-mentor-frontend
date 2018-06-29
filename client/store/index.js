@@ -13,7 +13,7 @@ const reducer = combineReducers({
   user,
   personality,
   acctTrans,
-  budget
+  budget,
 });
 
 const middleware = composeWithDevTools(
@@ -22,7 +22,7 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware);
 
 //choose heroku or back-end
-const processEnv = 'back';
+const processEnv = 'heroku';
 
 export const server =
   processEnv === 'back-end'

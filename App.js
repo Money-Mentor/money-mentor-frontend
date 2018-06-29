@@ -12,24 +12,54 @@ import {
   Signup,
   BudgetSetup,
   EditCategories,
-  Navbar
+  Navbar,
 } from './client';
 
-import { Font } from 'expo';
+import { Font, Permissions, Notifications } from 'expo';
+
+// ----------------- Push Notifications --------------------------
+async function registerForPushNotificationsAsync() {
+  // Remote notifications don't work in simulators, only on device
+  if (!Expo.Constants.isDevice) {
+    return;
+  }
+  let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+  console.log('status=============================================', status);
+
+  if (status !== 'granted') {
+    return;
+  }
+  let token = await Notifications.getExpoPushTokenAsync();
+  console.log('Our token ==========================================', token);
+  /// Send this to a server
+}
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      fontLoaded: false
+      fontLoaded: false,
     };
   }
   async componentDidMount() {
+    registerForPushNotificationsAsync();
+    this.listener = Notifications.addListener(this.handleNotification);
+
     await Font.loadAsync({
-      logo: require('./public/fonts/logo.otf')
+      logo: require('./public/fonts/logo.otf'),
     });
     this.setState({ fontLoaded: true });
   }
+
+  componentWillUnmount() {
+    this.listener && this.listener.remove();
+  }
+
+  handleNotification = ({ origin, data }) => {
+    console.log(
+      `Push notification ${origin} with data: ${JSON.stringify(data)}`
+    );
+  };
 
   render() {
     return (
@@ -52,10 +82,10 @@ const AuthenticationNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Link: { screen: Link },
   BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories }
+  EditCategories: { screen: EditCategories },
 });
 
 const AppNavigator = createSwitchNavigator({
   Auth: { screen: AuthenticationNavigator },
-  Main: { screen: Navbar }
+  Main: { screen: Navbar },
 });
