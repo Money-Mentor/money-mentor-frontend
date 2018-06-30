@@ -108,9 +108,7 @@ class Pie extends React.Component {
             ))}
           </Group>
         </Surface>
-        <View
-          style={styles.textContainer}
-        >
+        <View style={styles.textContainer}>
           {this.props.data.map((item, index) => {
             var fontWeight =
               this.state.highlightedIndex == index ? 'bold' : 'normal';
@@ -120,12 +118,7 @@ class Pie extends React.Component {
                 onPress={() => this._onPieItemSelected(index)}
               >
                 <View>
-                  <Text
-                    style={[
-                      styles.label,
-                      {fontWeight: fontWeight },
-                    ]}
-                  >
+                  <Text style={[styles.label, { fontWeight: fontWeight }]}>
                     {this._label(item)}: {this._value(item)}%
                   </Text>
                 </View>

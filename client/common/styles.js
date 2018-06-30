@@ -14,7 +14,7 @@ export const colorTheme = {
     dark: '#262560',
   },
   white: {
-    snow: '#F7E3EE',
+    snow: 'white',
   },
   grey: {
     light: '#a9ada6',
@@ -213,7 +213,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20 / 2,
     backgroundColor: 'white',
     shadowColor: 'black',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
     shadowOpacity: 0.35,
   },
@@ -326,7 +326,7 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginTop: 5,
-    color: colorTheme.grey.dark,
+    color: colorTheme.white.snow,
   },
   transactionTitle: {
     paddingLeft: 10,
@@ -349,7 +349,7 @@ export const styles = StyleSheet.create({
     height: 125,
     width: 300,
     justifyContent: 'center',
-    backgroundColor: "white",
+    backgroundColor: 'white',
     marginVertical: 10,
     paddingVertical: 10,
     shadowColor: 'black',
