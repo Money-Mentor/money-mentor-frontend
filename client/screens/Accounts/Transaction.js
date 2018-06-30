@@ -6,15 +6,15 @@ import { Text, View, Switch } from "react-native";
 import { Button } from "react-native-elements";
 import { transactionIconType } from '../../common/index';
 import { connect } from 'react-redux';
-import {updateTrans} from '../../store'
+import {updateTrans, fetchAcctTransData} from '../../store'
 
 class Transaction extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       expanded: false,
-      included: true,
-      category: ''
+      included: props.transaction.included,
+      category: props.transaction.category1,
     };
     this.toggle = this.toggle.bind(this);
     this.categoryToggle = this.categoryToggle.bind(this);
@@ -31,7 +31,6 @@ class Transaction extends React.Component {
       included: !this.state.included
     })
     await this.props.updateTrans({...this.props.transaction, included: this.state.included, category: this.state.category})
-    console.log('this.props.transaction', this.props.transaction);
   }
 
 
@@ -100,7 +99,8 @@ class Transaction extends React.Component {
 
 const mapDispatch = dispatch => {
   return {
-    updateTrans: trans => dispatch(updateTrans(trans))
+    updateTrans: trans => dispatch(updateTrans(trans)),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   }
 }
 

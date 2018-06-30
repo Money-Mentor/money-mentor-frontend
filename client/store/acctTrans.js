@@ -39,8 +39,8 @@ export default (state = initialState, action) => {
     return action.data;
     case CHANGE_TRANS:
       return {
-        ...initialState,
-        trans: [
+        ...state,
+        trans:
           state.trans.map(transaction => {
             if (transaction.id === action.transaction.id) {
               return action.transaction;
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
               return transaction;
             }
           })
-        ]
+
       };
     default:
       return state;
