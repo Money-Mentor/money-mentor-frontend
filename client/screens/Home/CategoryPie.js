@@ -1,4 +1,4 @@
-npimport React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Text, ScrollView, View } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -42,7 +42,9 @@ class CategoryPie extends Component {
       );
     return categorytrans;
   }
-//[{number:1600, name: catergory}...],total of all buckets]
+
+  //[{number:1600, name: catergory}...],total of all buckets
+
   spendingByCategory() {
     let startDate = startDateString();
     const { transactions } = this.props;
@@ -106,13 +108,19 @@ class CategoryPie extends Component {
             onItemSelected={this._onPieItemSelected}
             colors={pieColor}
             data={this.getData()}
+            budget={this.props.budget}
+            spendingByCategory={this.spendingByCategory()}
           />
         </View>
 
         {/* Progress Bars */}
-        <View>
-          <StackedBar spendingByCategory={this.spendingByCategory()} getData={this.getData()}/>
-        </View>
+
+          <StackedBar
+            budget={this.props.budget}
+            spendingByCategory={this.spendingByCategory()}
+            getData={this.getData()}
+          />
+       
 
         {/* Transaction Details List */}
         <List>

@@ -1,130 +1,109 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { StackedBarChart } from 'react-native-svg-charts';
+import { styles } from '../../common/styles';
 
 class StackedBar extends React.Component {
   constructor(props) {
     super(props);
+    this.buildCategoryObj = this.buildCategoryObj.bind(this);
     this.getValueFromCategory = this.getValueFromCategory.bind(this);
-    this.getTotalAllowed = this.getTotalAllowed.bind(this);
+    this.getRemainingAllowed = this.getRemainingAllowed.bind(this);
+    this.getDay = this.getDay.bind(this);
+  }
+
+  buildCategoryObj(str) {
+    return {
+      category: str,
+      spent: this.getValueFromCategory(str),
+      getRemainingAllowed: this.getRemainingAllowed(str)
+    };
   }
 
   getValueFromCategory(str) {
-    const categories = this.props.spendingByCategory[0];
+    const categories = this.props.getData;
     const currCategory =
       categories && categories.filter(elem => elem.name === str)[0];
     return !currCategory ? 0 : currCategory.number;
   }
 
-  getTotalAllowed(str) {}
+  getRemainingAllowed(str) {
+    return 100 - this.getValueFromCategory(str);
+  }
+
+  getDay() {
+    const month = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+    const date = new Date();
+    return `${month[date.getMonth()]} ${date.getDate()}`;
+  }
 
   render() {
-    console.log('what is data!!!!!!!', this.props.getData);
-    const data = [
-      {
-        category: 'Food and Drink',
-        totalAllowed: 0,
-        currSpent: this.getValueFromCategory('Food and Drink'),
-        allocatedAmountByDate: 640
-      },
-      {
-        category: 'Community',
-        totalAllowed: 3320,
-        currSpent: this.getValueFromCategory('Community'),
-        allocatedAmountByDate: 640
-      },
-      {
-        category: 'Healthcare',
-        totalAllowed: 3320,
-        currSpent: this.getValueFromCategory('Healthcare'),
-        allocatedAmountByDate: 640
-      },
-      {
-        category: 'Recreation',
-        totalAllowed: 3320,
-        currSpent: this.getValueFromCategory('Recreation'),
-        allocatedAmountByDate: 640
-      },
-      {
-        category: 'Service',
-        totalAllowed: 3320,
-        currSpent: this.getValueFromCategory('Service'),
-        allocatedAmountByDate: 640
-      },
-      {
-        category: 'Shops',
-        totalAllowed: 3320,
-        currSpent: this.getValueFromCategory('Shops'),
-        allocatedAmountByDate: 640
-      },
-      {
-        category: 'Travel',
-        totalAllowed: 3320,
-        currSpent: this.getValueFromCategory('Travel'),
-        allocatedAmountByDate: 640
-      }
-    ].filter(elem => elem.currSpent !== 0);
-    console.log('Category Object for FoodDrink', data[0]);
-    console.log('Category Object for Category', data[1]);
+    const date = new Date();
+    const dateHeight = `${date.getDate() * 3.1 - 3}%`;
 
-    const colors = ['#7b4173', '#a55194', '#ce6dbd', '#de9ed6'];
-    const keys = [
-      'category',
-      'totalAllowed',
-      'currSpent',
-      'allocatedAmountByDate'
-    ];
+    const data = [
+      'Food and Drink',
+      'Community',
+      'Healthcare',
+      'Recreation',
+      'Service',
+      'Shops',
+      'Travel'
+    ]
+      .map(elem => this.buildCategoryObj(elem))
+      .filter(elem => elem.spent !== 0);
+
+    const width = 700 / data.length;
+
+    console.log('DATA::::::::::', data);
+
+    const colors = ['#7b4173', '#a55194', '#de9ed6'];
+    const keys = ['category', 'spent', 'getRemainingAllowed'];
 
     return (
-      // <View>
-      //   <Text>Hello</Text>
-      // </View>
-      <StackedBarChart
-        style={{ height: 200 }}
-        keys={keys}
-        colors={colors}
-        data={data}
-        showGrid={false}
-        contentInset={{ top: 30, bottom: 30 }}
-      />
+      <View style={styles.container}>
+        <Text style={[styles.barText, { color: '#7b4173' }]}>Spent</Text>
+        <Text style={[styles.barText, { color: '#de9ed6' }]}>Remaining</Text>
+
+        <StackedBarChart
+          keys={keys}
+          colors={colors}
+          data={data}
+          style={{ height: 180, width: width }}
+          showGrid={false}
+          contentInset={{ top: 30, bottom: 30 }}
+        />
+
+        <View
+          style={[
+            styles.dateLine,
+            {
+              position: 'absolute',
+              top: `${date.getDate() * 3.1 + 2.7}%`,
+              left: '30%',
+              width: '50%'
+            }
+          ]}
+        />
+        <Text style={[styles.dateText, { top: dateHeight }]}>
+          {this.getDay()}
+        </Text>
+      </View>
     );
   }
 }
-
-// const data = [
-//   {
-//     // category: categories[0],
-//     currentCost: 3840,
-//     allowedCost: 1920
-//   },
-//   { currentCost: 3840, allowedCost: 1920 },
-//   { currentCost: 3840, allowedCost: 1920 },
-//   { currentCost: 3840, allowedCost: 1920 }
-// ];
-
-// const colors = ['#7b4173', '#de9ed6'];
-// const categories = [
-//   'community',
-//   'foodAndDrink',
-//   'recreation',
-//   'service',
-//   'shops',
-//   'travel',
-//   'healthcare'
-// ];
-
-// return (
-//   <View>
-//     <Text>Hello!</Text>
-//     <StackedBarChart
-//       style={{ height: 200 }}
-//       keys={categories}
-//       colors={colors}
-//       data={data}
-//       showGrid={false}
-//       contentInset={{ top: 30, bottom: 30 }}
-//     />
-//   </View>
-// );
 
 export default StackedBar;
