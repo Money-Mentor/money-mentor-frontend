@@ -25,17 +25,17 @@ class MyCarousel extends Component {
         showsVerticalScrollIndicator={true}
       >
         <View style={styles.slide}>
-          <Image
-            style={styles.slideImage}
-            source={{ uri: item.imageUrl }}
-            // resizeMode="stretch"
-          />
           <Text
             style={styles.slideText}
             onPress={() => Linking.openURL(item.url)}
           >
             {item.title}
           </Text>
+          <Image
+            style={styles.slideImage}
+            source={{ uri: item.imageUrl }}
+            // resizeMode="stretch"
+          />
         </View>
       </ScrollView>
     );

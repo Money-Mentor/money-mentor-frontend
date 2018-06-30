@@ -68,8 +68,6 @@ class StackedBar extends React.Component {
 
     const width = 700 / data.length;
 
-    console.log('DATA::::::::::', data);
-
     const colors = ['#7b4173', '#a55194', '#de9ed6'];
     const keys = ['category', 'spent', 'getRemainingAllowed'];
 

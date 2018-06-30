@@ -15,7 +15,7 @@ class Link extends React.Component {
   static navigationOptions = {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.grey.dark },
+    headerTitleStyle: { color: colorTheme.white.snow },
   }
 
 
@@ -39,7 +39,7 @@ class Link extends React.Component {
         </View>
         <Button
           raised
-          buttonStyle={styles.button}
+          buttonStyle={styles.bluebutton}
           textStyle={{ textAlign: 'center' }}
           title={`Let's Link Your Bank Account`}
           onPress={() => this.setState({ status: '' })}
@@ -71,7 +71,7 @@ class Link extends React.Component {
         </View>
         <Button
           raised
-          buttonStyle={styles.button}
+          buttonStyle={styles.bluebutton}
           textStyle={{ textAlign: 'center' }}
           title={`Set Up Your Budget!`}
           onPress={() =>
