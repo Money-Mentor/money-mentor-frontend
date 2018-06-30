@@ -17,33 +17,33 @@ class Initial extends Component {
           />
           <Text style={styles.initialScreenText}>Money Mentor</Text>
         </View>
-        <View style={{ padding: 40 }}>
-          <View style={{ padding: 10 }}>
-            <Button
-              raised
-              buttonStyle={styles.button}
-              textStyle={{ textAlign: 'center' }}
-              title={`Login`}
-              onPress={() =>
-                this.props.navigation.navigate('Login', { title: 'Login' })
-              }
-            >
-              Login
-            </Button>
-          </View>
-          <View style={{ padding: 10 }}>
-            <Button
-              raised
-              buttonStyle={styles.button}
-              textStyle={{ textAlign: 'center' }}
-              title={`Signup`}
-              onPress={() =>
-                this.props.navigation.navigate('Signup', { title: 'Signup' })
-              }
-            >
-              Signup
-            </Button>
-          </View>
+        <View style={{marginTop:200}}>
+        <View style={{ padding: 10 }}>
+          <Button
+            raised
+            buttonStyle={styles.orangebutton}
+            textStyle={styles.buttontext}
+            title={`Login`}
+            onPress={() =>
+              this.props.navigation.navigate('Login', { title: 'Login' })
+            }
+          >
+            Login
+          </Button>
+        </View>
+        <View style={{ padding: 10 }}>
+          <Button
+            raised
+            buttonStyle={styles.orangebutton}
+            textStyle={styles.buttontext}
+            title={`Signup`}
+            onPress={() =>
+              this.props.navigation.navigate('Signup', { title: 'Signup' })
+            }
+          >
+            Signup
+          </Button>
+        </View>
         </View>
       </View>
     );

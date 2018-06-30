@@ -1,10 +1,10 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Budget from './Budget';
 import Profile from './Profile';
 import { AccountStack } from './Accounts';
 import { HomeStack } from './Home';
 import { BudgetStack } from './Budget';
+import { styles, colorTheme } from '../common/styles'
 
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
@@ -52,7 +52,7 @@ const Navbar = createMaterialBottomTabNavigator(
     initialRouteName: 'Home',
     activeTintColor: '#efcdba',
     inactiveTintColor: '#FFFFFF',
-    barStyle: { backgroundColor: '#7CA5B8' }
+    barStyle: { backgroundColor: colorTheme.blue.dark }
   }
 );
 
