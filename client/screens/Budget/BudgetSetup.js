@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setBudget } from '../../store';
@@ -22,22 +22,22 @@ class BudgetSetup extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.h1}>
+        <Text style={[styles.h1,{top:-10, paddingBottom:10}]}>
           Tell us a little about your finances.
         </Text>
         <Text style={styles.budgetSetupText}>What is your income?</Text>
-        <FormInput
-          containerStyle={{ width: '80%', paddingTop: 2 }}
-          inputStyle={styles.formInput}
+        <TextInput
+          style={styles.budgetContainer}
+          placeholderTextColor={colorTheme.white.snow}
           onChangeText={income => this.setState({ income: +income })}
           placeholder="Income"
         />
         <Text style={styles.budgetSetupText}>
           What are your static costs? (i.e. rent, utilities, insurance, etc.)
         </Text>
-        <FormInput
-          containerStyle={{ width: '80%', paddingTop: 2 }}
-          inputStyle={styles.formInput}
+        <TextInput
+          style={styles.budgetContainer}
+          placeholderTextColor={colorTheme.white.snow}
           onChangeText={staticCosts =>
             this.setState({ staticCosts: +staticCosts })
           }
@@ -46,27 +46,17 @@ class BudgetSetup extends React.Component {
         <Text style={styles.budgetSetupText}>
           How much would you like to save?
         </Text>
-        <FormInput
-          containerStyle={{ width: '80%', paddingTop: 2 }}
-          inputStyle={styles.formInput}
+        <TextInput
+          style={styles.budgetContainer}
+          placeholderTextColor={colorTheme.white.snow}
           onChangeText={savings => this.setState({ savings: +savings })}
           placeholder="Savings"
         />
-        <Text style={styles.budgetSetupText}>
-          How much is currently in your retirement savings?
-        </Text>
-        <FormInput
-          containerStyle={{ width: '80%', paddingTop: 2 }}
-          inputStyle={styles.formInput}
-          onChangeText={retirement =>
-            this.setState({ retirement: +retirement })
-          }
-          placeholder="Retirement"
-        />
+
         <View style={{ padding: 10 }}>
           <Button
             raised
-            buttonStyle={styles.button}
+            buttonStyle={styles.smallOrangeButton}
             textStyle={{ textAlign: 'center' }}
             title={`Submit`}
             onPress={() => {

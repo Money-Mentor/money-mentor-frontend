@@ -115,7 +115,7 @@ class Home extends React.Component {
                 <Text style={styles.homePageQuiz}>Take it now!</Text>
                 <Button
                   raised
-                  buttonStyle={styles.button}
+                  buttonStyle={styles.bluebutton}
                   textStyle={{ textAlign: 'center' }}
                   title={`Take the Quiz!`}
                   onPress={() => {
@@ -205,7 +205,7 @@ class Home extends React.Component {
             </View>
           </View>
           {/*-------------- Article suggestions------------*/}
-          <View>
+          <View style={{padding: 10}}>
             <ArticleCarousel />
           </View>
         </View>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../store/user';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
 import {
   FormLabel,
   FormInput,
@@ -18,28 +18,38 @@ class Login extends Component {
   static navigationOptions = {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.grey.dark },
+    headerTitleStyle: { color: colorTheme.white.snow},
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image source={require('../../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
           <Text style={styles.h1}>Login</Text>
         </View>
-        <FormInput
-          containerStyle={{ width: '80%', paddingTop: 10 }}
-          inputStyle={styles.formInput}
-          onChangeText={text => this.setState({ email: text })}
+        <View style={{padding:90}}/>
+        <TextInput
+          style={styles.formContainer}
+          autoCapitalize = 'none'
+          placeholderTextColor={colorTheme.white.snow}
+          onChangeText={text =>
+            this.setState({
+              email: text,
+            })
+          }
           value={this.state.email}
           placeholder="   Email"
         />
-        <FormInput
-          containerStyle={{ width: '80%', paddingTop: 10 }}
-          inputStyle={styles.formInput}
-          leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
-          onChangeText={text => this.setState({ password: text })}
+        <TextInput
+           style={styles.formContainer}
+          autoCapitalize = 'none'
+          onChangeText={text =>
+            this.setState({
+              password: text,
+            })
+          }
+          placeholderTextColor={colorTheme.white.snow}
           value={this.state.password}
           placeholder="   Password"
           secureTextEntry={true}
@@ -48,7 +58,7 @@ class Login extends Component {
         <View style={{ padding: 10 }}>
           <Button
             raised
-            buttonStyle={styles.button}
+            buttonStyle={styles.bluebutton}
             textStyle={{ textAlign: 'center' }}
             title={`Submit`}
             onPress={() => {
