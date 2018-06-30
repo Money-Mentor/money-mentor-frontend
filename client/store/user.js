@@ -24,9 +24,9 @@ const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
  * THUNK CREATORS
  */
 
-export const login = (email, password, pushToken, navigation) => dispatch =>
+export const login = (email, password, navigation) => dispatch =>
   axios
-    .post(`${server}/auth/login`, { email, password, pushToken })
+    .post(`${server}/auth/login`, { email, password })
     .then(
       res => {
         dispatch(getUser(res.data));
@@ -39,9 +39,9 @@ export const login = (email, password, pushToken, navigation) => dispatch =>
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
-export const signup = (email, password, pushToken) => dispatch =>
+export const signup = (email, password) => dispatch =>
   axios
-    .post(`${server}/auth/signup`, { email, password, pushToken })
+    .post(`${server}/auth/signup`, { email, password })
     .then(
       res => {
         dispatch(getUser(res.data));
@@ -70,7 +70,7 @@ export const updateUserPersonality = (userId, user) => {
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/users/${userId}`, {
-        user,
+        user
       });
       dispatch(setPersonality(res.data));
     } catch (err) {
