@@ -4,26 +4,29 @@ import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Pie from './Pie';
 import { styles, pieColor, colorTheme } from '../../common/styles';
-import { transactionIconType } from '../../common/index';
+import { transactionIconType, startDateString } from '../../common/index';
+import StackedBar from './StackedBar';
 
 type State = {
   activeIndex: number,
-  spendingsPerYear: any,
+  spendingsPerYear: any
 };
 
 class CategoryPie extends Component {
   state: State;
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
+
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0,
+      activeIndex: 0
     };
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
     this.getData = this.getData.bind(this);
   }
+
   _onPieItemSelected(newIndex) {
     this.setState({ ...this.state, activeIndex: newIndex });
   }
@@ -39,8 +42,11 @@ class CategoryPie extends Component {
       );
     return categorytrans;
   }
-//[{number:1600, name: catergory}...],total of all buckets]
+
+  //[{number:1600, name: catergory}...],total of all buckets
+
   spendingByCategory() {
+    let startDate = startDateString();
     const { transactions } = this.props;
     let categories = [
       'Community',
@@ -49,7 +55,7 @@ class CategoryPie extends Component {
       'Recreation',
       'Service',
       'Shops',
-      'Travel',
+      'Travel'
     ];
     let categoryTotals = [];
     let totalByCategory;
@@ -59,7 +65,9 @@ class CategoryPie extends Component {
       totalByCategory =
         transactions &&
         transactions
-          .filter(item => item.category1 === categories[i])
+          .filter(
+            item => item.category1 === categories[i] && item.date > startDate
+          )
           .reduce((acc, num) => acc + num.amount, 0);
       total += totalByCategory;
       totalByCategory &&
@@ -69,6 +77,7 @@ class CategoryPie extends Component {
     return [categoryTotals, total];
   }
 
+  // Get Total. Division. Get to Percentage by category.
   getData() {
     let [spendingByCategory, total] = this.spendingByCategory();
     let percent;
@@ -78,7 +87,7 @@ class CategoryPie extends Component {
       percent = Math.round((category.number / total) * 100);
       spendingByCategoryPercentArr.push({
         number: percent,
-        name: category.name,
+        name: category.name
       });
     });
 
@@ -99,8 +108,21 @@ class CategoryPie extends Component {
             onItemSelected={this._onPieItemSelected}
             colors={pieColor}
             data={this.getData()}
+            budget={this.props.budget}
+            spendingByCategory={this.spendingByCategory()}
           />
         </View>
+
+        {/* Progress Bars */}
+
+          <StackedBar
+            budget={this.props.budget}
+            spendingByCategory={this.spendingByCategory()}
+            getData={this.getData()}
+          />
+       
+
+        {/* Transaction Details List */}
         <List>
           <Text style={styles.transactionTitle}>Transactions</Text>
           {categorytrans &&
@@ -110,7 +132,7 @@ class CategoryPie extends Component {
                 title={transaction.name}
                 rightTitle={`$ ${transaction.amount}`}
                 leftIcon={{
-                  name: transactionIconType[transaction.category2],
+                  name: transactionIconType[transaction.category2]
                 }}
               />
             ))}
@@ -123,7 +145,7 @@ class CategoryPie extends Component {
 const mapState = state => {
   return {
     budget: state.acctTrans.budget,
-    transactions: state.acctTrans.trans,
+    transactions: state.acctTrans.trans
   };
 };
 
