@@ -2,11 +2,12 @@ import React from "react";
 import { ListItem } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../../common/styles";
-import { Text, View, Switch } from "react-native";
+import { Text, View, Switch, Picker } from "react-native";
 import { Button } from "react-native-elements";
-import { transactionIconType } from '../../common/index';
-import { connect } from 'react-redux';
-import {updateTrans, fetchAcctTransData} from '../../store'
+import { transactionIconType } from "../../common/index";
+import { connect } from "react-redux";
+import { updateTrans, fetchAcctTransData } from "../../store";
+
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Transaction extends React.Component {
     this.state = {
       expanded: false,
       included: props.transaction.included,
-      category: props.transaction.category1,
+      category: props.transaction.category1
     };
     this.toggle = this.toggle.bind(this);
     this.categoryToggle = this.categoryToggle.bind(this);
@@ -29,11 +30,13 @@ class Transaction extends React.Component {
   async categoryToggle(boolean) {
     await this.setState({
       included: !this.state.included
-    })
-    await this.props.updateTrans({...this.props.transaction, included: this.state.included, category: this.state.category})
+    });
+    await this.props.updateTrans({
+      ...this.props.transaction,
+      included: this.state.included,
+      category: this.state.category
+    });
   }
-
-
 
   render() {
     const icons = {
@@ -59,21 +62,19 @@ class Transaction extends React.Component {
         </View>
         <View>
           <Text style={{ fontWeight: "bold" }}> Category: </Text>
-          <Text>
-            {transaction.category1}, {transaction.category2}
-          </Text>
+          <Text>{transaction.category1}</Text>
+          <Picker style={{ height: 50, width: 100 }}>
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker>
 
           <View>
-          <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
-          <Switch value={this.state.included} onValueChange={this.categoryToggle}/>
-        </View>
-
-          <Button
-            raised
-            buttonStyle={{ backgroundColor: "#92B1BD", borderRadius: 10 }}
-            textStyle={{ textAlign: "center" }}
-            title={`Update`}
-          />
+            <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
+            <Switch
+              value={this.state.included}
+              onValueChange={this.categoryToggle}
+            />
+          </View>
         </View>
       </View>
     );
@@ -101,7 +102,10 @@ const mapDispatch = dispatch => {
   return {
     updateTrans: trans => dispatch(updateTrans(trans)),
     fetchAcctTransData: () => dispatch(fetchAcctTransData())
-  }
-}
+  };
+};
 
-export default connect(null, mapDispatch)(Transaction);
+export default connect(
+  null,
+  mapDispatch
+)(Transaction);
