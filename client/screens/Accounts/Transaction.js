@@ -2,32 +2,57 @@ import React from "react";
 import { ListItem } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../../common/styles";
-import { Text, View, Switch, Picker } from "react-native";
+import {
+  Text,
+  View,
+  Switch,
+  Animated,
+  Dimensions,
+  TouchableHighlight
+} from "react-native";
 import { Button } from "react-native-elements";
 import { transactionIconType } from "../../common/index";
 import { connect } from "react-redux";
 import { updateTrans, fetchAcctTransData } from "../../store";
-
+import Picker from './Picker'
 
 class Transaction extends React.Component {
   constructor(props) {
     super(props);
+
+    const deviceWidth = Dimensions.get("window").width;
+    const deviceHeight = Dimensions.get("window").height;
+
     this.state = {
       expanded: false,
       included: props.transaction.included,
-      category: props.transaction.category1
+      category: props.transaction.category1,
+      modal: false,
+      offSet: new Animated.Value(deviceHeight)
     };
-    this.toggle = this.toggle.bind(this);
-    this.categoryToggle = this.categoryToggle.bind(this);
+    this.toggleInfo = this.toggleInfo.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.includedToggle = this.includedToggle.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
   }
 
-  toggle() {
+  toggleInfo() {
     this.setState({
       expanded: !this.state.expanded
     });
   }
 
-  async categoryToggle(boolean) {
+  toggleModal() {
+    this.setState({ modal: !this.state.modal })
+  }
+
+  handleCategoryChange(category) {
+    this.setState({
+      category
+    });
+  }
+
+  async includedToggle(boolean) {
     await this.setState({
       included: !this.state.included
     });
@@ -63,21 +88,34 @@ class Transaction extends React.Component {
         <View>
           <Text style={{ fontWeight: "bold" }}> Category: </Text>
           <Text>{transaction.category1}</Text>
-          <Picker style={{ height: 50, width: 100 }}>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-          </Picker>
+          <TouchableHighlight
+            underlayColor="transparent"
+            onPress={
+              this.toggleModal}
+          >
+            <Text style={styles.buttonText}>EDIT</Text>
+          </TouchableHighlight>
+
+          {this.state.modal && (
+            <Picker
+              toggleModal={this.toggleModal}
+              offSet={this.state.offSet}
+              handleCategoryChange={this.handleCategoryChange}
+              category={this.state.category}
+            />
+          )}
 
           <View>
             <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
             <Switch
               value={this.state.included}
-              onValueChange={this.categoryToggle}
+              onValueChange={this.includedToggle}
             />
           </View>
         </View>
       </View>
     );
+
     return (
       <View>
         <ListItem
@@ -85,7 +123,7 @@ class Transaction extends React.Component {
           title={transaction.name}
           subtitle={transaction.categoty1}
           rightTitle={`$ ${transaction.amount}`}
-          onPress={() => this.toggle()}
+          onPress={() => this.toggleInfo()}
           rightIcon={<Icon name={icon} />}
           leftIcon={{
             name: transactionIconType[transaction.category2]

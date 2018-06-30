@@ -10,12 +10,14 @@ import Quiz from './Quiz';
 import Result from './Result';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
+import { startDateString } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
 
 class Home extends React.Component {
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
+
   componentDidMount() {
     this.props.fetchAcctTransData();
     this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
@@ -30,22 +32,13 @@ class Home extends React.Component {
   }
 
   totalSpent() {
-    const date = new Date();
     const { trans } = this.props;
-
-    const formatMonth = month => {
-      month++;
-      return month < 10 ? '0' + month : month;
-    };
-    let startDate = new Date(date.getFullYear(), date.getMonth(), 1);
-    let startDateString = `${startDate.getFullYear()}-${formatMonth(
-      startDate.getMonth()
-    )}-01`;
+    let startDate = startDateString();
 
     const spent =
       trans &&
       trans
-        .filter(item => item.amount > 0 && item.date > startDateString)
+        .filter(item => item.amount > 0 && item.date > startDate)
         .reduce((acc, num) => acc + num.amount, 0);
     return spent;
   }
