@@ -25,8 +25,6 @@ export const updateTrans = newTrans => {
     try {
       const res = await axios.put(`${server}/api/accTrans/${newTrans.id}`, newTrans);
       dispatch(changeTrans(res.data));
-      console.log('newTrans.id', newTrans.id)
-      console.log('newTrans.included', newTrans.included)
     } catch (err) {
       console.log("Error updating transaction: ", err.message);
     }
@@ -45,7 +43,6 @@ export default (state = initialState, action) => {
         trans: [
           state.trans.map(transaction => {
             if (transaction.id === action.transaction.id) {
-              console.log('transaction====', action.transaction)
               return action.transaction;
             } else {
               return transaction;
@@ -56,5 +53,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-  console.log('Transaction after action creator:', state.trans)
 };

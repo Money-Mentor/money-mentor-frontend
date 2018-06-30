@@ -31,6 +31,7 @@ class Transaction extends React.Component {
       included: !this.state.included
     })
     await this.props.updateTrans({...this.props.transaction, included: this.state.included, category: this.state.category})
+    console.log('this.props.transaction', this.props.transaction);
   }
 
 

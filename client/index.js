@@ -4,7 +4,6 @@ export { default as Navbar } from './screens/Navbar';
 
 // Accounts
 export { default as Accounts } from './screens/Accounts';
-export { default as Individual } from './screens/Accounts/Individual';
 export {
   default as IndividualAccount
 } from './screens/Accounts/IndividualAccount';
