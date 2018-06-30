@@ -380,5 +380,19 @@ export const styles = StyleSheet.create({
   barText: {
     padding: 0,
     margin: 0
-  }
+  },
+  dateTextCategory: {
+    color: colorTheme.white.snow,
+    fontWeight: 'bold',
+    position: 'absolute',
+    left: '50%',
+    zIndex: 2
+  },
+  dateLineCategory: {
+    borderBottomColor: colorTheme.white.snow,
+    borderBottomWidth: 2,
+    position: 'absolute',
+
+    zIndex: 3
+  },
 });
