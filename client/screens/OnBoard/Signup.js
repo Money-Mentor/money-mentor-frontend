@@ -10,8 +10,6 @@ import {
 } from 'react-native-elements';
 import { styles, colorTheme } from '../../common/styles';
 
-import { Notifications } from 'expo';
-
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -79,9 +77,8 @@ class Signup extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit: async (email, password) => {
-      let pushToken = await Notifications.getExpoPushTokenAsync();
-      dispatch(signup(email, password, pushToken));
+    handleSubmit(email, password) {
+      dispatch(signup(email, password));
     },
   };
 };
