@@ -1,5 +1,8 @@
 import { StyleSheet } from 'react-native';
 
+export const IMAGE_HEIGHT_SMALL = 70;
+export const IMAGE_HEIGHT = 115;
+
 export const colorTheme = {
   orange: {
     medium: '#EF4C22',
@@ -170,7 +173,7 @@ export const styles = StyleSheet.create({
   questionText: {
     alignSelf: 'center',
     justifyContent: 'center',
-    color: '#585A56',
+    color: colorTheme.white.snow,
     fontWeight: 'bold',
     fontSize: 20,
     width: '80%',
@@ -235,7 +238,8 @@ export const styles = StyleSheet.create({
   },
   homePageBudgetTextAlign: {
     flexDirection: 'row',
-    width: '80%',
+    width: '100%',
+    left: 40,
     justifyContent: 'space-around',
     paddingTop: 10,
   },

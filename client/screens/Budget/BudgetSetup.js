@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setBudget } from '../../store';
@@ -12,17 +12,17 @@ class BudgetSetup extends React.Component {
       income: 0,
       staticCosts: 0,
       savings: 0,
-      spendingBudget: 0
+      spendingBudget: 0,
     };
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={[styles.h1,{top:-10, paddingBottom:10}]}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <Text style={[styles.h1, { top: -10, paddingBottom: 10 }]}>
           Tell us a little about your finances.
         </Text>
         <Text style={styles.budgetSetupText}>What is your income?</Text>
@@ -64,25 +64,25 @@ class BudgetSetup extends React.Component {
                 this.state.income - this.state.staticCosts - this.state.savings;
               this.props.setBudget({ ...this.state, spendingBudget });
               this.props.navigation.navigate('EditCategories', {
-                title: 'EditCategories'
+                title: 'EditCategories',
               });
             }}
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
 
 const mapState = state => {
   return {
-    budget: state.budget
+    budget: state.budget,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    setBudget: budget => dispatch(setBudget(budget))
+    setBudget: budget => dispatch(setBudget(budget)),
   };
 };
 

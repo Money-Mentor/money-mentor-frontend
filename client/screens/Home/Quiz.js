@@ -7,7 +7,7 @@ import { shuffle } from '../../common';
 import { connect } from 'react-redux';
 import { getQuizPersonality } from '../../store/personality';
 import personality from '../../personality';
-import { styles } from '../../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 
 class Quiz extends Component {
   constructor() {
@@ -64,10 +64,17 @@ class Quiz extends Component {
     return (
       <View style={styles.questionContainer}>
         <View style={styles.logoLocation}>
-          <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
+          <Image
+            style={styles.logo}
+            source={require('../../../public/img/logo.png')}
+          />
         </View>
         <Text style={styles.questionText}>{this.state.question}</Text>
         <Slider
+          trackStyle={styles.track}
+          thumbStyle={styles.thumb}
+          minimumTrackTintColor={colorTheme.orange.medium}
+          maximumTrackTintColor="#b7b7b7"
           style={styles.slider}
           value={this.state.value}
           defaultValue={0}
@@ -93,7 +100,7 @@ class Quiz extends Component {
         </View>
         <Button
           raised
-          buttonStyle={styles.button}
+          buttonStyle={styles.bluebutton}
           textStyle={{ textAlign: 'center' }}
           title={`Next`}
           style={styles.questionButton}

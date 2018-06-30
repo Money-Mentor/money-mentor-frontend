@@ -1,37 +1,65 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../store/user';
-import { Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity, Image, TextInput, Animated,Keyboard, KeyboardAvoidingView } from 'react-native';
 import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button
+  Button,
 } from 'react-native-elements';
-import { styles, colorTheme } from '../../common/styles';
+import { styles, colorTheme, IMAGE_HEIGHT, IMAGE_HEIGHT_SMALL } from '../../common/styles';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { email: '', password: '' };
+    this.imageHeight = new Animated.Value(IMAGE_HEIGHT);
   }
   static navigationOptions = {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.white.snow},
+    headerTitleStyle: { color: colorTheme.white.snow },
+  };
+
+  componentWillMount () {
+    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
   }
+
+  componentWillUnmount() {
+    this.keyboardWillShowSub.remove();
+    this.keyboardWillHideSub.remove();
+  }
+
+  keyboardWillShow = (event) => {
+    Animated.timing(this.imageHeight, {
+      duration: event.duration,
+      toValue: IMAGE_HEIGHT_SMALL,
+    }).start();
+  };
+
+  keyboardWillHide = (event) => {
+    Animated.timing(this.imageHeight, {
+      duration: event.duration,
+      toValue: IMAGE_HEIGHT,
+    }).start();
+  };
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.logoLocation}>
-          <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
+      <KeyboardAvoidingView
+      style={styles.container}
+      behavior="padding"
+      >
+      <View style={styles.logoLocation}>
+      <Animated.Image source={require('../../../public/img/logo.png')}style={{ height: this.imageHeight }} />
           <Text style={styles.h1}>Login</Text>
         </View>
-        <View style={{padding:90}}/>
+        <View style={{ padding: 90 }} />
         <TextInput
           style={styles.formContainer}
-          autoCapitalize = 'none'
+          autoCapitalize="none"
           placeholderTextColor={colorTheme.white.snow}
           onChangeText={text =>
             this.setState({
@@ -42,8 +70,8 @@ class Login extends Component {
           placeholder="   Email"
         />
         <TextInput
-           style={styles.formContainer}
-          autoCapitalize = 'none'
+          style={styles.formContainer}
+          autoCapitalize="none"
           onChangeText={text =>
             this.setState({
               password: text,
@@ -62,23 +90,26 @@ class Login extends Component {
             textStyle={{ textAlign: 'center' }}
             title={`Submit`}
             onPress={() => {
-              this.props.handleSubmit(this.state.email, this.state.password, this.props.navigation);
+              this.props.handleSubmit(
+                this.state.email,
+                this.state.password,
+                this.props.navigation
+              );
             }}
           >
             Submit
           </Button>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
-
 
 const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password, navigation) {
       dispatch(login(email, password, navigation));
-    }
+    },
   };
 };
 
