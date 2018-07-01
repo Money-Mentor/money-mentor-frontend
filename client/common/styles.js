@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const IMAGE_HEIGHT_SMALL = 70;
+export const IMAGE_HEIGHT_SMALL = 0;
 export const IMAGE_HEIGHT = 115;
 
 export const colorTheme = {
@@ -14,7 +14,7 @@ export const colorTheme = {
     dark: '#262560',
   },
   white: {
-    snow: '#F7E3EE',
+    snow: 'white',
   },
   grey: {
     light: '#a9ada6',
@@ -75,6 +75,9 @@ export const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 115
+  },
+  animatedLogo: {
+    width: 200,
   },
   logoLocation: {
     position: 'absolute',
@@ -213,7 +216,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20 / 2,
     backgroundColor: 'white',
     shadowColor: 'black',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
     shadowOpacity: 0.35,
   },
@@ -326,7 +329,7 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginTop: 5,
-    color: colorTheme.grey.dark
+    color: colorTheme.white.snow,
   },
   transactionTitle: {
     paddingLeft: 10,
@@ -345,11 +348,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   slide: {
-    alignItems: 'center',
     height: 125,
     width: 300,
-    justifyContent: 'center',
-    backgroundColor: "white",
+    backgroundColor: 'white',
     marginVertical: 10,
     paddingVertical: 10,
     shadowColor: 'black',
@@ -357,7 +358,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.3
   },
   slideText: {
-    alignSelf: 'center',
+    alignItems: 'center',
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     fontSize: 16,
@@ -365,11 +366,33 @@ export const styles = StyleSheet.create({
   },
   slideImage: {
     alignSelf: 'center',
-    height: 80,
+    height: 60,
     width: 300,
+    paddingTop: 2,
+  },
+  viewArticleText: {
+    textAlign: 'left',
+    paddingLeft: 5,
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: colorTheme.orange.medium,
   },
   barText: {
     padding: 0,
     margin: 0
-  }
+  },
+  dateTextCategory: {
+    color: colorTheme.white.snow,
+    fontWeight: 'bold',
+    position: 'absolute',
+    left: '50%',
+    zIndex: 2
+  },
+  dateLineCategory: {
+    borderBottomColor: colorTheme.white.snow,
+    borderBottomWidth: 2,
+    position: 'absolute',
+
+    zIndex: 3
+  },
 });

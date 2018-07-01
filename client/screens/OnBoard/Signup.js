@@ -70,9 +70,9 @@ class Signup extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={styles.logoLocation}>
-          <Image
-            style={styles.logo}
+          <Animated.Image
             source={require('../../../public/img/logo.png')}
+            style={[styles.animatedLogo, { height: this.imageHeight }]}
           />
           <Text style={styles.h1}>Signup</Text>
         </View>
