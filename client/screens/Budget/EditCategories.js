@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, Button, ScrollView } from 'react-native';
-// import { Button } from 'react-native-elements';
+import { View, Text, ScrollView } from 'react-native';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../../store';
 import { styles, colorTheme } from '../../common/styles';
@@ -14,37 +14,37 @@ class EditCategories extends React.Component {
         {
           name: 'foodAndDrink',
           percentage: 35,
-          description: 'Includes groceries, restaurants, bars, nightlife, etc.'
+          description: '(Groceries, restaurants, bars, nightlife, etc.)'
         },
         {
           name: 'travel',
           percentage: 10,
-          description: 'Includes gas, commuting, subway, train, bus, etc.'
+          description: '(Gas, subway, train, bus, etc.)'
         },
         {
           name: 'recreation',
           percentage: 15,
-          description: 'Includes doctor visits, prescriptions, physicians, etc.'
+          description: '(Arts and entertainment, sports, outdoors, etc.)'
         },
         {
           name: 'healthcare',
           percentage: 10,
-          description: 'Includes doctor visits, prescriptions, physicians, etc.'
+          description: '(Doctor visits, prescriptions, physicians, etc.)'
         },
         {
           name: 'service',
           percentage: 10,
-          description: 'Includes self-care, etc.'
+          description: '(Self-care, automotive, financial, home repair, etc.)'
         },
         {
           name: 'community',
           percentage: 10,
-          description: 'Includes donations, etc.'
+          description: '(Education, donations, offering, etc.)'
         },
         {
           name: 'shops',
           percentage: 10,
-          description: 'Includes presents, clothes, accessories, etc.'
+          description: '(Presents, clothes, accessories, etc.)'
         }
       ],
       remaining: 0
