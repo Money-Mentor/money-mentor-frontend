@@ -14,47 +14,45 @@ class EditCategories extends React.Component {
         {
           name: 'foodAndDrink',
           percentage: 35,
-          description: 'Includes groceries, restaurants, bars, nightlife, etc.',
+          description: 'Includes groceries, restaurants, bars, nightlife, etc.'
         },
         {
           name: 'travel',
           percentage: 10,
-          description: 'Includes gas, commuting, subway, train, bus, etc.',
+          description: 'Includes gas, commuting, subway, train, bus, etc.'
         },
         {
           name: 'recreation',
           percentage: 15,
-          description:
-            'Includes doctor visits, prescriptions, physicians, etc.',
+          description: 'Includes doctor visits, prescriptions, physicians, etc.'
         },
         {
           name: 'healthcare',
           percentage: 10,
-          description:
-            'Includes doctor visits, prescriptions, physicians, etc.',
+          description: 'Includes doctor visits, prescriptions, physicians, etc.'
         },
         {
           name: 'service',
           percentage: 10,
-          description: 'Includes self-care, etc.',
+          description: 'Includes self-care, etc.'
         },
         {
           name: 'community',
           percentage: 10,
-          description: 'Includes donations, etc.',
+          description: 'Includes donations, etc.'
         },
         {
           name: 'shops',
           percentage: 10,
-          description: 'Includes presents, clothes, accessories, etc.',
-        },
+          description: 'Includes presents, clothes, accessories, etc.'
+        }
       ],
-      maximum: 0,
+      maximum: 0
     };
     this.toTitle = this.toTitle.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
   toTitle(str, separator) {
@@ -79,36 +77,81 @@ class EditCategories extends React.Component {
             <View>
               <View>
                 <Text style={[styles.smallerText, { fontSize: 24 }]}>
-                  Edit Categories:
+                  Edit Categories
                 </Text>
-                <Text style={styles.smallerText}>
-                  You have ${this.props.budget.spendingBudget} for your spending
-                  budget per month.
+                <Text
+                  style={[styles.smallerText, { fontSize: 20, width: '100%' }]}
+                >
+                  You have ${this.props.budget.spendingBudget} for spending per
+                  month.
                 </Text>
-                <Text style={[styles.smallerText, { fontSize: 20 }]}>
+                <Text style={[styles.smallerText, { fontSize: 16 }]}>
                   Percentage Remaining: {this.state.maximum}
                 </Text>
               </View>
-              <View style={{padding:5}}/>
+              <View style={{ padding: 5 }} />
               {/* All Categories */}
               {this.state.categories.map(category => {
                 return (
                   <View key={category.name}>
-                   <View style={{padding:5}}/>
-                    <Text style={[styles.smallerText, { fontSize: 16 }]}>
-                      {this.toTitle(category.name)} : {category.percentage}%
-                    </Text>
-                    <Text style={styles.smallerText}>
+                    <View style={{ padding: 5, width: '100%' }} />
+                    <View
+                      style={{
+                        paddingLeft: 20,
+                        paddingEnd: 20,
+                        flexDirection: 'row'
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.smallerText,
+                          {
+                            flexDirection: 'row',
+                            alignSelf: 'flex-start',
+                            fontSize: 16
+                          }
+                        ]}
+                      >
+                        {this.toTitle(category.name)}
+                      </Text>
+
+                      <View
+                        style={[
+                          styles.container,
+                          {
+                            flexDirection: 'row',
+                            justifyContent: 'flex-end',
+                            alignSelf: 'flex-end'
+                          }
+                        ]}
+                      >
+                        <Text
+                          style={[
+                            styles.smallerText,
+                            {
+                              textAlign: 'right',
+                              fontSize: 12,
+                              color: '#D3D3D3'
+                            }
+                          ]}
+                        >
+                          {category.percentage}
+                        </Text>
+                      </View>
+                    </View>
+
+                    {/* <Text style={styles.smallerText}>
                       {category.description}
-                    </Text>
+                    </Text> */}
+
                     <Slider
-                    trackStyle={styles.track}
-                    thumbStyle={styles.thumb}
-                    minimumTrackTintColor={colorTheme.orange.medium}
-                    maximumTrackTintColor='#b7b7b7'
+                      trackStyle={styles.track}
+                      thumbStyle={styles.thumb}
+                      minimumTrackTintColor={colorTheme.orange.medium}
+                      maximumTrackTintColor="#b7b7b7"
                       style={styles.slider}
                       value={category.percentage}
-                      onSlidingComplete={value => {
+                      onValueChange={value => {
                         this.setState(prevState => ({
                           categories: [...prevState.categories].map(elem => {
                             if (elem.name === category.name) {
@@ -118,7 +161,7 @@ class EditCategories extends React.Component {
                               return elem;
                             }
                           }),
-                          maximum: prevState.maximum - value,
+                          maximum: prevState.maximum - value
                         }));
                       }}
                       step={5}
@@ -144,7 +187,7 @@ class EditCategories extends React.Component {
               </Button>
             </View>
           )}
-        <View style={{padding:15}}/>
+          <View style={{ padding: 15 }} />
         </View>
       </ScrollView>
     );
@@ -154,14 +197,14 @@ class EditCategories extends React.Component {
 const mapState = state => {
   return {
     user: state.user,
-    budget: state.budget,
+    budget: state.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     fetchBudget: userId => dispatch(fetchBudget(userId)),
-    setBudget: budget => dispatch(setBudget(budget)),
+    setBudget: budget => dispatch(setBudget(budget))
   };
 };
 

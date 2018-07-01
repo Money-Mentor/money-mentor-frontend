@@ -6,23 +6,23 @@ export const IMAGE_HEIGHT = 115;
 export const colorTheme = {
   orange: {
     medium: '#EF4C22',
-    dark: '#9e3014',
+    dark: '#9e3014'
   },
   blue: {
     light: '#8EB3DF',
     medium: '#33409A',
-    dark: '#262560',
+    dark: '#262560'
   },
   white: {
-    snow: '#F7E3EE',
+    snow: '#F7E3EE'
   },
   grey: {
     light: '#a9ada6',
-    dark: '#585A56',
+    dark: '#585A56'
   },
   pink: {
     light: '#B776B2',
-    dark: '#AE4787',
+    dark: '#AE4787'
   },
   mint: {
     light: '#D4F2D2',
@@ -31,8 +31,8 @@ export const colorTheme = {
   purple: {
     light: '#4F5DA9',
     medium: '#424DA0',
-    dark: '#2E2F8E',
-  },
+    dark: '#2E2F8E'
+  }
 };
 //light purple : 424DA0
 // dark purple 2E2F8E
@@ -69,8 +69,13 @@ export const styles = StyleSheet.create({
     backgroundColor: colorTheme.blue.medium
   },
   card: {
-    width: '80%',
-    top: -15,
+    width: 375,
+    top: -10,
+    backgroundColor: '#3947ad',
+    borderColor: colorTheme.orange.medium,
+    borderWidth: 1,
+    color: colorTheme.white.snow,
+    fontSize: 18
   },
   logo: {
     width: 200,
@@ -102,22 +107,22 @@ export const styles = StyleSheet.create({
   },
   bluebutton: {
     backgroundColor: colorTheme.blue.dark,
-    width: '100%',
+    width: '100%'
   },
   orangebutton: {
     backgroundColor: colorTheme.orange.medium,
     left: -20,
     width: '120%',
-    height: 70,
+    height: 70
   },
   smallOrangeButton: {
     backgroundColor: colorTheme.orange.medium,
     width: '100%',
-    height: 50,
+    height: 50
   },
   buttontext: {
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: 24
   },
   circle: {
     width: 250,
@@ -130,7 +135,7 @@ export const styles = StyleSheet.create({
   },
   circleLine: {
     borderBottomColor: colorTheme.grey.light,
-    borderBottomWidth: 2,
+    borderBottomWidth: 2
   },
   circleFill: {
     backgroundColor: colorTheme.orange.medium,
@@ -205,7 +210,7 @@ export const styles = StyleSheet.create({
   },
   track: {
     height: 2,
-    borderRadius: 1,
+    borderRadius: 1
   },
   thumb: {
     width: 20,
@@ -213,9 +218,9 @@ export const styles = StyleSheet.create({
     borderRadius: 20 / 2,
     backgroundColor: 'white',
     shadowColor: 'black',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.35
   },
   dateText: {
     color: colorTheme.white.snow,
@@ -234,7 +239,7 @@ export const styles = StyleSheet.create({
   smallerText: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   homePageBudgetTextAlign: {
     flexDirection: 'row',
@@ -257,7 +262,7 @@ export const styles = StyleSheet.create({
   },
   homePageQuiz: {
     alignSelf: 'center',
-    color: colorTheme.grey.dark,
+    color: colorTheme.white.snow,
     paddingTop: 10,
     fontWeight: 'bold',
     fontSize: 14
@@ -297,7 +302,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#3947ad',
     borderWidth: 2,
     color: colorTheme.white.snow,
-    fontSize: 18,
+    fontSize: 18
   },
   budgetContainer: {
     width: '80%',
@@ -307,7 +312,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#3947ad',
     borderWidth: 2,
     color: colorTheme.white.snow,
-    fontSize: 18,
+    fontSize: 18
   },
   accountOverviewContainer: {
     flexGrow: 1,
@@ -349,7 +354,7 @@ export const styles = StyleSheet.create({
     height: 125,
     width: 300,
     justifyContent: 'center',
-    backgroundColor: "white",
+    backgroundColor: 'white',
     marginVertical: 10,
     paddingVertical: 10,
     shadowColor: 'black',
@@ -361,12 +366,12 @@ export const styles = StyleSheet.create({
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     fontSize: 16,
-    padding: 5,
+    padding: 5
   },
   slideImage: {
     alignSelf: 'center',
     height: 80,
-    width: 300,
+    width: 300
   },
   barText: {
     padding: 0,
