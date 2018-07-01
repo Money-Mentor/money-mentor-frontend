@@ -35,7 +35,7 @@ class Link extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.linkLogoLocation}>
-          <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../../public/img/animatedLogo.gif')} />
         </View>
         <Button
           raised
@@ -66,7 +66,7 @@ class Link extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image style={styles.logo} source={require('../../../public/img/logo.png')} />
+          <Image style={styles.logo} source={require('../../../public/img/animatedLogo.gif')} />
           <Text style={styles.h1}>Next Step: </Text>
         </View>
         <Button
