@@ -6,22 +6,23 @@ import Pie from './Pie';
 import { styles, pieColor, colorTheme } from '../../common/styles';
 import { transactionIconType, startDateString } from '../../common/index';
 import StackedBar from './StackedBar';
+import Transaction from '../Accounts/Transaction';
 
 type State = {
   activeIndex: number,
-  spendingsPerYear: any
+  spendingsPerYear: any,
 };
 
 class CategoryPie extends Component {
   state: State;
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0
+      activeIndex: 0,
     };
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
     this.getData = this.getData.bind(this);
@@ -55,7 +56,7 @@ class CategoryPie extends Component {
       'Recreation',
       'Service',
       'Shops',
-      'Travel'
+      'Travel',
     ];
     let categoryTotals = [];
     let totalByCategory;
@@ -66,7 +67,7 @@ class CategoryPie extends Component {
         transactions &&
         transactions
           .filter(
-            item => item.category1 === categories[i] && item.date > startDate
+            item => item.category1 === categories[i] && item.date >= startDate
           )
           .reduce((acc, num) => acc + num.amount, 0);
       total += totalByCategory;
@@ -87,7 +88,7 @@ class CategoryPie extends Component {
       percent = Math.round((category.number / total) * 100);
       spendingByCategoryPercentArr.push({
         number: percent,
-        name: category.name
+        name: category.name,
       });
     });
 
@@ -95,6 +96,8 @@ class CategoryPie extends Component {
   }
 
   render() {
+    let startDate = startDateString();
+    console.log(this.spendingByCategory()[0][this.state.activeIndex].number);
     const categorytrans = this.getTransByCategory();
     return (
       <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
@@ -115,27 +118,26 @@ class CategoryPie extends Component {
 
         {/* Progress Bars */}
 
-          <StackedBar
-            budget={this.props.budget}
-            spendingByCategory={this.spendingByCategory()}
-            getData={this.getData()}
-          />
-       
+        <StackedBar
+          budget={this.props.budget}
+          spendingByCategory={this.spendingByCategory()}
+          getData={this.getData()}
+        />
 
         {/* Transaction Details List */}
         <List>
-          <Text style={styles.transactionTitle}>Transactions</Text>
+          <View style={styles.transactionTitleContainer}>
+            <Text style={styles.transactionTitle}>Transactions</Text>
+            <Text style={styles.transactionTitle}>
+              ${this.spendingByCategory()[0][this.state.activeIndex].number}
+            </Text>
+          </View>
           {categorytrans &&
-            categorytrans.map(transaction => (
-              <ListItem
-                key={transaction.id}
-                title={transaction.name}
-                rightTitle={`$ ${transaction.amount}`}
-                leftIcon={{
-                  name: transactionIconType[transaction.category2]
-                }}
-              />
-            ))}
+            categorytrans
+              .filter(transaction => transaction.date >= startDate)
+              .map((transaction, key) => (
+                <Transaction key={key} transaction={transaction} />
+              ))}
         </List>
       </ScrollView>
     );
@@ -145,7 +147,7 @@ class CategoryPie extends Component {
 const mapState = state => {
   return {
     budget: state.acctTrans.budget,
-    transactions: state.acctTrans.trans
+    transactions: state.acctTrans.trans,
   };
 };
 
