@@ -31,11 +31,13 @@ class MyCarousel extends Component {
           >
             {item.title}
           </Text>
-          <Image
-            style={styles.slideImage}
-            source={{ uri: item.imageUrl }}
-            // resizeMode="stretch"
-          />
+          <Text
+            style={styles.viewArticleText}
+            onPress={() => Linking.openURL(item.url)}
+          >
+            View Article
+          </Text>
+          <Image style={styles.slideImage} source={{ uri: item.imageUrl }} />
         </View>
       </ScrollView>
     );
@@ -53,7 +55,7 @@ class MyCarousel extends Component {
         containerCustomStyle={{ flexGrow: 0 }}
         renderItem={this._renderItem}
         sliderWidth={400}
-        itemHeight={125}
+        itemHeight={140}
         itemWidth={300}
         inactiveSlideOpacity={0.3}
       />
