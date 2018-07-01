@@ -66,7 +66,7 @@ class Quiz extends Component {
         <View style={styles.logoLocation}>
           <Image
             style={styles.logo}
-            source={require('../../../public/img/logo.png')}
+            source={require('../../../public/img/animatedLogo.gif')}
           />
         </View>
         <Text style={styles.questionText}>{this.state.question}</Text>
