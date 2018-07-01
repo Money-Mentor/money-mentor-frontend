@@ -14,7 +14,7 @@ export const colorTheme = {
     dark: '#262560'
   },
   white: {
-    snow: 'white',
+    snow: 'white'
   },
   grey: {
     light: '#a9ada6',
@@ -71,18 +71,16 @@ export const styles = StyleSheet.create({
   card: {
     width: 375,
     top: -10,
-    backgroundColor: '#3947ad',
-    borderColor: colorTheme.orange.medium,
-    borderWidth: 1,
-    color: colorTheme.white.snow,
-    fontSize: 18
+    backgroundColor: colorTheme.orange.medium,
+    borderColor: colorTheme.white.snow,
+    borderWidth: 2,
   },
   logo: {
     width: 200,
     height: 115
   },
   animatedLogo: {
-    width: 200,
+    width: 200
   },
   logoLocation: {
     position: 'absolute',
@@ -334,7 +332,7 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginTop: 5,
-    color: colorTheme.white.snow,
+    color: colorTheme.white.snow
   },
   transactionTitle: {
     paddingLeft: 10,
@@ -373,14 +371,14 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 60,
     width: 300,
-    paddingTop: 2,
+    paddingTop: 2
   },
   viewArticleText: {
     textAlign: 'left',
     paddingLeft: 5,
     fontSize: 12,
     fontWeight: 'bold',
-    color: colorTheme.orange.medium,
+    color: colorTheme.orange.medium
   },
   barText: {
     padding: 0,
@@ -399,5 +397,5 @@ export const styles = StyleSheet.create({
     position: 'absolute',
 
     zIndex: 3
-  },
+  }
 });

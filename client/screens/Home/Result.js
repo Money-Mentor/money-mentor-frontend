@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
+import { Text, View, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { personalityTypes } from '../../data';
 import { updateUserPersonality } from '../../store/user';
 import { styles } from '../../common/styles';
-import { Button } from 'react-native-elements';
 
 class Result extends React.Component {
   static navigationOptions = {
@@ -31,9 +30,8 @@ class Result extends React.Component {
                 alignSelf: 'center',
                 height: 300,
                 width: 350,
-                borderWidth: 2,
-                borderColor: white
-                // borderRadius: 150
+                borderWidth: 1,
+                borderColor: 'white'
               }}
               source={{ uri: personalityType.imageUrl }}
               resizeMode="stretch"
@@ -41,7 +39,7 @@ class Result extends React.Component {
             <Text style={[styles.smallerText, { fontSize: 28 }]}>
               {personalityType.name}
             </Text>
-            <Text style={[styles.smallerText, { fontSize: 14 }]}>
+            <Text style={[styles.smallerText, { fontSize: 12 }]}>
               {personalityType.description}
             </Text>
           </View>

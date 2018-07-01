@@ -103,7 +103,8 @@ class Home extends React.Component {
             <View>
               <Card containerStyle={styles.card}>
                 <Text style={styles.homePageQuiz}>
-                  Looks like you haven't taken our quiz.{' '}
+                  MoneyMentor wants to give you personalized recommendations so
+                  take the quiz to find out your financial personality type.{' '}
                 </Text>
                 {/* <Text style={styles.homePageQuiz}>Take it now!</Text> */}
                 <Button

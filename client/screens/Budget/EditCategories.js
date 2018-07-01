@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Text, Button, ScrollView } from 'react-native';
+// import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../../store';
 import { styles, colorTheme } from '../../common/styles';
 import Slider from 'react-native-slider';
+
+import Description from './Description';
 
 class EditCategories extends React.Component {
   constructor() {
@@ -47,9 +49,10 @@ class EditCategories extends React.Component {
           description: 'Includes presents, clothes, accessories, etc.'
         }
       ],
-      maximum: 0
+      remaining: 0
     };
     this.toTitle = this.toTitle.bind(this);
+    this.showDescription = this.showDescription.bind(this);
   }
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium }
@@ -65,6 +68,11 @@ class EditCategories extends React.Component {
       });
   }
 
+  showDescription(str) {
+    const category = this.state.categories.filter(elem => elem.name === str);
+    return <Text>{category.description}</Text>;
+  }
+
   componentDidMount() {
     this.props.fetchBudget(this.props.user.id);
   }
@@ -75,7 +83,7 @@ class EditCategories extends React.Component {
         <View style={styles.container}>
           {this.props.budget.id && (
             <View>
-              <View>
+              <View style={{ paddingTop: 15 }}>
                 <Text style={[styles.smallerText, { fontSize: 24 }]}>
                   Edit Categories
                 </Text>
@@ -86,7 +94,7 @@ class EditCategories extends React.Component {
                   month.
                 </Text>
                 <Text style={[styles.smallerText, { fontSize: 16 }]}>
-                  Percentage Remaining: {this.state.maximum}
+                  Percentage Remaining: {this.state.remaining}
                 </Text>
               </View>
               <View style={{ padding: 5 }} />
@@ -151,18 +159,22 @@ class EditCategories extends React.Component {
                       maximumTrackTintColor="#b7b7b7"
                       style={styles.slider}
                       value={category.percentage}
-                      onValueChange={value => {
-                        this.setState(prevState => ({
-                          categories: [...prevState.categories].map(elem => {
-                            if (elem.name === category.name) {
-                              elem.percentage = value;
-                              return elem;
-                            } else {
-                              return elem;
-                            }
-                          }),
-                          maximum: prevState.maximum - value
-                        }));
+                      onSlidingComplete={value => {
+                        this.setState(prevState => {
+                          const remaining =
+                            prevState.remaining + (category.percentage - value);
+                          return {
+                            categories: [...prevState.categories].map(elem => {
+                              if (elem.name === category.name) {
+                                elem.percentage = value;
+                                return elem;
+                              } else {
+                                return elem;
+                              }
+                            }),
+                            remaining: remaining
+                          };
+                        });
                       }}
                       step={5}
                       minimumValue={0}
@@ -175,6 +187,7 @@ class EditCategories extends React.Component {
               {/* Button */}
               <Button
                 raised
+                disabled={this.state.remaining === 0 ? false : true}
                 buttonStyle={styles.smallOrangeButton}
                 textStyle={{ textAlign: 'center' }}
                 title={`Finished!`}
