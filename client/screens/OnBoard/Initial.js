@@ -23,14 +23,13 @@ class Initial extends Component {
 
 
 
-          <Text style={styles.initialScreenText}>money{'\n'}mentor</Text>
+          <Text style={styles.initialScreenText}>MONEY</Text>
+          <Text style={styles.initialScreenTextSecondLine}>MENTOR</Text>
         </View>
         <View style={{
-        marginTop:200, position: 'absolute', bottom: 20}}>
+        position: 'absolute', bottom: 20}}>
         <View style={{
-        flexGrow: 1,
-        justifyContent: 'center',
-        alignItems: 'center', padding: 10,  }}>
+        padding: 10}}>
           <Button
             raised
             buttonStyle={styles.orangebutton}
@@ -44,9 +43,7 @@ class Initial extends Component {
           </Button>
         </View>
         <View style={{
-        flexGrow: 1,
-        justifyContent: 'center',
-        alignItems: 'center', padding: 10,  }}>
+        padding: 10}}>
           <Button
             raised
             buttonStyle={styles.orangebutton}

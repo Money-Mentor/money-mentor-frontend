@@ -70,11 +70,10 @@ class Signup extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={styles.logoLocation}>
-          <Image
-            style={styles.logo}
-            source={require('../../../public/img/animatedLogo.gif')}
-          />
-          <Text style={styles.h1}>Signup</Text>
+        <Animated.View style={{ height: this.imageHeight }}>
+  <Image style={styles.logo} source={require('../../../public/img/logo2.gif')} />
+      </ Animated.View>
+          <Text style={styles.h1}>sign up</Text>
         </View>
         <View style={{ padding: 90 }} />
         <TextInput
