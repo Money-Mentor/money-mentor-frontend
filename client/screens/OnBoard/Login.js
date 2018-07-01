@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../store/user';
-import { Text, View, TouchableOpacity, Image, TextInput, Animated,Keyboard, KeyboardAvoidingView } from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  TextInput,
+  Animated,
+  Keyboard,
+  KeyboardAvoidingView,
+} from 'react-native';
 import {
   FormLabel,
   FormInput,
   FormValidationMessage,
   Button,
 } from 'react-native-elements';
-import { styles, colorTheme, IMAGE_HEIGHT, IMAGE_HEIGHT_SMALL } from '../../common/styles';
+import {
+  styles,
+  colorTheme,
+  IMAGE_HEIGHT,
+  IMAGE_HEIGHT_SMALL,
+} from '../../common/styles';
 
 class Login extends Component {
   constructor(props) {
@@ -22,9 +36,15 @@ class Login extends Component {
     headerTitleStyle: { color: colorTheme.white.snow },
   };
 
-  componentWillMount () {
-    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
+  componentWillMount() {
+    this.keyboardWillShowSub = Keyboard.addListener(
+      'keyboardWillShow',
+      this.keyboardWillShow
+    );
+    this.keyboardWillHideSub = Keyboard.addListener(
+      'keyboardWillHide',
+      this.keyboardWillHide
+    );
   }
 
   componentWillUnmount() {
@@ -32,14 +52,14 @@ class Login extends Component {
     this.keyboardWillHideSub.remove();
   }
 
-  keyboardWillShow = (event) => {
+  keyboardWillShow = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
       toValue: IMAGE_HEIGHT_SMALL,
     }).start();
   };
 
-  keyboardWillHide = (event) => {
+  keyboardWillHide = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
       toValue: IMAGE_HEIGHT,
