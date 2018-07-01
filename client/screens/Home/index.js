@@ -38,7 +38,9 @@ class Home extends React.Component {
     const spent =
       trans &&
       trans
-        .filter(item => item.amount > 0 && item.date > startDate)
+        .filter(
+          item => item.include && item.amount > 0 && item.date > startDate
+        )
         .reduce((acc, num) => acc + num.amount, 0);
     return spent;
   }
