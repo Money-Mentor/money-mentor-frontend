@@ -42,17 +42,6 @@ class Result extends React.Component {
             <Text style={[styles.smallerText, { fontSize: 12 }]}>
               {personalityType.description}
             </Text>
-            {/* <Button
-              raised
-              buttonStyle={{ backgroundColor: '#92B1BD', borderRadius: 10 }}
-              textStyle={{ textAlign: 'center' }}
-              title={`Let's set up your budget!`}
-              onPress={() => {
-                this.props.navigation.navigate('BudgetSetup', {
-                  title: 'BudgetSetup'
-                });
-              }}
-            /> */}
           </View>
         )}
       </View>

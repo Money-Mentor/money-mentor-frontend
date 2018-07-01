@@ -17,7 +17,7 @@ class Budget extends React.Component {
         <Text>Budget Page</Text>
         <Button
           raised
-          buttonStyle={styles.button}
+          buttonStyle={styles.orangebutton}
           textStyle={{ textAlign: 'center' }}
           title={`Edit Budget`}
           onPress={() => {
@@ -28,7 +28,7 @@ class Budget extends React.Component {
         />
         <Button
           raised
-          buttonStyle={styles.button}
+          buttonStyle={styles.orangebutton}
           textStyle={{ textAlign: 'center' }}
           title={`Edit Categories`}
           onPress={() => {

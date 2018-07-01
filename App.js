@@ -12,11 +12,10 @@ import {
   Signup,
   BudgetSetup,
   EditCategories,
-  Navbar,
+  Navbar
 } from './client';
 
 // import { Font, Permissions, Notifications } from 'expo';
-import { Font } from 'expo';
 
 // ----------------- Push Notifications --------------------------
 // async function registerForPushNotificationsAsync() {
@@ -34,12 +33,13 @@ import { Font } from 'expo';
 //   console.log('Our token ==========================================', token);
 //   /// Send this to a server
 // }
+import { Font } from 'expo';
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      fontLoaded: false,
+      fontLoaded: false
     };
   }
   async componentDidMount() {
@@ -47,7 +47,7 @@ export default class App extends React.Component {
     // this.listener = Notifications.addListener(this.handleNotification);
 
     await Font.loadAsync({
-      logo: require('./public/fonts/logo.otf'),
+      logo: require('./public/fonts/logo.otf')
     });
     this.setState({ fontLoaded: true });
   }
@@ -83,10 +83,10 @@ const AuthenticationNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Link: { screen: Link },
   BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories },
+  EditCategories: { screen: EditCategories }
 });
 
 const AppNavigator = createSwitchNavigator({
   Auth: { screen: AuthenticationNavigator },
-  Main: { screen: Navbar },
+  Main: { screen: Navbar }
 });

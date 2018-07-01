@@ -24,6 +24,9 @@ const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
  * THUNK CREATORS
  */
 
+
+// add pushToken into thunk parameters !!!!!!!!!!!!!!!!
+
 export const login = (email, password, navigation) => dispatch =>
   axios
     .post(`${server}/auth/login`, { email, password })
@@ -71,7 +74,7 @@ export const updateUserPersonality = (userId, user) => {
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/users/${userId}`, {
-        user,
+        user
       });
       dispatch(setPersonality(res.data));
     } catch (err) {

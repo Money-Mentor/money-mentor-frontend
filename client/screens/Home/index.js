@@ -10,12 +10,14 @@ import Quiz from './Quiz';
 import Result from './Result';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
+import { startDateString } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
 
 class Home extends React.Component {
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
+
   componentDidMount() {
     this.props.fetchAcctTransData();
     this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
@@ -30,22 +32,13 @@ class Home extends React.Component {
   }
 
   totalSpent() {
-    const date = new Date();
     const { trans } = this.props;
-
-    const formatMonth = month => {
-      month++;
-      return month < 10 ? '0' + month : month;
-    };
-    let startDate = new Date(date.getFullYear(), date.getMonth(), 1);
-    let startDateString = `${startDate.getFullYear()}-${formatMonth(
-      startDate.getMonth()
-    )}-01`;
+    let startDate = startDateString();
 
     const spent =
       trans &&
       trans
-        .filter(item => item.amount > 0 && item.date > startDateString)
+        .filter(item => item.amount > 0 && item.date > startDate)
         .reduce((acc, num) => acc + num.amount, 0);
     return spent;
   }
@@ -88,11 +81,11 @@ class Home extends React.Component {
 
   budgetStatus() {
     if (this.dateCircleHeight() > this.budgetCircleHeight()) {
-      return 'Nice! Looks like you are right on track';
+      return 'Nice! You are on track';
     } else if (this.remainingbudget() < 0) {
       return 'Oops! You spent your budget already';
     } else {
-      return 'Oh no! Your spendable is more than you daily budget';
+      return 'Time to lower your spending!';
     }
   }
 
@@ -115,7 +108,7 @@ class Home extends React.Component {
                 <Text style={styles.homePageQuiz}>Take it now!</Text>
                 <Button
                   raised
-                  buttonStyle={styles.button}
+                  buttonStyle={styles.bluebutton}
                   textStyle={{ textAlign: 'center' }}
                   title={`Take the Quiz!`}
                   onPress={() => {
@@ -127,7 +120,12 @@ class Home extends React.Component {
           ) : (
             <View />
           )}
-          <Text style={[styles.homePageSmallText, { paddingVertical: 10 }]}>
+          <Text
+            style={[
+              styles.homePageSmallText,
+              { paddingVertical: 10, width: '80%', textAlign: 'center' },
+            ]}
+          >
             {this.budgetStatus()}
           </Text>
 
@@ -205,7 +203,7 @@ class Home extends React.Component {
             </View>
           </View>
           {/*-------------- Article suggestions------------*/}
-          <View>
+          <View style={{ padding: 10 }}>
             <ArticleCarousel />
           </View>
         </View>
