@@ -15,24 +15,25 @@ import {
   Navbar,
 } from './client';
 
-import { Font, Permissions, Notifications } from 'expo';
+// import { Font, Permissions, Notifications } from 'expo';
+import { Font } from 'expo';
 
 // ----------------- Push Notifications --------------------------
-async function registerForPushNotificationsAsync() {
-  // Remote notifications don't work in simulators, only on device
-  if (!Expo.Constants.isDevice) {
-    return;
-  }
-  let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-  console.log('status=============================================', status);
+// async function registerForPushNotificationsAsync() {
+//   // Remote notifications don't work in simulators, only on device
+//   if (!Expo.Constants.isDevice) {
+//     return;
+//   }
+//   let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+//   console.log('status=============================================', status);
 
-  if (status !== 'granted') {
-    return;
-  }
-  let token = await Notifications.getExpoPushTokenAsync();
-  console.log('Our token ==========================================', token);
-  /// Send this to a server
-}
+//   if (status !== 'granted') {
+//     return;
+//   }
+//   let token = await Notifications.getExpoPushTokenAsync();
+//   console.log('Our token ==========================================', token);
+//   /// Send this to a server
+// }
 
 export default class App extends React.Component {
   constructor() {
@@ -42,8 +43,8 @@ export default class App extends React.Component {
     };
   }
   async componentDidMount() {
-    registerForPushNotificationsAsync();
-    this.listener = Notifications.addListener(this.handleNotification);
+    // registerForPushNotificationsAsync();
+    // this.listener = Notifications.addListener(this.handleNotification);
 
     await Font.loadAsync({
       logo: require('./public/fonts/logo.otf'),
@@ -55,11 +56,11 @@ export default class App extends React.Component {
     this.listener && this.listener.remove();
   }
 
-  handleNotification = ({ origin, data }) => {
-    console.log(
-      `Push notification ${origin} with data: ${JSON.stringify(data)}`
-    );
-  };
+  // handleNotification = ({ origin, data }) => {
+  //   console.log(
+  //     `Push notification ${origin} with data: ${JSON.stringify(data)}`
+  //   );
+  // };
 
   render() {
     return (

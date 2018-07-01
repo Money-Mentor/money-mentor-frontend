@@ -1,12 +1,12 @@
-import axios from "axios";
-import { server } from "./index";
+import axios from 'axios';
+import { server } from './index';
 
 /**
  * ACTION TYPES
  */
-const GET_USER = "GET_USER";
-const REMOVE_USER = "REMOVE_USER";
-const UPDATE_USER_PERSONALITY = "UPDATE_USER_PERSONALITY";
+const GET_USER = 'GET_USER';
+const REMOVE_USER = 'REMOVE_USER';
+const UPDATE_USER_PERSONALITY = 'UPDATE_USER_PERSONALITY';
 
 /**
  * INITIAL STATE
@@ -24,13 +24,13 @@ const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
  * THUNK CREATORS
  */
 
-export const login = (email, password, pushToken, navigation) => dispatch =>
+export const login = (email, password, navigation) => dispatch =>
   axios
-    .post(`${server}/auth/login`, { email, password, pushToken })
+    .post(`${server}/auth/login`, { email, password })
     .then(
       res => {
         dispatch(getUser(res.data));
-        navigation.navigate("Main", { title: "Main" });
+        navigation.navigate('Main', { title: 'Main' });
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -39,19 +39,20 @@ export const login = (email, password, pushToken, navigation) => dispatch =>
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
-export const signup = (email, password, pushToken) => dispatch =>
-  axios
-    .post(`${server}/auth/signup`, { email, password, pushToken })
-    .then(
-      res => {
-        dispatch(getUser(res.data));
-      },
-      authError => {
-        // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({ error: authError }));
-      }
-    )
-    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+export const signup = (email, password) => dispatch => {
+axios
+  .post(`${server}/auth/signup`, { email, password })
+  .then(
+    res => {
+      dispatch(getUser(res.data));
+    },
+    authError => {
+      // rare example: a good use case for parallel (non-catch) error handler
+      dispatch(getUser({ error: authError }));
+    }
+  )
+  .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+};
 
 // Change .then to using await
 // Make it one function that accepts paramenter (signup v login)
@@ -74,7 +75,7 @@ export const updateUserPersonality = (userId, user) => {
       });
       dispatch(setPersonality(res.data));
     } catch (err) {
-      console.log("Error updating user personality: ", err.message);
+      console.log('Error updating user personality: ', err.message);
     }
   };
 };
