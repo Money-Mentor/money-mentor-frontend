@@ -63,6 +63,7 @@ export const pieColor = [
 
 export const styles = StyleSheet.create({
   container: {
+    fontFamily: 'logo',
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -106,9 +107,10 @@ export const styles = StyleSheet.create({
   },
   orangebutton: {
     backgroundColor: colorTheme.orange.medium,
-    left: -20,
-    width: '120%',
     height: 70,
+    width: 300,
+    padding: 10,
+    alignSelf: 'center'
   },
   smallOrangeButton: {
     backgroundColor: colorTheme.orange.medium,

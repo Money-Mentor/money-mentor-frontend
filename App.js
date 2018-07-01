@@ -26,7 +26,7 @@ export default class App extends React.Component {
   }
   async componentDidMount() {
     await Font.loadAsync({
-      logo: require('./public/fonts/logo.otf')
+      logo: require('./public/fonts/Poppins/Poppins-ExtraLight.ttf')
     });
     this.setState({ fontLoaded: true });
   }

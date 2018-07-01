@@ -53,7 +53,7 @@ class Login extends Component {
       behavior="padding"
       >
       <View style={styles.logoLocation}>
-      <Animated.Image source={require('../../../public/img/logo.png')}style={{ height: this.imageHeight }} />
+      <Animated.Image source={require('../../../public/img/animatedLogo.gif')}style={{ height: this.imageHeight }} />
           <Text style={styles.h1}>Login</Text>
         </View>
         <View style={{ padding: 90 }} />

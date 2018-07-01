@@ -72,7 +72,7 @@ class Signup extends Component {
         <View style={styles.logoLocation}>
           <Image
             style={styles.logo}
-            source={require('../../../public/img/logo.png')}
+            source={require('../../../public/img/animatedLogo.gif')}
           />
           <Text style={styles.h1}>Signup</Text>
         </View>
