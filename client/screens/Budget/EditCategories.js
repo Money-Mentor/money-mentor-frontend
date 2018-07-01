@@ -6,8 +6,6 @@ import { fetchBudget, setBudget } from '../../store';
 import { styles, colorTheme } from '../../common/styles';
 import Slider from 'react-native-slider';
 
-import Description from './Description';
-
 class EditCategories extends React.Component {
   constructor() {
     super();
