@@ -223,6 +223,12 @@ export const styles = StyleSheet.create({
     color: colorTheme.white.snow,
     fontWeight: 'bold',
   },
+    editCategoryText: {
+    fontFamily: 'poppinsRegular',
+    alignSelf: 'center',
+    color: '#000000',
+    fontWeight: 'bold',
+  },
   homePageBudgetTextAlign: {
     flexDirection: 'row',
     width: '100%',

@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../../store';
-import { styles, colorTheme } from '../../common/styles';
+import { styles, colorTheme, deviceWidth } from '../../common/styles';
 import Slider from 'react-native-slider';
 
 class EditCategories extends React.Component {
@@ -78,15 +78,12 @@ class EditCategories extends React.Component {
           {this.props.budget.id && (
             <View>
               <View>
-                <Text style={[styles.smallerText, { fontSize: 24 }]}>
-                  Edit Categories:
+                <Text style={[styles.initialScreenText, { fontSize: 30 }]}>
+                  Edit Your Budget
                 </Text>
-                <Text style={styles.smallerText}>
-                  You have ${this.props.budget.spendingBudget} for your spending
-                  budget per month.
-                </Text>
-                <Text style={[styles.smallerText, { fontSize: 20 }]}>
-                  Percentage Remaining: {this.state.maximum}
+                <Text style={[styles.editCategoryText, { fontSize: 20, color: '#ffffff', textAlign: 'center' }]}>
+                {'\n'}Percentage Remaining:{'\n'}
+                {this.state.maximum} of ${this.props.budget.spendingBudget}
                 </Text>
               </View>
               <View style={{padding:5}}/>
@@ -96,10 +93,10 @@ class EditCategories extends React.Component {
 
                   <Card key={category.name}>
                    <View style={{padding:5}}/>
-                    <Text style={[styles.smallerText, { fontSize: 16 }]}>
+                    <Text style={[styles.editCategoryText, { fontSize: 16 }]}>
                       {this.toTitle(category.name)} : {category.percentage}%
                     </Text>
-                    <Text style={styles.smallerText}>
+                    <Text style={styles.editCategoryText}>
                       {category.description}
                     </Text>
                     <Slider
@@ -133,7 +130,7 @@ class EditCategories extends React.Component {
               {/* Button */}
               <Button
                 raised
-                buttonStyle={styles.smallOrangeButton}
+                buttonStyle={[styles.smallOrangeButton, {marginVertical: 20, width: deviceWidth - 20, alignSelf: 'center'}]}
                 textStyle={{ textAlign: 'center' }}
                 title={`Finished!`}
                 onPress={() => {

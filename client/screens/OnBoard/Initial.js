@@ -53,16 +53,6 @@ class Initial extends Component {
             }
           >
           </Button>
-          <Button
-            raised
-            buttonStyle={styles.orangebutton}
-            textStyle={styles.buttontext}
-            title={`Signup`}
-            onPress={() =>
-              this.props.navigation.navigate('EditCategories', { title: 'EditCategories' })
-            }
-          >
-          </Button>
         </View>
         </View>
       </ImageBackground>
