@@ -230,7 +230,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#000000',
     fontWeight: 'bold',
-    size: 16
+    fontSize: 16
   },
     editCategoryText: {
     fontFamily: 'poppinsRegular',
