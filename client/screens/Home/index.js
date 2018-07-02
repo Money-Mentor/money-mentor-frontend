@@ -220,7 +220,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())    // use shorthand
   };
 };
 

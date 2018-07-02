@@ -39,9 +39,9 @@ export default class ReminderInterval extends Component {
           onValueChange={(interval) => this.setState({ interval })}
         >
           <Picker.Item label="None" value={"None"} />
-          <Picker.Item label="5" value={5} />
-          <Picker.Item label="10" value={10} />
-          <Picker.Item label="15" value={15} />
+          <Picker.Item label="Daily" value={86400000} />
+          <Picker.Item label="weekly" value={604800000} />
+          <Picker.Item label="bi-weekly" value={1209600000} />
         </Picker>
 
       </View>

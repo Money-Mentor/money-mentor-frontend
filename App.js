@@ -29,9 +29,6 @@ async function registerForPushNotificationsAsync() {
   if (status !== 'granted') {
     return;
   }
-  let token = await Notifications.getExpoPushTokenAsync();
-  console.log('Our token ==========================================', token);
-  /// Send this to a server
 }
 
 // import { Font } from 'expo';

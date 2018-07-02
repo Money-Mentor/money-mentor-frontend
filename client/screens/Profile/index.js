@@ -3,6 +3,8 @@ import { Text, View } from 'react-native';
 import ReminderInterval from './ReminderInterval';
 import { styles } from '../../common/styles';
 
+// TODO: render reminder Interval for Ostrich only
+
 const Profile = () => {
   return (
     <View style={styles.container}>
