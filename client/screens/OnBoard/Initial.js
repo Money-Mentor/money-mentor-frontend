@@ -39,7 +39,6 @@ class Initial extends Component {
               this.props.navigation.navigate('Login', { title: 'Login' })
             }
           >
-            Login
           </Button>
         </View>
         <View style={{
@@ -53,20 +52,17 @@ class Initial extends Component {
               this.props.navigation.navigate('Signup', { title: 'Signup' })
             }
           >
-            Signup
           </Button>
-
           <Button
             raised
             buttonStyle={styles.orangebutton}
             textStyle={styles.buttontext}
-            title={`Budget Setup`}
+            title={`Signup`}
             onPress={() =>
-              this.props.navigation.navigate('BudgetSetup', { title: 'BudgetSetup' })
+              this.props.navigation.navigate('EditCategories', { title: 'EditCategories' })
             }
           >
           </Button>
-
         </View>
         </View>
       </ImageBackground>

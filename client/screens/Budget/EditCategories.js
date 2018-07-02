@@ -93,7 +93,8 @@ class EditCategories extends React.Component {
               {/* All Categories */}
               {this.state.categories.map(category => {
                 return (
-                  <View key={category.name}>
+
+                  <Card key={category.name}>
                    <View style={{padding:5}}/>
                     <Text style={[styles.smallerText, { fontSize: 16 }]}>
                       {this.toTitle(category.name)} : {category.percentage}%
@@ -125,7 +126,7 @@ class EditCategories extends React.Component {
                       minimumValue={0}
                       maximumValue={100}
                     />
-                  </View>
+                  </Card>
                 );
               })}
 
