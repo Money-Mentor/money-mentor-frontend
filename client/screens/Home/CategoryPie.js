@@ -8,6 +8,7 @@ import { transactionIconType, startDateString } from '../../common/index';
 import StackedBar from './StackedBar';
 import Transaction from '../Accounts/Transaction';
 
+
 class CategoryPie extends Component {
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium },

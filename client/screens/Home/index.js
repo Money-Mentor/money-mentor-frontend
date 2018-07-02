@@ -10,25 +10,17 @@ import Quiz from './Quiz';
 import Result from './Result';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
-import { startDateString } from '../../common/index';
+import { startDateString, getMonthDaysLeft, getDay } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
+import BugetCircle from './BugetCircle';
 
-class Home extends React.Component {
+class Home extends Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
 
   componentDidMount() {
     this.props.fetchAcctTransData();
-    this.getMonthDaysLeft = this.getMonthDaysLeft.bind(this);
-  }
-
-  getMonthDaysLeft() {
-    let date = new Date();
-    return (
-      new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() -
-      date.getDate()
-    );
   }
 
   totalSpent() {
@@ -37,7 +29,9 @@ class Home extends React.Component {
     const spent =
       trans &&
       trans
-        .filter(item => item.included && item.amount > 0 && item.date >= startDate)
+        .filter(
+          item => item.included && item.amount > 0 && item.date >= startDate
+        )
         .reduce((acc, num) => acc + num.amount, 0);
     return spent;
   }
@@ -46,25 +40,6 @@ class Home extends React.Component {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     return totalBudget - this.totalSpent();
-  }
-
-  getDay() {
-    const month = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-    const date = new Date();
-    return `${month[date.getMonth()]} ${date.getDate()}`;
   }
 
   dateCircleHeight() {
@@ -123,7 +98,7 @@ class Home extends React.Component {
           <Text
             style={[
               styles.homePageSmallText,
-              { paddingVertical: 10, width: '80%', textAlign: 'center' }
+              { paddingVertical: 10, width: '80%', textAlign: 'center' },
             ]}
           >
             {this.budgetStatus()}
@@ -135,7 +110,7 @@ class Home extends React.Component {
               onPress={() => {
                 this.props.navigation.navigate('CategoryPie', {
                   title: 'CategoryPie',
-                  budget: budget
+                  budget: budget,
                 });
               }}
             >
@@ -174,7 +149,7 @@ class Home extends React.Component {
               ]}
             />
             <Text style={[styles.dateText, { top: dateHeight }]}>
-              {this.getDay()}
+              {getDay()}
             </Text>
           </View>
 
@@ -190,7 +165,7 @@ class Home extends React.Component {
                 <Text style={styles.homePageSmallText}>
                   {this.remainingbudget() >= 0
                     ? `$${Math.floor(
-                        this.remainingbudget() / this.getMonthDaysLeft()
+                        this.remainingbudget() / getMonthDaysLeft()
                       )}`
                     : '$0'}
                 </Text>
@@ -214,13 +189,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget
+    budget: state.acctTrans.budget,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())    // use shorthand
+    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
   };
 };
 
@@ -237,5 +212,5 @@ export const HomeStack = createStackNavigator({
   Result: { screen: Result },
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults }
+  RetirementResults: { screen: RetirementResults },
 });
