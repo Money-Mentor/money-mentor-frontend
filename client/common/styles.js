@@ -55,7 +55,6 @@ export const pieColor = [
 
 export const styles = StyleSheet.create({
   container: {
-    fontFamily: 'poppinsRegular',
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -290,7 +289,6 @@ export const styles = StyleSheet.create({
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     fontSize: 30,
-    fontFamily: 'poppinsRegular'
   },
   formContainer: {
     width: '80%',
