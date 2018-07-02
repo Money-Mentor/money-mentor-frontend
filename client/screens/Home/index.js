@@ -12,8 +12,9 @@ import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
 import { startDateString, getMonthDaysLeft, getDay } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
+import BugetCircle from './BugetCircle';
 
-class Home extends React.Component {
+class Home extends Component {
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium },
   };

@@ -51,7 +51,6 @@ export const getMonthDaysLeft = () => {
   );
 }
 
-
 export const getDay = () => {
   const month = [
     'Jan',
