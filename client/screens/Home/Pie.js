@@ -22,23 +22,8 @@ const d3 = {
   shape,
 };
 
-import { scaleBand, scaleLinear } from 'd3-scale';
-
-type Props = {
-  pieWidth: number,
-  pieHeight: number,
-  colors: any,
-  onItemSelected: any,
-};
-
-type State = {
-  highlightedIndex: number,
-};
-
 class Pie extends React.Component {
-  state: State;
-
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.state = { highlightedIndex: 0 };
     this._createPieChart = this._createPieChart.bind(this);
