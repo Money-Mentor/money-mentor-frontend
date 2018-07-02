@@ -39,7 +39,6 @@ class Initial extends Component {
               this.props.navigation.navigate('Login', { title: 'Login' })
             }
           >
-            Login
           </Button>
         </View>
         <View style={{
@@ -53,7 +52,6 @@ class Initial extends Component {
               this.props.navigation.navigate('Signup', { title: 'Signup' })
             }
           >
-            Signup
           </Button>
         </View>
         </View>
