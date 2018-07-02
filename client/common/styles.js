@@ -9,23 +9,23 @@ export const deviceHeight = Dimensions.get("window").height;
 export const colorTheme = {
   orange: {
     medium: '#EF4C22',
-    dark: '#9e3014',
+    dark: '#9e3014'
   },
   blue: {
     light: '#8EB3DF',
     medium: '#33409A',
-    dark: '#262560',
+    dark: '#262560'
   },
   white: {
-    snow: 'white',
+    snow: 'white'
   },
   grey: {
     light: '#a9ada6',
-    dark: '#585A56',
+    dark: '#585A56'
   },
   pink: {
     light: '#B776B2',
-    dark: '#AE4787',
+    dark: '#AE4787'
   },
   mint: {
     light: '#D4F2D2',
@@ -34,8 +34,8 @@ export const colorTheme = {
   purple: {
     light: '#4F5DA9',
     medium: '#424DA0',
-    dark: '#2E2F8E',
-  },
+    dark: '#2E2F8E'
+  }
 };
 
 export const pieColor = [
@@ -55,22 +55,24 @@ export const pieColor = [
 
 export const styles = StyleSheet.create({
   container: {
-    fontFamily: 'poppinsRegular',
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colorTheme.blue.medium,
   },
   card: {
-    width: '80%',
-    top: -15,
+    width: 375,
+    top: -10,
+    backgroundColor: colorTheme.orange.medium,
+    borderColor: colorTheme.white.snow,
+    borderWidth: 2
   },
   logo: {
     width: 150,
     height: 108
   },
   animatedLogo: {
-    width: 200,
+    width: 200
   },
   logoLocation: {
     justifyContent: 'center',
@@ -90,12 +92,12 @@ export const styles = StyleSheet.create({
   },
   bluebutton: {
     backgroundColor: colorTheme.blue.dark,
-    width: '100%',
+    width: '100%'
   },
   orangebutton: {
     backgroundColor: colorTheme.orange.medium,
     height: 50,
-    width: (deviceWidth - 50),
+    width: deviceWidth - 50,
     padding: 10,
     alignSelf: 'center'
   },
@@ -107,7 +109,7 @@ export const styles = StyleSheet.create({
   },
   buttontext: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 18
   },
   circle: {
     width: 250,
@@ -197,7 +199,7 @@ export const styles = StyleSheet.create({
   },
   track: {
     height: 2,
-    borderRadius: 1,
+    borderRadius: 1
   },
   thumb: {
     width: 20,
@@ -207,7 +209,7 @@ export const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.35
   },
   dateText: {
     color: colorTheme.white.snow,
@@ -227,7 +229,7 @@ export const styles = StyleSheet.create({
   smallerText: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
     editCategoryText: {
     fontFamily: 'poppinsRegular',
@@ -256,7 +258,7 @@ export const styles = StyleSheet.create({
   },
   homePageQuiz: {
     alignSelf: 'center',
-    color: colorTheme.grey.dark,
+    color: colorTheme.white.snow,
     paddingTop: 10,
     fontWeight: 'bold',
     fontSize: 14,
@@ -289,14 +291,13 @@ export const styles = StyleSheet.create({
     fontSize: 56,
     fontFamily: 'poppinsExtraLight',
     position: 'relative',
-    top: -30,
+    top: -30
   },
   h1: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     fontSize: 30,
-    fontFamily: 'poppinsRegular'
   },
   formContainer: {
     width: '80%',
@@ -306,7 +307,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#3947ad',
     borderWidth: 2,
     color: colorTheme.white.snow,
-    fontSize: 18,
+    fontSize: 18
   },
   budgetContainer: {
     padding: 10,
@@ -316,7 +317,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#3947ad',
     borderWidth: 2,
     color: colorTheme.white.snow,
-    fontSize: 18,
+    fontSize: 18
   },
   accountOverviewContainer: {
     flexGrow: 1,
@@ -335,7 +336,7 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginTop: 5,
-    color: colorTheme.white.snow,
+    color: colorTheme.white.snow
   },
   transactionTitle: {
     paddingLeft: 10,
@@ -373,20 +374,20 @@ export const styles = StyleSheet.create({
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     fontSize: 16,
-    padding: 5,
+    padding: 5
   },
   slideImage: {
     alignSelf: 'center',
     height: 60,
     width: 300,
-    paddingTop: 2,
+    paddingTop: 2
   },
   viewArticleText: {
     textAlign: 'left',
     paddingLeft: 5,
     fontSize: 12,
     fontWeight: 'bold',
-    color: colorTheme.orange.medium,
+    color: colorTheme.orange.medium
   },
   barText: {
     padding: 0,

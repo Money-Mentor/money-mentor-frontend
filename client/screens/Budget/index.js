@@ -13,11 +13,10 @@ class Budget extends React.Component {
   };
   render() {
     return (
-      <View>
-        <Text>Budget Page</Text>
+      <View style={{ backgroundColor: colorTheme.blue.medium }}>
         <Button
           raised
-          buttonStyle={styles.orangebutton}
+          buttonStyle={[styles.orangebutton, { padding: 10 }]}
           textStyle={{ textAlign: 'center' }}
           title={`Edit Budget`}
           onPress={() => {
