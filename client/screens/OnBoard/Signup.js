@@ -69,7 +69,7 @@ class Signup extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <View>
+
         <View style={styles.logoLocation}>
         <Animated.View style={{ height: this.imageHeight }}>
   <Image style={styles.logo} source={require('../../../public/img/logo2.gif')} />
@@ -119,7 +119,7 @@ class Signup extends Component {
             Submit
           </Button>
         </View>
-        </View>
+
       </KeyboardAvoidingView>
     );
   }

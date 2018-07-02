@@ -21,8 +21,8 @@ class BudgetSetup extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior="padding">
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+
         <Text style={[styles.h1, { top: -10, paddingBottom: 10 }]}>
           Tell us a little about your finances.
         </Text>
@@ -70,7 +70,7 @@ class BudgetSetup extends React.Component {
             }}
           />
         </View>
-        </View>
+
       </KeyboardAvoidingView>
     );
   }
