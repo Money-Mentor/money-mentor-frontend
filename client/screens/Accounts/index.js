@@ -8,11 +8,12 @@ import IndividualAccount from './IndividualAccount'
 
 class Accounts extends React.Component {
   static navigationOptions = {
+    title: 'Accounts',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerTitleStyle: { color: colorTheme.white.snow },
   };
   render() {
     const { account } = this.props;
-
     return (
       <View style={styles.accountOverviewContainer}>
         <List>
@@ -28,6 +29,7 @@ class Accounts extends React.Component {
                     this.props.navigation.navigate('IndividualAccount', {
                       title: 'IndividualAccount',
                       accountId: account.account_id,
+                      accountName: account.name,
                     })
                   }
                 />

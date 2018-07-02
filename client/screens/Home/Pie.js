@@ -97,7 +97,7 @@ class Pie extends React.Component {
   render() {
     return (
       <View style={{ alignSelf: 'center', justifyContent: 'center' }}>
-        <Surface width="400" height="400">
+        <Surface width="400" height="425">
           <Group x={200} y={125}>
             {this.props.data.map((item, index) => (
               <AnimShape

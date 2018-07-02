@@ -70,13 +70,15 @@ class Login extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <View style={styles.logoLocation}>
-          <Animated.Image
-            source={require('../../../public/img/logo.png')}
-            style={[styles.animatedLogo, { height: this.imageHeight }]}
-          />
-          <Text style={styles.h1}>Login</Text>
+      <KeyboardAvoidingView
+      style={styles.container}
+      behavior="padding"
+      >
+      <View style={styles.logoLocation}>
+      <Animated.View style={{ height: this.imageHeight }}>
+  <Image style={styles.logo} source={require('../../../public/img/logo2.gif')} />
+      </ Animated.View>
+          <Text style={styles.h1}>log in</Text>
         </View>
         <View style={{ padding: 90 }} />
         <TextInput

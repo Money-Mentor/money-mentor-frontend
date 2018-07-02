@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
+import { Text, View, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { personalityTypes } from '../../data';
 import { updateUserPersonality } from '../../store/user';
-import { Button } from 'react-native-elements';
+import { styles } from '../../common/styles';
 
 class Result extends React.Component {
   static navigationOptions = {
@@ -28,15 +28,15 @@ class Result extends React.Component {
             <Image
               style={{
                 alignSelf: 'center',
-                height: 150,
-                width: 150,
+                height: 300,
+                width: 350,
                 borderWidth: 1,
-                borderRadius: 75
+                borderColor: 'white'
               }}
               source={{ uri: personalityType.imageUrl }}
               resizeMode="stretch"
             />
-            <Text style={[styles.smallerText, { fontSize: 24 }]}>
+            <Text style={[styles.smallerText, { fontSize: 28 }]}>
               {personalityType.name}
             </Text>
             <Text style={[styles.smallerText, { fontSize: 12 }]}>
@@ -49,22 +49,22 @@ class Result extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#C2D3DA'
-  },
-  smallerText: {
-    alignSelf: 'center',
-    color: '#585A56',
-    textAlign: 'center',
-    alignItems: 'center',
-    fontWeight: 'bold',
-    padding: 20
-  }
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flexGrow: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#C2D3DA'
+//   },
+//   smallerText: {
+//     alignSelf: 'center',
+//     color: '#585A56',
+//     textAlign: 'center',
+//     alignItems: 'center',
+//     fontWeight: 'bold',
+//     padding: 20
+//   }
+// });
 
 const mapState = state => {
   return {

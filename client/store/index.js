@@ -13,7 +13,7 @@ const reducer = combineReducers({
   user,
   personality,
   acctTrans,
-  budget
+  budget,
 });
 
 const middleware = composeWithDevTools(

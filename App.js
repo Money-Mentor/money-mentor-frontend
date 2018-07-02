@@ -49,7 +49,9 @@ export default class App extends React.Component {
     this.listener = Notifications.addListener(this.handleNotification);
 
     await Font.loadAsync({
-      logo: require('./public/fonts/logo.otf')
+    poppinsExtraLight : require('./public/fonts/Poppins/Poppins-ExtraLight.ttf'),
+      poppinsRegular: require('./public/fonts/Poppins/Poppins-Regular.ttf'),
+      poppinsBold: require('./public/fonts/Poppins/Poppins-Bold.ttf')
     });
     this.setState({ fontLoaded: true });
   }

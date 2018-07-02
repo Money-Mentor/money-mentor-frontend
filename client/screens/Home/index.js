@@ -15,7 +15,7 @@ import ArticleCarousel from './ArticleCarousel';
 
 class Home extends React.Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
   componentDidMount() {
@@ -34,11 +34,10 @@ class Home extends React.Component {
   totalSpent() {
     const { trans } = this.props;
     let startDate = startDateString();
-
     const spent =
       trans &&
       trans
-        .filter(item => item.amount > 0 && item.date > startDate)
+        .filter(item => item.included && item.amount > 0 && item.date >= startDate)
         .reduce((acc, num) => acc + num.amount, 0);
     return spent;
   }
@@ -62,7 +61,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec',
+      'Dec'
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -93,7 +92,7 @@ class Home extends React.Component {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
-    const dateHeight = `${date.getDate() * 3.1 - 3}%`;
+    const dateHeight = `${date.getDate() * 3.0 - 3}%`;
 
     return (
       <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
@@ -103,14 +102,15 @@ class Home extends React.Component {
             <View>
               <Card containerStyle={styles.card}>
                 <Text style={styles.homePageQuiz}>
-                  Looks like you haven't taken our quiz.{' '}
+                  MoneyMentor wants to give you personalized recommendations so
+                  take the quiz to find out your financial personality type.{' '}
                 </Text>
-                <Text style={styles.homePageQuiz}>Take it now!</Text>
+                {/* <Text style={styles.homePageQuiz}>Take it now!</Text> */}
                 <Button
                   raised
                   buttonStyle={styles.bluebutton}
                   textStyle={{ textAlign: 'center' }}
-                  title={`Take the Quiz!`}
+                  title={`Take the Quiz`}
                   onPress={() => {
                     this.props.navigation.navigate('Quiz', { title: 'Quiz' });
                   }}
@@ -123,7 +123,7 @@ class Home extends React.Component {
           <Text
             style={[
               styles.homePageSmallText,
-              { paddingVertical: 10, width: '80%', textAlign: 'center' },
+              { paddingVertical: 10, width: '80%', textAlign: 'center' }
             ]}
           >
             {this.budgetStatus()}
@@ -135,7 +135,7 @@ class Home extends React.Component {
               onPress={() => {
                 this.props.navigation.navigate('CategoryPie', {
                   title: 'CategoryPie',
-                  budget: budget,
+                  budget: budget
                 });
               }}
             >
@@ -143,13 +143,13 @@ class Home extends React.Component {
                 <View
                   style={[
                     styles.circleLine,
-                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 },
+                    { height: `${this.dateCircleHeight()}%` },
                   ]}
                 />
                 <View
                   style={[
                     styles.circleFill,
-                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 },
+                    { top: `${this.budgetCircleHeight()}%` },
                   ]}
                 />
               </View>
@@ -169,10 +169,7 @@ class Home extends React.Component {
               style={[
                 styles.dateLine,
                 {
-                  position: 'absolute',
-                  top: `${date.getDate() * 3.1 + 2.7}%`,
-                  left: '30%',
-                  width: '50%',
+                  top: `${date.getDate() * 2.9 + 2.7}%`,
                 },
               ]}
             />
@@ -217,13 +214,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    budget: state.acctTrans.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
@@ -240,5 +237,5 @@ export const HomeStack = createStackNavigator({
   Result: { screen: Result },
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults },
+  RetirementResults: { screen: RetirementResults }
 });
