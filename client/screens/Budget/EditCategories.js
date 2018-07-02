@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { Button, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../../store';
@@ -82,69 +82,65 @@ class EditCategories extends React.Component {
           {this.props.budget.id && (
             <View>
               <View>
-                <Text style={[styles.initialScreenText, { fontSize: 30 }]}>
+                <Text style={[styles.initialScreenText, { fontSize: 30}]}>
                   Edit Your Budget
                 </Text>
-                <Text style={[styles.editCategoryText, { fontSize: 20, color: '#ffffff', textAlign: 'center' }]}>
-                {'\n'}Percentage Remaining:{'\n'}
-                {this.state.remaining} of ${this.props.budget.spendingBudget}
+                <View
+                      style={[categoryStyles.introInfo, {paddingTop: 40}]}
+                    >
+
+                <Text style={[styles.editCategoryText, categoryStyles.introInfoBig]}>
+                {this.state.remaining}%
                 </Text>
+                <Text style={[styles.editCategoryText, categoryStyles.introInfoBig]}>
+                ${this.props.budget.spendingBudget}
+                </Text>
+  </View>
+
+                  <View
+                      style={[categoryStyles.introInfo, {paddingBottom: 40}]}
+                    >
+
+                <Text style={[styles.editCategoryText, categoryStyles.introIntroSmall]}>
+                remaining
+                </Text>
+                <Text style={[styles.editCategoryText, categoryStyles.introIntroSmall]}>
+                to spend
+                </Text>
+  </View>
+
               </View>
               <View style={{ padding: 5 }} />
               {/* All Categories */}
               {this.state.categories.map(category => {
                 return (
-                  <Card key={category.name}>
+                  <Card key={category.name} containerStyle={{margin: 30}}>
                   <View key={category.name}>
                     <View style={{ padding: 5, width: '100%' }} />
                     <View
                       style={{
                         paddingLeft: 20,
                         paddingEnd: 20,
-                        flexDirection: 'row'
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
                       }}
                     >
+
                       <Text
-                        style={[
-                          styles.smallerText,
-                          {
-                            flexDirection: 'row',
-                            alignSelf: 'flex-start',
-                            fontSize: 16
-                          }
-                        ]}
+                        style={
+                          styles.smallerText}
                       >
                         {this.toTitle(category.name)}
                       </Text>
 
-                      <View
-                        style={[
-                          styles.container,
-                          {
-                            flexDirection: 'row',
-                            justifyContent: 'flex-end',
-                            alignSelf: 'flex-end'
-                          }
-                        ]}
-                      >
                         <Text
-                          style={[
-                            styles.smallerText,
-                            {
-                              textAlign: 'right',
-                              fontSize: 12,
-                              color: '#D3D3D3'
-                            }
-                          ]}
+                          style={
+                            styles.smallerText}
                         >
-                          {category.percentage}
+                          {category.percentage}%
                         </Text>
-                      </View>
-                    </View>
 
-                    {/* <Text style={styles.smallerText}>
-                      {category.description}
-                    </Text> */}
+                    </View>
 
                     <Slider
                       trackStyle={styles.track}
@@ -216,6 +212,16 @@ const mapDispatch = dispatch => {
     setBudget: budget => dispatch(setBudget(budget))
   };
 };
+
+const categoryStyles = StyleSheet.create({
+  introInfo: {
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        paddingHorizontal: 40,
+  },
+  introIntroSmall: { fontSize: 20, color: '#ffffff', textAlign: 'center' },
+  introInfoBig: { fontSize: 40, color: '#ffffff', textAlign: 'center' }
+})
 
 export default connect(
   mapState,

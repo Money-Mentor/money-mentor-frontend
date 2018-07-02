@@ -228,8 +228,9 @@ export const styles = StyleSheet.create({
   },
   smallerText: {
     alignSelf: 'center',
-    color: colorTheme.white.snow,
-    fontWeight: 'bold'
+    color: '#000000',
+    fontWeight: 'bold',
+    size: 16
   },
     editCategoryText: {
     fontFamily: 'poppinsRegular',
