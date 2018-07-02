@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { Button, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchBudget, setBudget } from '../../store';
-import { styles, colorTheme } from '../../common/styles';
+import { styles, colorTheme, deviceWidth } from '../../common/styles';
 import Slider from 'react-native-slider';
 
 class EditCategories extends React.Component {
@@ -81,74 +81,66 @@ class EditCategories extends React.Component {
         <View style={styles.container}>
           {this.props.budget.id && (
             <View>
-              <View style={{ paddingTop: 15 }}>
-                <Text style={[styles.smallerText, { fontSize: 24 }]}>
-                  Edit Categories
+              <View>
+                <Text style={[styles.initialScreenText, { fontSize: 30}]}>
+                  Edit Your Budget
                 </Text>
-                <Text
-                  style={[styles.smallerText, { fontSize: 20, width: '100%' }]}
-                >
-                  You have ${this.props.budget.spendingBudget} for spending per
-                  month.
+                <View
+                      style={[categoryStyles.introInfo, {paddingTop: 40}]}
+                    >
+
+                <Text style={[styles.editCategoryText, categoryStyles.introInfoBig]}>
+                {this.state.remaining}%
                 </Text>
-                <Text style={[styles.smallerText, { fontSize: 16 }]}>
-                  Percentage Remaining: {this.state.remaining}
+                <Text style={[styles.editCategoryText, categoryStyles.introInfoBig]}>
+                ${this.props.budget.spendingBudget}
                 </Text>
+  </View>
+
+                  <View
+                      style={[categoryStyles.introInfo, {paddingBottom: 40}]}
+                    >
+
+                <Text style={[styles.editCategoryText, categoryStyles.introIntroSmall]}>
+                remaining
+                </Text>
+                <Text style={[styles.editCategoryText, categoryStyles.introIntroSmall]}>
+                to spend
+                </Text>
+  </View>
+
               </View>
               <View style={{ padding: 5 }} />
               {/* All Categories */}
               {this.state.categories.map(category => {
                 return (
+                  <Card key={category.name} containerStyle={{margin: 30}}>
                   <View key={category.name}>
                     <View style={{ padding: 5, width: '100%' }} />
                     <View
                       style={{
                         paddingLeft: 20,
                         paddingEnd: 20,
-                        flexDirection: 'row'
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
                       }}
                     >
+
                       <Text
-                        style={[
-                          styles.smallerText,
-                          {
-                            flexDirection: 'row',
-                            alignSelf: 'flex-start',
-                            fontSize: 16
-                          }
-                        ]}
+                        style={
+                          styles.smallerText}
                       >
                         {this.toTitle(category.name)}
                       </Text>
 
-                      <View
-                        style={[
-                          styles.container,
-                          {
-                            flexDirection: 'row',
-                            justifyContent: 'flex-end',
-                            alignSelf: 'flex-end'
-                          }
-                        ]}
-                      >
                         <Text
-                          style={[
-                            styles.smallerText,
-                            {
-                              textAlign: 'right',
-                              fontSize: 12,
-                              color: '#D3D3D3'
-                            }
-                          ]}
+                          style={
+                            styles.smallerText}
                         >
-                          {category.percentage}
+                          {category.percentage}%
                         </Text>
-                      </View>
-                    </View>
 
-                    {/* <Text style={styles.smallerText}>
-                      {category.description}
-                    </Text> */}
+                    </View>
 
                     <Slider
                       trackStyle={styles.track}
@@ -178,15 +170,18 @@ class EditCategories extends React.Component {
                       minimumValue={0}
                       maximumValue={100}
                     />
-                  </View>
+
+                    </View>
+                  </Card>
                 );
+
               })}
 
               {/* Button */}
               <Button
                 raised
                 disabled={this.state.remaining === 0 ? false : true}
-                buttonStyle={styles.smallOrangeButton}
+                buttonStyle={[styles.smallOrangeButton, , {marginVertical: 20, width: deviceWidth - 20, alignSelf: 'center'}]}
                 textStyle={{ textAlign: 'center' }}
                 title={`Finished!`}
                 onPress={() => {
@@ -198,7 +193,6 @@ class EditCategories extends React.Component {
               </Button>
             </View>
           )}
-          <View style={{ padding: 15 }} />
         </View>
       </ScrollView>
     );
@@ -218,6 +212,16 @@ const mapDispatch = dispatch => {
     setBudget: budget => dispatch(setBudget(budget))
   };
 };
+
+const categoryStyles = StyleSheet.create({
+  introInfo: {
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        paddingHorizontal: 40,
+  },
+  introIntroSmall: { fontSize: 20, color: '#ffffff', textAlign: 'center' },
+  introInfoBig: { fontSize: 40, color: '#ffffff', textAlign: 'center' }
+})
 
 export default connect(
   mapState,
