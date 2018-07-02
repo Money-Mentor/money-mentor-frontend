@@ -3,8 +3,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 export const IMAGE_HEIGHT_SMALL = 70;
 export const IMAGE_HEIGHT = 115;
 
-const deviceWidth = Dimensions.get("window").width;
-    const deviceHeight = Dimensions.get("window").height;
+export const deviceWidth = Dimensions.get("window").width;
+export const deviceHeight = Dimensions.get("window").height;
 
 export const colorTheme = {
   orange: {
@@ -100,6 +100,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colorTheme.orange.medium,
     width: '100%',
     height: 50,
+    width: 50
   },
   buttontext: {
     textAlign: 'center',
@@ -249,11 +250,13 @@ export const styles = StyleSheet.create({
     fontSize: 14
   },
   budgetSetupText: {
-    color: colorTheme.white.snow,
+    fontFamily: 'poppinsRegular',
+    color: '#000000',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 20,
     paddingTop: 10,
-    width: '80%'
+    width: '80%',
+    textAlign: 'center',
   },
   budgetStatus: {
     fontWeight: 'bold',
@@ -294,9 +297,9 @@ export const styles = StyleSheet.create({
     fontSize: 18,
   },
   budgetContainer: {
-    width: '80%',
-    marginVertical: 10,
-    height: 60,
+    padding: 10,
+    width: '60%',
+    height: 50,
     borderColor: colorTheme.orange.medium,
     backgroundColor: '#3947ad',
     borderWidth: 2,

@@ -55,6 +55,18 @@ class Initial extends Component {
           >
             Signup
           </Button>
+
+          <Button
+            raised
+            buttonStyle={styles.orangebutton}
+            textStyle={styles.buttontext}
+            title={`Budget Setup`}
+            onPress={() =>
+              this.props.navigation.navigate('BudgetSetup', { title: 'BudgetSetup' })
+            }
+          >
+          </Button>
+
         </View>
         </View>
       </ImageBackground>

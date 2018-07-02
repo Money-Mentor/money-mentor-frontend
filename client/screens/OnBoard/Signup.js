@@ -76,7 +76,12 @@ class Signup extends Component {
 
   render() {
     if (this.state.status === 'CONNECTED') {
-      return this.renderComplete();
+      this.props.sendToken(this.state.data.metadata.public_token);
+
+      this.props.navigation.navigate("BudgetSetup", {
+        title: "BudgetSetup"
+      });
+      return null;
     } else if (this.state.status === 'LOGIN_BUTTON') {
       return this.renderSignUp();
     } else {
@@ -157,25 +162,6 @@ class Signup extends Component {
       status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
     });
   };
-
-  renderComplete() {
-    this.props.sendToken(this.state.data.metadata.public_token);
-
-    return (
-      <View style={styles.container}>
-        <Button
-          raised
-          buttonStyle={styles.bluebutton}
-          textStyle={{ textAlign: 'center' }}
-          title={`Set Up Your Budget →`}
-          onPress={() =>
-            this.props.navigation.navigate('BudgetSetup', { title: 'BudgetSetup' })
-          }
-        />
-      </View>
-    );
-  }
-
 }
 
 const mapDispatch = dispatch => {
