@@ -25,11 +25,9 @@ const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
  */
 
 
-// add pushToken into thunk parameters !!!!!!!!!!!!!!!!
-
-export const login = (email, password, navigation) => dispatch =>
+export const login = (email, password, navigation, pushToken) => dispatch =>
   axios
-    .post(`${server}/auth/login`, { email, password })
+    .post(`${server}/auth/login`, { email, password, pushToken })
     .then(
       res => {
         dispatch(getUser(res.data));
@@ -42,9 +40,9 @@ export const login = (email, password, navigation) => dispatch =>
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
-export const signup = (email, password) => dispatch => {
+export const signup = (email, password, pushToken) => dispatch => {
 axios
-  .post(`${server}/auth/signup`, { email, password })
+  .post(`${server}/auth/signup`, { email, password, pushToken })
   .then(
     res => {
       dispatch(getUser(res.data));

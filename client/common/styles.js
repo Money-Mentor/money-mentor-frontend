@@ -395,4 +395,7 @@ export const styles = StyleSheet.create({
 
     zIndex: 3
   },
+    picker: {
+    width: 100,
+  },
 });

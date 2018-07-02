@@ -15,25 +15,26 @@ import {
   Navbar
 } from './client';
 
-// import { Font, Permissions, Notifications } from 'expo';
+import { Font, Permissions, Notifications } from 'expo';
 
 // ----------------- Push Notifications --------------------------
-// async function registerForPushNotificationsAsync() {
-//   // Remote notifications don't work in simulators, only on device
-//   if (!Expo.Constants.isDevice) {
-//     return;
-//   }
-//   let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-//   console.log('status=============================================', status);
+async function registerForPushNotificationsAsync() {
+  // Remote notifications don't work in simulators, only on device
+  if (!Expo.Constants.isDevice) {
+    return;
+  }
+  let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+  console.log('status=============================================', status);
 
-//   if (status !== 'granted') {
-//     return;
-//   }
-//   let token = await Notifications.getExpoPushTokenAsync();
-//   console.log('Our token ==========================================', token);
-//   /// Send this to a server
-// }
-import { Font } from 'expo';
+  if (status !== 'granted') {
+    return;
+  }
+  let token = await Notifications.getExpoPushTokenAsync();
+  console.log('Our token ==========================================', token);
+  /// Send this to a server
+}
+
+// import { Font } from 'expo';
 
 export default class App extends React.Component {
   constructor() {
@@ -43,8 +44,9 @@ export default class App extends React.Component {
     };
   }
   async componentDidMount() {
-    // registerForPushNotificationsAsync();
-    // this.listener = Notifications.addListener(this.handleNotification);
+    // listener for push notificaiton
+    registerForPushNotificationsAsync();
+    this.listener = Notifications.addListener(this.handleNotification);
 
     await Font.loadAsync({
       logo: require('./public/fonts/logo.otf')
@@ -52,15 +54,17 @@ export default class App extends React.Component {
     this.setState({ fontLoaded: true });
   }
 
+  // remove listener for push notification
   componentWillUnmount() {
     this.listener && this.listener.remove();
   }
 
-  // handleNotification = ({ origin, data }) => {
-  //   console.log(
-  //     `Push notification ${origin} with data: ${JSON.stringify(data)}`
-  //   );
-  // };
+  // handles push notification
+  handleNotification = ({ origin, data }) => {
+    console.log(
+      `Push notification ${origin} with data: ${JSON.stringify(data)}`
+    );
+  };
 
   render() {
     return (
