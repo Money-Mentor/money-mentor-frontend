@@ -15,7 +15,7 @@ import ArticleCarousel from './ArticleCarousel';
 
 class Home extends React.Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
   componentDidMount() {
@@ -61,7 +61,7 @@ class Home extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec',
+      'Dec'
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -102,14 +102,15 @@ class Home extends React.Component {
             <View>
               <Card containerStyle={styles.card}>
                 <Text style={styles.homePageQuiz}>
-                  Looks like you haven't taken our quiz.{' '}
+                  MoneyMentor wants to give you personalized recommendations so
+                  take the quiz to find out your financial personality type.{' '}
                 </Text>
-                <Text style={styles.homePageQuiz}>Take it now!</Text>
+                {/* <Text style={styles.homePageQuiz}>Take it now!</Text> */}
                 <Button
                   raised
                   buttonStyle={styles.bluebutton}
                   textStyle={{ textAlign: 'center' }}
-                  title={`Take the Quiz!`}
+                  title={`Take the Quiz`}
                   onPress={() => {
                     this.props.navigation.navigate('Quiz', { title: 'Quiz' });
                   }}
@@ -122,7 +123,7 @@ class Home extends React.Component {
           <Text
             style={[
               styles.homePageSmallText,
-              { paddingVertical: 10, width: '80%', textAlign: 'center' },
+              { paddingVertical: 10, width: '80%', textAlign: 'center' }
             ]}
           >
             {this.budgetStatus()}
@@ -134,7 +135,7 @@ class Home extends React.Component {
               onPress={() => {
                 this.props.navigation.navigate('CategoryPie', {
                   title: 'CategoryPie',
-                  budget: budget,
+                  budget: budget
                 });
               }}
             >
@@ -213,13 +214,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    budget: state.acctTrans.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
@@ -236,5 +237,5 @@ export const HomeStack = createStackNavigator({
   Result: { screen: Result },
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults },
+  RetirementResults: { screen: RetirementResults }
 });
