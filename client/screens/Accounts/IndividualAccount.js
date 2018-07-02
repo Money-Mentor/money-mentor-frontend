@@ -1,30 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Transaction from './Transaction';
 import { styles, colorTheme } from '../../common/styles';
+import { startDateString } from '../../common/index';
 
 class IndividualAccount extends React.Component {
   constructor(props) {
     super(props);
   }
   static navigationOptions = {
+    title: 'Transactions',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerTitleStyle: { color: colorTheme.white.snow },
   };
 
   render() {
     const { transactions } = this.props;
+    let startDate = startDateString();
     const accountId = this.props.navigation.getParam('accountId');
     return (
-      <View style={styles.accountOverviewContainer}>
+      <ScrollView style={styles.accountOverviewContainer}>
         <List>
           {transactions &&
             transactions
-              .filter(transaction => transaction.accountId === accountId)
-              .map((transaction, key) => <Transaction key={key} transaction={transaction} />)})}
+              .filter(
+                transaction =>
+                  transaction.accountId === accountId &&
+                  transaction.date >= startDate
+              )
+              .map((transaction, key) => (
+                <Transaction key={key} transaction={transaction} />
+              ))})}
         </List>
-      </View>
+      </ScrollView>
     );
   }
 }

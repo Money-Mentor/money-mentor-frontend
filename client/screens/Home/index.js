@@ -34,11 +34,10 @@ class Home extends React.Component {
   totalSpent() {
     const { trans } = this.props;
     let startDate = startDateString();
-
     const spent =
       trans &&
       trans
-        .filter(item => item.amount > 0 && item.date > startDate)
+        .filter(item => item.included && item.amount > 0 && item.date >= startDate)
         .reduce((acc, num) => acc + num.amount, 0);
     return spent;
   }
@@ -93,7 +92,7 @@ class Home extends React.Component {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
     const date = new Date();
-    const dateHeight = `${date.getDate() * 3.1 - 3}%`;
+    const dateHeight = `${date.getDate() * 3.0 - 3}%`;
 
     return (
       <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
@@ -143,13 +142,13 @@ class Home extends React.Component {
                 <View
                   style={[
                     styles.circleLine,
-                    { height: `${this.dateCircleHeight()}%`, zIndex: 2 },
+                    { height: `${this.dateCircleHeight()}%` },
                   ]}
                 />
                 <View
                   style={[
                     styles.circleFill,
-                    { top: `${this.budgetCircleHeight()}%`, zIndex: 1 },
+                    { top: `${this.budgetCircleHeight()}%` },
                   ]}
                 />
               </View>
@@ -169,10 +168,7 @@ class Home extends React.Component {
               style={[
                 styles.dateLine,
                 {
-                  position: 'absolute',
-                  top: `${date.getDate() * 3.1 + 2.7}%`,
-                  left: '30%',
-                  width: '50%',
+                  top: `${date.getDate() * 2.9 + 2.7}%`,
                 },
               ]}
             />

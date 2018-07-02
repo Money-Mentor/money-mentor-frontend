@@ -66,21 +66,14 @@ class StackedBar extends React.Component {
       .map(elem => this.buildCategoryObj(elem))
       .filter(elem => elem.spent !== 0);
 
-    const width = 700 / data.length;
+    const width = 1000 / data.length;
 
     const colors = ['#7b4173', '#a55194', '#de9ed6'];
     const keys = ['category', 'spent', 'getRemainingAllowed'];
 
     return (
       <View style={styles.container}>
-        <View
-          style={{
-            backgroundColor: colorTheme.white.snow,
-            padding: 5,
-            position: 'absolute',
-            left: 10,
-          }}
-        >
+        <View style={styles.stackedBar}>
           <Text style={[styles.barText, { color: '#7b4173' }]}>Spent</Text>
           <Text style={[styles.barText, { color: '#de9ed6' }]}>Remaining</Text>
         </View>
@@ -98,9 +91,7 @@ class StackedBar extends React.Component {
             style={[
               styles.dateLineCategory,
               {
-                position: 'absolute',
                 top: `${83 - date.getDate() * 2.2}%`,
-                width: '64%',
               },
             ]}
           />
