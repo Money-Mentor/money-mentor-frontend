@@ -132,14 +132,16 @@ export const styles = StyleSheet.create({
     backgroundColor: colorTheme.orange.dark,
   },
   circleLine: {
-    borderBottomColor: colorTheme.grey.light,
+    borderBottomColor: colorTheme.white.snow,
     borderBottomWidth: 2,
+    zIndex: 2
   },
   circleFill: {
     backgroundColor: colorTheme.orange.medium,
     width: '100%',
     bottom: 0,
     position: 'absolute',
+    zIndex: 1
   },
   cirleBigText: {
     color: colorTheme.white.snow,
@@ -228,10 +230,11 @@ export const styles = StyleSheet.create({
     zIndex: 2,
   },
   dateLine: {
-    borderBottomColor: colorTheme.grey.light,
+    borderBottomColor: colorTheme.white.snow,
     borderBottomWidth: 1,
     position: 'absolute',
-
+    left: '30%',
+    width: '50%',
     zIndex: 3,
   },
   smallerText: {
@@ -390,7 +393,7 @@ export const styles = StyleSheet.create({
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     position: 'absolute',
-    left: '50%',
+    left: '55%',
     zIndex: 2,
   },
   dateLineCategory: {
@@ -398,5 +401,12 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 2,
     position: 'absolute',
     zIndex: 3,
+    width: '64%',
+  },
+  stackedBar: {
+    backgroundColor: colorTheme.white.snow,
+    padding: 5,
+    position: 'absolute',
+    left: 10,
   },
 });

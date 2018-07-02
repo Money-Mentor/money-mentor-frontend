@@ -97,7 +97,6 @@ class CategoryPie extends Component {
 
   render() {
     let startDate = startDateString();
-    console.log(this.spendingByCategory()[0][this.state.activeIndex].number);
     const categorytrans = this.getTransByCategory();
     return (
       <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
@@ -127,7 +126,9 @@ class CategoryPie extends Component {
         {/* Transaction Details List */}
         <List>
           <View style={styles.transactionTitleContainer}>
-            <Text style={styles.transactionTitle}>Transactions</Text>
+            <Text style={styles.transactionTitle}>
+              {this.spendingByCategory()[0][this.state.activeIndex].name}
+            </Text>
             <Text style={styles.transactionTitle}>
               ${this.spendingByCategory()[0][this.state.activeIndex].number}
             </Text>
