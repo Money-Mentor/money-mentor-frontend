@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { StackedBarChart } from 'react-native-svg-charts';
+import { StackedBarChart, XAxis } from 'react-native-svg-charts';
 import { styles, colorTheme } from '../../common/styles';
+// import * as scale from 'd3-scale';
 
 class StackedBar extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class StackedBar extends React.Component {
     return {
       category: str,
       spent: this.getValueFromCategory(str),
-      getRemainingAllowed: this.getRemainingAllowed(str),
+      getRemainingAllowed: this.getRemainingAllowed(str)
     };
   }
 
@@ -44,7 +45,7 @@ class StackedBar extends React.Component {
       'Sep',
       'Oct',
       'Nov',
-      'Dec',
+      'Dec'
     ];
     const date = new Date();
     return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -61,7 +62,7 @@ class StackedBar extends React.Component {
       'Recreation',
       'Service',
       'Shops',
-      'Travel',
+      'Travel'
     ]
       .map(elem => this.buildCategoryObj(elem))
       .filter(elem => elem.spent !== 0);
@@ -83,16 +84,23 @@ class StackedBar extends React.Component {
             colors={colors}
             data={data}
             style={{ height: 180, width: width }}
-            showGrid={false}
+            // showGrid={false}
             contentInset={{ top: 30, bottom: 30 }}
+            // gridMin={0}
+            // svg={{ fill: 'rgb(134, 65, 244)' }}
           />
+          {/* <XAxis
+            style={{ marginTop: 10 }}
+            data={data}
+            scale={scale.scaleBand}
+            formatLabel={(value, category) => category}
+            labelStyle={{ color: 'black' }}
+          /> */}
 
           <View
             style={[
               styles.dateLineCategory,
-              {
-                top: `${83 - date.getDate() * 2.2}%`,
-              },
+              { top: `${83 - date.getDate() * 2.2}%` }
             ]}
           />
           <Text style={[styles.dateTextCategory, { top: dateHeight }]}>

@@ -6,33 +6,33 @@ export const IMAGE_HEIGHT = 115;
 export const colorTheme = {
   orange: {
     medium: '#EF4C22',
-    dark: '#9e3014',
+    dark: '#9e3014'
   },
   blue: {
     light: '#8EB3DF',
     medium: '#33409A',
-    dark: '#262560',
+    dark: '#262560'
   },
   white: {
-    snow: 'white',
+    snow: 'white'
   },
   grey: {
     light: '#a9ada6',
-    dark: '#585A56',
+    dark: '#585A56'
   },
   pink: {
     light: '#B776B2',
-    dark: '#AE4787',
+    dark: '#AE4787'
   },
   mint: {
     light: '#D4F2D2',
-    medium: '#84A59D',
+    medium: '#84A59D'
   },
   purple: {
     light: '#4F5DA9',
     medium: '#424DA0',
-    dark: '#2E2F8E',
-  },
+    dark: '#2E2F8E'
+  }
 };
 //light purple : 424DA0
 // dark purple 2E2F8E
@@ -58,7 +58,7 @@ export const pieColor = [
   '#b87ca5',
   '#7c87b8',
   '#d7f2df',
-  '#f1dd6a',
+  '#f1dd6a'
 ];
 
 export const styles = StyleSheet.create({
@@ -66,18 +66,18 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colorTheme.blue.medium,
+    backgroundColor: colorTheme.blue.medium
   },
   card: {
     width: '80%',
-    top: -15,
+    top: -15
   },
   logo: {
     width: 200,
-    height: 115,
+    height: 115
   },
   animatedLogo: {
-    width: 200,
+    width: 200
   },
   logoLocation: {
     position: 'absolute',
@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   linkLogoLocation: {
     position: 'absolute',
@@ -95,32 +95,32 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   homePageContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colorTheme.blue.medium,
+    backgroundColor: colorTheme.blue.medium
   },
   bluebutton: {
     backgroundColor: colorTheme.blue.dark,
-    width: '100%',
+    width: '100%'
   },
   orangebutton: {
     backgroundColor: colorTheme.orange.medium,
     left: -20,
     width: '120%',
-    height: 70,
+    height: 70
   },
   smallOrangeButton: {
     backgroundColor: colorTheme.orange.medium,
     width: '100%',
-    height: 50,
+    height: 50
   },
   buttontext: {
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: 24
   },
   circle: {
     width: 250,
@@ -129,7 +129,7 @@ export const styles = StyleSheet.create({
     borderWidth: 8,
     borderColor: colorTheme.white.snow,
     overflow: 'hidden',
-    backgroundColor: colorTheme.orange.dark,
+    backgroundColor: colorTheme.orange.dark
   },
   circleLine: {
     borderBottomColor: colorTheme.white.snow,
@@ -152,7 +152,7 @@ export const styles = StyleSheet.create({
     left: '20%',
     fontSize: 36,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   cirleSmallText: {
     color: colorTheme.white.snow,
@@ -163,17 +163,17 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     left: '15%',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   text: {
     color: colorTheme.white.snow,
     fontWeight: 'bold',
-    position: 'absolute',
+    position: 'absolute'
   },
   questionContainer: {
     flexGrow: 1,
     justifyContent: 'center',
-    backgroundColor: colorTheme.blue.medium,
+    backgroundColor: colorTheme.blue.medium
   },
   questionText: {
     alignSelf: 'center',
@@ -181,36 +181,36 @@ export const styles = StyleSheet.create({
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     fontSize: 20,
-    width: '80%',
+    width: '80%'
   },
   questionButton: {
     width: 150,
     marginVertical: 10,
     paddingVertical: 13,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   slider: {
     marginLeft: 25,
     marginRight: 25,
     marginTop: 10,
     alignItems: 'stretch',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   sliderTextAlign: {
     flexDirection: 'row',
     marginLeft: 25,
     marginRight: 25,
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   sliderSmallText: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontWeight: 'bold',
-    fontSize: 12,
+    fontSize: 12
   },
   track: {
     height: 2,
-    borderRadius: 1,
+    borderRadius: 1
   },
   thumb: {
     width: 20,
@@ -220,14 +220,14 @@ export const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.35
   },
   dateText: {
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     position: 'absolute',
     left: '67%',
-    zIndex: 2,
+    zIndex: 2
   },
   dateLine: {
     borderBottomColor: colorTheme.white.snow,
@@ -235,65 +235,65 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: '30%',
     width: '50%',
-    zIndex: 3,
+    zIndex: 3
   },
   smallerText: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   homePageBudgetTextAlign: {
     flexDirection: 'row',
     width: '100%',
     left: 40,
     justifyContent: 'space-around',
-    paddingTop: 10,
+    paddingTop: 10
   },
   homePageSmallText: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 20
   },
   homePageSmallestText: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontWeight: 'bold',
-    fontSize: 12,
+    fontSize: 12
   },
   homePageQuiz: {
     alignSelf: 'center',
     color: colorTheme.grey.dark,
     paddingTop: 10,
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 14
   },
   budgetSetupText: {
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     fontSize: 16,
     paddingTop: 10,
-    width: '80%',
+    width: '80%'
   },
   budgetStatus: {
     fontWeight: 'bold',
     color: colorTheme.white.snow,
     fontSize: 18,
     position: 'absolute',
-    top: 75,
+    top: 75
   },
   initialScreenText: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     fontSize: 50,
-    fontFamily: 'logo',
+    fontFamily: 'logo'
   },
   h1: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 30
   },
   formContainer: {
     width: '80%',
@@ -303,7 +303,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#3947ad',
     borderWidth: 2,
     color: colorTheme.white.snow,
-    fontSize: 18,
+    fontSize: 18
   },
   budgetContainer: {
     width: '80%',
@@ -313,26 +313,26 @@ export const styles = StyleSheet.create({
     backgroundColor: '#3947ad',
     borderWidth: 2,
     color: colorTheme.white.snow,
-    fontSize: 18,
+    fontSize: 18
   },
   accountOverviewContainer: {
     flexGrow: 1,
-    backgroundColor: colorTheme.blue.medium,
+    backgroundColor: colorTheme.blue.medium
   },
   categoryPieContainer: {
     marginTop: 21,
-    backgroundColor: colorTheme.white.snow,
+    backgroundColor: colorTheme.white.snow
   },
   textContainer: {
     alignSelf: 'center',
     position: 'absolute',
     top: 275,
-    left: 145,
+    left: 145
   },
   label: {
     fontSize: 18,
     marginTop: 5,
-    color: colorTheme.white.snow,
+    color: colorTheme.white.snow
   },
   transactionTitle: {
     paddingLeft: 10,
@@ -340,12 +340,12 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     backgroundColor: colorTheme.white.snow,
     color: colorTheme.grey.dark,
-    fontSize: 18,
+    fontSize: 18
   },
   transactionTitleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '95%',
+    width: '95%'
   },
   chart_title: {
     textAlign: 'center',
@@ -353,7 +353,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     backgroundColor: colorTheme.blue.medium,
     color: 'grey',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   slide: {
     height: 125,
@@ -363,50 +363,50 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     shadowColor: 'black',
     shadowOffset: { height: 2 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.3
   },
   slideText: {
     alignItems: 'center',
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     fontSize: 16,
-    padding: 5,
+    padding: 5
   },
   slideImage: {
     alignSelf: 'center',
     height: 60,
     width: 300,
-    paddingTop: 2,
+    paddingTop: 2
   },
   viewArticleText: {
     textAlign: 'left',
     paddingLeft: 5,
     fontSize: 12,
     fontWeight: 'bold',
-    color: colorTheme.orange.medium,
+    color: colorTheme.orange.medium
   },
   barText: {
     padding: 0,
-    margin: 0,
+    margin: 0
   },
   dateTextCategory: {
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     position: 'absolute',
     left: '55%',
-    zIndex: 2,
+    zIndex: 4
   },
   dateLineCategory: {
     borderBottomColor: colorTheme.white.snow,
     borderBottomWidth: 2,
     position: 'absolute',
     zIndex: 3,
-    width: '64%',
+    width: '64%'
   },
   stackedBar: {
     backgroundColor: colorTheme.white.snow,
     padding: 5,
     position: 'absolute',
-    left: 10,
-  },
+    left: 10
+  }
 });
