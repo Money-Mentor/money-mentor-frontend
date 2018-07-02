@@ -2,15 +2,13 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { StackedBarChart, XAxis } from 'react-native-svg-charts';
 import { styles, colorTheme } from '../../common/styles';
-import * as scale from 'd3-scale';
+import { getDay } from '../../common/index';
 
 class StackedBar extends React.Component {
   constructor(props) {
     super(props);
     this.buildCategoryObj = this.buildCategoryObj.bind(this);
     this.getValueFromCategory = this.getValueFromCategory.bind(this);
-    this.getRemainingAllowed = this.getRemainingAllowed.bind(this);
-    this.getDay = this.getDay.bind(this);
   }
 
   buildCategoryObj(str) {
@@ -32,25 +30,6 @@ class StackedBar extends React.Component {
     return 100 - this.getValueFromCategory(str);
   }
 
-  getDay() {
-    const month = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-    const date = new Date();
-    return `${month[date.getMonth()]} ${date.getDate()}`;
-  }
-
   render() {
     const date = new Date();
     const dateHeight = `${75 - date.getDate() * 2.2}%`;
@@ -67,7 +46,7 @@ class StackedBar extends React.Component {
       .map(elem => this.buildCategoryObj(elem))
       .filter(elem => elem.spent !== 0);
 
-    const width = 1000 / data.length;
+    const width = 700 / data.length;
 
     const colors = ['#7b4173', '#a55194', '#de9ed6'];
     const keys = ['category', 'spent', 'getRemainingAllowed'];
@@ -97,7 +76,7 @@ class StackedBar extends React.Component {
             ]}
           />
           <Text style={[styles.dateTextCategory, { top: dateHeight }]}>
-            {this.getDay()}
+            {getDay()}
           </Text>
 
           {/* <XAxis
