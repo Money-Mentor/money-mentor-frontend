@@ -31,6 +31,7 @@ export const updateTrans = newTrans => {
   };
 };
 
+
 const initialState = {};
 
 export default (state = initialState, action) => {

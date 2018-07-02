@@ -87,7 +87,7 @@ class StackedBar extends React.Component {
               { height: 180, width: width } // xScale={scale.scaleBand}
             }
             contentInset={{ top: 30, bottom: 30 }}
-            formatLabel={data => data.category}
+            xAccessor
           />
 
           <View
@@ -100,10 +100,11 @@ class StackedBar extends React.Component {
             {this.getDay()}
           </Text>
 
-          <XAxis
+          {/* <XAxis
             data={data.map(elem => elem.category)}
-            
-          />
+            // xAccessor={elem => elem.category}
+            contentInset={{ top: 30, bottom: 30 }}
+          /> */}
 
           {/* <XAxis
             scale={scale.scaleBand}
