@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { StackedBarChart, XAxis } from 'react-native-svg-charts';
 import { styles, colorTheme } from '../../common/styles';
-// import * as scale from 'd3-scale';
+import * as scale from 'd3-scale';
 
 class StackedBar extends React.Component {
   constructor(props) {
@@ -72,6 +72,8 @@ class StackedBar extends React.Component {
     const colors = ['#7b4173', '#a55194', '#de9ed6'];
     const keys = ['category', 'spent', 'getRemainingAllowed'];
 
+    console.log('this is data::::::', data);
+
     return (
       <View style={styles.container}>
         <View style={styles.stackedBar}>
@@ -84,18 +86,8 @@ class StackedBar extends React.Component {
             colors={colors}
             data={data}
             style={{ height: 180, width: width }}
-            // showGrid={false}
             contentInset={{ top: 30, bottom: 30 }}
-            // gridMin={0}
-            // svg={{ fill: 'rgb(134, 65, 244)' }}
           />
-          {/* <XAxis
-            style={{ marginTop: 10 }}
-            data={data}
-            scale={scale.scaleBand}
-            formatLabel={(value, category) => category}
-            labelStyle={{ color: 'black' }}
-          /> */}
 
           <View
             style={[
@@ -107,6 +99,14 @@ class StackedBar extends React.Component {
             {this.getDay()}
           </Text>
         </View>
+
+        <XAxis
+          scale={scale.scaleBand}
+          data={data.map(elem => elem.category)}
+          formatLabel={index => index}
+          xAccessor={({ item }) => item}
+          labelStyle={{ color: 'black', fontSize: 18 }}
+        />
       </View>
     );
   }
