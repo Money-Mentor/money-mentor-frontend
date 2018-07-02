@@ -1,7 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const IMAGE_HEIGHT_SMALL = 0;
-export const IMAGE_HEIGHT = 115;
+export const IMAGE_HEIGHT = 108;
+
+const deviceWidth = Dimensions.get("window").width;
+    const deviceHeight = Dimensions.get("window").height;
 
 export const colorTheme = {
   orange: {
@@ -34,17 +37,6 @@ export const colorTheme = {
     dark: '#2E2F8E',
   },
 };
-//light purple : 424DA0
-// dark purple 2E2F8E
-// orange EF4C22
-// lighter purple 4F5DA9
-// blue 4C67B0
-// pink B776B2
-// dark pink AE4787
-// light blue 8EB3DF
-// white F7E3EE
-// dark blue 262560
-// teal 5FCCEF
 
 export const pieColor = [
   colorTheme.orange.medium,
@@ -63,6 +55,7 @@ export const pieColor = [
 
 export const styles = StyleSheet.create({
   container: {
+    fontFamily: 'poppinsRegular',
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -73,27 +66,19 @@ export const styles = StyleSheet.create({
     top: -15,
   },
   logo: {
-    width: 200,
-    height: 115,
+    width: 150,
+    height: 108
   },
   animatedLogo: {
     width: 200,
   },
   logoLocation: {
-    position: 'absolute',
-    top: -375,
-    left: 0,
-    right: 0,
-    bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
+    top: 100
   },
   linkLogoLocation: {
-    position: 'absolute',
-    top: -200,
-    left: 0,
-    right: 0,
-    bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -109,9 +94,10 @@ export const styles = StyleSheet.create({
   },
   orangebutton: {
     backgroundColor: colorTheme.orange.medium,
-    left: -20,
-    width: '120%',
-    height: 70,
+    height: 50,
+    width: (deviceWidth - 50),
+    padding: 10,
+    alignSelf: 'center'
   },
   smallOrangeButton: {
     backgroundColor: colorTheme.orange.medium,
@@ -120,7 +106,7 @@ export const styles = StyleSheet.create({
   },
   buttontext: {
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: 18,
   },
   circle: {
     width: 250,
@@ -285,15 +271,23 @@ export const styles = StyleSheet.create({
   initialScreenText: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
-    fontWeight: 'bold',
-    fontSize: 50,
-    fontFamily: 'logo',
+    fontSize: 65,
+    fontFamily: 'poppinsExtraLight'
+  },
+  initialScreenTextSecondLine: {
+    alignSelf: 'center',
+    color: colorTheme.white.snow,
+    fontSize: 56,
+    fontFamily: 'poppinsExtraLight',
+    position: 'relative',
+    top: -30,
   },
   h1: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     fontSize: 30,
+    fontFamily: 'poppinsRegular'
   },
   formContainer: {
     width: '80%',
