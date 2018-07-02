@@ -8,21 +8,16 @@ import Morph from 'art/morph/path';
 import * as shape from 'd3-shape';
 
 const d3 = {
-  shape
-};
-
-type Props = {
-  color: any,
-  d: () => any
+  shape,
 };
 
 const AnimationDurationMs = 250;
 
 export default class AnimShape extends React.Component {
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
     this.state = {
-      path: ''
+      path: '',
     };
   }
 
@@ -41,7 +36,7 @@ export default class AnimShape extends React.Component {
     const graph = this.props.d();
 
     this.setState({
-      path: graph.path
+      path: graph.path,
     });
 
     // The first time this function is hit we need to set the initial
@@ -78,7 +73,7 @@ export default class AnimShape extends React.Component {
             // eslint-disable-line new-cap
             pathFrom,
             pathTo
-          )
+          ),
         },
         () => {
           // Kick off our animations!
@@ -105,7 +100,7 @@ export default class AnimShape extends React.Component {
         this.animating = null;
         // Just to be safe set our final value to the new graph path.
         this.setState({
-          path: this.previousGraph.path
+          path: this.previousGraph.path,
         });
 
         // Stop our animation loop.
