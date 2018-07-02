@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../../store/user';
+import { sendToken } from '../../store/token';
 import {
   StyleSheet,
   Text,
@@ -24,14 +25,21 @@ import {
   IMAGE_HEIGHT,
   IMAGE_HEIGHT_SMALL,
 } from '../../common/styles';
+import PlaidAuthenticator from 'react-native-plaid-link';
 
 import { Notifications } from 'expo';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '' };
+    this.state = {
+      email: '',
+      password: '',
+      status: 'LOGIN_BUTTON',
+      data: {}
+    };
     this.imageHeight = new Animated.Value(IMAGE_HEIGHT);
+    this.onMessage = this.onMessage.bind(this);
   }
   static navigationOptions = {
     title: 'Money Mentor',
@@ -69,6 +77,21 @@ class Signup extends Component {
   };
 
   render() {
+    if (this.state.status === 'CONNECTED') {
+      this.props.sendToken(this.state.data.metadata.public_token);
+
+      this.props.navigation.navigate("BudgetSetup", {
+        title: "BudgetSetup"
+      });
+      return null;
+    } else if (this.state.status === 'LOGIN_BUTTON') {
+      return this.renderSignUp();
+    } else {
+      return this.renderPlaid();
+    }
+  }
+
+  renderSignUp() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
 
@@ -111,20 +134,39 @@ class Signup extends Component {
             raised
             buttonStyle={styles.bluebutton}
             textStyle={{ textAlign: 'center' }}
-            title={`Submit`}
-            onPress={() => {
-              this.props.handleSubmit(this.state.email, this.state.password);
+            title={`Link Bank Account →`}
+            onPress={async () => {
+              await this.props.handleSubmit(this.state.email, this.state.password);
 
-              this.props.navigation.navigate('Link', { title: 'Link' });
+              await this.setState({ status: 'PLAID' })
             }}
-          >
-            Submit
-          </Button>
+          />
+
+
         </View>
 
       </KeyboardAvoidingView>
     );
   }
+
+  renderPlaid() {
+    return (
+      <PlaidAuthenticator
+        onMessage={this.onMessage}
+        publicKey="bc8a1ae90c8899639cdfd58c69af10"
+        env="sandbox"
+        product="auth,transactions"
+        clientName="MoneyMentor"
+      />
+    );
+  }
+
+  onMessage = data => {
+    this.setState({
+      data,
+      status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
+    });
+  };
 }
 
 const mapDispatch = dispatch => {
@@ -133,6 +175,7 @@ const mapDispatch = dispatch => {
       let pushToken = await Notifications.getExpoPushTokenAsync();
       dispatch(signup(email, password, pushToken));
     },
+    sendToken: token => dispatch(sendToken(token))
   };
 };
 
