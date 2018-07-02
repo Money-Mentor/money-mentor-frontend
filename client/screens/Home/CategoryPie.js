@@ -45,7 +45,6 @@ class CategoryPie extends Component {
   }
 
   //[{number:1600, name: catergory}...],total of all buckets
-
   spendingByCategory() {
     let startDate = startDateString();
     const { transactions } = this.props;

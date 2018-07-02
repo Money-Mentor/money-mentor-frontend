@@ -28,7 +28,7 @@ type Props = {
   pieWidth: number,
   pieHeight: number,
   colors: any,
-  onItemSelected: any,
+  onItemSelected: any, 
 };
 
 type State = {

@@ -72,8 +72,6 @@ class StackedBar extends React.Component {
     const colors = ['#7b4173', '#a55194', '#de9ed6'];
     const keys = ['category', 'spent', 'getRemainingAllowed'];
 
-    console.log('this is data::::::', data);
-
     return (
       <View style={styles.container}>
         <View style={styles.stackedBar}>
@@ -85,8 +83,11 @@ class StackedBar extends React.Component {
             keys={keys}
             colors={colors}
             data={data}
-            style={{ height: 180, width: width }}
+            style={
+              { height: 180, width: width } // xScale={scale.scaleBand}
+            }
             contentInset={{ top: 30, bottom: 30 }}
+            formatLabel={data => data.category}
           />
 
           <View
@@ -98,15 +99,24 @@ class StackedBar extends React.Component {
           <Text style={[styles.dateTextCategory, { top: dateHeight }]}>
             {this.getDay()}
           </Text>
-        </View>
 
-        <XAxis
-          scale={scale.scaleBand}
-          data={data.map(elem => elem.category)}
-          formatLabel={index => index}
-          xAccessor={({ item }) => item}
-          labelStyle={{ color: 'black', fontSize: 18 }}
-        />
+          <XAxis
+            data={data.map(elem => elem.category)}
+            
+          />
+
+          {/* <XAxis
+            scale={scale.scaleBand}
+            data={data.map(elem => elem.category)}
+            formatLabel={data => data.category}
+            // xAccessor={({ item }) => item}
+            // labelStyle={
+            //   { color: 'black', fontSize: 18 } // getting x value from data point
+            // }
+            // contentInset={{ left: 10, right: 10 }}
+            // svg={{ fontSize: 10, fill: 'black' }}
+          /> */}
+        </View>
       </View>
     );
   }

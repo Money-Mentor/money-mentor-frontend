@@ -17,6 +17,8 @@ import {
 
 import { Font } from 'expo';
 
+console.disableYellowBox = true;
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -26,7 +28,7 @@ export default class App extends React.Component {
   }
   async componentDidMount() {
     await Font.loadAsync({
-    poppinsExtraLight : require('./public/fonts/Poppins/Poppins-ExtraLight.ttf'),
+      poppinsExtraLight: require('./public/fonts/Poppins/Poppins-ExtraLight.ttf'),
       poppinsRegular: require('./public/fonts/Poppins/Poppins-Regular.ttf'),
       poppinsBold: require('./public/fonts/Poppins/Poppins-Bold.ttf')
     });
