@@ -55,7 +55,6 @@ export const pieColor = [
 
 export const styles = StyleSheet.create({
   container: {
-    fontFamily: 'poppinsRegular',
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
