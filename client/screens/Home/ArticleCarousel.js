@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Icon } from 'react-native-elements'
 import Carousel from 'react-native-snap-carousel';
 import { View, Text, ScrollView, Linking, Image } from 'react-native';
 import { styles, colorTheme } from '../../common/styles';
@@ -24,20 +25,13 @@ class MyCarousel extends Component {
         scrollEventThrottle={200}
         showsVerticalScrollIndicator={true}
       >
-        <View style={styles.slide}>
-          <Text
-            style={styles.slideText}
-            onPress={() => Linking.openURL(item.url)}
-          >
-            {item.title}
-          </Text>
-          <Text
-            style={styles.viewArticleText}
-            onPress={() => Linking.openURL(item.url)}
-          >
-            View Article
-          </Text>
-          <Image style={styles.slideImage} source={{ uri: item.imageUrl }} />
+        <View style={styles.slide} onPress={() => Linking.openURL(item.url)}>
+        <View style={styles.slidePublisher}>
+        <Icon name="description" color={colorTheme.grey.light} size={14}/>
+          <Text style={styles.publisherText}>{item.publisher}</Text>
+        </View>
+          <Text style={styles.slideText}>{item.title}</Text>
+          <Text style={styles.viewArticleText}>View Article</Text>
         </View>
       </ScrollView>
     );
@@ -55,7 +49,7 @@ class MyCarousel extends Component {
         containerCustomStyle={{ flexGrow: 0 }}
         renderItem={this._renderItem}
         sliderWidth={400}
-        itemHeight={140}
+        itemHeight={90}
         itemWidth={300}
         inactiveSlideOpacity={0.3}
       />

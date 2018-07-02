@@ -42,3 +42,31 @@ export const startDateString = () => {
   let startDate = new Date(date.getFullYear(), date.getMonth(), 1);
   return `${startDate.getFullYear()}-${formatMonth(startDate.getMonth())}-01`;
 };
+
+export const getMonthDaysLeft = () => {
+  let date = new Date();
+  return (
+    new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() -
+    date.getDate()
+  );
+}
+
+
+export const getDay = () => {
+  const month = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+  const date = new Date();
+  return `${month[date.getMonth()]} ${date.getDate()}`;
+}
