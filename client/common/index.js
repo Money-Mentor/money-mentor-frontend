@@ -19,7 +19,15 @@ export const transactionIconType = {
   Deposit: 'attach-money',
   'Airlines and Aviation Services': 'flight',
   Bicycles: 'directions-bike',
-  Bar: 'local-drink'
+  Bar: 'local-drink',
+  'Supermarkets and Groceries': 'local-grocery-store',
+  'Coffee Shop': 'local-cafe',
+  Rent: "remove-circle-outline",
+  'Electric Bill': 'lightbulb-outline',
+  Payroll: "add-circle-outline",
+  'Department Stores': 'add-shopping-cart',
+  Clothing: 'local-mall',
+  Entertainment: 'local-movies',
 };
 
 // Start Date String: returns the start of the current month.
@@ -34,4 +42,3 @@ export const startDateString = () => {
   let startDate = new Date(date.getFullYear(), date.getMonth(), 1);
   return `${startDate.getFullYear()}-${formatMonth(startDate.getMonth())}-01`;
 };
-

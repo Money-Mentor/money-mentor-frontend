@@ -97,6 +97,7 @@ class Signup extends Component {
   <Image style={styles.logo} source={require('../../../public/img/logo2.gif')} />
       </ Animated.View>
           <Text style={styles.h1}>sign up</Text>
+
         </View>
         <View style={{ padding: 90 }} />
         <TextInput

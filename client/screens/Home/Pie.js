@@ -97,7 +97,7 @@ class Pie extends React.Component {
   render() {
     return (
       <View style={{ alignSelf: 'center', justifyContent: 'center' }}>
-        <Surface width="400" height="400">
+        <Surface width="400" height="425">
           <Group x={200} y={125}>
             {this.props.data.map((item, index) => (
               <AnimShape
@@ -108,9 +108,7 @@ class Pie extends React.Component {
             ))}
           </Group>
         </Surface>
-        <View
-          style={styles.textContainer}
-        >
+        <View style={styles.textContainer}>
           {this.props.data.map((item, index) => {
             var fontWeight =
               this.state.highlightedIndex == index ? 'bold' : 'normal';
@@ -120,12 +118,7 @@ class Pie extends React.Component {
                 onPress={() => this._onPieItemSelected(index)}
               >
                 <View>
-                  <Text
-                    style={[
-                      styles.label,
-                      {fontWeight: fontWeight },
-                    ]}
-                  >
+                  <Text style={[styles.label, { fontWeight: fontWeight }]}>
                     {this._label(item)}: {this._value(item)}%
                   </Text>
                 </View>
