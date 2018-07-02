@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { StackedBarChart, XAxis } from 'react-native-svg-charts';
-import { styles, colorTheme } from '../../common/styles';
+import { StackedBarChart } from 'react-native-svg-charts';
+import { styles } from '../../common/styles';
 import { getDay } from '../../common/index';
 
 class StackedBar extends React.Component {
@@ -78,24 +78,6 @@ class StackedBar extends React.Component {
           <Text style={[styles.dateTextCategory, { top: dateHeight }]}>
             {getDay()}
           </Text>
-
-          {/* <XAxis
-            data={data.map(elem => elem.category)}
-            // xAccessor={elem => elem.category}
-            contentInset={{ top: 30, bottom: 30 }}
-          /> */}
-
-          {/* <XAxis
-            scale={scale.scaleBand}
-            data={data.map(elem => elem.category)}
-            formatLabel={data => data.category}
-            // xAccessor={({ item }) => item}
-            // labelStyle={
-            //   { color: 'black', fontSize: 18 } // getting x value from data point
-            // }
-            // contentInset={{ left: 10, right: 10 }}
-            // svg={{ fontSize: 10, fill: 'black' }}
-          /> */}
         </View>
       </View>
     );
