@@ -4,7 +4,7 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
-  Image
+  Image,
 } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -19,27 +19,20 @@ class BudgetSetup extends React.Component {
       income: 0,
       staticCosts: 0,
       savings: 0,
-      spendingBudget: 0
+      spendingBudget: 0,
     };
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
 
   render() {
     const question1 = (
-      <View
-        style={{
-          width: deviceWidth - 40,
-          position: 'absolute',
-          top: 50,
-          alignItems: 'center'
-        }}
-      >
+      <View style={styles.busgetSetupContainer}>
         <Text style={styles.budgetSetupText}>What is your monthly income?</Text>
-        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+        <View style={styles.budgetContainer}>
           <TextInput
-            style={styles.budgetContainer}
+            style={styles.budgetInput}
             placeholderTextColor={colorTheme.white.snow}
             onChangeText={income => this.setState({ income: +income })}
             placeholder="Income"
@@ -47,7 +40,7 @@ class BudgetSetup extends React.Component {
 
           <Button
             raised
-            buttonStyle={styles.smallOrangeButton}
+            buttonStyle={styles.bugetSetupButton}
             textStyle={{ textAlign: 'center' }}
             title={`→`}
             onPress={() => {
@@ -59,23 +52,16 @@ class BudgetSetup extends React.Component {
     );
 
     const question2 = (
-      <View
-        style={{
-          width: deviceWidth - 40,
-          position: 'absolute',
-          top: 40,
-          alignItems: 'center'
-        }}
-      >
+      <View style={styles.busgetSetupContainer}>
         <Text style={styles.budgetSetupText}>
           What are your monthly static costs?
         </Text>
         <Text style={{ fontSize: 15, textAlign: 'center' }}>
           (i.e. rent, utilities, insurance, etc.)
         </Text>
-        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+        <View style={styles.budgetContainer}>
           <TextInput
-            style={styles.budgetContainer}
+            style={styles.budgetInput}
             placeholderTextColor={colorTheme.white.snow}
             onChangeText={staticCosts =>
               this.setState({ staticCosts: +staticCosts })
@@ -85,7 +71,7 @@ class BudgetSetup extends React.Component {
 
           <Button
             raised
-            buttonStyle={styles.smallOrangeButton}
+            buttonStyle={styles.bugetSetupButton}
             textStyle={{ textAlign: 'center' }}
             title={`→`}
             onPress={() => {
@@ -97,20 +83,13 @@ class BudgetSetup extends React.Component {
     );
 
     const question3 = (
-      <View
-        style={{
-          width: deviceWidth - 40,
-          position: 'absolute',
-          top: 50,
-          alignItems: 'center'
-        }}
-      >
+      <View style={styles.busgetSetupContainer}>
         <Text style={styles.budgetSetupText}>
           How much would you like to save each month?
         </Text>
-        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+        <View style={styles.budgetContainer}>
           <TextInput
-            style={styles.budgetContainer}
+            style={styles.budgetInput}
             placeholderTextColor={colorTheme.white.snow}
             onChangeText={savings => this.setState({ savings: +savings })}
             placeholder="Savings"
@@ -118,7 +97,7 @@ class BudgetSetup extends React.Component {
 
           <Button
             raised
-            buttonStyle={styles.smallOrangeButton}
+            buttonStyle={styles.bugetSetupButton}
             textStyle={{ textAlign: 'center' }}
             title={`→`}
             onPress={() => {
@@ -126,7 +105,7 @@ class BudgetSetup extends React.Component {
                 this.state.income - this.state.staticCosts - this.state.savings;
               this.props.setBudget({ ...this.state, spendingBudget });
               this.props.navigation.navigate('EditCategories', {
-                title: 'EditCategories'
+                title: 'EditCategories',
               });
             }}
           />
@@ -148,7 +127,7 @@ class BudgetSetup extends React.Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Image
           source={require('../../../public/img/speech.png')}
-          style={{ width: deviceWidth - 20, position: 'absolute', top: -2 }}
+          style={{ width: deviceWidth - 40, position: 'absolute', top: -2 }}
         />
         <Image
           source={require('../../../public/img/logo2.png')}
@@ -168,13 +147,13 @@ class BudgetSetup extends React.Component {
 
 const mapState = state => {
   return {
-    budget: state.budget
+    budget: state.budget,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    setBudget: budget => dispatch(setBudget(budget))
+    setBudget: budget => dispatch(setBudget(budget)),
   };
 };
 

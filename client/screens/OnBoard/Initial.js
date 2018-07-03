@@ -11,23 +11,15 @@ class Initial extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <ImageBackground
-          style={{width: '100%', height: '100%'}}
-          source={require('../../../public/img/animatedClouds.gif')}
-        >
-        <View style={styles.logoLocation}>
+        <View style={styles.initialLogoLocation}>
           <Image
             style={styles.logo}
-            source={require('../../../public/img/animatedLogo.gif')}
+            source={require('../../../public/img/logo2.png')}
           />
-
-
-
           <Text style={styles.initialScreenText}>MONEY</Text>
           <Text style={styles.initialScreenTextSecondLine}>MENTOR</Text>
         </View>
-        <View style={{
-        position: 'absolute', bottom: 20}}>
+        <View style={styles.initialButtonLocation}>
         <View style={{
         padding: 10}}>
           <Button
@@ -55,7 +47,6 @@ class Initial extends Component {
           </Button>
         </View>
         </View>
-      </ImageBackground>
       </View>
     );
   }
