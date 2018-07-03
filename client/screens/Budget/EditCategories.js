@@ -10,47 +10,10 @@ class EditCategories extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: [
-        {
-          name: 'foodAndDrink',
-          percentage: 0,
-          description: '(Groceries, restaurants, bars, nightlife, etc.)'
-        },
-        {
-          name: 'travel',
-          percentage: 0,
-          description: '(Gas, subway, train, bus, etc.)'
-        },
-        {
-          name: 'recreation',
-          percentage: 0,
-          description: '(Arts and entertainment, sports, outdoors, etc.)'
-        },
-        {
-          name: 'healthcare',
-          percentage: 0,
-          description: '(Doctor visits, prescriptions, physicians, etc.)'
-        },
-        {
-          name: 'service',
-          percentage: 0,
-          description: '(Self-care, automotive, financial, home repair, etc.)'
-        },
-        {
-          name: 'community',
-          percentage: 0,
-          description: '(Education, donations, offering, etc.)'
-        },
-        {
-          name: 'shops',
-          percentage: 0,
-          description: '(Presents, clothes, accessories, etc.)'
-        }
-      ],
+      categories: [],
       remaining: 0
     };
     this.toTitle = this.toTitle.bind(this);
-    this.showDescription = this.showDescription.bind(this);
   }
 
   static navigationOptions = {
@@ -126,11 +89,6 @@ class EditCategories extends React.Component {
       });
   }
 
-  showDescription(str) {
-    const category = this.state.categories.filter(elem => elem.name === str);
-    return <Text>{category.description}</Text>;
-  }
-
   render() {
     return (
       <ScrollView>
@@ -190,63 +148,64 @@ class EditCategories extends React.Component {
               <View style={{ paddingLeft: 5, paddingRight: 5 }} />
               {/* All Categories */}
 
-              {this.state.categories.map(category => {
-                return (
-                  <Card key={category.name} containerStyle={{ margin: 30 }}>
-                    <View key={category.name}>
-                      <View style={{ padding: 5, width: '100%' }} />
-                      <View
-                        style={{
-                          paddingLeft: 20,
-                          paddingEnd: 20,
-                          flexDirection: 'row',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        <Text style={styles.smallerText}>
-                          {this.toTitle(category.name)}
-                        </Text>
+              {this.state.categories &&
+                this.state.categories.map(category => {
+                  return (
+                    <Card key={category.name} containerStyle={{ margin: 30 }}>
+                      <View key={category.name}>
+                        <View style={{ padding: 5, width: '100%' }} />
+                        <View
+                          style={{
+                            paddingLeft: 20,
+                            paddingEnd: 20,
+                            flexDirection: 'row',
+                            justifyContent: 'space-between'
+                          }}
+                        >
+                          <Text style={styles.smallerText}>
+                            {this.toTitle(category.name)}
+                          </Text>
 
-                        <Text style={styles.smallerText}>
-                          {category.percentage}%
-                        </Text>
-                      </View>
+                          <Text style={styles.smallerText}>
+                            {category.percentage}%
+                          </Text>
+                        </View>
 
-                      <Slider
-                        trackStyle={styles.track}
-                        thumbStyle={styles.thumb}
-                        minimumTrackTintColor={colorTheme.orange.medium}
-                        maximumTrackTintColor="#b7b7b7"
-                        style={styles.slider}
-                        value={category.percentage}
-                        onSlidingComplete={value => {
-                          this.setState(prevState => {
-                            const remaining =
-                              prevState.remaining +
-                              (category.percentage - value);
-                            return {
-                              categories: [...prevState.categories].map(
-                                elem => {
-                                  if (elem.name === category.name) {
-                                    elem.percentage = value;
-                                    return elem;
-                                  } else {
-                                    return elem;
+                        <Slider
+                          trackStyle={styles.track}
+                          thumbStyle={styles.thumb}
+                          minimumTrackTintColor={colorTheme.orange.medium}
+                          maximumTrackTintColor="#b7b7b7"
+                          style={styles.slider}
+                          value={category.percentage}
+                          onSlidingComplete={value => {
+                            this.setState(prevState => {
+                              const remaining =
+                                prevState.remaining +
+                                (category.percentage - value);
+                              return {
+                                categories: [...prevState.categories].map(
+                                  elem => {
+                                    if (elem.name === category.name) {
+                                      elem.percentage = value;
+                                      return elem;
+                                    } else {
+                                      return elem;
+                                    }
                                   }
-                                }
-                              ),
-                              remaining: remaining
-                            };
-                          });
-                        }}
-                        step={5}
-                        minimumValue={0}
-                        maximumValue={100}
-                      />
-                    </View>
-                  </Card>
-                );
-              })}
+                                ),
+                                remaining: remaining
+                              };
+                            });
+                          }}
+                          step={5}
+                          minimumValue={0}
+                          maximumValue={100}
+                        />
+                      </View>
+                    </Card>
+                  );
+                })}
 
               {/* Button */}
               <Button

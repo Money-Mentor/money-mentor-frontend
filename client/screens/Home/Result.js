@@ -5,14 +5,10 @@ import { personalityTypes } from '../../data';
 import { updateUserPersonality } from '../../store/user';
 import { setBudget } from '../../store/budget';
 import { styles } from '../../common/styles';
+import { determineBudget } from '../../common/index';
 import { Button } from 'react-native-elements';
 
 class Result extends React.Component {
-  constructor() {
-    super();
-    this.determineBudget = this.determineBudget.bind(this);
-  }
-
   static navigationOptions = {
     title: 'Result'
   };
@@ -23,59 +19,15 @@ class Result extends React.Component {
     this.props.updateUserPersonality(this.props.user.id, updatedUser);
   }
 
-  determineBudget(personality) {
-    if (
-      personality === 'Social Value Spender' ||
-      personality === 'Cash Splasher'
-    ) {
-      return {
-        ...this.props.budget,
-        foodAndDrink: 25,
-        travel: 10,
-        recreation: 10,
-        healthcare: 15,
-        service: 15,
-        community: 15,
-        shops: 10
-      };
-    } else if (personality === 'Ostrich') {
-      return {
-        ...this.props.budget,
-        foodAndDrink: 30,
-        travel: 10,
-        recreation: 15,
-        healthcare: 10,
-        service: 10,
-        community: 15,
-        shops: 10
-      };
-    } else if (personality === 'Hoarder' || personality === 'Inconclusive') {
-      return {
-        ...this.props.budget,
-        foodAndDrink: 35,
-        travel: 10,
-        recreation: 15,
-        healthcare: 10,
-        service: 10,
-        community: 10,
-        shops: 10
-      };
-    }
-  }
-
   render() {
     const personalityType = personalityTypes.find(
       personality => personality.name === this.props.personality
     );
 
-    console.log(personalityType.name);
-
-    console.log(this.determineBudget(personalityType.name));
-
     return (
       <View style={styles.container}>
         {personalityType &&
-          (personalityType === 'Inconclusive' ? (
+          (personalityType.name === 'Inconclusive' ? (
             <View>
               <Text style={styles.questionText}>
                 Uh Oh. Inconclusive! We're not sure what your personality type
@@ -118,7 +70,9 @@ class Result extends React.Component {
             textStyle={{ textAlign: 'center' }}
             title={`Set Budget By Personality`}
             onPress={() => {
-              this.props.setBudget(this.determineBudget(personalityType.name));
+              this.props.setBudget(
+                determineBudget(personalityType.name, this.props.budget)
+              );
               this.props.navigation.navigate('EditCategories', {
                 title: 'EditCategories'
               });
