@@ -76,7 +76,7 @@ class Transaction extends React.Component {
     }
 
     const transaction = this.props.transaction;
-
+    console.log('transaction======', transaction)
     const info = (
       <View style={styles.transBody}>
         <View style={{paddingRight: 20}}>

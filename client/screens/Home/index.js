@@ -8,8 +8,7 @@ import CategoryPie from './CategoryPie';
 import { Button, Card, Icon } from 'react-native-elements';
 import Quiz from './Quiz';
 import Result from './Result';
-import Retirement from './Retirement';
-import RetirementResults from './RetirementResults';
+
 import { startDateString, getMonthDaysLeft, getDay } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
@@ -22,7 +21,7 @@ class Home extends Component {
     this.onBudgetCirclePress = this.onBudgetCirclePress.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
   componentDidMount() {
@@ -33,7 +32,7 @@ class Home extends Component {
     const { budget } = this.props;
     this.props.navigation.navigate('CategoryPie', {
       title: 'CategoryPie',
-      budget: budget,
+      budget: budget
     });
   }
 
@@ -111,7 +110,7 @@ class Home extends Component {
           <Text
             style={[
               styles.homePageSmallText,
-              { paddingVertical: 10, width: '80%', textAlign: 'center' },
+              { paddingVertical: 10, width: '80%', textAlign: 'center' }
             ]}
           >
             {this.budgetStatus()}
@@ -161,13 +160,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    budget: state.acctTrans.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
@@ -182,7 +181,5 @@ export const HomeStack = createStackNavigator({
   Home: { screen: HomeConnect },
   Quiz: { screen: Quiz },
   Result: { screen: Result },
-  CategoryPie: { screen: CategoryPie },
-  Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults },
+  CategoryPie: { screen: CategoryPie }
 });
