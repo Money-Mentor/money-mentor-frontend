@@ -142,7 +142,7 @@ class Signup extends Component {
             }}
           />
         </View>
-        <View style={{ height: 300 }} />
+        <View style={{ height: 200 }} />
       </KeyboardAvoidingView>
     );
   }
