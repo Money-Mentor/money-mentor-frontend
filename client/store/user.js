@@ -7,10 +7,7 @@ import { server } from './index';
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 const UPDATE_USER_PERSONALITY = 'UPDATE_USER_PERSONALITY';
-<<<<<<< HEAD
-=======
 const UPDATE_USER = 'UPDATE_USER';
->>>>>>> master
 
 /**
  * INITIAL STATE
@@ -29,31 +26,13 @@ const setInterval = user => ({ type: UPDATE_USER, user });
  * THUNK CREATORS
  */
 
-<<<<<<< HEAD
-export const login = (email, password, navigation) => dispatch =>
-  axios
-    .post(`${server}/auth/login`, { email, password })
-    .then(
-      res => {
-        dispatch(getUser(res.data));
-        navigation.navigate('Quiz', { title: 'Quiz' });
-      },
-      authError => {
-        // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({ error: authError }));
-      }
-    )
-    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
-=======
->>>>>>> master
-
 export const login = (email, password, navigation, pushToken) => dispatch =>
   axios
     .post(`${server}/auth/login`, { email, password, pushToken })
     .then(
       res => {
         dispatch(getUser(res.data));
-        navigation.navigate('Main', { title: 'Main' });
+        navigation.navigate('Main', { title: 'Home' });
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -63,18 +42,18 @@ export const login = (email, password, navigation, pushToken) => dispatch =>
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
 export const signup = (email, password, pushToken) => dispatch => {
-axios
-  .post(`${server}/auth/signup`, { email, password, pushToken })
-  .then(
-    res => {
-      dispatch(getUser(res.data));
-    },
-    authError => {
-      // rare example: a good use case for parallel (non-catch) error handler
-      dispatch(getUser({ error: authError }));
-    }
-  )
-  .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+  axios
+    .post(`${server}/auth/signup`, { email, password, pushToken })
+    .then(
+      res => {
+        dispatch(getUser(res.data));
+      },
+      authError => {
+        // rare example: a good use case for parallel (non-catch) error handler
+        dispatch(getUser({ error: authError }));
+      }
+    )
+    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 };
 
 // Change .then to using await
@@ -99,13 +78,11 @@ export const updateUserPersonality = (userId, user) => {
       dispatch(setPersonality(res.data));
     } catch (err) {
       console.log('Error updating user personality: ', err.message);
-<<<<<<< HEAD
-=======
     }
   };
 };
 
-export const updateUserInterval = (user) => {
+export const updateUserInterval = user => {
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/users/${user.id}`, {
@@ -114,7 +91,6 @@ export const updateUserInterval = (user) => {
       dispatch(setInterval(res.data));
     } catch (err) {
       console.log('Error updating user reminderInterval: ', err.message);
->>>>>>> master
     }
   };
 };

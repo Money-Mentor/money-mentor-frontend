@@ -99,7 +99,7 @@ export const personalityTypes = [
     name: 'Inconclusive',
     imageUrl:
       'https://cdn.vox-cdn.com/thumbor/t1oJf-PHLQfRn7sd3xW1dueKT8M=/0x0:700x353/1200x800/filters:focal(294x121:406x233)/cdn.vox-cdn.com/uploads/chorus_image/image/51616431/ios-10-shrug-emoji.0.png',
-    description: `Darn...You're inconclusive! We're not sure what your personality type is - but we ARE sure you want to keep track of your spending! We'll still give you great recommendations.`
+    description: `Darn...You're inconclusive! We're not sure what your personality type is - but we ARE sure you want to keep track of your spending! We'll still give you great recommendations on financial articles and how to set your budget.`
   }
 ];
 
