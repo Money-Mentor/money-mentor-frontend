@@ -14,7 +14,20 @@ import {
   Navbar
 } from './client';
 
-import { Font } from 'expo';
+import { Font, Permissions, Notifications } from 'expo';
+
+// ----------------- Push Notifications --------------------------
+async function registerForPushNotificationsAsync() {
+  // Remote notifications don't work in simulators, only on device
+  if (!Expo.Constants.isDevice) {
+    return;
+  }
+  let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+
+  if (status !== 'granted') {
+    return;
+  }
+}
 
 // console.disableYellowBox = true;
 
@@ -26,6 +39,10 @@ export default class App extends React.Component {
     };
   }
   async componentDidMount() {
+    // listener for push notificaiton
+    registerForPushNotificationsAsync();
+    this.listener = Notifications.addListener(this.handleNotification);
+
     await Font.loadAsync({
       poppinsExtraLight: require('./public/fonts/Poppins/Poppins-ExtraLight.ttf'),
       poppinsRegular: require('./public/fonts/Poppins/Poppins-Regular.ttf'),
@@ -33,6 +50,18 @@ export default class App extends React.Component {
     });
     this.setState({ fontLoaded: true });
   }
+
+  // remove listener for push notification
+  componentWillUnmount() {
+    this.listener && this.listener.remove();
+  }
+
+  // handles push notification
+  handleNotification = ({ origin, data }) => {
+    console.log(
+      `Push notification ${origin} with data: ${JSON.stringify(data)}`
+    );
+  };
 
   render() {
     return (

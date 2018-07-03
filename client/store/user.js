@@ -7,6 +7,10 @@ import { server } from './index';
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 const UPDATE_USER_PERSONALITY = 'UPDATE_USER_PERSONALITY';
+<<<<<<< HEAD
+=======
+const UPDATE_USER = 'UPDATE_USER';
+>>>>>>> master
 
 /**
  * INITIAL STATE
@@ -19,11 +23,13 @@ const defaultUser = {};
 const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
+const setInterval = user => ({ type: UPDATE_USER, user });
 
 /**
  * THUNK CREATORS
  */
 
+<<<<<<< HEAD
 export const login = (email, password, navigation) => dispatch =>
   axios
     .post(`${server}/auth/login`, { email, password })
@@ -38,13 +44,16 @@ export const login = (email, password, navigation) => dispatch =>
       }
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+=======
+>>>>>>> master
 
-export const signup = (email, password) => dispatch =>
+export const login = (email, password, navigation, pushToken) => dispatch =>
   axios
-    .post(`${server}/auth/signup`, { email, password })
+    .post(`${server}/auth/login`, { email, password, pushToken })
     .then(
       res => {
         dispatch(getUser(res.data));
+        navigation.navigate('Main', { title: 'Main' });
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -52,6 +61,21 @@ export const signup = (email, password) => dispatch =>
       }
     )
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+
+export const signup = (email, password, pushToken) => dispatch => {
+axios
+  .post(`${server}/auth/signup`, { email, password, pushToken })
+  .then(
+    res => {
+      dispatch(getUser(res.data));
+    },
+    authError => {
+      // rare example: a good use case for parallel (non-catch) error handler
+      dispatch(getUser({ error: authError }));
+    }
+  )
+  .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+};
 
 // Change .then to using await
 // Make it one function that accepts paramenter (signup v login)
@@ -75,6 +99,22 @@ export const updateUserPersonality = (userId, user) => {
       dispatch(setPersonality(res.data));
     } catch (err) {
       console.log('Error updating user personality: ', err.message);
+<<<<<<< HEAD
+=======
+    }
+  };
+};
+
+export const updateUserInterval = (user) => {
+  return async dispatch => {
+    try {
+      const res = await axios.put(`${server}/api/users/${user.id}`, {
+        user
+      });
+      dispatch(setInterval(res.data));
+    } catch (err) {
+      console.log('Error updating user reminderInterval: ', err.message);
+>>>>>>> master
     }
   };
 };
@@ -89,6 +129,8 @@ export default function(state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser;
     case UPDATE_USER_PERSONALITY:
+      return action.user;
+    case UPDATE_USER:
       return action.user;
     default:
       return state;
