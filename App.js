@@ -29,7 +29,7 @@ async function registerForPushNotificationsAsync() {
   }
 }
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 export default class App extends React.Component {
   constructor() {
