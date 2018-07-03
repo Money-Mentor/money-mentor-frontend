@@ -9,11 +9,10 @@ import {
 import { styles, pieColor } from '../../common/styles';
 import StackedBar from './StackedBar';
 
-const { Surface, Group, Rectangle, Shape } = ART;
+const { Surface, Group } = ART;
 
 import * as scale from 'd3-scale';
 import * as shape from 'd3-shape';
-import * as d3Array from 'd3-array';
 import AnimShape from './AnimShape';
 
 const d3 = {
@@ -31,7 +30,6 @@ class Pie extends React.Component {
     this._color = this._color.bind(this);
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
   }
-
 
   _value(item) {
     return item.number;
@@ -94,12 +92,7 @@ class Pie extends React.Component {
           </Surface>
 
           {/* Progress Bars */}
-          <StackedBar getData={this.props.getData} />
-
-          {console.log(
-            ' CAN I USE THIS DATA FOR STACKEDBAR ????',
-            this.props.data
-          )}
+          <StackedBar data={this.props.getData} />
 
           <View style={styles.textContainer}>
             {this.props.data.map((item, index) => {
