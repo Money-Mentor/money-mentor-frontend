@@ -25,15 +25,12 @@ class Transaction extends React.Component {
 
     this.state = {
       expanded: false,
-      included: props.transaction.included,
-      category: props.transaction.category1,
       modal: false,
       offSet: new Animated.Value(deviceHeight)
     };
     this.toggleInfo = this.toggleInfo.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
     this.includedToggle = this.includedToggle.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    
   }
 
   toggleInfo() {
@@ -42,21 +39,9 @@ class Transaction extends React.Component {
     });
   }
 
-  toggleModal() {
-    this.setState({ modal: !this.state.modal })
-  }
 
-  handleCategoryChange(category) {
-    this.setState({
-      category
-    });
-  }
-
-  async includedToggle(boolean) {
-    await this.setState({
-      included: !this.state.included
-    });
-    await this.props.updateTrans({
+  includedToggle(boolean) {
+  this.props.updateTrans({
       ...this.props.transaction,
       included: this.state.included,
       category: this.state.category
@@ -96,19 +81,11 @@ class Transaction extends React.Component {
             <Text style={styles.buttonText}>EDIT</Text>
           </TouchableHighlight>
 
-          {this.state.modal && (
-            <Picker
-              toggleModal={this.toggleModal}
-              offSet={this.state.offSet}
-              handleCategoryChange={this.handleCategoryChange}
-              category={this.state.category}
-            />
-          )}
 
           <View>
             <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
             <Switch
-              value={this.state.included}
+              value={this.props.transaction.included}
               onValueChange={this.includedToggle}
             />
           </View>

@@ -28,7 +28,7 @@ class IndividualAccount extends React.Component {
               .filter(
                 transaction =>
                   transaction.accountId === accountId &&
-                  transaction.date >= startDate
+                  transaction.date <= startDate
               )
               .map((transaction, key) => (
                 <Transaction key={key} transaction={transaction} />
