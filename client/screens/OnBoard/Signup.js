@@ -11,19 +11,19 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Animated,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button
+  Button,
 } from 'react-native-elements';
 import {
   styles,
   colorTheme,
   IMAGE_HEIGHT,
-  IMAGE_HEIGHT_SMALL
+  IMAGE_HEIGHT_SMALL,
 } from '../../common/styles';
 import PlaidAuthenticator from 'react-native-plaid-link';
 
@@ -36,7 +36,7 @@ class Signup extends Component {
       email: '',
       password: '',
       status: 'LOGIN_BUTTON',
-      data: {}
+      data: {},
     };
     this.imageHeight = new Animated.Value(IMAGE_HEIGHT);
     this.onMessage = this.onMessage.bind(this);
@@ -44,7 +44,7 @@ class Signup extends Component {
   static navigationOptions = {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.white.snow }
+    headerTitleStyle: { color: colorTheme.white.snow },
   };
   componentWillMount() {
     this.keyboardWillShowSub = Keyboard.addListener(
@@ -65,14 +65,14 @@ class Signup extends Component {
   keyboardWillShow = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
-      toValue: IMAGE_HEIGHT_SMALL
+      toValue: IMAGE_HEIGHT_SMALL,
     }).start();
   };
 
   keyboardWillHide = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
-      toValue: IMAGE_HEIGHT
+      toValue: IMAGE_HEIGHT,
     }).start();
   };
 
@@ -81,7 +81,7 @@ class Signup extends Component {
       this.props.sendToken(this.state.data.metadata.public_token);
 
       this.props.navigation.navigate('BudgetSetup', {
-        title: 'BudgetSetup'
+        title: 'BudgetSetup',
       });
       return null;
     } else if (this.state.status === 'LOGIN_BUTTON') {
@@ -95,9 +95,9 @@ class Signup extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={styles.logoLocation}>
-          <Image
-            style={styles.logo}
+          <Animated.Image
             source={require('../../../public/img/logo2.png')}
+            style={[styles.animatedLogo, { height: this.imageHeight }]}
           />
           <Text style={styles.h1}>SIGN UP</Text>
         </View>
@@ -108,7 +108,7 @@ class Signup extends Component {
           placeholderTextColor={colorTheme.white.snow}
           onChangeText={text =>
             this.setState({
-              email: text
+              email: text,
             })
           }
           value={this.state.email}
@@ -119,7 +119,7 @@ class Signup extends Component {
           autoCapitalize="none"
           onChangeText={text =>
             this.setState({
-              password: text
+              password: text,
             })
           }
           placeholderTextColor={colorTheme.white.snow}
@@ -144,6 +144,7 @@ class Signup extends Component {
             }}
           />
         </View>
+        <View style={{ height: 200 }} />
       </KeyboardAvoidingView>
     );
   }
@@ -163,7 +164,9 @@ class Signup extends Component {
   onMessage = data => {
     this.setState({
       data,
-      status: data.action.substr(data.action.lastIndexOf(':') + 1).toUpperCase()
+      status: data.action
+        .substr(data.action.lastIndexOf(':') + 1)
+        .toUpperCase(),
     });
   };
 }
@@ -174,7 +177,7 @@ const mapDispatch = dispatch => {
       let pushToken = await Notifications.getExpoPushTokenAsync();
       dispatch(signup(email, password, pushToken));
     },
-    sendToken: token => dispatch(sendToken(token))
+    sendToken: token => dispatch(sendToken(token)),
   };
 };
 
