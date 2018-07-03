@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
   TextInput,
   KeyboardAvoidingView,
   Image
-} from "react-native";
-import { FormInput, Button } from "react-native-elements";
-import { connect } from "react-redux";
-import { setBudget } from "../../store";
-import { styles, colorTheme, deviceWidth } from "../../common/styles";
+} from 'react-native';
+import { FormInput, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { setBudget } from '../../store';
+import { styles, colorTheme, deviceWidth } from '../../common/styles';
 
 class BudgetSetup extends React.Component {
   constructor() {
@@ -31,13 +31,13 @@ class BudgetSetup extends React.Component {
       <View
         style={{
           width: deviceWidth - 40,
-          position: "absolute",
+          position: 'absolute',
           top: 50,
-          alignItems: "center"
+          alignItems: 'center'
         }}
       >
         <Text style={styles.budgetSetupText}>What is your monthly income?</Text>
-        <View style={{ flexDirection: "row", marginTop: 10 }}>
+        <View style={{ flexDirection: 'row', marginTop: 10 }}>
           <TextInput
             style={styles.budgetContainer}
             placeholderTextColor={colorTheme.white.snow}
@@ -51,7 +51,7 @@ class BudgetSetup extends React.Component {
             textStyle={{ textAlign: 'center' }}
             title={`→`}
             onPress={() => {
-              this.setState({question: 2})
+              this.setState({ question: 2 });
             }}
           />
         </View>
@@ -62,14 +62,18 @@ class BudgetSetup extends React.Component {
       <View
         style={{
           width: deviceWidth - 40,
-          position: "absolute",
+          position: 'absolute',
           top: 40,
-          alignItems: "center"
+          alignItems: 'center'
         }}
       >
-        <Text style={styles.budgetSetupText}>What are your monthly static costs?</Text>
-        <Text style={{fontSize: 15, textAlign: 'center'}}>(i.e. rent, utilities, insurance, etc.)</Text>
-        <View style={{ flexDirection: "row", marginTop: 10 }}>
+        <Text style={styles.budgetSetupText}>
+          What are your monthly static costs?
+        </Text>
+        <Text style={{ fontSize: 15, textAlign: 'center' }}>
+          (i.e. rent, utilities, insurance, etc.)
+        </Text>
+        <View style={{ flexDirection: 'row', marginTop: 10 }}>
           <TextInput
             style={styles.budgetContainer}
             placeholderTextColor={colorTheme.white.snow}
@@ -85,7 +89,7 @@ class BudgetSetup extends React.Component {
             textStyle={{ textAlign: 'center' }}
             title={`→`}
             onPress={() => {
-              this.setState({question: 3})
+              this.setState({ question: 3 });
             }}
           />
         </View>
@@ -96,31 +100,33 @@ class BudgetSetup extends React.Component {
       <View
         style={{
           width: deviceWidth - 40,
-          position: "absolute",
+          position: 'absolute',
           top: 50,
-          alignItems: "center"
+          alignItems: 'center'
         }}
       >
-        <Text style={styles.budgetSetupText}>How much would you like to save this month?</Text>
-        <View style={{ flexDirection: "row", marginTop: 10 }}>
+        <Text style={styles.budgetSetupText}>
+          How much would you like to save each month?
+        </Text>
+        <View style={{ flexDirection: 'row', marginTop: 10 }}>
           <TextInput
             style={styles.budgetContainer}
             placeholderTextColor={colorTheme.white.snow}
             onChangeText={savings => this.setState({ savings: +savings })}
-          placeholder="Savings"
+            placeholder="Savings"
           />
 
           <Button
             raised
             buttonStyle={styles.smallOrangeButton}
-            textStyle={{ textAlign: "center" }}
+            textStyle={{ textAlign: 'center' }}
             title={`→`}
             onPress={() => {
               const spendingBudget =
                 this.state.income - this.state.staticCosts - this.state.savings;
               this.props.setBudget({ ...this.state, spendingBudget });
-              this.props.navigation.navigate("EditCategories", {
-                title: "EditCategories"
+              this.props.navigation.navigate('EditCategories', {
+                title: 'EditCategories'
               });
             }}
           />
@@ -131,26 +137,26 @@ class BudgetSetup extends React.Component {
     let question;
 
     if (this.state.question === 1) {
-      question = question1
+      question = question1;
     } else if (this.state.question === 2) {
-      question = question2
+      question = question2;
     } else {
-      question = question3
+      question = question3;
     }
 
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Image
-          source={require("../../../public/img/speech.png")}
-          style={{ width: deviceWidth - 20, position: "absolute", top: -2 }}
+          source={require('../../../public/img/speech.png')}
+          style={{ width: deviceWidth - 20, position: 'absolute', top: -2 }}
         />
         <Image
-          source={require("../../../public/img/logo2.png")}
-          style={{ position: "absolute", bottom: -50, left: -200 }}
+          source={require('../../../public/img/logo2.png')}
+          style={{ position: 'absolute', bottom: -50, left: -200 }}
         />
-        <View style={{ position: "absolute", bottom: 20, right: 20 }}>
-          <Text style={[styles.h1, { textAlign: "right" }]}>
-            Talk to me{"\n"}about your{"\n"}finances
+        <View style={{ position: 'absolute', bottom: 20, right: 20 }}>
+          <Text style={[styles.h1, { textAlign: 'right' }]}>
+            Talk to me{'\n'}about your{'\n'}finances
           </Text>
         </View>
 

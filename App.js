@@ -23,12 +23,13 @@ async function registerForPushNotificationsAsync() {
     return;
   }
   let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-  console.log('status=============================================', status);
 
   if (status !== 'granted') {
     return;
   }
 }
+
+console.disableYellowBox = true;
 
 export default class App extends React.Component {
   constructor() {
@@ -43,7 +44,7 @@ export default class App extends React.Component {
     this.listener = Notifications.addListener(this.handleNotification);
 
     await Font.loadAsync({
-    poppinsExtraLight : require('./public/fonts/Poppins/Poppins-ExtraLight.ttf'),
+      poppinsExtraLight: require('./public/fonts/Poppins/Poppins-ExtraLight.ttf'),
       poppinsRegular: require('./public/fonts/Poppins/Poppins-Regular.ttf'),
       poppinsBold: require('./public/fonts/Poppins/Poppins-Bold.ttf')
     });

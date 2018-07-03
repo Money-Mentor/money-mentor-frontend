@@ -84,7 +84,6 @@ export const updateUserPersonality = (userId, user) => {
 };
 
 export const updateUserInterval = (user) => {
-  console.log('made it into updateUserInterval thunk ===============')
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/users/${user.id}`, {

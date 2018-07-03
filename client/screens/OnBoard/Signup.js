@@ -11,19 +11,19 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Animated,
-  Keyboard,
+  Keyboard
 } from 'react-native';
 import {
   FormLabel,
   FormInput,
   FormValidationMessage,
-  Button,
+  Button
 } from 'react-native-elements';
 import {
   styles,
   colorTheme,
   IMAGE_HEIGHT,
-  IMAGE_HEIGHT_SMALL,
+  IMAGE_HEIGHT_SMALL
 } from '../../common/styles';
 import PlaidAuthenticator from 'react-native-plaid-link';
 
@@ -44,7 +44,7 @@ class Signup extends Component {
   static navigationOptions = {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.white.snow },
+    headerTitleStyle: { color: colorTheme.white.snow }
   };
   componentWillMount() {
     this.keyboardWillShowSub = Keyboard.addListener(
@@ -65,14 +65,14 @@ class Signup extends Component {
   keyboardWillShow = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
-      toValue: IMAGE_HEIGHT_SMALL,
+      toValue: IMAGE_HEIGHT_SMALL
     }).start();
   };
 
   keyboardWillHide = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
-      toValue: IMAGE_HEIGHT,
+      toValue: IMAGE_HEIGHT
     }).start();
   };
 
@@ -80,8 +80,8 @@ class Signup extends Component {
     if (this.state.status === 'CONNECTED') {
       this.props.sendToken(this.state.data.metadata.public_token);
 
-      this.props.navigation.navigate("BudgetSetup", {
-        title: "BudgetSetup"
+      this.props.navigation.navigate('BudgetSetup', {
+        title: 'BudgetSetup'
       });
       return null;
     } else if (this.state.status === 'LOGIN_BUTTON') {
@@ -94,13 +94,12 @@ class Signup extends Component {
   renderSignUp() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-
         <View style={styles.logoLocation}>
-        <Animated.View style={{ height: this.imageHeight }}>
-  <Image style={styles.logo} source={require('../../../public/img/logo2.gif')} />
-      </ Animated.View>
-          <Text style={styles.h1}>sign up</Text>
-
+          <Image
+            style={styles.logo}
+            source={require('../../../public/img/logo2.png')}
+          />
+          <Text style={styles.h1}>SIGN UP</Text>
         </View>
         <View style={{ padding: 90 }} />
         <TextInput
@@ -109,7 +108,7 @@ class Signup extends Component {
           placeholderTextColor={colorTheme.white.snow}
           onChangeText={text =>
             this.setState({
-              email: text,
+              email: text
             })
           }
           value={this.state.email}
@@ -120,7 +119,7 @@ class Signup extends Component {
           autoCapitalize="none"
           onChangeText={text =>
             this.setState({
-              password: text,
+              password: text
             })
           }
           placeholderTextColor={colorTheme.white.snow}
@@ -136,15 +135,15 @@ class Signup extends Component {
             textStyle={{ textAlign: 'center' }}
             title={`Link Bank Account →`}
             onPress={async () => {
-              await this.props.handleSubmit(this.state.email, this.state.password);
+              await this.props.handleSubmit(
+                this.state.email,
+                this.state.password
+              );
 
-              await this.setState({ status: 'PLAID' })
+              await this.setState({ status: 'PLAID' });
             }}
           />
-
-
         </View>
-
       </KeyboardAvoidingView>
     );
   }

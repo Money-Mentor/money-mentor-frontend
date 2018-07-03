@@ -12,15 +12,29 @@ import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
 import { startDateString, getMonthDaysLeft, getDay } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
-import BugetCircle from './BugetCircle';
+import BudgetCircle from './BudgetCircle';
 
 class Home extends Component {
+  constructor() {
+    super();
+    this.remainingbudget = this.remainingbudget.bind(this);
+    this.budgetCircleHeight = this.budgetCircleHeight.bind(this);
+    this.onBudgetCirclePress = this.onBudgetCirclePress.bind(this);
+  }
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
 
   componentDidMount() {
     this.props.fetchAcctTransData();
+  }
+
+  onBudgetCirclePress() {
+    const { budget } = this.props;
+    this.props.navigation.navigate('CategoryPie', {
+      title: 'CategoryPie',
+      budget: budget,
+    });
   }
 
   totalSpent() {
@@ -66,8 +80,6 @@ class Home extends Component {
   render() {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
-    const date = new Date();
-    const dateHeight = `${date.getDate() * 3.0 - 3}%`;
 
     return (
       <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
@@ -95,6 +107,7 @@ class Home extends Component {
           ) : (
             <View />
           )}
+          {/*---------------- Budget Status ------------*/}
           <Text
             style={[
               styles.homePageSmallText,
@@ -103,56 +116,15 @@ class Home extends Component {
           >
             {this.budgetStatus()}
           </Text>
-
-          {/*---------------- Home Budget Circle starts ------------*/}
-          <View>
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate('CategoryPie', {
-                  title: 'CategoryPie',
-                  budget: budget,
-                });
-              }}
-            >
-              <View style={[styles.circle, { zIndex: 1 }]}>
-                <View
-                  style={[
-                    styles.circleLine,
-                    { height: `${this.dateCircleHeight()}%` },
-                  ]}
-                />
-                <View
-                  style={[
-                    styles.circleFill,
-                    { top: `${this.budgetCircleHeight()}%` },
-                  ]}
-                />
-              </View>
-            </TouchableOpacity>
-
-            {/*---------------- Home Budget Circle Text ------------*/}
-
-            <Text style={styles.cirleBigText}>
-              {this.remainingbudget() >= 0
-                ? `$${this.remainingbudget()}`
-                : `-$${Math.abs(this.remainingbudget())}`}
-            </Text>
-            <Text style={styles.cirleSmallText}>Remaining Spendable</Text>
-
-            {/*---------------- Home Budget Date Position ------------*/}
-            <View
-              style={[
-                styles.dateLine,
-                {
-                  top: `${date.getDate() * 2.9 + 2.7}%`,
-                },
-              ]}
+          {/*---------------- Budget Circle ------------*/}
+          {this.props.budget && (
+            <BudgetCircle
+              onBudgetCirclePress={this.onBudgetCirclePress}
+              dateCircleHeight={this.dateCircleHeight}
+              budgetCircleHeight={this.budgetCircleHeight}
+              remainingbudget={this.remainingbudget}
             />
-            <Text style={[styles.dateText, { top: dateHeight }]}>
-              {getDay()}
-            </Text>
-          </View>
-
+          )}
           {/*---------------- Total Budget & Daily Spendable ------------*/}
           <View>
             <View style={styles.homePageBudgetTextAlign}>
