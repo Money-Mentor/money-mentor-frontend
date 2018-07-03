@@ -42,7 +42,7 @@ class CategoryPie extends Component {
   spendingByCategory() {
     let startDate = startDateString();
     const { transactions } = this.props;
-    let categories = [
+    let categoriesArr = [
       'Community',
       'Food and Drink',
       'Healthcare',
@@ -51,24 +51,31 @@ class CategoryPie extends Component {
       'Shops',
       'Travel'
     ];
-    let categoryTotals = [];
-    let totalByCategory;
+
+    const categoriesObj = {};
     let total = 0;
+    transactions.map(transaction => {
+      if (
+        categoriesArr.indexOf(transaction.category1) > -1 &&
+        transaction.date >= startDate
+      ) {
+        if (!categoriesObj[transaction.category1]) {
+          categoriesObj[transaction.category1] = transaction.amount;
+          total += transaction.amount;
+        } else {
+          categoriesObj[transaction.category1] += transaction.amount;
+          total += transaction.amount;
+        }
+      }
+    });
 
-    for (let i = 0; i < categories.length; i++) {
-      totalByCategory =
-        transactions &&
-        transactions
-          .filter(
-            item => item.category1 === categories[i] && item.date >= startDate
-          )
-          .reduce((acc, num) => acc + num.amount, 0);
-      total += totalByCategory;
-      totalByCategory &&
-        categoryTotals.push({ number: totalByCategory, name: categories[i] });
-    }
-
-    return [categoryTotals, total];
+    const categoryTotal = [];
+    categoriesArr.forEach(category => {
+      if (categoriesObj[category]) {
+        categoryTotal.push({ name: category, number: categoriesObj[category] });
+      }
+    });
+    return [categoryTotal, total];
   }
 
   // Get Total. Division. Get to Percentage by category.
