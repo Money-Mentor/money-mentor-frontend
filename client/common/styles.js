@@ -423,6 +423,9 @@ export const styles = StyleSheet.create({
     backgroundColor: colorTheme.white.snow,
     padding: 5,
     position: 'absolute',
-    left: 10
-  }
+    left: 10,
+  },
+    picker: {
+    width: 100,
+  },
 });
