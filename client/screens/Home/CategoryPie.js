@@ -10,13 +10,13 @@ import Transaction from '../Accounts/Transaction';
 
 class CategoryPie extends Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0,
+      activeIndex: 0
     };
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
     this.getData = this.getData.bind(this);
@@ -39,7 +39,6 @@ class CategoryPie extends Component {
   }
 
   //[{number:1600, name: catergory}...],total of all buckets
-
   spendingByCategory() {
     let startDate = startDateString();
     const { transactions } = this.props;
@@ -50,7 +49,7 @@ class CategoryPie extends Component {
       'Recreation',
       'Service',
       'Shops',
-      'Travel',
+      'Travel'
     ];
 
     const categoriesObj = {};
@@ -89,7 +88,7 @@ class CategoryPie extends Component {
       percent = Math.round((category.number / total) * 100);
       spendingByCategoryPercentArr.push({
         number: percent,
-        name: category.name,
+        name: category.name
       });
     });
 
@@ -113,16 +112,9 @@ class CategoryPie extends Component {
             data={this.getData()}
             budget={this.props.budget}
             spendingByCategory={this.spendingByCategory()}
+            getData={this.getData()}
           />
         </View>
-
-        {/* Progress Bars */}
-
-        <StackedBar
-          budget={this.props.budget}
-          spendingByCategory={this.spendingByCategory()}
-          getData={this.getData()}
-        />
 
         {/* Transaction Details List */}
         <List>
@@ -149,7 +141,7 @@ class CategoryPie extends Component {
 const mapState = state => {
   return {
     budget: state.acctTrans.budget,
-    transactions: state.acctTrans.trans,
+    transactions: state.acctTrans.trans
   };
 };
 

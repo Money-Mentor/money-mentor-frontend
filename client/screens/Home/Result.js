@@ -1,9 +1,12 @@
 import React from 'react';
-import { Text, View, Image, ScrollView } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { personalityTypes } from '../../data';
 import { updateUserPersonality } from '../../store/user';
+import { setBudget } from '../../store/budget';
 import { styles } from '../../common/styles';
+import { determineBudget } from '../../common/index';
+import { Button } from 'react-native-elements';
 
 class Result extends React.Component {
   static navigationOptions = {
@@ -13,7 +16,7 @@ class Result extends React.Component {
   componentDidMount() {
     this.props.user.personalityType = this.props.personality;
     const updatedUser = this.props.user;
-    this.props.dispatchedSetPersonality(this.props.user.id, updatedUser);
+    this.props.updateUserPersonality(this.props.user.id, updatedUser);
   }
 
   render() {
@@ -23,59 +26,76 @@ class Result extends React.Component {
 
     return (
       <View style={styles.container}>
-        {personalityType && (
-          <View>
-            <Image
-              style={{
-                alignSelf: 'center',
-                height: 300,
-                width: 350,
-                borderWidth: 1,
-                borderColor: 'white'
-              }}
-              source={{ uri: personalityType.imageUrl }}
-              resizeMode="stretch"
-            />
-            <Text style={[styles.smallerText, { fontSize: 28 }]}>
-              {personalityType.name}
-            </Text>
-            <Text style={[styles.smallerText, { fontSize: 12 }]}>
-              {personalityType.description}
-            </Text>
-          </View>
-        )}
+        {personalityType &&
+          (personalityType.name === 'Inconclusive' ? (
+            <View>
+              <Text style={styles.questionText}>
+                Uh Oh. Inconclusive! We're not sure what your personality type
+                is - but we are sure you want to keep track of your spending!
+                Take a look at our home page.
+              </Text>
+            </View>
+          ) : (
+            <View>
+              <View>
+                <Image
+                  style={{
+                    alignSelf: 'center',
+                    height: 300,
+                    width: 350,
+                    borderWidth: 1,
+                    borderColor: 'white'
+                  }}
+                  source={{ uri: personalityType.imageUrl }}
+                  resizeMode="stretch"
+                />
+                <Text style={[styles.questionText, { fontSize: 28 }]}>
+                  {personalityType.name}
+                </Text>
+                <Text
+                  style={[
+                    styles.questionText,
+                    { fontSize: 12, fontWeight: 'normal' }
+                  ]}
+                >
+                  {personalityType.description}
+                </Text>
+              </View>
+            </View>
+          ))}
+
+        <View>
+          <Button
+            buttonStyle={styles.smallOrangeButton}
+            textStyle={{ textAlign: 'center' }}
+            title={`Set Budget By Personality`}
+            onPress={() => {
+              this.props.setBudget(
+                determineBudget(personalityType.name, this.props.budget)
+              );
+              this.props.navigation.navigate('EditCategories', {
+                title: 'EditCategories'
+              });
+            }}
+          />
+        </View>
       </View>
     );
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flexGrow: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#C2D3DA'
-//   },
-//   smallerText: {
-//     alignSelf: 'center',
-//     color: '#585A56',
-//     textAlign: 'center',
-//     alignItems: 'center',
-//     fontWeight: 'bold',
-//     padding: 20
-//   }
-// });
-
 const mapState = state => {
   return {
     user: state.user,
-    personality: state.personality
+    personality: state.personality,
+    budget: state.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    dispatchedSetPersonality: (userId, user) =>
+    setBudget: budget => dispatch(setBudget(budget)),
+    updateUserPersonality: (userId, user) =>
       dispatch(updateUserPersonality(userId, user))
   };
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { StackedBarChart } from 'react-native-svg-charts';
-import { styles, colorTheme } from '../../common/styles';
+import { styles } from '../../common/styles';
 import { getDay } from '../../common/index';
 
 class StackedBar extends React.Component {
@@ -15,7 +15,7 @@ class StackedBar extends React.Component {
     return {
       category: str,
       spent: this.getValueFromCategory(str),
-      getRemainingAllowed: this.getRemainingAllowed(str),
+      getRemainingAllowed: this.getRemainingAllowed(str)
     };
   }
 
@@ -41,7 +41,7 @@ class StackedBar extends React.Component {
       'Recreation',
       'Service',
       'Shops',
-      'Travel',
+      'Travel'
     ]
       .map(elem => this.buildCategoryObj(elem))
       .filter(elem => elem.spent !== 0);
@@ -62,17 +62,17 @@ class StackedBar extends React.Component {
             keys={keys}
             colors={colors}
             data={data}
-            style={{ height: 180, width: width }}
-            showGrid={false}
+            style={
+              { height: 180, width: width } // xScale={scale.scaleBand}
+            }
             contentInset={{ top: 30, bottom: 30 }}
+            xAccessor
           />
 
           <View
             style={[
               styles.dateLineCategory,
-              {
-                top: `${83 - date.getDate() * 2.2}%`,
-              },
+              { top: `${83 - date.getDate() * 2.2}%` }
             ]}
           />
           <Text style={[styles.dateTextCategory, { top: dateHeight }]}>

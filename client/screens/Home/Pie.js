@@ -1,14 +1,13 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ART,
-  LayoutAnimation,
-  Dimensions,
   TouchableWithoutFeedback,
+  ScrollView
 } from 'react-native';
-import { styles, pieColor, colorTheme } from '../../common/styles';
+import { styles, pieColor } from '../../common/styles';
+import StackedBar from './StackedBar';
 
 const { Surface, Group, Rectangle, Shape } = ART;
 
@@ -19,7 +18,7 @@ import AnimShape from './AnimShape';
 
 const d3 = {
   scale,
-  shape,
+  shape
 };
 
 class Pie extends React.Component {
@@ -33,8 +32,7 @@ class Pie extends React.Component {
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
   }
 
-  // methods used to tranform data into piechart:
-  // TODO: Expose them as part of the interface
+
   _value(item) {
     return item.number;
   }
@@ -70,7 +68,7 @@ class Pie extends React.Component {
 
     return {
       path,
-      color: this._color(index),
+      color: this._color(index)
     };
   }
 
@@ -81,37 +79,48 @@ class Pie extends React.Component {
 
   render() {
     return (
-      <View style={{ alignSelf: 'center', justifyContent: 'center' }}>
-        <Surface width="400" height="425">
-          <Group x={200} y={125}>
-            {this.props.data.map((item, index) => (
-              <AnimShape
-                key={'pie_shape_' + index}
-                color={this._color(index)}
-                d={() => this._createPieChart(index)}
-              />
-            ))}
-          </Group>
-        </Surface>
-        <View style={styles.textContainer}>
-          {this.props.data.map((item, index) => {
-            var fontWeight =
-              this.state.highlightedIndex == index ? 'bold' : 'normal';
-            return (
-              <TouchableWithoutFeedback
-                key={index}
-                onPress={() => this._onPieItemSelected(index)}
-              >
-                <View>
-                  <Text style={[styles.label, { fontWeight: fontWeight }]}>
-                    {this._label(item)}: {this._value(item)}%
-                  </Text>
-                </View>
-              </TouchableWithoutFeedback>
-            );
-          })}
+      <ScrollView>
+        <View style={{ alignSelf: 'center', justifyContent: 'center' }}>
+          <Surface width="400" height="425">
+            <Group x={200} y={125}>
+              {this.props.data.map((item, index) => (
+                <AnimShape
+                  key={'pie_shape_' + index}
+                  color={this._color(index)}
+                  d={() => this._createPieChart(index)}
+                />
+              ))}
+            </Group>
+          </Surface>
+
+          {/* Progress Bars */}
+          <StackedBar getData={this.props.getData} />
+
+          {console.log(
+            ' CAN I USE THIS DATA FOR STACKEDBAR ????',
+            this.props.data
+          )}
+
+          <View style={styles.textContainer}>
+            {this.props.data.map((item, index) => {
+              var fontWeight =
+                this.state.highlightedIndex == index ? 'bold' : 'normal';
+              return (
+                <TouchableWithoutFeedback
+                  key={index}
+                  onPress={() => this._onPieItemSelected(index)}
+                >
+                  <View>
+                    <Text style={[styles.label, { fontWeight: fontWeight }]}>
+                      {this._label(item)}: {this._value(item)}%
+                    </Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              );
+            })}
+          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
