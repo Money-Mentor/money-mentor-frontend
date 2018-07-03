@@ -10,6 +10,7 @@ const BudgetCircle = props => {
     dateCircleHeight,
     budgetCircleHeight,
     remainingbudget,
+    onBudgetCirclePress,
   } = props;
   console.log('props in budget circle', props);
   const date = new Date();
@@ -17,14 +18,7 @@ const BudgetCircle = props => {
   return (
     budget && (
       <View>
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.navigate('CategoryPie', {
-              title: 'CategoryPie',
-              budget: budget,
-            });
-          }}
-        >
+        <TouchableOpacity onPress={() => onBudgetCirclePress()}>
           <View style={[styles.circle, { zIndex: 1 }]}>
             <View
               style={[styles.circleLine, { height: `${dateCircleHeight()}%` }]}

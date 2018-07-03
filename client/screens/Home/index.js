@@ -19,6 +19,7 @@ class Home extends Component {
     super();
     this.remainingbudget = this.remainingbudget.bind(this);
     this.budgetCircleHeight = this.budgetCircleHeight.bind(this);
+    this.onBudgetCirclePress = this.onBudgetCirclePress.bind(this);
   }
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium },
@@ -26,6 +27,14 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.fetchAcctTransData();
+  }
+
+  onBudgetCirclePress() {
+    const { budget } = this.props;
+    this.props.navigation.navigate('CategoryPie', {
+      title: 'CategoryPie',
+      budget: budget,
+    });
   }
 
   totalSpent() {
@@ -110,6 +119,7 @@ class Home extends Component {
           {/*---------------- Budget Circle ------------*/}
           {this.props.budget && (
             <BudgetCircle
+              onBudgetCirclePress={this.onBudgetCirclePress}
               dateCircleHeight={this.dateCircleHeight}
               budgetCircleHeight={this.budgetCircleHeight}
               remainingbudget={this.remainingbudget}
