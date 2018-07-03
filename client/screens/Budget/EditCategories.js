@@ -7,43 +7,43 @@ import { styles, colorTheme, deviceWidth } from '../../common/styles';
 import Slider from 'react-native-slider';
 
 class EditCategories extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       categories: [
         {
           name: 'foodAndDrink',
-          percentage: 35,
+          percentage: 0,
           description: '(Groceries, restaurants, bars, nightlife, etc.)'
         },
         {
           name: 'travel',
-          percentage: 10,
+          percentage: 0,
           description: '(Gas, subway, train, bus, etc.)'
         },
         {
           name: 'recreation',
-          percentage: 15,
+          percentage: 0,
           description: '(Arts and entertainment, sports, outdoors, etc.)'
         },
         {
           name: 'healthcare',
-          percentage: 10,
+          percentage: 0,
           description: '(Doctor visits, prescriptions, physicians, etc.)'
         },
         {
           name: 'service',
-          percentage: 10,
+          percentage: 0,
           description: '(Self-care, automotive, financial, home repair, etc.)'
         },
         {
           name: 'community',
-          percentage: 10,
+          percentage: 0,
           description: '(Education, donations, offering, etc.)'
         },
         {
           name: 'shops',
-          percentage: 10,
+          percentage: 0,
           description: '(Presents, clothes, accessories, etc.)'
         }
       ],
@@ -52,9 +52,69 @@ class EditCategories extends React.Component {
     this.toTitle = this.toTitle.bind(this);
     this.showDescription = this.showDescription.bind(this);
   }
+
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
+
+  componentDidMount() {
+    this.props.fetchBudget(this.props.user.id);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.budget && props.budget.foodAndDrink !== state.categories.name) {
+      return {
+        categories: [
+          {
+            name: 'foodAndDrink',
+            percentage: props.budget.foodAndDrink,
+            description: '(Groceries, restaurants, bars, nightlife, etc.)'
+          },
+          {
+            name: 'travel',
+            percentage: props.budget.travel,
+            description: '(Gas, subway, train, bus, etc.)'
+          },
+          {
+            name: 'recreation',
+            percentage: props.budget.recreation,
+            description: '(Arts and entertainment, sports, outdoors, etc.)'
+          },
+          {
+            name: 'healthcare',
+            percentage: props.budget.healthcare,
+            description: '(Doctor visits, prescriptions, physicians, etc.)'
+          },
+          {
+            name: 'service',
+            percentage: props.budget.service,
+            description: '(Self-care, automotive, financial, home repair, etc.)'
+          },
+          {
+            name: 'community',
+            percentage: props.budget.community,
+            description: '(Education, donations, offering, etc.)'
+          },
+          {
+            name: 'shops',
+            percentage: props.budget.shops,
+            description: '(Presents, clothes, accessories, etc.)'
+          }
+        ],
+        remaining:
+          100 -
+          props.budget.foodAndDrink -
+          props.budget.travel -
+          props.budget.recreation -
+          props.budget.healthcare -
+          props.budget.service -
+          props.budget.community -
+          props.budget.shops
+      };
+    } else {
+      return null;
+    }
+  }
 
   toTitle(str, separator) {
     separator = typeof separator === 'undefined' ? ' ' : separator;
@@ -71,10 +131,6 @@ class EditCategories extends React.Component {
     return <Text>{category.description}</Text>;
   }
 
-  componentDidMount() {
-    this.props.fetchBudget(this.props.user.id);
-  }
-
   render() {
     return (
       <ScrollView>
@@ -82,114 +138,145 @@ class EditCategories extends React.Component {
           {this.props.budget.id && (
             <View>
               <View>
-                <Text style={[styles.initialScreenText, { fontSize: 30}]}>
+                <Text
+                  style={[
+                    styles.initialScreenText,
+                    { fontSize: 45, fontWeight: 'bold' }
+                  ]}
+                >
                   Edit Your Budget
                 </Text>
-                <View
-                      style={[categoryStyles.introInfo, {paddingTop: 40}]}
-                    >
+                <View style={[categoryStyles.introInfo, { paddingTop: 40 }]}>
+                  <Text
+                    style={[
+                      styles.editCategoryText,
+                      categoryStyles.introInfoBig
+                    ]}
+                  >
+                    {this.state.remaining}%
+                  </Text>
+                  <Text
+                    style={[
+                      styles.editCategoryText,
+                      categoryStyles.introInfoBig
+                    ]}
+                  >
+                    ${(this.props.budget.spendingBudget *
+                      this.state.remaining) /
+                      100}
+                  </Text>
+                </View>
 
-                <Text style={[styles.editCategoryText, categoryStyles.introInfoBig]}>
-                {this.state.remaining}%
-                </Text>
-                <Text style={[styles.editCategoryText, categoryStyles.introInfoBig]}>
-                ${this.props.budget.spendingBudget}
-                </Text>
-  </View>
-
-                  <View
-                      style={[categoryStyles.introInfo, {paddingBottom: 40}]}
-                    >
-
-                <Text style={[styles.editCategoryText, categoryStyles.introIntroSmall]}>
-                remaining
-                </Text>
-                <Text style={[styles.editCategoryText, categoryStyles.introIntroSmall]}>
-                to spend
-                </Text>
-  </View>
-
+                <View style={[categoryStyles.introInfo, { paddingBottom: 10 }]}>
+                  <Text
+                    style={[
+                      styles.editCategoryText,
+                      categoryStyles.introIntroSmall
+                    ]}
+                  >
+                    remaining
+                  </Text>
+                  <Text
+                    style={[
+                      styles.editCategoryText,
+                      categoryStyles.introIntroSmall,
+                      { fontSize: 14 }
+                    ]}
+                  >
+                    of ${this.props.budget.spendingBudget}
+                  </Text>
+                </View>
               </View>
-              <View style={{ padding: 5 }} />
+              <View style={{ paddingLeft: 5, paddingRight: 5 }} />
               {/* All Categories */}
+
               {this.state.categories.map(category => {
                 return (
-                  <Card key={category.name} containerStyle={{margin: 30}}>
-                  <View key={category.name}>
-                    <View style={{ padding: 5, width: '100%' }} />
-                    <View
-                      style={{
-                        paddingLeft: 20,
-                        paddingEnd: 20,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-
-                      <Text
-                        style={
-                          styles.smallerText}
+                  <Card key={category.name} containerStyle={{ margin: 30 }}>
+                    <View key={category.name}>
+                      <View style={{ padding: 5, width: '100%' }} />
+                      <View
+                        style={{
+                          paddingLeft: 20,
+                          paddingEnd: 20,
+                          flexDirection: 'row',
+                          justifyContent: 'space-between'
+                        }}
                       >
-                        {this.toTitle(category.name)}
-                      </Text>
-
-                        <Text
-                          style={
-                            styles.smallerText}
-                        >
-                          {category.percentage}%
+                        <Text style={styles.smallerText}>
+                          {this.toTitle(category.name)}
                         </Text>
 
-                    </View>
+                        <Text style={styles.smallerText}>
+                          {category.percentage}%
+                        </Text>
+                      </View>
 
-                    <Slider
-                      trackStyle={styles.track}
-                      thumbStyle={styles.thumb}
-                      minimumTrackTintColor={colorTheme.orange.medium}
-                      maximumTrackTintColor="#b7b7b7"
-                      style={styles.slider}
-                      value={category.percentage}
-                      onSlidingComplete={value => {
-                        this.setState(prevState => {
-                          const remaining =
-                            prevState.remaining + (category.percentage - value);
-                          return {
-                            categories: [...prevState.categories].map(elem => {
-                              if (elem.name === category.name) {
-                                elem.percentage = value;
-                                return elem;
-                              } else {
-                                return elem;
-                              }
-                            }),
-                            remaining: remaining
-                          };
-                        });
-                      }}
-                      step={5}
-                      minimumValue={0}
-                      maximumValue={100}
-                    />
-
+                      <Slider
+                        trackStyle={styles.track}
+                        thumbStyle={styles.thumb}
+                        minimumTrackTintColor={colorTheme.orange.medium}
+                        maximumTrackTintColor="#b7b7b7"
+                        style={styles.slider}
+                        value={category.percentage}
+                        onSlidingComplete={value => {
+                          this.setState(prevState => {
+                            const remaining =
+                              prevState.remaining +
+                              (category.percentage - value);
+                            return {
+                              categories: [...prevState.categories].map(
+                                elem => {
+                                  if (elem.name === category.name) {
+                                    elem.percentage = value;
+                                    return elem;
+                                  } else {
+                                    return elem;
+                                  }
+                                }
+                              ),
+                              remaining: remaining
+                            };
+                          });
+                        }}
+                        step={5}
+                        minimumValue={0}
+                        maximumValue={100}
+                      />
                     </View>
                   </Card>
                 );
-
               })}
 
               {/* Button */}
               <Button
                 raised
-                disabled={this.state.remaining === 0 ? false : true}
-                buttonStyle={[styles.smallOrangeButton, , {marginVertical: 20, width: deviceWidth - 20, alignSelf: 'center'}]}
+                disabled={this.state.remaining >= 0 ? false : true}
+                buttonStyle={[
+                  styles.smallOrangeButton,
+                  {
+                    marginVertical: 20,
+                    width: deviceWidth - 20,
+                    alignSelf: 'center'
+                  }
+                ]}
                 textStyle={{ textAlign: 'center' }}
-                title={`Finished!`}
+                title={`Finished`}
                 onPress={() => {
-                  this.props.setBudget(this.state.budget);
+                  this.props.setBudget({
+                    ...this.props.budget,
+                    foodAndDrink: this.state.categories[0].percentage,
+                    travel: this.state.categories[1].percentage,
+                    recreation: this.state.categories[2].percentage,
+                    healthcare: this.state.categories[3].percentage,
+                    service: this.state.categories[4].percentage,
+                    community: this.state.categories[5].percentage,
+                    shops: this.state.categories[6].percentage
+                  });
                   this.props.navigation.navigate('Home', { title: 'Home' });
                 }}
               >
-                Finished!
+                Finished
               </Button>
             </View>
           )}
@@ -215,13 +302,13 @@ const mapDispatch = dispatch => {
 
 const categoryStyles = StyleSheet.create({
   introInfo: {
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        paddingHorizontal: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 40
   },
   introIntroSmall: { fontSize: 20, color: '#ffffff', textAlign: 'center' },
   introInfoBig: { fontSize: 40, color: '#ffffff', textAlign: 'center' }
-})
+});
 
 export default connect(
   mapState,

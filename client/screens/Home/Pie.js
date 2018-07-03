@@ -1,15 +1,12 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   ART,
-  LayoutAnimation,
-  Dimensions,
   TouchableWithoutFeedback,
   ScrollView
 } from 'react-native';
-import { styles, pieColor, colorTheme } from '../../common/styles';
+import { styles, pieColor } from '../../common/styles';
 import StackedBar from './StackedBar';
 
 const { Surface, Group, Rectangle, Shape } = ART;
@@ -35,8 +32,7 @@ class Pie extends React.Component {
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
   }
 
-  // methods used to tranform data into piechart:
-  // TODO: Expose them as part of the interface
+
   _value(item) {
     return item.number;
   }

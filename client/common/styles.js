@@ -3,29 +3,29 @@ import { StyleSheet, Dimensions } from 'react-native';
 export const IMAGE_HEIGHT_SMALL = 0;
 export const IMAGE_HEIGHT = 108;
 
-export const deviceWidth = Dimensions.get("window").width;
-export const deviceHeight = Dimensions.get("window").height;
+export const deviceWidth = Dimensions.get('window').width;
+export const deviceHeight = Dimensions.get('window').height;
 
 export const colorTheme = {
   orange: {
     medium: '#EF4C22',
-    dark: '#9e3014',
+    dark: '#9e3014'
   },
   blue: {
     light: '#8EB3DF',
     medium: '#33409A',
-    dark: '#262560',
+    dark: '#262560'
   },
   white: {
-    snow: 'white',
+    snow: 'white'
   },
   grey: {
     light: '#a9ada6',
-    dark: '#585A56',
+    dark: '#585A56'
   },
   pink: {
     light: '#B776B2',
-    dark: '#AE4787',
+    dark: '#AE4787'
   },
   mint: {
     light: '#D4F2D2',
@@ -34,8 +34,8 @@ export const colorTheme = {
   purple: {
     light: '#4F5DA9',
     medium: '#424DA0',
-    dark: '#2E2F8E',
-  },
+    dark: '#2E2F8E'
+  }
 };
 
 export const pieColor = [
@@ -65,20 +65,21 @@ export const styles = StyleSheet.create({
     top: -10,
     backgroundColor: colorTheme.orange.medium,
     borderColor: colorTheme.white.snow,
-    borderWidth: 2,
+    borderWidth: 2
   },
   logo: {
     width: 150,
     height: 108,
+    resizeMode: 'contain'
   },
   animatedLogo: {
-    width: 200,
+    width: 200
   },
   logoLocation: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    top: 100,
+    top: 100
   },
   linkLogoLocation: {
     justifyContent: 'center',
@@ -92,24 +93,23 @@ export const styles = StyleSheet.create({
   },
   bluebutton: {
     backgroundColor: colorTheme.blue.dark,
-    width: '100%',
+    width: '100%'
   },
   orangebutton: {
     backgroundColor: colorTheme.orange.medium,
     height: 50,
     width: deviceWidth - 50,
     padding: 10,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   smallOrangeButton: {
     backgroundColor: colorTheme.orange.medium,
     width: '100%',
-    height: 50,
-    width: 50
+    height: 50
   },
   buttontext: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 18
   },
   circle: {
     width: 250,
@@ -123,14 +123,14 @@ export const styles = StyleSheet.create({
   circleLine: {
     borderBottomColor: colorTheme.white.snow,
     borderBottomWidth: 2,
-    zIndex: 2,
+    zIndex: 2
   },
   circleFill: {
     backgroundColor: colorTheme.orange.medium,
     width: '100%',
     bottom: 0,
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 1
   },
   cirleBigText: {
     color: colorTheme.white.snow,
@@ -199,7 +199,7 @@ export const styles = StyleSheet.create({
   },
   track: {
     height: 2,
-    borderRadius: 1,
+    borderRadius: 1
   },
   thumb: {
     width: 20,
@@ -209,7 +209,7 @@ export const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.35
   },
   dateText: {
     color: colorTheme.white.snow,
@@ -232,11 +232,11 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16
   },
-    editCategoryText: {
+  editCategoryText: {
     fontFamily: 'poppinsRegular',
     alignSelf: 'center',
     color: '#000000',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   homePageBudgetTextAlign: {
     flexDirection: 'row',
@@ -271,7 +271,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 10,
     width: '80%',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   budgetStatus: {
     fontWeight: 'bold',
@@ -284,7 +284,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontSize: 65,
-    fontFamily: 'poppinsExtraLight',
+    fontFamily: 'poppinsExtraLight'
   },
   initialScreenTextSecondLine: {
     alignSelf: 'center',
@@ -292,13 +292,14 @@ export const styles = StyleSheet.create({
     fontSize: 56,
     fontFamily: 'poppinsExtraLight',
     position: 'relative',
-    top: -30,
+    top: -30
   },
   h1: {
     alignSelf: 'center',
     color: colorTheme.white.snow,
     fontWeight: 'bold',
     fontSize: 30,
+    fontFamily: 'poppinsExtraLight'
   },
   formContainer: {
     width: '80%',
@@ -308,7 +309,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#3947ad',
     borderWidth: 2,
     color: colorTheme.white.snow,
-    fontSize: 18,
+    fontSize: 18
   },
   budgetContainer: {
     padding: 10,
@@ -318,7 +319,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#3947ad',
     borderWidth: 2,
     color: colorTheme.white.snow,
-    fontSize: 18,
+    fontSize: 18
   },
   accountOverviewContainer: {
     flexGrow: 1,
@@ -337,7 +338,7 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginTop: 5,
-    color: colorTheme.white.snow,
+    color: colorTheme.white.snow
   },
   transactionTitle: {
     paddingLeft: 10,
@@ -375,30 +376,30 @@ export const styles = StyleSheet.create({
     color: colorTheme.grey.dark,
     fontWeight: 'bold',
     fontSize: 16,
-    padding: 5,
+    padding: 5
   },
   slideImage: {
     alignSelf: 'center',
     height: 60,
     width: 300,
-    paddingTop: 2,
+    paddingTop: 2
   },
   publisherText: {
     textAlign: 'left',
     fontSize: 12,
     fontWeight: 'bold',
-    color: colorTheme.grey.light,
+    color: colorTheme.grey.light
   },
   slidePublisher: {
     flexDirection: 'row',
-    paddingLeft: 5,
+    paddingLeft: 5
   },
   viewArticleText: {
     textAlign: 'left',
     paddingLeft: 5,
     fontSize: 12,
     fontWeight: 'bold',
-    color: colorTheme.orange.medium,
+    color: colorTheme.orange.medium
   },
   barText: {
     padding: 0,
