@@ -14,7 +14,7 @@ import { Button } from "react-native-elements";
 import { transactionIconType } from "../../common/index";
 import { connect } from "react-redux";
 import { updateTrans, fetchAcctTransData } from "../../store";
-import Picker from './Picker'
+import CategoryPicker from './CategoryPicker'
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -25,9 +25,11 @@ class Transaction extends React.Component {
 
     this.state = {
       expanded: false,
+      picker: false
     };
     this.toggleInfo = this.toggleInfo.bind(this);
     this.includedToggle = this.includedToggle.bind(this);
+    this.togglePicker = this.togglePicker.bind(this);
 
   }
 
@@ -37,8 +39,14 @@ class Transaction extends React.Component {
     });
   }
 
+  togglePicker() {
+    this.setState({
+      picker: !this.state.picker
+    });
+  }
 
-  async includedToggle(boolean) {
+
+  async includedToggle(input) {
     await this.props.updateTrans({
         ...this.props.transaction,
         included: !this.props.transaction.included,
@@ -74,10 +82,12 @@ class Transaction extends React.Component {
           <TouchableHighlight
             underlayColor="transparent"
             onPress={
-              this.toggleModal}
+              this.togglePicker}
           >
             <Text style={styles.buttonText}>EDIT</Text>
           </TouchableHighlight>
+
+{this.state.picker && <CategoryPicker transactionId={transaction.id}/>}
 
 
           <View>
