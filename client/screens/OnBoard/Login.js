@@ -8,14 +8,14 @@ import {
   TextInput,
   Animated,
   Keyboard,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import {
   styles,
   colorTheme,
   IMAGE_HEIGHT,
-  IMAGE_HEIGHT_SMALL
+  IMAGE_HEIGHT_SMALL,
 } from '../../common/styles';
 
 import { Notifications } from 'expo';
@@ -29,7 +29,7 @@ class Login extends Component {
   static navigationOptions = {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.white.snow }
+    headerTitleStyle: { color: colorTheme.white.snow },
   };
 
   componentWillMount() {
@@ -51,14 +51,14 @@ class Login extends Component {
   keyboardWillShow = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
-      toValue: IMAGE_HEIGHT_SMALL
+      toValue: IMAGE_HEIGHT_SMALL,
     }).start();
   };
 
   keyboardWillHide = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
-      toValue: IMAGE_HEIGHT
+      toValue: IMAGE_HEIGHT,
     }).start();
   };
 
@@ -66,9 +66,9 @@ class Login extends Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image
-            style={styles.logo}
+          <Animated.Image
             source={require('../../../public/img/logo2.png')}
+            style={[styles.animatedLogo, { height: this.imageHeight }]}
           />
           <Text style={styles.h1}>LOG IN</Text>
         </View>
@@ -79,7 +79,7 @@ class Login extends Component {
           placeholderTextColor={colorTheme.white.snow}
           onChangeText={text =>
             this.setState({
-              email: text
+              email: text,
             })
           }
           value={this.state.email}
@@ -90,7 +90,7 @@ class Login extends Component {
           autoCapitalize="none"
           onChangeText={text =>
             this.setState({
-              password: text
+              password: text,
             })
           }
           placeholderTextColor={colorTheme.white.snow}
@@ -116,6 +116,7 @@ class Login extends Component {
             Submit
           </Button>
         </View>
+        <View style={{ height: 300 }} />
       </KeyboardAvoidingView>
     );
   }

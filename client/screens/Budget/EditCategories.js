@@ -17,7 +17,7 @@ class EditCategories extends React.Component {
   }
 
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
 
   componentDidMount() {
@@ -248,14 +248,14 @@ class EditCategories extends React.Component {
 const mapState = state => {
   return {
     user: state.user,
-    budget: state.budget
+    budget: state.budget,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     fetchBudget: userId => dispatch(fetchBudget(userId)),
-    setBudget: budget => dispatch(setBudget(budget))
+    setBudget: budget => dispatch(setBudget(budget)),
   };
 };
 
