@@ -25,12 +25,10 @@ class Transaction extends React.Component {
 
     this.state = {
       expanded: false,
-      modal: false,
-      offSet: new Animated.Value(deviceHeight)
     };
     this.toggleInfo = this.toggleInfo.bind(this);
     this.includedToggle = this.includedToggle.bind(this);
-    
+
   }
 
   toggleInfo() {
@@ -40,12 +38,12 @@ class Transaction extends React.Component {
   }
 
 
-  includedToggle(boolean) {
-  this.props.updateTrans({
-      ...this.props.transaction,
-      included: this.state.included,
-      category: this.state.category
-    });
+  async includedToggle(boolean) {
+    await this.props.updateTrans({
+        ...this.props.transaction,
+        included: !this.props.transaction.included,
+        // category: this.state.category
+      });
   }
 
   render() {
