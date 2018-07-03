@@ -64,9 +64,9 @@ class Login extends Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.logoLocation}>
-          <Image
-            style={styles.logo}
+        <Animated.Image
             source={require('../../../public/img/logo2.png')}
+            style={[styles.animatedLogo, { height: this.imageHeight }]}
           />
           <Text style={styles.h1}>LOG IN</Text>
         </View>
@@ -113,7 +113,8 @@ class Login extends Component {
           >
             Submit
           </Button>
-        </View>
+        </View >
+        <View style={{ height: 300 }} />
       </KeyboardAvoidingView>
     );
   }
