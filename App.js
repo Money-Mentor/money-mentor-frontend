@@ -30,8 +30,6 @@ async function registerForPushNotificationsAsync() {
   }
 }
 
-// import { Font } from 'expo';
-
 export default class App extends React.Component {
   constructor() {
     super();

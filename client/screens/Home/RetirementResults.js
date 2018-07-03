@@ -10,7 +10,7 @@ class RetirementResults extends React.Component {
   render() {
     const results = this.props.navigation.getParam('results');
     // const { results } = props;
-    console.log('....RESULTS!!!!! ', results);
+    // console.log('....RESULTS!!!!! ', results);
     return (
       <View>
         <Text>Retirement Results</Text>

@@ -7,6 +7,7 @@ import { server } from './index';
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 const UPDATE_USER_PERSONALITY = 'UPDATE_USER_PERSONALITY';
+const UPDATE_USER = 'UPDATE_USER';
 
 /**
  * INITIAL STATE
@@ -19,6 +20,7 @@ const defaultUser = {};
 const getUser = user => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 const setPersonality = user => ({ type: UPDATE_USER_PERSONALITY, user });
+const setInterval = user => ({ type: UPDATE_USER, user });
 
 /**
  * THUNK CREATORS
@@ -81,6 +83,20 @@ export const updateUserPersonality = (userId, user) => {
   };
 };
 
+export const updateUserInterval = (user) => {
+  console.log('made it into updateUserInterval thunk ===============')
+  return async dispatch => {
+    try {
+      const res = await axios.put(`${server}/api/users/${user.id}`, {
+        user
+      });
+      dispatch(setInterval(res.data));
+    } catch (err) {
+      console.log('Error updating user reminderInterval: ', err.message);
+    }
+  };
+};
+
 /**
  * REDUCER
  */
@@ -91,6 +107,8 @@ export default function(state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser;
     case UPDATE_USER_PERSONALITY:
+      return action.user;
+    case UPDATE_USER:
       return action.user;
     default:
       return state;
