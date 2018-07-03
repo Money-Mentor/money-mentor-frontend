@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import Slider from 'react-native-slider';
 import { questions } from '../../data';
@@ -20,9 +20,9 @@ class Quiz extends Component {
         'Social Value Spender': 0,
         'Cash Splasher': 0,
         Hoarder: 0,
-        Ostrich: 0,
+        Ostrich: 0
       },
-      value: 0,
+      value: 0
     };
     this.nextQuestion = this.nextQuestion.bind(this);
   }
@@ -45,7 +45,7 @@ class Quiz extends Component {
         question: newQuestion,
         personality: newPersonality,
         result: newResult,
-        value: 0,
+        value: 0
       });
     } else {
       const quizPersonality = personality(this.state.result);
@@ -56,16 +56,16 @@ class Quiz extends Component {
   }
 
   static navigationOptions = {
-    title: 'Quiz',
+    title: 'Quiz'
   };
 
   render() {
     return (
       <View style={styles.questionContainer}>
-        <View style={styles.logoLocation}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Image
             style={styles.logo}
-            source={require('../../../public/img/animatedLogo.gif')}
+            source={require('../../../public/img/logo2.png')}
           />
         </View>
         <Text style={styles.questionText}>{this.state.question}</Text>
@@ -116,7 +116,7 @@ class Quiz extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    dispatchedGetQuiz: result => dispatch(getQuizPersonality(result)),
+    dispatchedGetQuiz: result => dispatch(getQuizPersonality(result))
   };
 };
 

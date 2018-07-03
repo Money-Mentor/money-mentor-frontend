@@ -4,24 +4,18 @@ import { login } from '../../store/user';
 import {
   Text,
   View,
-  TouchableOpacity,
   Image,
   TextInput,
   Animated,
   Keyboard,
-  KeyboardAvoidingView,
+  KeyboardAvoidingView
 } from 'react-native';
-import {
-  FormLabel,
-  FormInput,
-  FormValidationMessage,
-  Button,
-} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import {
   styles,
   colorTheme,
   IMAGE_HEIGHT,
-  IMAGE_HEIGHT_SMALL,
+  IMAGE_HEIGHT_SMALL
 } from '../../common/styles';
 
 class Login extends Component {
@@ -33,7 +27,7 @@ class Login extends Component {
   static navigationOptions = {
     title: 'Money Mentor',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.white.snow },
+    headerTitleStyle: { color: colorTheme.white.snow }
   };
 
   componentWillMount() {
@@ -55,28 +49,26 @@ class Login extends Component {
   keyboardWillShow = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
-      toValue: IMAGE_HEIGHT_SMALL,
+      toValue: IMAGE_HEIGHT_SMALL
     }).start();
   };
 
   keyboardWillHide = event => {
     Animated.timing(this.imageHeight, {
       duration: event.duration,
-      toValue: IMAGE_HEIGHT,
+      toValue: IMAGE_HEIGHT
     }).start();
   };
 
   render() {
     return (
-      <KeyboardAvoidingView
-      behavior="padding"
-      style={styles.container}
-      >
-      <View style={styles.logoLocation}>
-      <Animated.View style={{ height: this.imageHeight }}>
-  <Image style={styles.logo} source={require('../../../public/img/logo2.gif')} />
-      </ Animated.View>
-          <Text style={styles.h1}>log in</Text>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <View style={styles.logoLocation}>
+          <Image
+            style={styles.logo}
+            source={require('../../../public/img/logo2.png')}
+          />
+          <Text style={styles.h1}>LOG IN</Text>
         </View>
         <View style={{ padding: 90 }} />
         <TextInput
@@ -85,7 +77,7 @@ class Login extends Component {
           placeholderTextColor={colorTheme.white.snow}
           onChangeText={text =>
             this.setState({
-              email: text,
+              email: text
             })
           }
           value={this.state.email}
@@ -96,7 +88,7 @@ class Login extends Component {
           autoCapitalize="none"
           onChangeText={text =>
             this.setState({
-              password: text,
+              password: text
             })
           }
           placeholderTextColor={colorTheme.white.snow}
@@ -122,7 +114,6 @@ class Login extends Component {
             Submit
           </Button>
         </View>
-  
       </KeyboardAvoidingView>
     );
   }
@@ -132,7 +123,7 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(email, password, navigation) {
       dispatch(login(email, password, navigation));
-    },
+    }
   };
 };
 

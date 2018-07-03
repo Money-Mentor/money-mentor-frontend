@@ -38,12 +38,12 @@ export const transactionIconType = {
   Bar: 'local-drink',
   'Supermarkets and Groceries': 'local-grocery-store',
   'Coffee Shop': 'local-cafe',
-  Rent: "remove-circle-outline",
+  Rent: 'remove-circle-outline',
   'Electric Bill': 'lightbulb-outline',
-  Payroll: "add-circle-outline",
+  Payroll: 'add-circle-outline',
   'Department Stores': 'add-shopping-cart',
   Clothing: 'local-mall',
-  Entertainment: 'local-movies',
+  Entertainment: 'local-movies'
 };
 
 // Start Date String: returns the start of the current month.
@@ -65,7 +65,7 @@ export const getMonthDaysLeft = () => {
     new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() -
     date.getDate()
   );
-}
+};
 
 export const getDay = () => {
   const month = [
@@ -84,4 +84,45 @@ export const getDay = () => {
   ];
   const date = new Date();
   return `${month[date.getMonth()]} ${date.getDate()}`;
-}
+};
+
+// Budget Based On Personality Type
+export const determineBudget = (personality, prevBudget) => {
+  if (
+    personality === 'Social Value Spender' ||
+    personality === 'Cash Splasher'
+  ) {
+    return {
+      ...prevBudget,
+      foodAndDrink: 25,
+      travel: 10,
+      recreation: 10,
+      healthcare: 15,
+      service: 15,
+      community: 15,
+      shops: 10
+    };
+  } else if (personality === 'Ostrich') {
+    return {
+      ...prevBudget,
+      foodAndDrink: 30,
+      travel: 10,
+      recreation: 15,
+      healthcare: 10,
+      service: 10,
+      community: 15,
+      shops: 10
+    };
+  } else if (personality === 'Hoarder' || personality === 'Inconclusive') {
+    return {
+      ...prevBudget,
+      foodAndDrink: 35,
+      travel: 10,
+      recreation: 15,
+      healthcare: 10,
+      service: 10,
+      community: 10,
+      shops: 10
+    };
+  }
+};
