@@ -102,7 +102,7 @@ class Signup extends Component {
             raised
             buttonStyle={styles.bluebutton}
             textStyle={{ textAlign: 'center' }}
-            title={`Submit`}
+            title={`Link Bank Account →`}
             onPress={() => {
               this.props.handleSubmit(this.state.email, this.state.password);
               this.props.navigation.navigate('Link', { title: 'Link' });
