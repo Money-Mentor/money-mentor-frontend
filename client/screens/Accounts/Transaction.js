@@ -54,15 +54,11 @@ class Transaction extends React.Component {
       });
   }
 
-  changeCategory() {
-    console.log('this.props.transaction.id', this.props.transaction)
-
+  changeCategory(event) {
     this.props.updateTrans({
         ...this.props.transaction,
-        category1: this.props.transaction.category1
+        category1: event
       });
-
-      console.log('this.props.transaction.category1', this.props.transaction.category1)
   }
 
   render() {
@@ -83,19 +79,20 @@ class Transaction extends React.Component {
 
     const info = (
       <View style={styles.transBody}>
-        <View style={styles.transBodySection}>
-          <Text style={{ fontWeight: "bold" }}> Date: </Text>
-          <Text>{transaction.date}</Text>
-        </View>
-        <View style={styles.transBodySection}>
+        <View style={{paddingRight: 20}}>
+          <View style={{paddingBottom: 20}}>
+            <Text style={{ fontWeight: "bold" }}> Date: </Text>
+            <Text>{transaction.date}</Text>
+          </View>
+          <View>
             <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
             <Switch
               value={this.props.transaction.included}
               onValueChange={this.includedToggle}
             />
           </View>
-
-        <View>
+        </View>
+        <View style={{borderWidth: 1, borderColor: '#000000'}}>
           <Text style={{ fontWeight: "bold" }}> Category: </Text>
           <Text>{transaction.category1}</Text>
           <TouchableHighlight

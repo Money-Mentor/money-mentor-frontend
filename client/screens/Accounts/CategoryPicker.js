@@ -21,7 +21,6 @@ class CategoryPicker extends React.Component {
     return (
       <View style={pickerStyle.container}>
         <Picker
-          selectedValue={transaction.category1}
           onValueChange={this.props.changeCategory}
         >
           {categories.map(category => (

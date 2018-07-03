@@ -469,12 +469,9 @@ export const styles = StyleSheet.create({
     width: 100,
   },
   transBody: {
-    // flexDirection: 'row',
+    flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     padding: 20,
   },
-  transBodySection: {
-    height: '50%'
-  }
 });
