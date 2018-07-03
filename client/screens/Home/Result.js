@@ -20,38 +20,33 @@ class Result extends React.Component {
   }
 
   render() {
-    const personalityType = personalityTypes.find(
-      personality => personality.name === this.props.personality
-    );
+    const personalityType =
+      personalityTypes &&
+      personalityTypes.find(
+        personality => personality.name === this.props.personality
+      );
 
     return (
       <View style={styles.container}>
-        {personalityType &&
-          (personalityType.name === 'Inconclusive' ? (
-            <View>
-              <Text style={styles.questionText}>
-                Uh Oh. Inconclusive! We're not sure what your personality type
-                is - but we are sure you want to keep track of your spending!
-                Take a look at our home page.
-              </Text>
-            </View>
-          ) : (
+        {personalityType.name && (
+          <View>
             <View>
               <View>
-                <Image
-                  style={{
-                    alignSelf: 'center',
-                    height: 300,
-                    width: 350,
-                    borderWidth: 1,
-                    borderColor: 'white'
-                  }}
-                  source={{ uri: personalityType.imageUrl }}
-                  resizeMode="stretch"
-                />
-                <Text style={[styles.questionText, { fontSize: 28 }]}>
-                  {personalityType.name}
-                </Text>
+                <Text>{personalityType.name}</Text>
+                <View>
+                  <Image
+                    style={{
+                      alignSelf: 'center',
+                      height: 300,
+                      width: 350,
+                      borderWidth: 1,
+                      borderColor: 'white'
+                    }}
+                    source={{ uri: personalityType.imageUrl }}
+                    resizeMode="cover"
+                  />
+                </View>
+
                 <Text
                   style={[
                     styles.questionText,
@@ -62,23 +57,22 @@ class Result extends React.Component {
                 </Text>
               </View>
             </View>
-          ))}
 
-        <View>
-          <Button
-            buttonStyle={styles.smallOrangeButton}
-            textStyle={{ textAlign: 'center' }}
-            title={`Set Budget By Personality`}
-            onPress={() => {
-              this.props.setBudget(
-                determineBudget(personalityType.name, this.props.budget)
-              );
-              this.props.navigation.navigate('EditCategories', {
-                title: 'EditCategories'
-              });
-            }}
-          />
-        </View>
+            <Button
+              buttonStyle={styles.smallOrangeButton}
+              textStyle={{ textAlign: 'center' }}
+              title={`Set Budget By Personality`}
+              onPress={() => {
+                this.props.setBudget(
+                  determineBudget(personalityType.name, this.props.budget)
+                );
+                this.props.navigation.navigate('EditCategories', {
+                  title: 'EditCategories'
+                });
+              }}
+            />
+          </View>
+        )}
       </View>
     );
   }
