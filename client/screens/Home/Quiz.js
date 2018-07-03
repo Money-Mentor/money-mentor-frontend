@@ -3,10 +3,9 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import Slider from 'react-native-slider';
 import { questions } from '../../data';
-import { shuffle } from '../../common';
+import { shuffle, personality } from '../../common';
 import { connect } from 'react-redux';
 import { getQuizPersonality } from '../../store/personality';
-import personality from '../../personality';
 import { styles, colorTheme } from '../../common/styles';
 
 class Quiz extends Component {
