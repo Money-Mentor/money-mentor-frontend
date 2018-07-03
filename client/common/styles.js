@@ -465,4 +465,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 10,
   },
+    picker: {
+    width: 100,
+  },
 });

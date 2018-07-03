@@ -27,6 +27,8 @@ import {
 } from '../../common/styles';
 import PlaidAuthenticator from 'react-native-plaid-link';
 
+import { Notifications } from 'expo';
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -171,8 +173,9 @@ class Signup extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(email, password) {
-      dispatch(signup(email, password));
+    handleSubmit: async (email, password) => {
+      let pushToken = await Notifications.getExpoPushTokenAsync();
+      dispatch(signup(email, password, pushToken));
     },
     sendToken: token => dispatch(sendToken(token)),
   };

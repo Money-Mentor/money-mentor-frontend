@@ -22,11 +22,11 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware);
 
 //choose heroku or back-end
-const processEnv = 'back-end';
+// const processEnv = 'heroku';
 
 export const server =
-  processEnv === 'back-end'
-    ? 'http://localhost:8080'
+  process.env.REACT_NATIVE_ENV === 'development'
+    ? process.env.REACT_NATIVE_LOCALHOST || 'http://localhost:8080'
     : 'http://money-mentor.herokuapp.com';
 
 export default store;

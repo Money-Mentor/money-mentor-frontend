@@ -18,6 +18,8 @@ import {
   IMAGE_HEIGHT_SMALL,
 } from '../../common/styles';
 
+import { Notifications } from 'expo';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -122,8 +124,9 @@ class Login extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(email, password, navigation) {
-      dispatch(login(email, password, navigation));
+    handleSubmit: async (email, password, navigation) => {
+      let pushToken = await Notifications.getExpoPushTokenAsync();
+      dispatch(login(email, password, navigation, pushToken));
     },
   };
 };
