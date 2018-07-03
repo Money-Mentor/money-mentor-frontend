@@ -21,6 +21,7 @@ export const fetchAcctTransData = () => {
 };
 
 export const updateTrans = newTrans => {
+  console.log(newTrans)
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/accTrans/${newTrans.id}`, newTrans);

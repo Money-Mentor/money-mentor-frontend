@@ -468,4 +468,13 @@ export const styles = StyleSheet.create({
     picker: {
     width: 100,
   },
+  transBody: {
+    // flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    padding: 20,
+  },
+  transBodySection: {
+    height: '50%'
+  }
 });

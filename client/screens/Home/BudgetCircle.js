@@ -12,7 +12,7 @@ const BudgetCircle = props => {
     remainingbudget,
     onBudgetCirclePress,
   } = props;
-  console.log('props in budget circle', props);
+  
   const date = new Date();
   const dateHeight = `${date.getDate() * 3.0 - 3}%`;
   return (

@@ -30,6 +30,7 @@ class Transaction extends React.Component {
     this.toggleInfo = this.toggleInfo.bind(this);
     this.includedToggle = this.includedToggle.bind(this);
     this.togglePicker = this.togglePicker.bind(this);
+    this.changeCategory = this.changeCategory.bind(this);
 
   }
 
@@ -46,12 +47,22 @@ class Transaction extends React.Component {
   }
 
 
-  async includedToggle(input) {
-    await this.props.updateTrans({
+  includedToggle() {
+    this.props.updateTrans({
         ...this.props.transaction,
         included: !this.props.transaction.included,
-        // category: this.state.category
       });
+  }
+
+  changeCategory() {
+    console.log('this.props.transaction.id', this.props.transaction)
+
+    this.props.updateTrans({
+        ...this.props.transaction,
+        category1: this.props.transaction.category1
+      });
+
+      console.log('this.props.transaction.category1', this.props.transaction.category1)
   }
 
   render() {
@@ -72,10 +83,18 @@ class Transaction extends React.Component {
 
     const info = (
       <View style={styles.transBody}>
-        <View>
+        <View style={styles.transBodySection}>
           <Text style={{ fontWeight: "bold" }}> Date: </Text>
           <Text>{transaction.date}</Text>
         </View>
+        <View style={styles.transBodySection}>
+            <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
+            <Switch
+              value={this.props.transaction.included}
+              onValueChange={this.includedToggle}
+            />
+          </View>
+
         <View>
           <Text style={{ fontWeight: "bold" }}> Category: </Text>
           <Text>{transaction.category1}</Text>
@@ -87,17 +106,11 @@ class Transaction extends React.Component {
             <Text style={styles.buttonText}>EDIT</Text>
           </TouchableHighlight>
 
-{this.state.picker && <CategoryPicker transactionId={transaction.id}/>}
+{this.state.picker && <CategoryPicker transactionId={transaction.id} changeCategory={this.changeCategory}/>}
 
 
-          <View>
-            <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
-            <Switch
-              value={this.props.transaction.included}
-              onValueChange={this.includedToggle}
-            />
-          </View>
         </View>
+
       </View>
     );
 
@@ -106,7 +119,7 @@ class Transaction extends React.Component {
         <ListItem
           key={transaction.id}
           title={transaction.name}
-          subtitle={transaction.categoty1}
+          subtitle={transaction.category1}
           rightTitle={`$ ${transaction.amount}`}
           onPress={() => this.toggleInfo()}
           rightIcon={<Icon name={icon} />}

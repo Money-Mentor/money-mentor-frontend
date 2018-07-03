@@ -26,6 +26,16 @@ export const personality = personalityResults => {
   return personality;
 };
 
+export const categories=[
+  ['foodAndDrink', 'Food and Drink'],
+  ['travel', 'Travel'],
+  ['recreation', 'Recreation'],
+  ['healthcare', 'Healthcare'],
+  ['service', 'Service'],
+  ['community', 'Community'],
+  ['shops', 'Shops']
+]
+
 // Icons for all transaction categories
 export const transactionIconType = {
   'Car Service': 'directions-car',
