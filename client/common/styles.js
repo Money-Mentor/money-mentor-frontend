@@ -8,8 +8,10 @@ export const deviceHeight = Dimensions.get('window').height;
 
 export const colorTheme = {
   orange: {
+    light: '#ef866b',
     medium: '#EF4C22',
     dark: '#9e3014',
+    superDark: '#681703',
   },
   blue: {
     light: '#8EB3DF',
@@ -84,7 +86,7 @@ export const styles = StyleSheet.create({
   },
   animatedLogo: {
     width: 150,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   logoLocation: {
     justifyContent: 'center',

@@ -1,24 +1,78 @@
-import CalendarHeatmap from 'react-calendar-heatmap';
+import CalendarHeatmap from './CalendarHeatMap';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { styles, colorTheme } from '../../common/styles';
+import { formatDate } from '../../common';
 
 class HeatMap extends Component {
   constructor() {
     super();
+    this.streakDates = this.streakDates.bind(this);
+    this.userColor = this.userColor.bind(this);
   }
+
+  streakDates() {
+    const { transactions, user, userLogins } = this.props;
+    const dateObj = {};
+    let count = 1;
+    const values = [];
+    if (user.streakType === 'login') {
+      userLogins &&
+        userLogins.forEach(login => {
+          if (!dateObj[formatDate(login.lastLogin)]) {
+            dateObj[formatDate(login.lastLogin)] = count;
+          } else {
+            dateObj[formatDate(login.lastLogin)] = count++;
+          }
+        });
+    } else {
+      transactions &&
+        transactions.forEach(transaction => {
+          if (transaction.category2 === user.streakType) {
+            if (!dateObj[transaction.date]) {
+              dateObj[transaction.date] = count;
+            } else {
+              dateObj[transaction.date] = count++;
+            }
+          }
+        });
+    }
+    for (let key in dateObj) {
+      values.push({ date: key, count: dateObj[key] });
+    }
+    return values;
+  }
+
+  userColor() {
+    const { user } = this.props;
+    let color = [];
+    if (user.streakType === 'login') {
+      color = ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823'];
+    } else {
+      color = [
+        '#eeeeee',
+        colorTheme.orange.light,
+        colorTheme.orange.medium,
+        colorTheme.orange.dark,
+        colorTheme.orange.superDark,
+      ];
+    }
+    return color;
+  }
+
   render() {
-    const { transactions } = this.props;
+    const today = new Date();
+
     return (
-      <CalendarHeatmap
-        startDate={new Date('2016-01-01')}
-        endDate={new Date('2016-04-01')}
-        values={[
-          { date: '2016-01-01' },
-          { date: '2016-01-22' },
-          { date: '2016-01-30' },
-          // ...and so on
-        ]}
-      />
+      <View style={styles.container}>
+        <CalendarHeatmap
+          endDate={today}
+          numDays={60}
+          values={this.streakDates()}
+          color={this.userColor()}
+        />
+      </View>
     );
   }
 }
@@ -26,9 +80,8 @@ class HeatMap extends Component {
 const mapState = state => {
   return {
     user: state.user,
-    account: state.acctTrans.accounts,
     transactions: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    userLogins: state.acctTrans.loginStreak,
   };
 };
 
