@@ -3,6 +3,7 @@ import ViewPropTypes from 'react-native';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
 import Svg, { G, Rect, Text } from 'react-native-svg';
+import { styles, colorTheme } from '../../common/styles';
 import _ from 'lodash';
 
 import {
@@ -14,10 +15,8 @@ import {
   convertToDate,
 } from '../../common';
 
-const SQUARE_SIZE = 20;
+const SQUARE_SIZE = 24;
 const MONTH_LABEL_GUTTER_SIZE = 8;
-
-
 
 export default class CalendarHeatmap extends Component {
   constructor(props) {
@@ -81,7 +80,9 @@ export default class CalendarHeatmap extends Component {
 
   getHeight() {
     return (
-      this.getWeekWidth() + (this.getMonthLabelSize() - this.props.gutterSize)
+      this.getWeekWidth() +
+      (this.getMonthLabelSize() - this.props.gutterSize) +
+      22
     );
   }
 
@@ -219,7 +220,14 @@ export default class CalendarHeatmap extends Component {
       );
       const [x, y] = this.getMonthLabelCoordinates(weekIndex);
       return endOfWeek.getDate() >= 1 && endOfWeek.getDate() <= DAYS_IN_WEEK ? (
-        <Text key={weekIndex} x={x} y={y}>
+        <Text
+          key={weekIndex}
+          x={x}
+          y={y}
+          fontSize="16"
+          fontWeight="bold"
+          fill={colorTheme.white.snow}
+        >
           {MONTH_LABELS[endOfWeek.getMonth()]}
         </Text>
       ) : null;
