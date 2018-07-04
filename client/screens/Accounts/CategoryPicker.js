@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Picker,
-  Animated,
-  TouchableHighlight,
   View,
   Text,
   StyleSheet
@@ -19,13 +17,11 @@ class CategoryPicker extends React.Component {
     const transaction = this.props.transaction;
 
     return (
-      <View style={pickerStyle.container}>
+      <View>
         <Picker
-          style={{backgroundColor: '#8eb3df'}}
           onValueChange={this.props.changeCategory}
         >
-          {categories.map(category => (
-            <Picker.Item label={category} value={category} />
+<Picker.Item label="hello" value="hello" />
           ))}
         </Picker>
       </View>
@@ -43,11 +39,6 @@ const mapState = (state, ownProps) => {
 
 export default connect(mapState)(CategoryPicker);
 
-const pickerStyle = StyleSheet.create({
-  container: {
-    // position: 'absolute',
-    zIndex: 1,
-    bottom: 0,
-    backgroundColor: "#ffffff"
-  }
-});
+
+// {categories.map(category => (
+//   <Picker.Item label={category} value={category} />

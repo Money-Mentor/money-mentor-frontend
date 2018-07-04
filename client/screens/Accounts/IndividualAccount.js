@@ -31,7 +31,7 @@ class IndividualAccount extends React.Component {
                   transaction.date >= startDate
               )
               .map((transaction, key) => (
-                <Transaction key={key} transaction={transaction} />
+                <Transaction key={key} transactionId={transaction.id} />
               ))})}
         </List>
       </ScrollView>

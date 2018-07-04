@@ -80,7 +80,7 @@ class Transaction extends React.Component {
     }
 
     const transaction = this.props.transaction;
-
+    
     const info = (
       <View style={styles.transBody}>
         <View style={styles.transDetail}>
@@ -138,6 +138,14 @@ class Transaction extends React.Component {
   }
 }
 
+const mapState = (state, ownProps) => {
+  return {
+    transaction: state.acctTrans.trans.find(
+      individual => individual.id === ownProps.transactionId
+    )
+  };
+};
+
 const mapDispatch = dispatch => {
   return {
     updateTrans: trans => dispatch(updateTrans(trans)),
@@ -146,6 +154,6 @@ const mapDispatch = dispatch => {
 };
 
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(Transaction);
