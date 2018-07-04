@@ -27,38 +27,25 @@ export const personality = personalityResults => {
 };
 
 // Icons for all transaction categories
+// prettier-ignore
 export const transactionIconType = {
   'Car Service': 'directions-car',
-  Restaurants: 'restaurant',
+  'Restaurants': 'restaurant',
   'Credit Card': 'credit-card',
   'Gyms and Fitness Centers': 'fitness-center',
-  Deposit: 'attach-money',
+  'Deposit': 'attach-money',
   'Airlines and Aviation Services': 'flight',
-  Bicycles: 'directions-bike',
-  Bar: 'local-drink',
+  'Bicycles': 'directions-bike',
+  'Bar': 'local-drink',
   'Supermarkets and Groceries': 'local-grocery-store',
   'Coffee Shop': 'local-cafe',
-  Rent: 'remove-circle-outline',
+  'Rent': 'remove-circle-outline',
   'Electric Bill': 'lightbulb-outline',
-  Payroll: 'add-circle-outline',
+  'Payroll': 'add-circle-outline',
   'Department Stores': 'add-shopping-cart',
-  Clothing: 'local-mall',
-  Entertainment: 'local-movies',
+  'Clothing': 'local-mall',
+  'Entertainment': 'local-movies',
 };
-
-
-export const formatDate = date => {
-  var d = new Date(date),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate(),
-    year = d.getFullYear();
-
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-
-  return [year, month, day].join('-');
-};
-
 
 // Start Date String: returns the start of the current month.
 // Example: '2018-05-01'
@@ -141,7 +128,6 @@ export const determineBudget = (personality, prevBudget) => {
   }
 };
 
-
 export const MILLISECONDS_IN_ONE_DAY = 24 * 60 * 60 * 1000;
 
 export const DAYS_IN_WEEK = 7;
@@ -161,6 +147,17 @@ export const MONTH_LABELS = {
   11: 'Dec',
 };
 
+export const formatDate = date => {
+  var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('-');
+};
 
 export function shiftDate(date, numDays) {
   const newDate = new Date(date);
@@ -172,7 +169,49 @@ export function getBeginningTimeForDate(date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
+export function getAllDays(dateArr) {
+  let start = new Date(dateArr[0]);
+  let end = new Date(dateArr[dateArr.length - 1]);
+  const array = [];
+
+  while (start < end) {
+    array.push(formatDate(start));
+    start = new Date(start.setDate(start.getDate() + 1));
+  }
+
+  return array;
+}
+
 // obj can be a parseable string, a millisecond timestamp, or a Date object
 export function convertToDate(obj) {
-  return (obj instanceof Date) ? obj : (new Date(obj));
+  return obj instanceof Date ? obj : new Date(obj);
+}
+
+export function getDaysBetween(prevDate, nextDate) {
+  let days = (prevDate - nextDate) / MILLISECONDS_IN_ONE_DAY - 1;
+  return days;
+}
+
+export function bestStreak(arr) {
+  let bestStreak = 0;
+  let daysBetween;
+  for (let i = 0; i < arr.length - 1; i++) {
+    daysBetween = getDaysBetween(arr[i + 1], arr[i]);
+    if (daysBetween >= 1 && daysBetween > bestStreak) {
+      bestStreak = daysBetween;
+    }
+  }
+
+  return Math.max(bestStreak, currentStreak(arr));
+}
+
+export function currentStreak(arr) {
+  let today = new Date();
+  let lastDate = arr[arr.length - 1];
+  let currentStreak = 0;
+  let daysBetween = Math.floor(getDaysBetween(today, lastDate));
+  if (daysBetween > 0) {
+    currentStreak = daysBetween;
+  }
+  return currentStreak;
 }

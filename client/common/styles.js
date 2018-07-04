@@ -269,6 +269,32 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  streakCard: {
+    width: 300,
+    height:70,
+    borderColor: colorTheme.white.snow,
+    borderWidth: 2,
+  },
+  streakCardText: {
+    textAlign:'center',
+    color: colorTheme.orange.medium,
+    fontWeight: 'bold',
+    fontSize: 26,
+    top: -15,
+  },
+  streakCardsmallerText: {
+    textAlign:'center',
+    color: colorTheme.orange.medium,
+    fontWeight: 'bold',
+    fontSize: 12,
+    top: -15,
+  },
+  streakCardTextAlign: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
+    paddingTop: 10,
+  },
   homePageBudgetTextAlign: {
     flexDirection: 'row',
     width: '100%',
