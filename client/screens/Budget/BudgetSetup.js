@@ -4,9 +4,9 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
-  Image,
+  Image
 } from 'react-native';
-import { FormInput, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setBudget } from '../../store';
 import { styles, colorTheme, deviceWidth } from '../../common/styles';
@@ -19,11 +19,11 @@ class BudgetSetup extends React.Component {
       income: 0,
       staticCosts: 0,
       savings: 0,
-      spendingBudget: 0,
+      spendingBudget: 0
     };
   }
   static navigationOptions = {
-    headerStyle: styles.headerStyle,
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
   render() {
@@ -105,7 +105,7 @@ class BudgetSetup extends React.Component {
                 this.state.income - this.state.staticCosts - this.state.savings;
               this.props.setBudget({ ...this.state, spendingBudget });
               this.props.navigation.navigate('EditCategories', {
-                title: 'EditCategories',
+                title: 'EditCategories'
               });
             }}
           />
@@ -147,13 +147,13 @@ class BudgetSetup extends React.Component {
 
 const mapState = state => {
   return {
-    budget: state.budget,
+    budget: state.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    setBudget: budget => dispatch(setBudget(budget)),
+    setBudget: budget => dispatch(setBudget(budget))
   };
 };
 
