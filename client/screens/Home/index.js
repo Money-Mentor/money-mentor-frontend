@@ -190,12 +190,6 @@ export const HomeStack = createStackNavigator({
   Home: { screen: HomeConnect },
   Quiz: { screen: Quiz },
   Result: { screen: Result },
-<<<<<<< HEAD
   CategoryPie: { screen: CategoryPie },
-  Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults },
   HeatMap: { screen: HeatMap },
-=======
-  CategoryPie: { screen: CategoryPie }
->>>>>>> master
 });

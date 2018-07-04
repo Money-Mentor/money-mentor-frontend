@@ -3,7 +3,6 @@ import ViewPropTypes from 'react-native';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
 import Svg, { G, Rect, Text } from 'react-native-svg';
-import { colorTheme } from '../../common/styles';
 import _ from 'lodash';
 
 import {
@@ -17,16 +16,8 @@ import {
 
 const SQUARE_SIZE = 20;
 const MONTH_LABEL_GUTTER_SIZE = 8;
-//Ostrich
-const rectColor = [
-  '#eeeeee',
-  colorTheme.orange.light,
-  colorTheme.orange.medium,
-  colorTheme.orange.dark,
-  colorTheme.orange.superDark,
-];
-////Ostrich
-const loginrectColor = ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823'];
+
+
 
 export default class CalendarHeatmap extends Component {
   constructor(props) {
@@ -114,6 +105,7 @@ export default class CalendarHeatmap extends Component {
   }
 
   getClassNameForIndex(index) {
+    const rectColor = this.props.color;
     if (this.state.valueCache[index]) {
       return rectColor[this.state.valueCache[index].value.count];
     }
