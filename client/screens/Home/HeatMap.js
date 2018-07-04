@@ -1,9 +1,10 @@
 import CalendarHeatmap from './CalendarHeatMap';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { styles, colorTheme } from '../../common/styles';
 import { formatDate } from '../../common';
+import StreakCard from './StreakCard';
 
 class HeatMap extends Component {
   constructor() {
@@ -11,6 +12,10 @@ class HeatMap extends Component {
     this.streakDates = this.streakDates.bind(this);
     this.userColor = this.userColor.bind(this);
   }
+
+  static navigationOptions = {
+    headerStyle: styles.headerStyle,
+  };
 
   streakDates() {
     const { transactions, user, userLogins } = this.props;
@@ -63,12 +68,16 @@ class HeatMap extends Component {
 
   render() {
     const today = new Date();
-
+    const { user } = this.props;
+    const dateArr = this.props.navigation.getParam('dateArr');
     return (
       <View style={styles.container}>
+        <Text style={styles.homePageSmallText}>{user.streakType}</Text>
+        <StreakCard dateArr={dateArr} />
+        <View style={{ padding: 10 }} />
         <CalendarHeatmap
           endDate={today}
-          numDays={60}
+          numDays={67}
           values={this.streakDates()}
           color={this.userColor()}
         />

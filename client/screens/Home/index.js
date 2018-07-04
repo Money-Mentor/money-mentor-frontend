@@ -9,6 +9,7 @@ import HeatMap from './HeatMap';
 import { Button, Card, Icon } from 'react-native-elements';
 import Quiz from './Quiz';
 import Result from './Result';
+import StreakCard from './StreakCard';
 
 import {
   startDateString,
@@ -21,7 +22,6 @@ import {
 import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
 import ReminderInterval from '../Profile/ReminderInterval';
-
 
 class Home extends Component {
   constructor() {
@@ -148,27 +148,13 @@ class Home extends Component {
           {/*---------------- Streak Card ------------*/}
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('HeatMap', { title: 'HeatMap' });
+              this.props.navigation.navigate('HeatMap', {
+                title: 'HeatMap',
+                dateArr: dateArr,
+              });
             }}
           >
-            <Card containerStyle={styles.streakCard}>
-              <View style={styles.streakCardTextAlign}>
-                <View>
-                  <Text style={styles.streakCardsmallerText}>
-                    Current Streak
-                  </Text>
-                  <Text style={styles.streakCardText}>
-                    {currentStreak(dateArr)}
-                  </Text>
-                </View>
-                <View>
-                  <Text style={styles.streakCardsmallerText}>Best Streak</Text>
-                  <Text style={styles.streakCardText}>
-                    {bestStreak(dateArr)}
-                  </Text>
-                </View>
-              </View>
-            </Card>
+            <StreakCard dateArr={dateArr} />
           </TouchableOpacity>
           {/*---------------- Budget Status ------------*/}
           <Text
