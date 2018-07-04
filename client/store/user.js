@@ -26,14 +26,13 @@ const setInterval = user => ({ type: UPDATE_USER, user });
  * THUNK CREATORS
  */
 
-
 export const login = (email, password, navigation, pushToken) => dispatch =>
   axios
     .post(`${server}/auth/login`, { email, password, pushToken })
     .then(
       res => {
         dispatch(getUser(res.data));
-        navigation.navigate('Main', { title: 'Main' });
+        navigation.navigate('Main', { title: 'Home' });
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -43,18 +42,18 @@ export const login = (email, password, navigation, pushToken) => dispatch =>
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 
 export const signup = (email, password, pushToken) => dispatch => {
-axios
-  .post(`${server}/auth/signup`, { email, password, pushToken })
-  .then(
-    res => {
-      dispatch(getUser(res.data));
-    },
-    authError => {
-      // rare example: a good use case for parallel (non-catch) error handler
-      dispatch(getUser({ error: authError }));
-    }
-  )
-  .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
+  axios
+    .post(`${server}/auth/signup`, { email, password, pushToken })
+    .then(
+      res => {
+        dispatch(getUser(res.data));
+      },
+      authError => {
+        // rare example: a good use case for parallel (non-catch) error handler
+        dispatch(getUser({ error: authError }));
+      }
+    )
+    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 };
 
 // Change .then to using await
@@ -83,7 +82,7 @@ export const updateUserPersonality = (userId, user) => {
   };
 };
 
-export const updateUserInterval = (user) => {
+export const updateUserInterval = user => {
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/users/${user.id}`, {

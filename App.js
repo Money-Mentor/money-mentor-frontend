@@ -9,6 +9,7 @@ import {
   Initial,
   Login,
   Signup,
+  Link,
   BudgetSetup,
   EditCategories,
   Navbar
@@ -29,7 +30,7 @@ async function registerForPushNotificationsAsync() {
   }
 }
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 export default class App extends React.Component {
   constructor() {
@@ -82,6 +83,7 @@ const AuthenticationNavigator = createStackNavigator({
   Inital: { screen: Initial },
   Login: { screen: Login },
   Signup: { screen: Signup },
+  Link: {screen: Link},
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories }
 });

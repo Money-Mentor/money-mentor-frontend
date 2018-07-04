@@ -465,9 +465,18 @@ export const styles = StyleSheet.create({
     backgroundColor: colorTheme.white.snow,
     padding: 5,
     position: 'absolute',
-    left: 10,
+    left: 10
   },
   picker: {
-    width: 100,
+    width: 100
   },
+  personalityImg: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    position: 'relative',
+    height: 300,
+    width: 350,
+    borderWidth: 2,
+    borderColor: colorTheme.blue.dark
+  }
 });
