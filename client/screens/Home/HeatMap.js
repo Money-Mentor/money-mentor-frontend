@@ -1,24 +1,52 @@
-import CalendarHeatmap from 'react-calendar-heatmap';
+import CalendarHeatmap from './CalendarHeatMap';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { styles, colorTheme } from '../../common/styles';
 
 class HeatMap extends Component {
   constructor() {
     super();
+    this.streakDates = this.streakDates.bind(this);
   }
+
+  streakDates() {
+    const { transactions, user } = this.props;
+    const dateObj = {};
+    let count = 1;
+    const values = [];
+    if (user.streakType === 'login') {
+      //grab login data for the user to make the dates
+    } else {
+      transactions &&
+        transactions.forEach(transaction => {
+          if (transaction.category2 === user.streakType) {
+            if (!dateObj[transaction.date]) {
+              dateObj[transaction.date] = count;
+            } else {
+              dateObj[transaction.date] = count++;
+            }
+          }
+        });
+    }
+    for (let key in dateObj) {
+      values.push({ date: key, count: dateObj[key] });
+    }
+    console.log('VALUES', values);
+    return values;
+  }
+
   render() {
-    const { transactions } = this.props;
+    const today = new Date();
+
     return (
-      <CalendarHeatmap
-        startDate={new Date('2016-01-01')}
-        endDate={new Date('2016-04-01')}
-        values={[
-          { date: '2016-01-01' },
-          { date: '2016-01-22' },
-          { date: '2016-01-30' },
-          // ...and so on
-        ]}
-      />
+      <View style={styles.container}>
+        <CalendarHeatmap
+          endDate={today}
+          numDays={60}
+          values={this.streakDates()}
+        />
+      </View>
     );
   }
 }
@@ -26,9 +54,7 @@ class HeatMap extends Component {
 const mapState = state => {
   return {
     user: state.user,
-    account: state.acctTrans.accounts,
     transactions: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
   };
 };
 
