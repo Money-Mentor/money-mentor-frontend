@@ -471,14 +471,15 @@ export const styles = StyleSheet.create({
   },
   transDetail: {
     paddingBottom: 10,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: "space-between", alignItems: 'center'
   },
   transSpacing: {
     paddingRight: 10
   },
   transTextBold: {
     fontWeight: "bold",
-    paddingRight: 10
+    paddingRight: 5
   },
   personalityImg: {
     justifyContent: 'center',
@@ -489,4 +490,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colorTheme.blue.dark
   },
+  editButton: {
+    backgroundColor: colorTheme.orange.medium,
+  }
 });

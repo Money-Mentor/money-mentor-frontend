@@ -8,7 +8,6 @@ import {
   Switch,
   Animated,
   Dimensions,
-  TouchableHighlight
 } from "react-native";
 import { Button } from "react-native-elements";
 import { transactionIconType } from "../../common/index";
@@ -52,7 +51,10 @@ class Transaction extends React.Component {
       included: !this.props.transaction.included
     });
 
-    console.log('transaction.included in thunk invocation', this.props.transaction.included)
+    // console.log(
+    //   "transaction.included in thunk invocation",
+    //   this.props.transaction.included
+    // );
   }
 
   changeCategory(event) {
@@ -80,41 +82,43 @@ class Transaction extends React.Component {
     }
 
     const transaction = this.props.transaction;
-    
+
     const info = (
       <View style={styles.transBody}>
         <View style={styles.transDetail}>
-        <Text style={styles.transTextBold}> DATE: </Text>
-            <Text>{transaction.date}</Text>
+          <Text style={styles.transTextBold}> DATE: </Text>
+          <Text>{transaction.date}</Text>
         </View>
-        <View style={styles.transDetail}>
-        <Text style={styles.transTextBold}> INCLUDED IN BUDGET: </Text>
-            <Switch
-              value={this.props.transaction.included}
-              onValueChange={this.includedToggle}
-            />
+        <View style={[styles.transDetail]}>
+          <Text style={styles.transTextBold}> INCLUDED IN BUDGET: </Text>
+          <Switch
+            value={this.props.transaction.included}
+            onValueChange={() => this.includedToggle()}
+          />
         </View>
-
-      <View style={styles.transDetail}>
-          <Text style={styles.transTextBold}> CATEGORY: </Text>
-          <Text>{transaction.category1}</Text>
-
-          {categories.indexOf(transaction.category1) >= 0 && (
-            <TouchableHighlight
-              underlayColor="transparent"
-              onPress={this.togglePicker}
-            >
-              <Text style={styles.buttonText}>EDIT</Text>
-            </TouchableHighlight>
-          )}
-
+        <View>
+          <View style={[styles.transDetail]}>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.transTextBold}> CATEGORY: </Text>
+              <Text>{transaction.category1}</Text>
+            </View>
+            {(categories.indexOf(transaction.category1) >= 0 && this.state.picker === false) && (
+                <View style={{position: 'relative', left: 20, }}><Button
+            raised
+            buttonStyle={styles.editButton}
+            textStyle={{ textAlign: 'center' }}
+            title={`Edit`}
+            onPress={() => this.togglePicker()}
+          /></View>
+            )}
+          </View>
           {this.state.picker && (
             <CategoryPicker
               transactionId={transaction.id}
               changeCategory={this.changeCategory}
             />
           )}
-      </View>
+        </View>
       </View>
     );
 

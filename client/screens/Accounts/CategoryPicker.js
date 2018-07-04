@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { categories } from "../../common";
+import { styles } from '../../common/styles';
 
 class CategoryPicker extends React.Component {
   constructor() {
@@ -15,14 +16,12 @@ class CategoryPicker extends React.Component {
 
   render() {
     const transaction = this.props.transaction;
+    console.log('transaction.id from CategoryPicker', transaction.id)
 
     return (
       <View>
-        <Picker selectedValue={this.props.transaction.category}>
-          <Picker.Item label="None" value={'None'} />
-          <Picker.Item label="Daily" value={86400000} />
-          <Picker.Item label="weekly" value={604800000} />
-          <Picker.Item label="bi-weekly" value={1209600000} />
+        <Picker onValueChange={(event) => this.props.changeCategory(event)}>
+          {categories.map(category => <Picker.Item label={category} value={category} />)}
         </Picker>
       </View>
     );
@@ -38,7 +37,3 @@ const mapState = (state, ownProps) => {
 };
 
 export default connect(mapState)(CategoryPicker);
-
-
-// {categories.map(category => (
-//   <Picker.Item label={category} value={category} />
