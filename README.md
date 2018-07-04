@@ -9,7 +9,8 @@ Pankti Parikh,
 Sheri Kwong
 
 ## Setting up
-In order to run this application on your device, download Expo Client and use a service which provides a secure URL to your localhost server (eg. ngrok.io).
+In order to run this application on your device, download Expo Client
+https://itunes.apple.com/us/app/expo-client/id982107779?mt=8
 
 Front End
 npm install (or yarn install)
@@ -17,7 +18,7 @@ REACT_NATIVE_LOCALHOST=[ngrok forwarding link] npm start
 
 Back End - code base availalbe at https://github.com/Money-Mentor/money-mentor-backend
 npm install (or yarn install)
-npm run start
+REACT_NATIVE_ENV=production npm run
 
 
 ## Features
