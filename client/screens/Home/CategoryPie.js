@@ -6,6 +6,7 @@ import Pie from './Pie';
 import { styles, pieColor, colorTheme } from '../../common/styles';
 import { transactionIconType, startDateString } from '../../common/index';
 import Transaction from '../Accounts/Transaction';
+import StackedBar from './StackedBar';
 
 class CategoryPie extends Component {
   static navigationOptions = {
@@ -112,6 +113,8 @@ class CategoryPie extends Component {
           />
         </View>
 
+        {/* Progress Bars */}
+        <StackedBar getData={this.getData()} />
 
         {/* Transaction Details List */}
         <List>
