@@ -519,10 +519,9 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colorTheme.blue.dark
   },
-<<<<<<< HEAD
   editButton: {
     backgroundColor: colorTheme.orange.medium,
-=======
+  },
   setReminderHeaderText: {
     alignSelf: 'center',
     justifyContent: 'center',
@@ -560,6 +559,5 @@ export const styles = StyleSheet.create({
   headerStyle: {
     backgroundColor: colorTheme.blue.medium,
     borderBottomWidth: 0
->>>>>>> master
   }
 });

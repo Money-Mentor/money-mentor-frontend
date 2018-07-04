@@ -27,72 +27,46 @@ class BudgetSetup extends React.Component {
   };
 
   render() {
-    const question1 = (
-      <View style={styles.busgetSetupContainer}>
-        <Text style={styles.budgetSetupText}>What is your monthly income?</Text>
-        <View style={styles.budgetContainer}>
-          <TextInput
-            style={styles.budgetInput}
-            placeholderTextColor={colorTheme.white.snow}
-            onChangeText={income => this.setState({ income: +income })}
-            placeholder="Income"
-          />
 
-          <Button
-            raised
-            buttonStyle={styles.bugetSetupButton}
-            textStyle={{ textAlign: 'center' }}
-            title={`→`}
-            onPress={() => {
-              this.setState({ question: 2 });
-            }}
-          />
-        </View>
-      </View>
-    );
+    const questions = [
+      {
+        question: 'What is your monthly income?',
+        textInput: income => this.setState({ income: +income }),
+        button: () =>
+          this.setState({ question: 2 })
+      },
+      {
+        question: 'What are your monthly static costs?',
+        textInput: staticCosts =>
+        this.setState({ staticCosts: +staticCosts }),
+        button: () => this.setState({ question: 3 })
+      },
+      {
+        question: 'How much would you like to save each month?',
+        textInput: savings => this.setState({ savings: +savings }),
+        button: () => {
+          const spendingBudget =
+            this.state.income - this.state.staticCosts - this.state.savings;
+          this.props.setBudget({ ...this.state, spendingBudget });
+          this.props.navigation.navigate('EditCategories', {
+            title: 'EditCategories'
+          });
+        }
+      }
 
-    const question2 = (
-      <View style={styles.busgetSetupContainer}>
-        <Text style={styles.budgetSetupText}>
-          What are your monthly static costs?
-        </Text>
-        <Text style={{ fontSize: 15, textAlign: 'center' }}>
-          (i.e. rent, utilities, insurance, etc.)
-        </Text>
-        <View style={styles.budgetContainer}>
-          <TextInput
-            style={styles.budgetInput}
-            placeholderTextColor={colorTheme.white.snow}
-            onChangeText={staticCosts =>
-              this.setState({ staticCosts: +staticCosts })
-            }
-            placeholder="Static Costs"
-          />
+    ]
 
-          <Button
-            raised
-            buttonStyle={styles.bugetSetupButton}
-            textStyle={{ textAlign: 'center' }}
-            title={`→`}
-            onPress={() => {
-              this.setState({ question: 3 });
-            }}
-          />
-        </View>
-      </View>
-    );
-
-    const question3 = (
+    const questionFx = question => (
       <View style={styles.busgetSetupContainer}>
         <Text style={styles.budgetSetupText}>
-          How much would you like to save each month?
+          {question.question}
         </Text>
         <View style={styles.budgetContainer}>
           <TextInput
             style={styles.budgetInput}
             placeholderTextColor={colorTheme.white.snow}
-            onChangeText={savings => this.setState({ savings: +savings })}
-            placeholder="Savings"
+            onChangeText={question.textInput}
+            placeholder=""
           />
 
           <Button
@@ -100,14 +74,7 @@ class BudgetSetup extends React.Component {
             buttonStyle={styles.bugetSetupButton}
             textStyle={{ textAlign: 'center' }}
             title={`→`}
-            onPress={() => {
-              const spendingBudget =
-                this.state.income - this.state.staticCosts - this.state.savings;
-              this.props.setBudget({ ...this.state, spendingBudget });
-              this.props.navigation.navigate('EditCategories', {
-                title: 'EditCategories'
-              });
-            }}
+            onPress={question.button}
           />
         </View>
       </View>
@@ -116,20 +83,20 @@ class BudgetSetup extends React.Component {
     let question;
 
     if (this.state.question === 1) {
-      question = question1;
+      question = questionFx(questions[0])
     } else if (this.state.question === 2) {
-      question = question2;
+      question = questionFx(questions[1])
     } else {
-      question = question3;
+      question = questionFx(questions[2])
     }
 
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Image
           source={require('../../../public/img/speech.png')}
-          style={{ width: deviceWidth - 40, position: 'absolute', top: -2 }}
+          style={{ width: deviceWidth, position: 'absolute', top: -2 }}
         />
-        <Image
+        <Animated.Image
           source={require('../../../public/img/logo2.png')}
           style={{ position: 'absolute', bottom: -50, left: -200 }}
         />
