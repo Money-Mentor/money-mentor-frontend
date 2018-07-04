@@ -18,7 +18,7 @@ class Profile extends Component {
   }
   static navigationOptions = {
     title: 'Profile',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
     headerTitleStyle: { color: colorTheme.white.snow },  };
 
   render() {

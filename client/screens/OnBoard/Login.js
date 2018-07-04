@@ -27,7 +27,7 @@ class Login extends Component {
   }
   static navigationOptions = {
     title: 'Money Mentor',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
     headerTitleStyle: { color: colorTheme.white.snow },
   };
 
@@ -69,7 +69,7 @@ class Login extends Component {
             source={require('../../../public/img/logo2.png')}
             style={[styles.animatedLogo, { height: this.imageHeight }]}
           />
-          <Text style={styles.h1}>LOG IN</Text>
+          <Text style={styles.h1}>LOGIN</Text>
         </View>
         <View style={{ padding: 90 }} />
         <TextInput
@@ -82,7 +82,7 @@ class Login extends Component {
             })
           }
           value={this.state.email}
-          placeholder="   Email"
+          placeholder="Email"
         />
         <TextInput
           style={styles.formContainer}
@@ -94,7 +94,7 @@ class Login extends Component {
           }
           placeholderTextColor={colorTheme.white.snow}
           value={this.state.password}
-          placeholder="   Password"
+          placeholder="Password"
           secureTextEntry={true}
           ref={input => (this.password = input)}
         />
@@ -103,7 +103,7 @@ class Login extends Component {
             raised
             buttonStyle={styles.bluebutton}
             textStyle={{ textAlign: 'center' }}
-            title={`Submit`}
+            title={`Login`}
             onPress={() => {
               this.props.handleSubmit(
                 this.state.email,

@@ -23,7 +23,7 @@ class BudgetSetup extends React.Component {
     };
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
   };
 
   render() {

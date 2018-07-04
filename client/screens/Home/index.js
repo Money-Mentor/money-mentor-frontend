@@ -32,7 +32,7 @@ class Home extends Component {
     this.getDateArrForStreak = this.getDateArrForStreak.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
   };
 
   componentDidMount() {

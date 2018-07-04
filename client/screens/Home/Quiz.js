@@ -58,7 +58,7 @@ class Quiz extends Component {
 
   static navigationOptions = {
     title: 'Quiz',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
     headerTitleStyle: { color: colorTheme.white.snow },
   };
 
