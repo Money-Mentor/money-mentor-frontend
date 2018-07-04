@@ -4,6 +4,7 @@ import Profile from './Profile';
 import { AccountStack } from './Accounts';
 import { HomeStack } from './Home';
 import { BudgetStack } from './Budget';
+import { ProfileStack } from './Profile'
 import { styles, colorTheme } from '../common/styles'
 
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -42,7 +43,7 @@ const Navbar = createMaterialBottomTabNavigator(
       }
     },
     Profile: {
-      screen: Profile,
+      screen: ProfileStack,
       navigationOptions: {
         tabBarIcon: profileIcon
       }

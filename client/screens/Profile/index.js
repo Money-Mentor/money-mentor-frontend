@@ -9,7 +9,6 @@ import ReminderInterval from './ReminderInterval';
 import Quiz from '../Home/Quiz';
 import Link from '../OnBoard/Link';
 import Login from '../OnBoard/Login';
-  import Home from '../Home';
 
 // TODO: render reminder Interval for Ostrich only
 
@@ -18,9 +17,10 @@ class Profile extends Component {
     super(props);
   }
   static navigationOptions = {
+    title: 'Profile',
     headerStyle: { backgroundColor: colorTheme.blue.medium },
-  };
-  
+    headerTitleStyle: { color: colorTheme.white.snow },  };
+
   render() {
     const personalityType = personalityTypes.find(
       personality => personality.name === this.props.user.personalityType
@@ -39,7 +39,6 @@ class Profile extends Component {
             />
           </View>
 
-          <Text style={styles.setReminderHeaderText}>ACCOUNT PROFILE</Text>
           <Text style={styles.reminderIntervalSmallText}>
             Email: {user.email}
           </Text>
@@ -128,6 +127,5 @@ export const ProfileStack = createStackNavigator({
   ReminderInterval: { screen: ReminderInterval },
   Quiz: { screen: Quiz },
   Link: { screen: Link },
-  Login: { screen: Login },
-  Home: { screen: Home }
+  Login: { screen: Login }
 });

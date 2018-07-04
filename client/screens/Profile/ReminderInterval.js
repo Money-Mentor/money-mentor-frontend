@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Picker, AppState } from 'react-native';
-import { styles } from '../../common/styles';
+import { styles, colorTheme } from '../../common/styles';
 import { connect } from 'react-redux';
 import { updateUserInterval } from '../../store/user';
 
@@ -13,6 +13,9 @@ class ReminderInterval extends Component {
     };
     this.handleAppStateChange = this.handleAppStateChange.bind(this);
   }
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
 
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
