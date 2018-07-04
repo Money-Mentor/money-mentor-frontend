@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
 import { StyleSheet, Text, View } from 'react-native';
-import {createStackNavigator} from 'react-navigation'
+import { createStackNavigator } from 'react-navigation';
 import { styles, colorTheme } from '../../common/styles';
-import IndividualAccount from './IndividualAccount'
+import IndividualAccount from './IndividualAccount';
 
 class Accounts extends React.Component {
   static navigationOptions = {
@@ -17,22 +17,20 @@ class Accounts extends React.Component {
     return (
       <View style={styles.accountOverviewContainer}>
         <List>
-          {/* <Text>Account Overview</Text> */}
           {account &&
             account.map(account => (
-
-                <ListItem
-                  key={account.id}
-                  title={account.name}
-                  rightTitle={`$ ${account.current_balance}`}
-                  onPress={() =>
-                    this.props.navigation.navigate('IndividualAccount', {
-                      title: 'IndividualAccount',
-                      accountId: account.account_id,
-                      accountName: account.name,
-                    })
-                  }
-                />
+              <ListItem
+                key={account.id}
+                title={account.name}
+                rightTitle={`$ ${account.current_balance}`}
+                onPress={() =>
+                  this.props.navigation.navigate('IndividualAccount', {
+                    title: 'IndividualAccount',
+                    accountId: account.account_id,
+                    accountName: account.name
+                  })
+                }
+              />
             ))}
         </List>
       </View>
@@ -52,5 +50,5 @@ export default AccountsConnect;
 
 export const AccountStack = createStackNavigator({
   Accounts: { screen: AccountsConnect },
-  IndividualAccount: { screen: IndividualAccount },
+  IndividualAccount: { screen: IndividualAccount }
 });
