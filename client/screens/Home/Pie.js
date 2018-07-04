@@ -96,11 +96,6 @@ class Pie extends React.Component {
           {/* Progress Bars */}
           <StackedBar getData={this.props.getData} />
 
-          {console.log(
-            ' CAN I USE THIS DATA FOR STACKEDBAR ????',
-            this.props.data
-          )}
-
           <View style={styles.textContainer}>
             {this.props.data.map((item, index) => {
               var fontWeight =

@@ -21,7 +21,7 @@ export const fetchAcctTransData = () => {
 };
 
 export const updateTrans = newTrans => {
-  console.log(newTrans)
+  console.log('newTrans from thunk', newTrans)
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/accTrans/${newTrans.id}`, newTrans);
@@ -45,6 +45,7 @@ export default (state = initialState, action) => {
         trans:
           state.trans.map(transaction => {
             if (transaction.id === action.transaction.id) {
+              console.log('transaction.included in reducer', action.transaction.included)
               return action.transaction;
             } else {
               return transaction;

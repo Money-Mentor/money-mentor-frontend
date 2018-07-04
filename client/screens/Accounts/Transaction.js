@@ -46,11 +46,13 @@ class Transaction extends React.Component {
     });
   }
 
-  includedToggle() {
-    this.props.updateTrans({
+  async includedToggle() {
+    await this.props.updateTrans({
       ...this.props.transaction,
       included: !this.props.transaction.included
     });
+
+    console.log('transaction.included in thunk invocation', this.props.transaction.included)
   }
 
   changeCategory(event) {

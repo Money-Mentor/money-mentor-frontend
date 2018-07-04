@@ -42,7 +42,6 @@ class ReminderInterval extends Component {
           selectedValue={this.state.interval}
           onValueChange={(interval) => {
             user.reminderInterval = interval;
-            console.log('user====',user)
             this.setState({ interval });
             this.props.updateUserInterval(user);
           }}
