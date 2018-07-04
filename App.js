@@ -9,6 +9,7 @@ import {
   Initial,
   Login,
   Signup,
+  Link,
   BudgetSetup,
   EditCategories,
   Navbar
@@ -82,6 +83,7 @@ const AuthenticationNavigator = createStackNavigator({
   Inital: { screen: Initial },
   Login: { screen: Login },
   Signup: { screen: Signup },
+  Link: {screen: Link},
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories }
 });
