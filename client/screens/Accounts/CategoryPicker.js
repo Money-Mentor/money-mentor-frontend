@@ -18,11 +18,11 @@ class CategoryPicker extends React.Component {
 
     return (
       <View>
-        <Picker
-          onValueChange={this.props.changeCategory}
-        >
-<Picker.Item label="hello" value="hello" />
-          ))}
+        <Picker selectedValue={this.props.transaction.category}>
+          <Picker.Item label="None" value={'None'} />
+          <Picker.Item label="Daily" value={86400000} />
+          <Picker.Item label="weekly" value={604800000} />
+          <Picker.Item label="bi-weekly" value={1209600000} />
         </Picker>
       </View>
     );

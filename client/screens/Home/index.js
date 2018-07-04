@@ -28,8 +28,12 @@ class Home extends Component {
     this.props.fetchAcctTransData();
   }
 
-  static derivedStateFromProps() {
-
+  onBudgetCirclePress() {
+    const { budget } = this.props;
+    this.props.navigation.navigate('CategoryPie', {
+      title: 'CategoryPie',
+      budget: budget
+    });
   }
 
   totalSpent() {
