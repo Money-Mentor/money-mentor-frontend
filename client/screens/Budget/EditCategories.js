@@ -17,7 +17,7 @@ class EditCategories extends React.Component {
   }
 
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
   };
 
   componentDidMount() {
@@ -91,7 +91,7 @@ class EditCategories extends React.Component {
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
         <View style={styles.container}>
           {this.props.budget.id && (
             <View>

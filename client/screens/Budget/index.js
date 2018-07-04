@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import BudgetSetup from './BudgetSetup';

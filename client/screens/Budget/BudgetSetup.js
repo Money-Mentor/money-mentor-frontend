@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Image
 } from 'react-native';
-import { FormInput, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setBudget } from '../../store';
 import { styles, colorTheme, deviceWidth } from '../../common/styles';

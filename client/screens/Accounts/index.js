@@ -9,8 +9,8 @@ import IndividualAccount from './IndividualAccount';
 class Accounts extends React.Component {
   static navigationOptions = {
     title: 'Accounts',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.white.snow }
+    headerStyle: styles.headerStyle,
+    headerTitleStyle: { color: colorTheme.white.snow },
   };
   render() {
     const { account } = this.props;

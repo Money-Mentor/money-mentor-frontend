@@ -10,7 +10,7 @@ import StackedBar from './StackedBar';
 
 class CategoryPie extends Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: styles.headerStyle,
   };
 
   constructor(props) {

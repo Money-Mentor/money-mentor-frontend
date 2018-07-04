@@ -14,7 +14,7 @@ class ReminderInterval extends Component {
     this.handleAppStateChange = this.handleAppStateChange.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
   };
 
   componentDidMount() {
