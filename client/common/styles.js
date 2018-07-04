@@ -529,8 +529,8 @@ export const styles = StyleSheet.create({
     width: 250,
     borderWidth: 1,
     borderColor: 'white',
-    marginTop: 40,
-    marginBottom: 20
+    marginTop: 20,
+    marginBottom: 10
   },
   accountProfileButton: {
     backgroundColor: colorTheme.blue.dark,
