@@ -32,7 +32,6 @@ class Pie extends React.Component {
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
   }
 
-
   _value(item) {
     return item.number;
   }
@@ -94,9 +93,7 @@ class Pie extends React.Component {
           </Surface>
 
           {/* Progress Bars */}
-          <StackedBar getData={this.props.getData} />
-
-
+          <StackedBar getData={this.props.data} />
 
           <View style={styles.textContainer}>
             {this.props.data.map((item, index) => {

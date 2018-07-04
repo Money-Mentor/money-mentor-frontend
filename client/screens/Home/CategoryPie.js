@@ -109,11 +109,9 @@ class CategoryPie extends Component {
             onItemSelected={this._onPieItemSelected}
             colors={pieColor}
             data={this.getData()}
-            budget={this.props.budget}
-            spendingByCategory={this.spendingByCategory()}
-            getData={this.getData()}
           />
         </View>
+
 
         {/* Transaction Details List */}
         <List>
