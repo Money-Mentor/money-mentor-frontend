@@ -9,7 +9,7 @@ import Transaction from '../Accounts/Transaction';
 
 class CategoryPie extends Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: styles.headerStyle,
   };
 
   constructor(props) {

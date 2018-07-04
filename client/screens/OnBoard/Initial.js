@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity, ImageBackground } from 'react-native';
-import { Button, Header } from 'react-native-elements';
-import { styles, colorTheme } from '../../common/styles';
+import { Button } from 'react-native-elements';
+import { styles } from '../../common/styles';
 
 
 class Initial extends Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle
   };
   render() {
     return (

@@ -26,7 +26,7 @@ class Signup extends Component {
   }
   static navigationOptions = {
     title: 'Money Mentor',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
     headerTitleStyle: { color: colorTheme.white.snow }
   };
 
@@ -81,7 +81,7 @@ class Signup extends Component {
             })
           }
           value={this.state.email}
-          placeholder="   Email"
+          placeholder="Email"
         />
         <TextInput
           style={styles.formContainer}
@@ -93,7 +93,7 @@ class Signup extends Component {
           }
           placeholderTextColor={colorTheme.white.snow}
           value={this.state.password}
-          placeholder="   Password"
+          placeholder="Password"
           secureTextEntry={true}
           ref={input => (this.password = input)}
         />

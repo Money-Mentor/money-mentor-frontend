@@ -14,8 +14,9 @@ class Link extends React.Component {
   };
   static navigationOptions = {
     title: 'Money Mentor',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.white.snow }
+    headerStyle: styles.headerStyle,
+    headerTitleStyle: { color: colorTheme.white.snow
+    }
   };
 
   render() {
@@ -44,7 +45,7 @@ class Link extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.logoLocation}>
+        <View style={styles.linkLogoLocation}>
           <Image
             style={styles.logo}
             source={require('../../../public/img/logo2.png')}

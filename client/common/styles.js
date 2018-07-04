@@ -367,6 +367,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     color: colorTheme.white.snow,
     fontSize: 18,
+    paddingLeft: 20
   },
   budgetContainer: {
     flexDirection: 'row',
@@ -539,4 +540,8 @@ export const styles = StyleSheet.create({
     padding: 10,
     alignSelf: 'center',
   },
+  headerStyle: {
+    backgroundColor: colorTheme.blue.medium,
+    borderBottomWidth: 0
+  }
 });

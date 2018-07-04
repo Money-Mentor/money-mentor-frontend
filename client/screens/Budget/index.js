@@ -9,7 +9,7 @@ import { styles, colorTheme } from '../../common/styles';
 
 class Budget extends React.Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: styles.headerStyle,
   };
   render() {
     return (
