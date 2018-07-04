@@ -12,7 +12,7 @@ import {
   Link,
   BudgetSetup,
   EditCategories,
-  Navbar
+  Navbar,
 } from './client';
 
 import { Font, Permissions, Notifications } from 'expo';
@@ -36,7 +36,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      fontLoaded: false
+      fontLoaded: false,
     };
   }
   async componentDidMount() {
@@ -47,7 +47,7 @@ export default class App extends React.Component {
     await Font.loadAsync({
       poppinsExtraLight: require('./public/fonts/Poppins/Poppins-ExtraLight.ttf'),
       poppinsRegular: require('./public/fonts/Poppins/Poppins-Regular.ttf'),
-      poppinsBold: require('./public/fonts/Poppins/Poppins-Bold.ttf')
+      poppinsBold: require('./public/fonts/Poppins/Poppins-Bold.ttf'),
     });
     this.setState({ fontLoaded: true });
   }
@@ -85,10 +85,10 @@ const AuthenticationNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Link: {screen: Link},
   BudgetSetup: { screen: BudgetSetup },
-  EditCategories: { screen: EditCategories }
+  EditCategories: { screen: EditCategories },
 });
 
 const AppNavigator = createSwitchNavigator({
   Auth: { screen: AuthenticationNavigator },
-  Main: { screen: Navbar }
+  Main: { screen: Navbar },
 });

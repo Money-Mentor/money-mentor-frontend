@@ -504,5 +504,39 @@ export const styles = StyleSheet.create({
     width: 350,
     borderWidth: 2,
     borderColor: colorTheme.blue.dark
-  }
+  },
+  setReminderHeaderText: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    color: colorTheme.white.snow,
+    fontWeight: 'bold',
+    fontSize: 20,
+    width: '80%',
+    paddingLeft: 60,
+    marginBottom:10
+  },
+  reminderIntervalSmallText: {
+    alignSelf: 'center',
+    color: colorTheme.white.snow,
+    fontSize: 15,
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 5
+  },
+  personalityImgSmall: {
+    alignSelf: 'center',
+    height: 150,
+    width: 250,
+    borderWidth: 1,
+    borderColor: 'white',
+    marginTop: 40,
+    marginBottom: 20
+  },
+  accountProfileButton: {
+    backgroundColor: colorTheme.blue.dark,
+    height: 50,
+    width: deviceWidth - 130,
+    padding: 10,
+    alignSelf: 'center',
+  },
 });

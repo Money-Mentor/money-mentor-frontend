@@ -20,6 +20,8 @@ import {
 } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
+import ReminderInterval from '../Profile/ReminderInterval';
+
 
 class Home extends Component {
   constructor() {
@@ -246,4 +248,5 @@ export const HomeStack = createStackNavigator({
   Result: { screen: Result },
   CategoryPie: { screen: CategoryPie },
   HeatMap: { screen: HeatMap },
+  ReminderInterval: { screen: ReminderInterval },
 });
