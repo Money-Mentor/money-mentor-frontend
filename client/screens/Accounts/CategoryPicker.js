@@ -21,10 +21,11 @@ class CategoryPicker extends React.Component {
     return (
       <View style={pickerStyle.container}>
         <Picker
+          style={{backgroundColor: '#8eb3df'}}
           onValueChange={this.props.changeCategory}
         >
           {categories.map(category => (
-            <Picker.Item label={category[1]} value={category[1]} />
+            <Picker.Item label={category} value={category} />
           ))}
         </Picker>
       </View>

@@ -22,7 +22,7 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware);
 
 // choose heroku or back-end
-// const processEnv = 'heroku';
+const processEnv = 'back-end';
 
 export const server =
   process.env.REACT_NATIVE_ENV === 'development'

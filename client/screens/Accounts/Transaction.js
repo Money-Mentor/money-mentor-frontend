@@ -14,7 +14,8 @@ import { Button } from "react-native-elements";
 import { transactionIconType } from "../../common/index";
 import { connect } from "react-redux";
 import { updateTrans, fetchAcctTransData } from "../../store";
-import CategoryPicker from './CategoryPicker'
+import CategoryPicker from "./CategoryPicker";
+import { categories } from "../../common";
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -31,7 +32,6 @@ class Transaction extends React.Component {
     this.includedToggle = this.includedToggle.bind(this);
     this.togglePicker = this.togglePicker.bind(this);
     this.changeCategory = this.changeCategory.bind(this);
-
   }
 
   toggleInfo() {
@@ -46,19 +46,21 @@ class Transaction extends React.Component {
     });
   }
 
-
   includedToggle() {
     this.props.updateTrans({
-        ...this.props.transaction,
-        included: !this.props.transaction.included,
-      });
+      ...this.props.transaction,
+      included: !this.props.transaction.included
+    });
   }
 
   changeCategory(event) {
     this.props.updateTrans({
-        ...this.props.transaction,
-        category1: event
-      });
+      ...this.props.transaction,
+      category1: event
+    });
+    this.setState({
+      picker: false
+    });
   }
 
   render() {
@@ -76,38 +78,41 @@ class Transaction extends React.Component {
     }
 
     const transaction = this.props.transaction;
-    console.log('transaction======', transaction)
+
     const info = (
       <View style={styles.transBody}>
-        <View style={{paddingRight: 20}}>
-          <View style={{paddingBottom: 20}}>
-            <Text style={{ fontWeight: "bold" }}> Date: </Text>
+        <View style={styles.transDetail}>
+        <Text style={styles.transTextBold}> DATE: </Text>
             <Text>{transaction.date}</Text>
-          </View>
-          <View>
-            <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
+        </View>
+        <View style={styles.transDetail}>
+        <Text style={styles.transTextBold}> INCLUDED IN BUDGET: </Text>
             <Switch
               value={this.props.transaction.included}
               onValueChange={this.includedToggle}
             />
-          </View>
         </View>
-        <View style={{borderWidth: 1, borderColor: '#000000'}}>
-          <Text style={{ fontWeight: "bold" }}> Category: </Text>
+
+      <View style={styles.transDetail}>
+          <Text style={styles.transTextBold}> CATEGORY: </Text>
           <Text>{transaction.category1}</Text>
-          <TouchableHighlight
-            underlayColor="transparent"
-            onPress={
-              this.togglePicker}
-          >
-            <Text style={styles.buttonText}>EDIT</Text>
-          </TouchableHighlight>
 
-{this.state.picker && <CategoryPicker transactionId={transaction.id} changeCategory={this.changeCategory}/>}
+          {categories.indexOf(transaction.category1) >= 0 && (
+            <TouchableHighlight
+              underlayColor="transparent"
+              onPress={this.togglePicker}
+            >
+              <Text style={styles.buttonText}>EDIT</Text>
+            </TouchableHighlight>
+          )}
 
-
-        </View>
-
+          {this.state.picker && (
+            <CategoryPicker
+              transactionId={transaction.id}
+              changeCategory={this.changeCategory}
+            />
+          )}
+      </View>
       </View>
     );
 

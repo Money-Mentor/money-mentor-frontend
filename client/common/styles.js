@@ -465,14 +465,20 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 10
   },
-  picker: {
-    width: 100
-  },
+
   transBody: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
     padding: 20,
+  },
+  transDetail: {
+    paddingBottom: 10,
+    flexDirection: 'row'
+  },
+  transSpacing: {
+    paddingRight: 10
+  },
+  transTextBold: {
+    fontWeight: "bold",
+    paddingRight: 10
   },
   personalityImg: {
     justifyContent: 'center',
@@ -482,5 +488,5 @@ export const styles = StyleSheet.create({
     width: 350,
     borderWidth: 2,
     borderColor: colorTheme.blue.dark
-  }
+  },
 });
