@@ -12,6 +12,7 @@ import Result from './Result';
 import { startDateString, getMonthDaysLeft, getDay } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
+import ReminderInterval from '../Profile/ReminderInterval';
 
 class Home extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class Home extends Component {
     this.onBudgetCirclePress = this.onBudgetCirclePress.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
   };
 
   componentDidMount() {
@@ -32,7 +33,7 @@ class Home extends Component {
     const { budget } = this.props;
     this.props.navigation.navigate('CategoryPie', {
       title: 'CategoryPie',
-      budget: budget
+      budget: budget,
     });
   }
 
@@ -118,7 +119,7 @@ class Home extends Component {
           <Text
             style={[
               styles.homePageSmallText,
-              { paddingVertical: 10, width: '80%', textAlign: 'center' }
+              { paddingVertical: 10, width: '80%', textAlign: 'center' },
             ]}
           >
             {this.budgetStatus()}
@@ -168,13 +169,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget
+    budget: state.acctTrans.budget,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())
+    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
   };
 };
 
@@ -191,4 +192,5 @@ export const HomeStack = createStackNavigator({
   Result: { screen: Result },
   CategoryPie: { screen: CategoryPie },
   HeatMap: { screen: HeatMap },
+  ReminderInterval: { screen: ReminderInterval },
 });

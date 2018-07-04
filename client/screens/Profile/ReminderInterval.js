@@ -33,7 +33,8 @@ class ReminderInterval extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.questionText}>Set Reminder Interval!</Text>
+        <Text style={styles.setReminderHeaderText}>Set Reminder Interval!</Text>
+        <Text style={styles.reminderIntervalSmallText}>We understand it can be overwhelming to check your finances. Let us make your life easier by setting a reminder.</Text>
 
         <Picker
           style={styles.picker}
