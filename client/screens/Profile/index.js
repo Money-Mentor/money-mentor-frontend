@@ -4,6 +4,12 @@ import { Text, View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles, colorTheme } from '../../common/styles';
 import { personalityTypes } from '../../data';
+import { createStackNavigator } from 'react-navigation';
+import ReminderInterval from './ReminderInterval';
+import Quiz from '../Home/Quiz';
+import Link from '../OnBoard/Link';
+import Login from '../OnBoard/Login';
+  import Home from '../Home';
 
 // TODO: render reminder Interval for Ostrich only
 
@@ -11,7 +17,10 @@ class Profile extends Component {
   constructor(props) {
     super(props);
   }
-
+  static navigationOptions = {
+    headerStyle: { backgroundColor: colorTheme.blue.medium },
+  };
+  
   render() {
     const personalityType = personalityTypes.find(
       personality => personality.name === this.props.user.personalityType
@@ -110,4 +119,15 @@ const mapState = state => {
   };
 };
 
-export default connect(mapState)(Profile);
+const ProfileConnect = connect(mapState)(Profile);
+
+export default ProfileConnect;
+
+export const ProfileStack = createStackNavigator({
+  Profile: { screen: ProfileConnect },
+  ReminderInterval: { screen: ReminderInterval },
+  Quiz: { screen: Quiz },
+  Link: { screen: Link },
+  Login: { screen: Login },
+  Home: { screen: Home }
+});

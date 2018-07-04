@@ -31,7 +31,7 @@ class MyCarousel extends Component {
           <Text style={styles.publisherText}>{item.publisher}</Text>
         </View>
           <Text style={styles.slideText}>{item.title}</Text>
-          <Text style={styles.viewArticleText}>View Article</Text>
+          <Text style={styles.viewArticleText} onPress={() => Linking.openURL(item.url)}>View Article</Text>
         </View>
       </ScrollView>
     );

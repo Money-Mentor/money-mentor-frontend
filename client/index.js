@@ -23,3 +23,4 @@ export { default as Link } from './screens/OnBoard/Link';
 
 // Profile
 export { default as Profile } from './screens/Profile';
+export { default as ReminderInterval } from './screens/Profile/ReminderInterval';

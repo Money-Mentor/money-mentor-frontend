@@ -14,6 +14,7 @@ import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
 import ReminderInterval from '../Profile/ReminderInterval';
 
+
 class Home extends Component {
   constructor() {
     super();
