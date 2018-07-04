@@ -11,7 +11,7 @@ import { Button } from 'react-native-elements';
 class Result extends React.Component {
   static navigationOptions = {
     title: 'Result',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
     headerTitleStyle: { color: colorTheme.white.snow }
   };
 

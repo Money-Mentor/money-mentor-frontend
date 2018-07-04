@@ -7,7 +7,6 @@ import {
   ScrollView
 } from 'react-native';
 import { styles, pieColor } from '../../common/styles';
-import StackedBar from './StackedBar';
 
 const { Surface, Group, Rectangle, Shape } = ART;
 
@@ -31,7 +30,6 @@ class Pie extends React.Component {
     this._color = this._color.bind(this);
     this._onPieItemSelected = this._onPieItemSelected.bind(this);
   }
-
 
   _value(item) {
     return item.number;
@@ -92,9 +90,6 @@ class Pie extends React.Component {
               ))}
             </Group>
           </Surface>
-
-          {/* Progress Bars */}
-          <StackedBar getData={this.props.getData} />
 
           <View style={styles.textContainer}>
             {this.props.data.map((item, index) => {

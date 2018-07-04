@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import Pie from './Pie';
 import { styles, pieColor, colorTheme } from '../../common/styles';
 import { transactionIconType, startDateString } from '../../common/index';
-import StackedBar from './StackedBar';
 import Transaction from '../Accounts/Transaction';
+import StackedBar from './StackedBar';
 
 class CategoryPie extends Component {
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: styles.headerStyle,
   };
 
   constructor(props) {
@@ -110,11 +110,11 @@ class CategoryPie extends Component {
             onItemSelected={this._onPieItemSelected}
             colors={pieColor}
             data={this.getData()}
-            budget={this.props.budget}
-            spendingByCategory={this.spendingByCategory()}
-            getData={this.getData()}
           />
         </View>
+
+        {/* Progress Bars */}
+        <StackedBar getData={this.getData()} />
 
         {/* Transaction Details List */}
         <List>

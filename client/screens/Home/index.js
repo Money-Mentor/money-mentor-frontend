@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAcctTransData } from '../../store';
+import { fetchAcctTransData, login } from '../../store';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { styles, colorTheme } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
+import HeatMap from './HeatMap';
 import { Button, Card, Icon } from 'react-native-elements';
 import Quiz from './Quiz';
 import Result from './Result';
 
-import { startDateString, getMonthDaysLeft, getDay } from '../../common/index';
+import {
+  startDateString,
+  getMonthDaysLeft,
+  bestStreak,
+  currentStreak,
+  getAllDays,
+  formatDate,
+} from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
+import ReminderInterval from '../Profile/ReminderInterval';
+
 
 class Home extends Component {
   constructor() {
@@ -19,9 +29,10 @@ class Home extends Component {
     this.remainingbudget = this.remainingbudget.bind(this);
     this.budgetCircleHeight = this.budgetCircleHeight.bind(this);
     this.onBudgetCirclePress = this.onBudgetCirclePress.bind(this);
+    this.getDateArrForStreak = this.getDateArrForStreak.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium }
+    headerStyle: styles.headerStyle,
   };
 
   componentDidMount() {
@@ -32,7 +43,7 @@ class Home extends Component {
     const { budget } = this.props;
     this.props.navigation.navigate('CategoryPie', {
       title: 'CategoryPie',
-      budget: budget
+      budget: budget,
     });
   }
 
@@ -76,9 +87,38 @@ class Home extends Component {
     }
   }
 
+  getDateArrForStreak() {
+    let dateArr = [];
+    const { trans, user, userLogins } = this.props;
+    if (user.streakType === 'login') {
+      const loggedDateArr = [];
+      userLogins &&
+        userLogins.forEach(login => {
+          loggedDateArr.push(login.lastLogin.slice(0, 10));
+        });
+      loggedDateArr.sort();
+      if (loggedDateArr.length) {
+        dateArr = getAllDays(loggedDateArr)
+          .filter(date => {
+            return loggedDateArr.indexOf(date) === -1;
+          })
+          .map(date => new Date(date));
+      }
+    } else {
+      trans &&
+        trans.forEach(transaction => {
+          if (transaction.category2 === user.streakType) {
+            dateArr.push(new Date(transaction.date));
+          }
+        });
+    }
+    return dateArr.sort();
+  }
+
   render() {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
+    const dateArr = this.getDateArrForStreak();
 
     return (
       <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
@@ -89,9 +129,8 @@ class Home extends Component {
               <Card containerStyle={styles.card}>
                 <Text style={styles.homePageQuiz}>
                   MoneyMentor wants to give you personalized recommendations so
-                  take the quiz to find out your financial personality type.{' '}
+                  take the quiz to find out your financial personality type.
                 </Text>
-                {/* <Text style={styles.homePageQuiz}>Take it now!</Text> */}
                 <Button
                   raised
                   buttonStyle={styles.bluebutton}
@@ -106,11 +145,36 @@ class Home extends Component {
           ) : (
             <View />
           )}
+          {/*---------------- Streak Card ------------*/}
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('HeatMap', { title: 'HeatMap' });
+            }}
+          >
+            <Card containerStyle={styles.streakCard}>
+              <View style={styles.streakCardTextAlign}>
+                <View>
+                  <Text style={styles.streakCardsmallerText}>
+                    Current Streak
+                  </Text>
+                  <Text style={styles.streakCardText}>
+                    {currentStreak(dateArr)}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.streakCardsmallerText}>Best Streak</Text>
+                  <Text style={styles.streakCardText}>
+                    {bestStreak(dateArr)}
+                  </Text>
+                </View>
+              </View>
+            </Card>
+          </TouchableOpacity>
           {/*---------------- Budget Status ------------*/}
           <Text
             style={[
               styles.homePageSmallText,
-              { paddingVertical: 10, width: '80%', textAlign: 'center' }
+              { paddingVertical: 10, width: '80%', textAlign: 'center' },
             ]}
           >
             {this.budgetStatus()}
@@ -160,13 +224,14 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget
+    budget: state.acctTrans.budget,
+    userLogins: state.acctTrans.loginStreak,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())
+    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
   };
 };
 
@@ -181,5 +246,7 @@ export const HomeStack = createStackNavigator({
   Home: { screen: HomeConnect },
   Quiz: { screen: Quiz },
   Result: { screen: Result },
-  CategoryPie: { screen: CategoryPie }
+  CategoryPie: { screen: CategoryPie },
+  HeatMap: { screen: HeatMap },
+  ReminderInterval: { screen: ReminderInterval },
 });

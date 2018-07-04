@@ -12,7 +12,7 @@ class IndividualAccount extends React.Component {
   }
   static navigationOptions = {
     title: 'Transactions',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: styles.headerStyle,
     headerTitleStyle: { color: colorTheme.white.snow },
   };
 

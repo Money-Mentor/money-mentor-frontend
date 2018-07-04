@@ -16,13 +16,14 @@ class Quiz extends Component {
       questions: shuffledQuestions,
       question: shuffledQuestions[0].question,
       personality: shuffledQuestions[0].personality,
+      // prettier-ignore
       result: {
         'Social Value Spender': 0,
         'Cash Splasher': 0,
-        Hoarder: 0,
-        Ostrich: 0
+        'Hoarder': 0,
+        'Ostrich': 0
       },
-      value: 0
+      value: 0,
     };
     this.nextQuestion = this.nextQuestion.bind(this);
   }
@@ -45,7 +46,7 @@ class Quiz extends Component {
         question: newQuestion,
         personality: newPersonality,
         result: newResult,
-        value: 0
+        value: 0,
       });
     } else {
       const quizPersonality = personality(this.state.result);
@@ -57,8 +58,8 @@ class Quiz extends Component {
 
   static navigationOptions = {
     title: 'Quiz',
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
-    headerTitleStyle: { color: colorTheme.white.snow }
+    headerStyle: styles.headerStyle,
+    headerTitleStyle: { color: colorTheme.white.snow },
   };
 
   render() {
@@ -118,7 +119,7 @@ class Quiz extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    dispatchedGetQuiz: result => dispatch(getQuizPersonality(result))
+    dispatchedGetQuiz: result => dispatch(getQuizPersonality(result)),
   };
 };
 

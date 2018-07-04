@@ -1,13 +1,14 @@
-import React from "react";
-import { ListItem } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { styles } from "../../common/styles";
+import React from 'react';
+import { ListItem } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { styles } from '../../common/styles';
 import {
   Text,
   View,
   Switch,
   Animated,
   Dimensions,
+<<<<<<< HEAD
 } from "react-native";
 import { Button } from "react-native-elements";
 import { transactionIconType } from "../../common/index";
@@ -15,13 +16,22 @@ import { connect } from "react-redux";
 import { updateTrans, fetchAcctTransData } from "../../store";
 import CategoryPicker from "./CategoryPicker";
 import { categories } from "../../common";
+=======
+  TouchableHighlight
+} from 'react-native';
+import { Button } from 'react-native-elements';
+import { transactionIconType } from '../../common/index';
+import { connect } from 'react-redux';
+import { updateTrans, fetchAcctTransData } from '../../store';
+import CategoryPicker from './CategoryPicker';
+>>>>>>> master
 
 class Transaction extends React.Component {
   constructor(props) {
     super(props);
 
-    const deviceWidth = Dimensions.get("window").width;
-    const deviceHeight = Dimensions.get("window").height;
+    const deviceWidth = Dimensions.get('window').width;
+    const deviceHeight = Dimensions.get('window').height;
 
     this.state = {
       expanded: false,
@@ -30,7 +40,10 @@ class Transaction extends React.Component {
     this.toggleInfo = this.toggleInfo.bind(this);
     this.includedToggle = this.includedToggle.bind(this);
     this.togglePicker = this.togglePicker.bind(this);
+<<<<<<< HEAD
     this.changeCategory = this.changeCategory.bind(this);
+=======
+>>>>>>> master
   }
 
   toggleInfo() {
@@ -69,8 +82,8 @@ class Transaction extends React.Component {
 
   render() {
     const icons = {
-      up: "chevron-up",
-      down: "chevron-down"
+      up: 'chevron-up',
+      down: 'chevron-down'
     };
 
     let icon = icons.down;
@@ -85,8 +98,13 @@ class Transaction extends React.Component {
 
     const info = (
       <View style={styles.transBody}>
+<<<<<<< HEAD
         <View style={styles.transDetail}>
           <Text style={styles.transTextBold}> DATE: </Text>
+=======
+        <View>
+          <Text style={{ fontWeight: 'bold' }}> Date: </Text>
+>>>>>>> master
           <Text>{transaction.date}</Text>
         </View>
         <View style={[styles.transDetail]}>
@@ -97,6 +115,7 @@ class Transaction extends React.Component {
           />
         </View>
         <View>
+<<<<<<< HEAD
           <View style={[styles.transDetail]}>
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.transTextBold}> CATEGORY: </Text>
@@ -111,6 +130,27 @@ class Transaction extends React.Component {
             onPress={() => this.togglePicker()}
           /></View>
             )}
+=======
+          <Text style={{ fontWeight: 'bold' }}> Category: </Text>
+          <Text>{transaction.category1}</Text>
+          <TouchableHighlight
+            underlayColor="transparent"
+            onPress={this.togglePicker}
+          >
+            <Text style={styles.buttonText}>EDIT</Text>
+          </TouchableHighlight>
+
+          {this.state.picker && (
+            <CategoryPicker transactionId={transaction.id} />
+          )}
+
+          <View>
+            <Text style={{ fontWeight: 'bold' }}> Included in Budget: </Text>
+            <Switch
+              value={this.props.transaction.included}
+              onValueChange={() => this.includedToggle()}
+            />
+>>>>>>> master
           </View>
           {this.state.picker && (
             <CategoryPicker

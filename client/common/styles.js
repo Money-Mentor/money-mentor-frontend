@@ -8,8 +8,10 @@ export const deviceHeight = Dimensions.get('window').height;
 
 export const colorTheme = {
   orange: {
+    light: '#ef866b',
     medium: '#EF4C22',
     dark: '#9e3014',
+    superDark: '#681703',
   },
   blue: {
     light: '#8EB3DF',
@@ -84,7 +86,7 @@ export const styles = StyleSheet.create({
   },
   animatedLogo: {
     width: 150,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   logoLocation: {
     justifyContent: 'center',
@@ -267,6 +269,32 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  streakCard: {
+    width: 300,
+    height:70,
+    borderColor: colorTheme.white.snow,
+    borderWidth: 2,
+  },
+  streakCardText: {
+    textAlign:'center',
+    color: colorTheme.orange.medium,
+    fontWeight: 'bold',
+    fontSize: 26,
+    top: -15,
+  },
+  streakCardsmallerText: {
+    textAlign:'center',
+    color: colorTheme.orange.medium,
+    fontWeight: 'bold',
+    fontSize: 12,
+    top: -15,
+  },
+  streakCardTextAlign: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
+    paddingTop: 10,
+  },
   homePageBudgetTextAlign: {
     flexDirection: 'row',
     width: '100%',
@@ -339,6 +367,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     color: colorTheme.white.snow,
     fontSize: 18,
+    paddingLeft: 20
   },
   budgetContainer: {
     flexDirection: 'row',
@@ -490,7 +519,47 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colorTheme.blue.dark
   },
+<<<<<<< HEAD
   editButton: {
     backgroundColor: colorTheme.orange.medium,
+=======
+  setReminderHeaderText: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    color: colorTheme.white.snow,
+    fontWeight: 'bold',
+    fontSize: 20,
+    width: '80%',
+    paddingLeft: 60,
+    marginBottom:10
+  },
+  reminderIntervalSmallText: {
+    alignSelf: 'center',
+    color: colorTheme.white.snow,
+    fontSize: 15,
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 5
+  },
+  personalityImgSmall: {
+    alignSelf: 'center',
+    height: 150,
+    width: 250,
+    borderWidth: 1,
+    borderColor: 'white',
+    marginTop: 20,
+    marginBottom: 10
+  },
+  accountProfileButton: {
+    backgroundColor: colorTheme.blue.dark,
+    height: 50,
+    width: deviceWidth - 130,
+    padding: 10,
+    alignSelf: 'center',
+  },
+  headerStyle: {
+    backgroundColor: colorTheme.blue.medium,
+    borderBottomWidth: 0
+>>>>>>> master
   }
 });
