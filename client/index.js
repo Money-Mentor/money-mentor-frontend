@@ -19,6 +19,7 @@ export { default as Login } from './screens/OnBoard/Login';
 export { default as Quiz } from './screens/Home/Quiz';
 export { default as Result } from './screens/Home/Result';
 export { default as Signup } from './screens/OnBoard/Signup';
+export { default as Link } from './screens/OnBoard/Link';
 
 // Profile
 export { default as Profile } from './screens/Profile';

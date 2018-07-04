@@ -8,8 +8,10 @@ export const deviceHeight = Dimensions.get('window').height;
 
 export const colorTheme = {
   orange: {
+    light: '#ef866b',
     medium: '#EF4C22',
     dark: '#9e3014',
+    superDark: '#681703',
   },
   blue: {
     light: '#8EB3DF',
@@ -84,7 +86,7 @@ export const styles = StyleSheet.create({
   },
   animatedLogo: {
     width: 150,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   logoLocation: {
     justifyContent: 'center',
@@ -463,9 +465,18 @@ export const styles = StyleSheet.create({
     backgroundColor: colorTheme.white.snow,
     padding: 5,
     position: 'absolute',
-    left: 10,
+    left: 10
   },
-    picker: {
-    width: 100,
+  picker: {
+    width: 100
   },
+  personalityImg: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    position: 'relative',
+    height: 300,
+    width: 350,
+    borderWidth: 2,
+    borderColor: colorTheme.blue.dark
+  }
 });

@@ -4,7 +4,6 @@ import { login } from '../../store/user';
 import {
   Text,
   View,
-  Image,
   TextInput,
   Animated,
   Keyboard,

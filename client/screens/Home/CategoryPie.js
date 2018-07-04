@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Pie from './Pie';
 import { styles, pieColor, colorTheme } from '../../common/styles';
 import { transactionIconType, startDateString } from '../../common/index';
-import StackedBar from './StackedBar';
 import Transaction from '../Accounts/Transaction';
 
 class CategoryPie extends Component {

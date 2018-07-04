@@ -14,7 +14,7 @@ import { Button } from "react-native-elements";
 import { transactionIconType } from "../../common/index";
 import { connect } from "react-redux";
 import { updateTrans, fetchAcctTransData } from "../../store";
-import Picker from './Picker'
+import CategoryPicker from './CategoryPicker'
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -25,15 +25,12 @@ class Transaction extends React.Component {
 
     this.state = {
       expanded: false,
-      included: props.transaction.included,
-      category: props.transaction.category1,
-      modal: false,
-      offSet: new Animated.Value(deviceHeight)
+      picker: false
     };
     this.toggleInfo = this.toggleInfo.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
     this.includedToggle = this.includedToggle.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.togglePicker = this.togglePicker.bind(this);
+
   }
 
   toggleInfo() {
@@ -42,25 +39,19 @@ class Transaction extends React.Component {
     });
   }
 
-  toggleModal() {
-    this.setState({ modal: !this.state.modal })
-  }
-
-  handleCategoryChange(category) {
+  togglePicker() {
     this.setState({
-      category
+      picker: !this.state.picker
     });
   }
 
-  async includedToggle(boolean) {
-    await this.setState({
-      included: !this.state.included
-    });
+
+  async includedToggle(input) {
     await this.props.updateTrans({
-      ...this.props.transaction,
-      included: this.state.included,
-      category: this.state.category
-    });
+        ...this.props.transaction,
+        included: !this.props.transaction.included,
+        // category: this.state.category
+      });
   }
 
   render() {
@@ -91,24 +82,18 @@ class Transaction extends React.Component {
           <TouchableHighlight
             underlayColor="transparent"
             onPress={
-              this.toggleModal}
+              this.togglePicker}
           >
             <Text style={styles.buttonText}>EDIT</Text>
           </TouchableHighlight>
 
-          {this.state.modal && (
-            <Picker
-              toggleModal={this.toggleModal}
-              offSet={this.state.offSet}
-              handleCategoryChange={this.handleCategoryChange}
-              category={this.state.category}
-            />
-          )}
+{this.state.picker && <CategoryPicker transactionId={transaction.id}/>}
+
 
           <View>
             <Text style={{ fontWeight: "bold" }}> Included in Budget: </Text>
             <Switch
-              value={this.state.included}
+              value={this.props.transaction.included}
               onValueChange={this.includedToggle}
             />
           </View>

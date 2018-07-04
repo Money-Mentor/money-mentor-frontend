@@ -43,8 +43,22 @@ export const transactionIconType = {
   Payroll: 'add-circle-outline',
   'Department Stores': 'add-shopping-cart',
   Clothing: 'local-mall',
-  Entertainment: 'local-movies'
+  Entertainment: 'local-movies',
 };
+
+
+export const formatDate = date => {
+  var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('-');
+};
+
 
 // Start Date String: returns the start of the current month.
 // Example: '2018-05-01'
@@ -80,7 +94,7 @@ export const getDay = () => {
     'Sep',
     'Oct',
     'Nov',
-    'Dec'
+    'Dec',
   ];
   const date = new Date();
   return `${month[date.getMonth()]} ${date.getDate()}`;
@@ -100,7 +114,7 @@ export const determineBudget = (personality, prevBudget) => {
       healthcare: 15,
       service: 15,
       community: 15,
-      shops: 10
+      shops: 10,
     };
   } else if (personality === 'Ostrich') {
     return {
@@ -111,7 +125,7 @@ export const determineBudget = (personality, prevBudget) => {
       healthcare: 10,
       service: 10,
       community: 15,
-      shops: 10
+      shops: 10,
     };
   } else if (personality === 'Hoarder' || personality === 'Inconclusive') {
     return {
@@ -122,7 +136,43 @@ export const determineBudget = (personality, prevBudget) => {
       healthcare: 10,
       service: 10,
       community: 10,
-      shops: 10
+      shops: 10,
     };
   }
 };
+
+
+export const MILLISECONDS_IN_ONE_DAY = 24 * 60 * 60 * 1000;
+
+export const DAYS_IN_WEEK = 7;
+
+export const MONTH_LABELS = {
+  0: 'Jan',
+  1: 'Feb',
+  2: 'Mar',
+  3: 'Apr',
+  4: 'May',
+  5: 'Jun',
+  6: 'Jul',
+  7: 'Aug',
+  8: 'Sep',
+  9: 'Oct',
+  10: 'Nov',
+  11: 'Dec',
+};
+
+
+export function shiftDate(date, numDays) {
+  const newDate = new Date(date);
+  newDate.setDate(newDate.getDate() + numDays);
+  return newDate;
+}
+
+export function getBeginningTimeForDate(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+// obj can be a parseable string, a millisecond timestamp, or a Date object
+export function convertToDate(obj) {
+  return (obj instanceof Date) ? obj : (new Date(obj));
+}

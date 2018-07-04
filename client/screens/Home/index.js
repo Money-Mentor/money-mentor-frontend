@@ -5,12 +5,10 @@ import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { styles, colorTheme } from '../../common/styles';
 import { createStackNavigator } from 'react-navigation';
 import CategoryPie from './CategoryPie';
+import HeatMap from './HeatMap';
 import { Button, Card, Icon } from 'react-native-elements';
 import Quiz from './Quiz';
 import Result from './Result';
-import Retirement from './Retirement';
-import RetirementResults from './RetirementResults';
-import ReminderInterval from '../Profile/ReminderInterval';
 import { startDateString, getMonthDaysLeft, getDay } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
@@ -23,7 +21,7 @@ class Home extends Component {
     this.onBudgetCirclePress = this.onBudgetCirclePress.bind(this);
   }
   static navigationOptions = {
-    headerStyle: { backgroundColor: colorTheme.blue.medium },
+    headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
   componentDidMount() {
@@ -34,7 +32,7 @@ class Home extends Component {
     const { budget } = this.props;
     this.props.navigation.navigate('CategoryPie', {
       title: 'CategoryPie',
-      budget: budget,
+      budget: budget
     });
   }
 
@@ -108,11 +106,19 @@ class Home extends Component {
           ) : (
             <View />
           )}
+
+          <Text
+            onPress={() => {
+              this.props.navigation.navigate('HeatMap', { title: 'HeatMap' });
+            }}
+          >
+            HeatMap
+          </Text>
           {/*---------------- Budget Status ------------*/}
           <Text
             style={[
               styles.homePageSmallText,
-              { paddingVertical: 10, width: '80%', textAlign: 'center' },
+              { paddingVertical: 10, width: '80%', textAlign: 'center' }
             ]}
           >
             {this.budgetStatus()}
@@ -162,13 +168,13 @@ const mapState = state => {
     user: state.user,
     account: state.acctTrans.accounts,
     trans: state.acctTrans.trans,
-    budget: state.acctTrans.budget,
+    budget: state.acctTrans.budget
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
+    fetchAcctTransData: () => dispatch(fetchAcctTransData())
   };
 };
 
@@ -184,7 +190,5 @@ export const HomeStack = createStackNavigator({
   Quiz: { screen: Quiz },
   Result: { screen: Result },
   CategoryPie: { screen: CategoryPie },
-  Retirement: { screen: Retirement },
-  RetirementResults: { screen: RetirementResults },
-  ReminderInterval: { screen: ReminderInterval },
+  HeatMap: { screen: HeatMap },
 });
