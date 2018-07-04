@@ -4,7 +4,6 @@ import { styles } from '../../common/styles';
 import { connect } from 'react-redux';
 import { updateUserInterval } from '../../store/user';
 
-
 class ReminderInterval extends Component {
   constructor(props) {
     super(props);
@@ -24,8 +23,7 @@ class ReminderInterval extends Component {
   }
 
   handleAppStateChange(appState) {
-    if(appState === 'background') {
-      // TODO: Schedule background notification
+    if (appState === 'background') {
       console.log('app is in background', this.state.interval);
     }
   }
@@ -35,24 +33,22 @@ class ReminderInterval extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Set Reminder Inteval!</Text>
+        <Text style={styles.questionText}>Set Reminder Interval!</Text>
 
         <Picker
           style={styles.picker}
           selectedValue={this.state.interval}
-          onValueChange={(interval) => {
+          onValueChange={interval => {
             user.reminderInterval = interval;
-            console.log('user====',user)
             this.setState({ interval });
             this.props.updateUserInterval(user);
           }}
         >
-          <Picker.Item label="None" value={"None"} />
-          <Picker.Item label="Daily" value={86400000} />
-          <Picker.Item label="weekly" value={604800000} />
-          <Picker.Item label="bi-weekly" value={1209600000} />
+          <Picker.Item color="white" label="None" value={0} />
+          <Picker.Item color="white" label="Daily" value={86400000} />
+          <Picker.Item color="white" label="weekly" value={604800000} />
+          <Picker.Item color="white" label="bi-weekly" value={1209600000} />
         </Picker>
-
       </View>
     );
   }
@@ -66,8 +62,11 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    updateUserInterval: user => dispatch(updateUserInterval(user))
+    updateUserInterval: user => dispatch(updateUserInterval(user)),
   };
 };
 
-export default connect(mapState, mapDispatch)(ReminderInterval);
+export default connect(
+  mapState,
+  mapDispatch
+)(ReminderInterval);

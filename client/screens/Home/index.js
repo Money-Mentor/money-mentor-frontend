@@ -10,6 +10,7 @@ import Quiz from './Quiz';
 import Result from './Result';
 import Retirement from './Retirement';
 import RetirementResults from './RetirementResults';
+import ReminderInterval from '../Profile/ReminderInterval';
 import { startDateString, getMonthDaysLeft, getDay } from '../../common/index';
 import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
@@ -185,4 +186,5 @@ export const HomeStack = createStackNavigator({
   CategoryPie: { screen: CategoryPie },
   Retirement: { screen: Retirement },
   RetirementResults: { screen: RetirementResults },
+  ReminderInterval: { screen: ReminderInterval },
 });
