@@ -1,14 +1,28 @@
 import CalendarHeatmap from './CalendarHeatMap';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Picker } from 'react-native';
 import { styles, colorTheme } from '../../common/styles';
 import { formatDate } from '../../common';
 import StreakCard from './StreakCard';
+import { updateUserInterval } from '../../store/user';
 
+const streakCategories = [
+  'Login',
+  'Restaurants',
+  'Bar',
+  'Coffee Shop',
+  'Clothing',
+  'Entertainment',
+  'Department Stores',
+  'Car Service',
+];
 class HeatMap extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      streakType: this.props.user.streakType,
+    };
     this.streakDates = this.streakDates.bind(this);
     this.userColor = this.userColor.bind(this);
   }
@@ -22,13 +36,13 @@ class HeatMap extends Component {
     const dateObj = {};
     let count = 1;
     const values = [];
-    if (user.streakType === 'login') {
+    if (user.streakType === 'Login') {
       userLogins &&
         userLogins.forEach(login => {
           if (!dateObj[formatDate(login.lastLogin)]) {
             dateObj[formatDate(login.lastLogin)] = count;
           } else {
-            dateObj[formatDate(login.lastLogin)] = count++;
+            dateObj[formatDate(login.lastLogin)] = count <= 4 ? count++ : count;
           }
         });
     } else {
@@ -38,7 +52,7 @@ class HeatMap extends Component {
             if (!dateObj[transaction.date]) {
               dateObj[transaction.date] = count;
             } else {
-              dateObj[transaction.date] = count++;
+              dateObj[transaction.date] = count <= 4 ? count++ : count;
             }
           }
         });
@@ -52,15 +66,23 @@ class HeatMap extends Component {
   userColor() {
     const { user } = this.props;
     let color = [];
-    if (user.streakType === 'login') {
-      color = ['#eeeeee', '#d6e685', '#8cc665', '#44a340', '#1e6823'];
+    if (user.streakType === 'Login') {
+      color = [
+        colorTheme.white.light,
+        colorTheme.green.light,
+        colorTheme.green.medium,
+        colorTheme.green.dark,
+        colorTheme.green.superDark,
+        colorTheme.green.almostBlack,
+      ];
     } else {
       color = [
-        '#eeeeee',
+        colorTheme.white.light,
         colorTheme.orange.light,
         colorTheme.orange.medium,
         colorTheme.orange.dark,
         colorTheme.orange.superDark,
+        colorTheme.orange.almostBlack,
       ];
     }
     return color;
@@ -74,13 +96,35 @@ class HeatMap extends Component {
       <View style={styles.container}>
         <Text style={styles.homePageSmallText}>{user.streakType}</Text>
         <StreakCard dateArr={dateArr} />
-        <View style={{ padding: 10 }} />
+        <View style={{ padding: 5 }} />
         <CalendarHeatmap
           endDate={today}
-          numDays={67}
+          numDays={68}
           values={this.streakDates()}
           color={this.userColor()}
         />
+        <View style={{ padding: 5 }} />
+        <Text style={styles.homePageSmallText}>See Your Streak</Text>
+        <Picker
+          style={styles.streakPicker}
+          selectedValue={this.state.streakType}
+          onValueChange={streakType => {
+            user.streakType = streakType;
+            this.setState({ streakType });
+            this.props.updateUserInterval(user);
+          }}
+        >
+          {streakCategories.map(category => {
+            return (
+              <Picker.Item
+                key={category}
+                color="white"
+                label={category}
+                value={category}
+              />
+            );
+          })}
+        </Picker>
       </View>
     );
   }
@@ -94,4 +138,15 @@ const mapState = state => {
   };
 };
 
-export default connect(mapState)(HeatMap);
+const mapDispatch = dispatch => {
+  return {
+    updateUserInterval: user => {
+      dispatch(updateUserInterval(user));
+    },
+  };
+};
+
+export default connect(
+  mapState,
+  mapDispatch
+)(HeatMap);
