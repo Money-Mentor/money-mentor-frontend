@@ -1,14 +1,14 @@
 import React from 'react';
 import { styles, colorTheme } from '../../common/styles';
 import { Text, View } from 'react-native';
-import { Card} from 'react-native-elements';
-import {
-  bestStreak,
-  currentStreak,
-} from '../../common/index';
+import { Card } from 'react-native-elements';
+import { bestStreak, currentStreak } from '../../common/index';
 
 const StreakCard = props => {
   const { dateArr } = props;
+  console.log('date array', dateArr);
+  console.log('current Streak', currentStreak(dateArr));
+  console.log('best Streak', bestStreak(dateArr));
   return (
     <Card containerStyle={styles.streakCard}>
       <View style={styles.streakCardTextAlign}>

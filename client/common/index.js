@@ -26,15 +26,15 @@ export const personality = personalityResults => {
   return personality;
 };
 
-export const categories=[
+export const categories = [
   'Food and Drink',
   'Travel',
   'Recreation',
   'Healthcare',
   'Service',
   'Community',
-  'Shops'
-]
+  'Shops',
+];
 
 // Icons for all transaction categories
 // prettier-ignore
@@ -206,7 +206,7 @@ export function bestStreak(arr) {
   let bestStreak = 0;
   let daysBetween;
   for (let i = 0; i < arr.length - 1; i++) {
-    daysBetween = getDaysBetween(arr[i + 1], arr[i]);
+    daysBetween = getDaysBetween(new Date(arr[i + 1]), new Date(arr[i]));
     if (daysBetween >= 1 && daysBetween > bestStreak) {
       bestStreak = daysBetween;
     }
@@ -217,11 +217,11 @@ export function bestStreak(arr) {
 
 export function currentStreak(arr) {
   let today = new Date();
-  let lastDate = arr[arr.length - 1];
+  let lastDate = new Date(arr[arr.length - 1]);
   let currentStreak = 0;
   let daysBetween = Math.floor(getDaysBetween(today, lastDate));
   if (daysBetween > 0) {
-    currentStreak = daysBetween;
+    currentStreak = daysBetween + 1;
   }
   return currentStreak;
 }

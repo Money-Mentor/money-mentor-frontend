@@ -97,17 +97,15 @@ class Home extends Component {
         });
       loggedDateArr.sort();
       if (loggedDateArr.length) {
-        dateArr = getAllDays(loggedDateArr)
-          .filter(date => {
-            return loggedDateArr.indexOf(date) === -1;
-          })
-          .map(date => new Date(date));
+        dateArr = getAllDays(loggedDateArr).filter(date => {
+          return loggedDateArr.indexOf(date) === -1;
+        });
       }
     } else {
       trans &&
         trans.forEach(transaction => {
           if (transaction.category2 === user.streakType) {
-            dateArr.push(new Date(transaction.date));
+            dateArr.push(transaction.date);
           }
         });
     }
