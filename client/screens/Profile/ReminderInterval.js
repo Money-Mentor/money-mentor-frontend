@@ -49,6 +49,7 @@ class ReminderInterval extends Component {
           }}
         >
           <Picker.Item color="white" label="None" value={0} />
+          <Picker.Item color="white" label="1 Minute" value={5000} />
           <Picker.Item color="white" label="Daily" value={86400000} />
           <Picker.Item color="white" label="weekly" value={604800000} />
           <Picker.Item color="white" label="bi-weekly" value={1209600000} />
