@@ -554,6 +554,7 @@ export const styles = StyleSheet.create({
   },
   headerStyle: {
     backgroundColor: colorTheme.blue.medium,
+    borderBottomWidth: 0
   },
   transBody: {
     padding: 20,
@@ -573,3 +574,4 @@ export const styles = StyleSheet.create({
     editButton: {
     backgroundColor: colorTheme.orange.medium,
   },
+});

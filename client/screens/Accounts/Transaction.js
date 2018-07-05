@@ -56,7 +56,6 @@ class Transaction extends React.Component {
     this.props.updateTrans({
       ...this.props.transaction,
       included: !this.props.transaction.included
-      // category: this.state.category
     });
   }
 
@@ -68,26 +67,7 @@ class Transaction extends React.Component {
     this.setState({
       picker: false
     });
-                      console.log(
-                        "transaction.id",
-                        this.props.transaction.id
-                      );
   }
-
-  changeCategory(event) {
-    this.props.updateTrans({
-      ...this.props.transaction,
-      category1: event
-    });
-    this.setState({
-      picker: false
-    });
-                      console.log(
-                        "transaction.id",
-                        this.props.transaction.id
-                      );
-  }
-
 
 
   render() {
