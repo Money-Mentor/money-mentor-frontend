@@ -32,6 +32,12 @@ class Transaction extends React.Component {
     this.togglePicker = this.togglePicker.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.transaction.included !== prevProps.transaction.included || this.props.transaction.category !== prevProps.transaction.category) {
+      this.props.fetchAcctTransData();
+    }
+  }
+
   toggleInfo() {
     this.setState({
       expanded: !this.state.expanded
@@ -70,31 +76,39 @@ class Transaction extends React.Component {
 
     const info = (
       <View style={styles.transBody}>
-        <View>
-          <Text style={{ fontWeight: 'bold' }}> Date: </Text>
+        <View style={styles.transDetail}>
+          <Text style={styles.transTextBold}> DATE: </Text>
           <Text>{transaction.date}</Text>
         </View>
+        <View style={[styles.transDetail]}>
+          <Text style={styles.transTextBold}> INCLUDED IN BUDGET: </Text>
+          <Switch
+            value={this.props.transaction.included}
+            onValueChange={() => this.includedToggle()}
+          />
+        </View>
         <View>
-          <Text style={{ fontWeight: 'bold' }}> Category: </Text>
-          <Text>{transaction.category1}</Text>
-          <TouchableHighlight
-            underlayColor="transparent"
-            onPress={this.togglePicker}
-          >
-            <Text style={styles.buttonText}>EDIT</Text>
-          </TouchableHighlight>
-
-          {this.state.picker && (
-            <CategoryPicker transactionId={transaction.id} />
-          )}
-
-          <View>
-            <Text style={{ fontWeight: 'bold' }}> Included in Budget: </Text>
-            <Switch
-              value={this.props.transaction.included}
-              onValueChange={() => this.includedToggle()}
-            />
+          <View style={[styles.transDetail]}>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.transTextBold}> CATEGORY: </Text>
+              <Text>{transaction.category1}</Text>
+            </View>
+            {(categories.indexOf(transaction.category1) >= 0 && this.state.picker === false) && (
+                <View style={{position: 'relative', left: 20, }}><Button
+            raised
+            buttonStyle={styles.editButton}
+            textStyle={{ textAlign: 'center' }}
+            title={`Edit`}
+            onPress={() => this.togglePicker()}
+          /></View>
+            )}
           </View>
+          {this.state.picker && (
+            <CategoryPicker
+              transactionId={transaction.id}
+              changeCategory={this.changeCategory}
+            />
+          )}
         </View>
       </View>
     );
