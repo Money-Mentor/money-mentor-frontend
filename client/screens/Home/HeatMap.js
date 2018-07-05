@@ -22,6 +22,7 @@ class HeatMap extends Component {
     super(props);
     this.state = {
       streakType: this.props.user.streakType,
+      dateArr: this.props.navigation.getParam('dateArr')
     };
     this.streakDates = this.streakDates.bind(this);
     this.userColor = this.userColor.bind(this);
@@ -30,6 +31,7 @@ class HeatMap extends Component {
   static navigationOptions = {
     headerStyle: styles.headerStyle,
   };
+
 
   streakDates() {
     const { transactions, user, userLogins } = this.props;
@@ -91,11 +93,11 @@ class HeatMap extends Component {
   render() {
     const today = new Date();
     const { user } = this.props;
-    const dateArr = this.props.navigation.getParam('dateArr');
+    const getDateArrForStreak = this.props.navigation.getParam('getDateArrForStreak');
     return (
       <View style={styles.container}>
         <Text style={styles.homePageSmallText}>{user.streakType}</Text>
-        <StreakCard dateArr={dateArr} />
+        <StreakCard dateArr={getDateArrForStreak()} />
         <View style={{ padding: 5 }} />
         <CalendarHeatmap
           endDate={today}

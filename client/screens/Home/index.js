@@ -148,7 +148,7 @@ class Home extends Component {
             onPress={() => {
               this.props.navigation.navigate('HeatMap', {
                 title: 'HeatMap',
-                dateArr: this.getDateArrForStreak(),
+                getDateArrForStreak: this.getDateArrForStreak,
               });
             }}
           >
