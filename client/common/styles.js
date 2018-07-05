@@ -543,5 +543,23 @@ export const styles = StyleSheet.create({
   headerStyle: {
     backgroundColor: colorTheme.blue.medium,
     borderBottomWidth: 0
-  }
+  },
+  transBody: {
+    padding: 20,
+  },
+  transDetail: {
+    paddingBottom: 10,
+    flexDirection: 'row',
+    justifyContent: "space-between", alignItems: 'center'
+  },
+  transSpacing: {
+    paddingRight: 10
+  },
+  transTextBold: {
+    fontWeight: "bold",
+    paddingRight: 5
+  },
+    editButton: {
+    backgroundColor: colorTheme.orange.medium,
+  },
 });

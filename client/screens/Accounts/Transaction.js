@@ -31,6 +31,7 @@ class Transaction extends React.Component {
     this.toggleInfo = this.toggleInfo.bind(this);
     this.includedToggle = this.includedToggle.bind(this);
     this.togglePicker = this.togglePicker.bind(this);
+    this.changeCategory = this.changeCategory.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -51,13 +52,43 @@ class Transaction extends React.Component {
     });
   }
 
-  async includedToggle(input) {
-    await this.props.updateTrans({
+  includedToggle(input) {
+    this.props.updateTrans({
       ...this.props.transaction,
       included: !this.props.transaction.included
       // category: this.state.category
     });
   }
+
+  changeCategory(event) {
+    this.props.updateTrans({
+      ...this.props.transaction,
+      category1: event
+    });
+    this.setState({
+      picker: false
+    });
+                      console.log(
+                        "transaction.id",
+                        this.props.transaction.id
+                      );
+  }
+
+  changeCategory(event) {
+    this.props.updateTrans({
+      ...this.props.transaction,
+      category1: event
+    });
+    this.setState({
+      picker: false
+    });
+                      console.log(
+                        "transaction.id",
+                        this.props.transaction.id
+                      );
+  }
+
+
 
   render() {
     const icons = {
