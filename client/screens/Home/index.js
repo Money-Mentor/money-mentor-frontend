@@ -9,6 +9,7 @@ import HeatMap from './HeatMap';
 import { Button, Card, Icon } from 'react-native-elements';
 import Quiz from './Quiz';
 import Result from './Result';
+import StreakCard from './StreakCard';
 
 import {
   startDateString,
@@ -21,7 +22,6 @@ import {
 import ArticleCarousel from './ArticleCarousel';
 import BudgetCircle from './BudgetCircle';
 import ReminderInterval from '../Profile/ReminderInterval';
-
 
 class Home extends Component {
   constructor() {
@@ -38,7 +38,6 @@ class Home extends Component {
   componentDidMount() {
     this.props.fetchAcctTransData();
   }
-
   onBudgetCirclePress() {
     const { budget } = this.props;
     this.props.navigation.navigate('CategoryPie', {
@@ -90,7 +89,7 @@ class Home extends Component {
   getDateArrForStreak() {
     let dateArr = [];
     const { trans, user, userLogins } = this.props;
-    if (user.streakType === 'login') {
+    if (user.streakType === 'Login') {
       const loggedDateArr = [];
       userLogins &&
         userLogins.forEach(login => {
@@ -118,7 +117,6 @@ class Home extends Component {
   render() {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
-    const dateArr = this.getDateArrForStreak();
 
     return (
       <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
@@ -148,27 +146,13 @@ class Home extends Component {
           {/*---------------- Streak Card ------------*/}
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('HeatMap', { title: 'HeatMap' });
+              this.props.navigation.navigate('HeatMap', {
+                title: 'HeatMap',
+                getDateArrForStreak: this.getDateArrForStreak,
+              });
             }}
           >
-            <Card containerStyle={styles.streakCard}>
-              <View style={styles.streakCardTextAlign}>
-                <View>
-                  <Text style={styles.streakCardsmallerText}>
-                    Current Streak
-                  </Text>
-                  <Text style={styles.streakCardText}>
-                    {currentStreak(dateArr)}
-                  </Text>
-                </View>
-                <View>
-                  <Text style={styles.streakCardsmallerText}>Best Streak</Text>
-                  <Text style={styles.streakCardText}>
-                    {bestStreak(dateArr)}
-                  </Text>
-                </View>
-              </View>
-            </Card>
+            <StreakCard dateArr={this.getDateArrForStreak()} />
           </TouchableOpacity>
           {/*---------------- Budget Status ------------*/}
           <Text

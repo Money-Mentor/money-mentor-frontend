@@ -33,6 +33,12 @@ class Transaction extends React.Component {
     this.changeCategory = this.changeCategory.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.transaction.included !== prevProps.transaction.included || this.props.transaction.category !== prevProps.transaction.category) {
+      this.props.fetchAcctTransData();
+    }
+  }
+
   toggleInfo() {
     this.setState({
       expanded: !this.state.expanded
@@ -45,16 +51,11 @@ class Transaction extends React.Component {
     });
   }
 
-  async includedToggle() {
-    await this.props.updateTrans({
+  includedToggle() {
+    this.props.updateTrans({
       ...this.props.transaction,
       included: !this.props.transaction.included
     });
-
-    // console.log(
-    //   "transaction.included in thunk invocation",
-    //   this.props.transaction.included
-    // );
   }
 
   changeCategory(event) {
@@ -66,6 +67,17 @@ class Transaction extends React.Component {
       picker: false
     });
   }
+
+  changeCategory(event) {
+    this.props.updateTrans({
+      ...this.props.transaction,
+      category1: event
+    });
+    this.setState({
+      picker: false
+    });
+  }
+
 
   render() {
     const icons = {

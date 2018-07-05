@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { server } from './index';
+import { fetchAcctTransData } from './acctTrans';
 
 /**
  * ACTION TYPES
@@ -73,7 +74,7 @@ export const updateUserPersonality = (userId, user) => {
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/users/${userId}`, {
-        user
+        user,
       });
       dispatch(setPersonality(res.data));
     } catch (err) {
@@ -86,7 +87,7 @@ export const updateUserInterval = user => {
   return async dispatch => {
     try {
       const res = await axios.put(`${server}/api/users/${user.id}`, {
-        user
+        user,
       });
       dispatch(setInterval(res.data));
     } catch (err) {

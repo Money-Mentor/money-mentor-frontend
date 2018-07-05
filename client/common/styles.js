@@ -12,6 +12,7 @@ export const colorTheme = {
     medium: '#EF4C22',
     dark: '#9e3014',
     superDark: '#681703',
+    almostBlack: '#420e01',
   },
   blue: {
     light: '#8EB3DF',
@@ -19,7 +20,15 @@ export const colorTheme = {
     dark: '#262560',
   },
   white: {
+    light: '#eeeeee',
     snow: 'white',
+  },
+  green: {
+    light: '#d6e685',
+    medium: '#8cc665',
+    dark: '#44a340',
+    superDark: '#1e6823',
+    almostBlack: '#103a13',
   },
   grey: {
     light: '#a9ada6',
@@ -271,19 +280,19 @@ export const styles = StyleSheet.create({
   },
   streakCard: {
     width: 300,
-    height:70,
+    height: 70,
     borderColor: colorTheme.white.snow,
     borderWidth: 2,
   },
   streakCardText: {
-    textAlign:'center',
+    textAlign: 'center',
     color: colorTheme.orange.medium,
     fontWeight: 'bold',
     fontSize: 26,
     top: -15,
   },
   streakCardsmallerText: {
-    textAlign:'center',
+    textAlign: 'center',
     color: colorTheme.orange.medium,
     fontWeight: 'bold',
     fontSize: 12,
@@ -367,7 +376,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     color: colorTheme.white.snow,
     fontSize: 18,
-    paddingLeft: 20
+    paddingLeft: 20,
   },
   budgetContainer: {
     flexDirection: 'row',
@@ -492,7 +501,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colorTheme.white.snow,
     padding: 5,
     position: 'absolute',
-    left: 10
+    left: 10,
   },
 
   transBody: {
@@ -510,6 +519,12 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingRight: 5
   },
+  picker: {
+    width: 100,
+  },
+  streakPicker: {
+    width: 200,
+  },
   personalityImg: {
     justifyContent: 'center',
     alignSelf: 'center',
@@ -517,7 +532,7 @@ export const styles = StyleSheet.create({
     height: 300,
     width: 350,
     borderWidth: 2,
-    borderColor: colorTheme.blue.dark
+    borderColor: colorTheme.blue.dark,
   },
   editButton: {
     backgroundColor: colorTheme.orange.medium,
@@ -530,7 +545,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     width: '80%',
     paddingLeft: 60,
-    marginBottom:10
+    marginBottom: 10,
   },
   reminderIntervalSmallText: {
     alignSelf: 'center',
@@ -538,7 +553,7 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 15,
     marginRight: 15,
-    marginBottom: 5
+    marginBottom: 5,
   },
   personalityImgSmall: {
     alignSelf: 'center',
@@ -547,7 +562,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     marginTop: 20,
-    marginBottom: 10
+    marginBottom: 10,
   },
   accountProfileButton: {
     backgroundColor: colorTheme.blue.dark,
@@ -559,5 +574,23 @@ export const styles = StyleSheet.create({
   headerStyle: {
     backgroundColor: colorTheme.blue.medium,
     borderBottomWidth: 0
-  }
+  },
+  transBody: {
+    padding: 20,
+  },
+  transDetail: {
+    paddingBottom: 10,
+    flexDirection: 'row',
+    justifyContent: "space-between", alignItems: 'center'
+  },
+  transSpacing: {
+    paddingRight: 10
+  },
+  transTextBold: {
+    fontWeight: "bold",
+    paddingRight: 5
+  },
+    editButton: {
+    backgroundColor: colorTheme.orange.medium,
+  },
 });

@@ -29,7 +29,16 @@ class IndividualAccount extends React.Component {
                 transaction =>
                   transaction.accountId === accountId &&
                   transaction.date >= startDate
-              )
+              ).sort((a, b) =>
+              {
+                const sortedByDate = new Date(b.date) - new Date(a.date)
+
+                if (sortedByDate !== 0) {
+                  return sortedByDate
+                }
+
+                return b.id - a.id;
+              })
               .map((transaction, key) => (
                 <Transaction key={key} transactionId={transaction.id} />
               ))})}

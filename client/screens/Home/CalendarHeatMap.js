@@ -3,6 +3,7 @@ import ViewPropTypes from 'react-native';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
 import Svg, { G, Rect, Text } from 'react-native-svg';
+import { styles, colorTheme } from '../../common/styles';
 import _ from 'lodash';
 
 import {
@@ -14,10 +15,8 @@ import {
   convertToDate,
 } from '../../common';
 
-const SQUARE_SIZE = 20;
-const MONTH_LABEL_GUTTER_SIZE = 8;
-
-
+const SQUARE_SIZE = 24;
+const MONTH_LABEL_GUTTER_SIZE = 0;
 
 export default class CalendarHeatmap extends Component {
   constructor(props) {
@@ -25,7 +24,20 @@ export default class CalendarHeatmap extends Component {
     this.state = {
       valueCache: this.getValueCache(props.values),
     };
+    this.getValueCache = this.getValueCache.bind(this);
+    this.getSquareSizeWithGutter = this.getSquareSizeWithGutter.bind(this);
+    this.getStartDate = this.getStartDate.bind(this);
+    this.endDate = this.getEndDate.bind(this);
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.values !== prevProps.values) {
+      this.setState({
+        valueCache: this.getValueCache(this.props.values),
+      });
+    }
+  }
+
   getSquareSizeWithGutter() {
     return SQUARE_SIZE + this.props.gutterSize;
   }
@@ -68,7 +80,6 @@ export default class CalendarHeatmap extends Component {
   }
 
   getWeekWidth() {
-    console.log(this.getSquareSizeWithGutter());
     return DAYS_IN_WEEK * this.getSquareSizeWithGutter();
   }
 
@@ -100,7 +111,6 @@ export default class CalendarHeatmap extends Component {
       },
       {}
     );
-    console.log('GET VALUE CACHE', result);
     return result;
   }
 
@@ -219,7 +229,14 @@ export default class CalendarHeatmap extends Component {
       );
       const [x, y] = this.getMonthLabelCoordinates(weekIndex);
       return endOfWeek.getDate() >= 1 && endOfWeek.getDate() <= DAYS_IN_WEEK ? (
-        <Text key={weekIndex} x={x} y={y}>
+        <Text
+          key={weekIndex}
+          x={x}
+          y={y}
+          fontSize="16"
+          fontWeight="bold"
+          fill={colorTheme.white.snow}
+        >
           {MONTH_LABELS[endOfWeek.getMonth()]}
         </Text>
       ) : null;
@@ -229,7 +246,7 @@ export default class CalendarHeatmap extends Component {
   render() {
     return (
       <ScrollView>
-        <Svg height={this.getHeight()} width={this.getWidth()}>
+        <Svg height={this.getHeight() + 125} width={this.getWidth()}>
           <G>{this.renderMonthLabels()}</G>
           <G>{this.renderAllWeeks()}</G>
         </Svg>

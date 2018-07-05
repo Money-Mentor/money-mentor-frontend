@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
+  Keyboard
   Image,
   Animated
 } from 'react-native';
@@ -22,37 +23,12 @@ class BudgetSetup extends React.Component {
       savings: 0,
       spendingBudget: 0,
     };
-
-    this.imageHeight = new Animated.Value(180)
   }
+
   static navigationOptions = {
     headerStyle: { backgroundColor: colorTheme.blue.medium }
   };
 
-  componentWillMount() {
-    this.keyboardWillShowSub = Keyboard.addListener(
-      'keyboardWillShow',
-      this.keyboardWillShow
-    );
-    this.keyboardWillHideSub = Keyboard.addListener(
-      'keyboardWillHide',
-      this.keyboardWillHide
-    );
-  }
-
-  keyboardWillShow = event => {
-    Animated.timing(this.imageHeight, {
-      duration: event.duration,
-      toValue: IMAGE_HEIGHT_SMALL,
-    }).start();
-  };
-
-  keyboardWillHide = event => {
-    Animated.timing(this.imageHeight, {
-      duration: event.duration,
-      toValue: IMAGE_HEIGHT,
-    }).start();
-  };
 
   render() {
 
