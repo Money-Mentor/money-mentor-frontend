@@ -26,6 +26,16 @@ export const personality = personalityResults => {
   return personality;
 };
 
+export const categories=[
+  'Food and Drink',
+  'Travel',
+  'Recreation',
+  'Healthcare',
+  'Service',
+  'Community',
+  'Shops'
+]
+
 // Icons for all transaction categories
 // prettier-ignore
 export const transactionIconType = {

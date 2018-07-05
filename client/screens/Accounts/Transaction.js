@@ -15,6 +15,7 @@ import { transactionIconType } from '../../common/index';
 import { connect } from 'react-redux';
 import { updateTrans, fetchAcctTransData } from '../../store';
 import CategoryPicker from './CategoryPicker';
+import { categories } from "../../common";
 
 class Transaction extends React.Component {
   constructor(props) {
