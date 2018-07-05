@@ -3,8 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  KeyboardAvoidingView,
-  Keyboard
   Image,
   Animated
 } from 'react-native';
@@ -18,6 +16,7 @@ class BudgetSetup extends React.Component {
     super();
     this.state = {
       question: 1,
+      answer: 0,
       income: 0,
       staticCosts: 0,
       savings: 0,
@@ -37,13 +36,15 @@ class BudgetSetup extends React.Component {
         question: 'What is your monthly income?',
         textInput: income => this.setState({ income: +income }),
         button: () =>
-          this.setState({ question: 2 })
+          this.setState({ question: 2 }),
+        placeholder: 'exp. 5000'
       },
       {
         question: 'What are your monthly static costs?',
         textInput: staticCosts =>
         this.setState({ staticCosts: +staticCosts }),
-        button: () => this.setState({ question: 3 })
+        button: () => this.setState({ question: 3 }),
+        placeholder: 'exp. 1000'
       },
       {
         question: 'How much would you like to save each month?',
@@ -55,7 +56,9 @@ class BudgetSetup extends React.Component {
           this.props.navigation.navigate('EditCategories', {
             title: 'EditCategories'
           });
-        }
+        },
+        placeholder: 'exp. 1000'
+
       }
 
     ]
@@ -70,7 +73,7 @@ class BudgetSetup extends React.Component {
             style={styles.budgetInput}
             placeholderTextColor={colorTheme.white.snow}
             onChangeText={question.textInput}
-            placeholder=""
+            placeholder={question.placeholder}
           />
 
           <Button
@@ -95,12 +98,12 @@ class BudgetSetup extends React.Component {
     }
 
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <View style={styles.container} behavior="padding">
         <Image
           source={require('../../../public/img/speech.png')}
           style={{ width: deviceWidth, position: 'absolute', top: -2 }}
         />
-        <Animated.Image
+        <Image
           source={require('../../../public/img/logo2.png')}
           style={{ position: 'absolute', bottom: -50, left: -200 }}
         />
@@ -111,7 +114,7 @@ class BudgetSetup extends React.Component {
         </View>
 
         {question}
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
