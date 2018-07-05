@@ -38,7 +38,6 @@ class Home extends Component {
   componentDidMount() {
     this.props.fetchAcctTransData();
   }
-
   onBudgetCirclePress() {
     const { budget } = this.props;
     this.props.navigation.navigate('CategoryPie', {
@@ -90,7 +89,7 @@ class Home extends Component {
   getDateArrForStreak() {
     let dateArr = [];
     const { trans, user, userLogins } = this.props;
-    if (user.streakType === 'login') {
+    if (user.streakType === 'Login') {
       const loggedDateArr = [];
       userLogins &&
         userLogins.forEach(login => {
@@ -118,7 +117,6 @@ class Home extends Component {
   render() {
     const { budget } = this.props;
     const totalBudget = budget && budget.spendingBudget;
-    const dateArr = this.getDateArrForStreak();
 
     return (
       <ScrollView style={{ backgroundColor: colorTheme.blue.medium }}>
@@ -150,11 +148,11 @@ class Home extends Component {
             onPress={() => {
               this.props.navigation.navigate('HeatMap', {
                 title: 'HeatMap',
-                dateArr: dateArr,
+                getDateArrForStreak: this.getDateArrForStreak,
               });
             }}
           >
-            <StreakCard dateArr={dateArr} />
+            <StreakCard dateArr={this.getDateArrForStreak()} />
           </TouchableOpacity>
           {/*---------------- Budget Status ------------*/}
           <Text
