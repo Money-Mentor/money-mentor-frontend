@@ -42,7 +42,7 @@ const BudgetCircle = props => {
           style={[
             styles.dateLine,
             {
-              top: `${date.getDate() * 2.9 + 2.7}%`,
+              top: `${date.getDate() * 3 + 3}%`,
             },
           ]}
         />

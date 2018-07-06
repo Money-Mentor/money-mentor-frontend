@@ -215,9 +215,18 @@ export function bestStreak(arr) {
   return Math.max(bestStreak, currentStreak(arr));
 }
 
+const lastDateFn = arr => {
+  const today = new Date();
+  for (let i = arr.length - 1; i > 0; i--) {
+    if (new Date(arr[i]) <= today) {
+      return new Date(arr[i]);
+    }
+  }
+};
+
 export function currentStreak(arr) {
   let today = new Date();
-  let lastDate = new Date(arr[arr.length - 1]);
+  let lastDate = lastDateFn(arr);
   let currentStreak = 0;
   let daysBetween = Math.floor(getDaysBetween(today, lastDate));
   if (daysBetween > 0) {

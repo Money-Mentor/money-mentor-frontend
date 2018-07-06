@@ -278,6 +278,14 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  streakCardTextTitle: {
+    color: colorTheme.white.snow,
+    width: 300,
+    marginLeft: 15,
+    backgroundColor: colorTheme.orange.medium,
+    fontWeight: 'bold',
+    top: 15,
+  },
   streakCard: {
     width: 300,
     height: 70,
@@ -285,12 +293,12 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
   },
   streakCardText: {
-    textAlign: 'center',
     color: colorTheme.orange.medium,
     fontWeight: 'bold',
     fontSize: 26,
     top: -15,
   },
+
   streakCardsmallerText: {
     textAlign: 'center',
     color: colorTheme.orange.medium,
@@ -554,7 +562,7 @@ export const styles = StyleSheet.create({
   },
   headerStyle: {
     backgroundColor: colorTheme.blue.medium,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
   },
   transBody: {
     padding: 20,
@@ -562,16 +570,17 @@ export const styles = StyleSheet.create({
   transDetail: {
     paddingBottom: 10,
     flexDirection: 'row',
-    justifyContent: "space-between", alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   transSpacing: {
-    paddingRight: 10
+    paddingRight: 10,
   },
   transTextBold: {
-    fontWeight: "bold",
-    paddingRight: 5
+    fontWeight: 'bold',
+    paddingRight: 5,
   },
-    editButton: {
+  editButton: {
     backgroundColor: colorTheme.orange.medium,
   },
 });
