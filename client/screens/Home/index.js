@@ -113,7 +113,7 @@ class Home extends Component {
   }
 
   render() {
-    const { budget } = this.props;
+    const { budget, user } = this.props;
     const totalBudget = budget && budget.spendingBudget;
 
     return (
@@ -150,6 +150,8 @@ class Home extends Component {
               });
             }}
           >
+            <Text style={styles.streakCardTextTitle}>{user.streakType}</Text>
+
             <StreakCard dateArr={this.getDateArrForStreak()} />
           </TouchableOpacity>
           {/*---------------- Budget Status ------------*/}

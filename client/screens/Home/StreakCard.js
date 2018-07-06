@@ -6,9 +6,6 @@ import { bestStreak, currentStreak } from '../../common/index';
 
 const StreakCard = props => {
   const { dateArr } = props;
-  console.log('date array', dateArr);
-  console.log('current Streak', currentStreak(dateArr));
-  console.log('best Streak', bestStreak(dateArr));
   return (
     <Card containerStyle={styles.streakCard}>
       <View style={styles.streakCardTextAlign}>

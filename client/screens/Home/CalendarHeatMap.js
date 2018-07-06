@@ -13,6 +13,7 @@ import {
   shiftDate,
   getBeginningTimeForDate,
   convertToDate,
+  getDaysBetween,
 } from '../../common';
 
 const SQUARE_SIZE = 24;
@@ -52,7 +53,7 @@ export default class CalendarHeatmap extends Component {
   }
 
   getStartDate() {
-    return shiftDate(this.getEndDate(), -this.props.numDays + 1); // +1 because endDate is inclusive
+    return getBeginningTimeForDate(convertToDate(this.props.startDate));
   }
 
   getEndDate() {
@@ -70,10 +71,13 @@ export default class CalendarHeatmap extends Component {
   getNumEmptyDaysAtEnd() {
     return DAYS_IN_WEEK - 1 - this.getEndDate().getDay();
   }
+  getNumDays() {
+    return getDaysBetween(this.getEndDate(), this.getStartDate());
+  }
 
   getWeekCount() {
     const numDaysRoundedToWeek =
-      this.props.numDays +
+      this.getNumDays() +
       this.getNumEmptyDaysAtStart() +
       this.getNumEmptyDaysAtEnd();
     return Math.ceil(numDaysRoundedToWeek / DAYS_IN_WEEK);
@@ -179,8 +183,8 @@ export default class CalendarHeatmap extends Component {
 
   renderSquare(dayIndex, index) {
     const indexOutOfRange =
-      index < this.getNumEmptyDaysAtStart() ||
-      index >= this.getNumEmptyDaysAtStart() + this.props.numDays;
+      index < this.getNumEmptyDaysAtStart() - 1 ||
+      index >= this.getNumEmptyDaysAtEnd() + this.getNumDays() + 1;
     if (indexOutOfRange && !this.props.showOutOfRangeDays) {
       return null;
     }
@@ -266,7 +270,6 @@ CalendarHeatmap.ViewPropTypes = {
       ]).isRequired,
     }).isRequired
   ).isRequired,
-  numDays: PropTypes.number, // number of days back from endDate to show
   endDate: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -281,7 +284,7 @@ CalendarHeatmap.ViewPropTypes = {
 };
 
 CalendarHeatmap.defaultProps = {
-  numDays: 200,
+  startDate: '2018-05-01',
   endDate: new Date(),
   gutterSize: 1,
   horizontal: true,
