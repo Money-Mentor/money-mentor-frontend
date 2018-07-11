@@ -26,7 +26,7 @@ Money Mentor is a personalized financial mobile app that encourages better spend
 
 ## Getting Started
 ### Prerequisites
-In order to run this application on your device, download [Expo Client](https://itunes.apple.com/us/app/expo-client/id982107779?mt=8)
+In order to run this application on your device, download [Expo Client](https://itunes.apple.com/us/app/expo-client/id982107779?mt=8).
 
 Register with [Plaid's](https://plaid.com/) API to get a public key client secret and client ID.
 
@@ -52,8 +52,10 @@ To explore the features as an existing user, use the following credentials:
 * **Password:** 123
 
 To sign up as a new user in sandbox mode when you've reached the Plaid authentication screen, choose a bank and use the following credentials:
-** **User:** user_good
+* **User:** user_good
 * **Password:** pass_good
+
+
 
 ## Technologies Used
 * [React-Native](https://facebook.github.io/react-native/)
@@ -64,6 +66,7 @@ To sign up as a new user in sandbox mode when you've reached the Plaid authentic
 * [PostgresSQL](https://www.postgresql.org/) and [Sequelize](http://docs.sequelizejs.com/)
 
 
+
 ## Features
 * Displays current account and transactions data via third party API, Plaid
 * Data visualization for remaining spendable, spending by category
@@ -72,5 +75,7 @@ To sign up as a new user in sandbox mode when you've reached the Plaid authentic
 * Streaks for progress and habit tracking
 * Set Daily, weekly, bi-weekly reminders to check-in to the app via push notifications
 * Update individual transaction category and toggle to include/exclude from budgeted spending
+
+
 
 This app was a capstone project due for the [Grace Hopper Program]((https://www.gracehopper.com/)) at Full Stack Academy.
