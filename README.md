@@ -1,4 +1,4 @@
-#Money Mentor
+# Money Mentor
 Money Mentor is a personalized financial mobile app that encourages better spending habits and budget tracking. Our app has a lot of different features so that we can cater to different user types.
 
 [Video Demo](https://youtu.be/Otmr110CNCM)
