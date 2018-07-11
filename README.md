@@ -3,8 +3,11 @@ Money Mentor is a personalized financial mobile app that encourages better spend
 
 [Video Demo](https://youtu.be/Otmr110CNCM)
 
-
-![Login]()
+![Login](https://s15.postimg.cc/ecmti62e3/image.gif)
+![Update budget](https://s15.postimg.cc/lsm33td6z/Sheri_s.gif)
+![Cash splasher](https://s15.postimg.cc/edwrb1trv/Cashsplasher.gif)
+![ostrich](https://s15.postimg.cc/fsybzvabf/Ostrich.gif)
+![push notification](https://s15.postimg.cc/6xxhpeiyz/set_up_push_1.gif)
 
 ## Team Members
 * Joyce Chow
