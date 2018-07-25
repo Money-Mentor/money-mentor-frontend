@@ -16,8 +16,6 @@ class CategoryPicker extends React.Component {
 
   render() {
     const transaction = this.props.transaction;
-    console.log('transaction.id from CategoryPicker', transaction.id)
-
     return (
       <View>
         <Picker onValueChange={(event) => this.props.changeCategory(event)}>
