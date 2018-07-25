@@ -22,27 +22,29 @@ class IndividualAccount extends React.Component {
     const accountId = this.props.navigation.getParam('accountId');
     return (
       <ScrollView style={styles.accountOverviewContainer}>
-        <List>
-          {transactions &&
-            transactions
-              .filter(
-                transaction =>
-                  transaction.accountId === accountId &&
-                  transaction.date >= startDate
-              ).sort((a, b) =>
-              {
-                const sortedByDate = new Date(b.date) - new Date(a.date)
+        {
+          <List>
+            {transactions &&
+              transactions
+                .filter(
+                  transaction =>
+                    transaction.accountId === accountId &&
+                    transaction.date >= startDate
+                )
+                .sort((a, b) => {
+                  const sortedByDate = new Date(b.date) - new Date(a.date);
 
-                if (sortedByDate !== 0) {
-                  return sortedByDate
-                }
+                  if (sortedByDate !== 0) {
+                    return sortedByDate;
+                  }
 
-                return b.id - a.id;
-              })
-              .map((transaction, key) => (
-                <Transaction key={key} transaction={transaction} />
-              ))})}
-        </List>
+                  return b.id - a.id;
+                })
+                .map((transaction, key) => (
+                  <Transaction key={key} transaction={transaction} />
+                ))}
+          </List>
+        }
       </ScrollView>
     );
   }

@@ -60,7 +60,8 @@ export default class App extends React.Component {
   // handles push notification
   handleNotification = ({ origin, data }) => {
     console.log(
-      `Push notification ${origin} with data: ${JSON.stringify(data)}`
+      // `Push notification ${origin} with data: ${JSON.stringify(data)}`
+      'hello'
     );
   };
 
@@ -83,7 +84,7 @@ const AuthenticationNavigator = createStackNavigator({
   Inital: { screen: Initial },
   Login: { screen: Login },
   Signup: { screen: Signup },
-  Link: {screen: Link},
+  Link: { screen: Link },
   BudgetSetup: { screen: BudgetSetup },
   EditCategories: { screen: EditCategories },
 });
