@@ -184,7 +184,7 @@ export default class CalendarHeatmap extends Component {
   renderSquare(dayIndex, index) {
     const indexOutOfRange =
       index < this.getNumEmptyDaysAtStart() - 1 ||
-      index >= this.getNumEmptyDaysAtEnd() + this.getNumDays() + 1;
+      index >= this.getNumDays() + 2;
     if (indexOutOfRange && !this.props.showOutOfRangeDays) {
       return null;
     }
