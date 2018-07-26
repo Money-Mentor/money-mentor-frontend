@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { List, ListItem } from 'react-native-elements';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { List } from 'react-native-elements';
+import { SectionList, ScrollView, View } from 'react-native';
 import Transaction from './Transaction';
 import { styles, colorTheme } from '../../common/styles';
 import { startDateString } from '../../common/index';
 
 class IndividualAccount extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   static navigationOptions = {
     title: 'Transactions',
     headerStyle: styles.headerStyle,

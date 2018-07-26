@@ -234,3 +234,31 @@ export function currentStreak(arr) {
   }
   return currentStreak;
 }
+
+function getSortedDateArr(arr) {
+  const startDate = startDateString();
+  const sortedDateArr = [];
+  arr.forEach(transaction => {
+    sortedDateArr.push(transaction.date);
+  });
+
+  sortedDateArr
+    .filter(
+      (date, pos) => date >= startDate && sortedDateArr.indexOf(date) === pos
+    )
+    .sort((a, b) => b - a);
+
+  return sortedDateArr;
+}
+
+export function sectionData(arr) {
+  const sortedDateArr = getSortedDateArr(arr);
+  const dateObj = {};
+  arr.forEach(transaction => {
+    if (!dateObj[transaction.date]) {
+      dateObj[transaction.date] = [];
+    }
+    dateObj[transaction.date].push(transaction);
+  });
+  
+}
