@@ -1,11 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { List } from 'react-native-elements';
-import { SectionList, ScrollView, View } from 'react-native';
+import { ListItem, List } from 'react-native-elements';
+import { SectionList, ScrollView, View, Text } from 'react-native';
 import Transaction from './Transaction';
 import { styles, colorTheme } from '../../common/styles';
-import { startDateString } from '../../common/index';
+import { startDateString, sectionData } from '../../common/index';
 
+function keyExtractor(item) {
+  return item.title;
+}
+
+const renderSectionHeader = ({ section }) => (
+  <View>
+    <Text>{section.title}</Text>
+  </View>
+);
+
+const renderItem = ({ item }) => <ListItem title={item.title} />;
 class IndividualAccount extends React.Component {
   static navigationOptions = {
     title: 'Transactions',
@@ -13,13 +24,28 @@ class IndividualAccount extends React.Component {
     headerTitleStyle: { color: colorTheme.white.snow },
   };
 
-  render() {
+  sections() {
     const { transactions } = this.props;
-    let startDate = startDateString();
     const accountId = this.props.navigation.getParam('accountId');
+    const transactionArr =
+      transactions &&
+      transactions.filter(transaction => transaction.accountId === accountId);
+    return sectionData(transactionArr);
+  }
+
+  render() {
+    // const { transactions } = this.props;
+    // let startDate = startDateString();
+    // const accountId = this.props.navigation.getParam('accountId');
     return (
       <ScrollView style={styles.accountOverviewContainer}>
-        {
+        <SectionList
+          keyExtractor={keyExtractor}
+          renderSectionHeader={renderSectionHeader}
+          renderItem={renderItem}
+          sections={this.sections()}
+        />
+        {/* {
           <List>
             {transactions &&
               transactions
@@ -41,7 +67,7 @@ class IndividualAccount extends React.Component {
                   <Transaction key={key} transaction={transaction} />
                 ))}
           </List>
-        }
+        } */}
       </ScrollView>
     );
   }

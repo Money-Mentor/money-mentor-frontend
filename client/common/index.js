@@ -237,16 +237,16 @@ export function currentStreak(arr) {
 
 function getSortedDateArr(arr) {
   const startDate = startDateString();
-  const sortedDateArr = [];
+  const dateArr = [];
   arr.forEach(transaction => {
-    sortedDateArr.push(transaction.date);
+    dateArr.push(transaction.date);
   });
 
-  sortedDateArr
+  const sortedDateArr = dateArr
     .filter(
-      (date, pos) => date >= startDate && sortedDateArr.indexOf(date) === pos
+      (date, pos) => date >= startDate && dateArr.indexOf(date) === pos
     )
-    .sort((a, b) => b - a);
+    .sort((a, b) => (a > b ? -1 : a < b ? 1 : 0));
 
   return sortedDateArr;
 }
@@ -254,11 +254,17 @@ function getSortedDateArr(arr) {
 export function sectionData(arr) {
   const sortedDateArr = getSortedDateArr(arr);
   const dateObj = {};
+  const sectionDataArr = [];
   arr.forEach(transaction => {
     if (!dateObj[transaction.date]) {
       dateObj[transaction.date] = [];
     }
     dateObj[transaction.date].push(transaction);
   });
-  
+
+  sortedDateArr.forEach(date => {
+    sectionDataArr.push({ title: date, data: dateObj[date] });
+  });
+
+  return sectionDataArr;
 }
