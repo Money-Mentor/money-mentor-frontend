@@ -35,7 +35,7 @@ class IndividualAccount extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.accountOverviewContainer}>
+      <ScrollView style={styles.transactionContainerStyle}>
         <SectionList
           keyExtractor={keyExtractor}
           renderSectionHeader={renderSectionHeader}

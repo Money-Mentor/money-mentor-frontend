@@ -409,7 +409,10 @@ export const styles = StyleSheet.create({
   },
   accountOverviewContainer: {
     flexGrow: 1,
-    backgroundColor: colorTheme.white.snow,
+    backgroundColor: colorTheme.blue.medium,
+  },
+  transactionContainerStyle: {
+    backgroundColor: 'white',
   },
   sectionContainer: {
     borderBottomWidth: 1,

@@ -145,13 +145,13 @@ class CategoryPie extends Component {
             </Text>
           </View>
         </List>
-        <View style={styles.accountOverviewContainer}>
-        <SectionList
-          keyExtractor={keyExtractor}
-          renderSectionHeader={renderSectionHeader}
-          renderItem={renderItem}
-          sections={this.sections()}
-        />
+        <View style={styles.transactionContainerStyle}>
+          <SectionList
+            keyExtractor={keyExtractor}
+            renderSectionHeader={renderSectionHeader}
+            renderItem={renderItem}
+            sections={this.sections()}
+          />
         </View>
       </ScrollView>
     );
