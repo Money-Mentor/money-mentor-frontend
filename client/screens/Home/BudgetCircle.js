@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { getDay } from '../../common/index';
 import { styles } from '../../common/styles';
 import { connect } from 'react-redux';

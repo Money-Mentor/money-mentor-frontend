@@ -1,48 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { List, ListItem } from 'react-native-elements';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { SectionList, ScrollView, View, Text } from 'react-native';
 import Transaction from './Transaction';
 import { styles, colorTheme } from '../../common/styles';
-import { startDateString } from '../../common/index';
+import { sectionData } from '../../common/index';
+
+function keyExtractor(item) {
+  return item.id;
+}
+
+const renderSectionHeader = ({ section }) => (
+  <View style={styles.sectionContainer}>
+    <Text style={styles.sectionTitle}>{section.title}</Text>
+  </View>
+);
+
+const renderItem = ({ item }) => <Transaction transaction={item} />;
 
 class IndividualAccount extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   static navigationOptions = {
     title: 'Transactions',
     headerStyle: styles.headerStyle,
     headerTitleStyle: { color: colorTheme.white.snow },
   };
 
-  render() {
+  sections() {
     const { transactions } = this.props;
-    let startDate = startDateString();
     const accountId = this.props.navigation.getParam('accountId');
+    const transactionArr =
+      transactions &&
+      transactions.filter(transaction => transaction.accountId === accountId);
+    return sectionData(transactionArr);
+  }
+
+  render() {
     return (
-      <ScrollView style={styles.accountOverviewContainer}>
-        <List>
-          {transactions &&
-            transactions
-              .filter(
-                transaction =>
-                  transaction.accountId === accountId &&
-                  transaction.date >= startDate
-              ).sort((a, b) =>
-              {
-                const sortedByDate = new Date(b.date) - new Date(a.date)
-
-                if (sortedByDate !== 0) {
-                  return sortedByDate
-                }
-
-                return b.id - a.id;
-              })
-              .map((transaction, key) => (
-                <Transaction key={key} transaction={transaction} />
-              ))})}
-        </List>
+      <ScrollView style={styles.transactionContainerStyle}>
+        <SectionList
+          keyExtractor={keyExtractor}
+          renderSectionHeader={renderSectionHeader}
+          renderItem={renderItem}
+          sections={this.sections()}
+        />
       </ScrollView>
     );
   }

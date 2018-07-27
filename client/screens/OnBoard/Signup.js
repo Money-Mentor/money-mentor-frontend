@@ -72,6 +72,7 @@ class Signup extends Component {
         </View>
         <View style={{ padding: 90 }} />
         <TextInput
+         underlineColorAndroid="transparent"
           style={styles.formContainer}
           autoCapitalize="none"
           placeholderTextColor={colorTheme.white.snow}
@@ -84,6 +85,7 @@ class Signup extends Component {
           placeholder="Email"
         />
         <TextInput
+         underlineColorAndroid="transparent"
           style={styles.formContainer}
           autoCapitalize="none"
           onChangeText={text =>

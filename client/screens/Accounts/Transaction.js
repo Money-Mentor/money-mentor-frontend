@@ -1,32 +1,21 @@
 import React from 'react';
-import { ListItem } from 'react-native-elements';
+import { ListItem, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from '../../common/styles';
-import {
-  Text,
-  View,
-  Switch,
-  Animated,
-  Dimensions,
-  TouchableHighlight
-} from 'react-native';
-import { Button } from 'react-native-elements';
+import { Text, View, Switch } from 'react-native';
 import { transactionIconType } from '../../common/index';
 import { connect } from 'react-redux';
 import { updateTrans, fetchAcctTransData } from '../../store';
 import CategoryPicker from './CategoryPicker';
-import { categories } from "../../common";
+import { categories } from '../../common';
 
 class Transaction extends React.Component {
   constructor(props) {
     super(props);
 
-    const deviceWidth = Dimensions.get('window').width;
-    const deviceHeight = Dimensions.get('window').height;
-
     this.state = {
       expanded: false,
-      picker: false
+      picker: false,
     };
     this.toggleInfo = this.toggleInfo.bind(this);
     this.includedToggle = this.includedToggle.bind(this);
@@ -35,45 +24,47 @@ class Transaction extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.transaction.included !== prevProps.transaction.included || this.props.transaction.category !== prevProps.transaction.category) {
+    if (
+      this.props.transaction.included !== prevProps.transaction.included ||
+      this.props.transaction.category !== prevProps.transaction.category
+    ) {
       this.props.fetchAcctTransData();
     }
   }
 
   toggleInfo() {
     this.setState({
-      expanded: !this.state.expanded
+      expanded: !this.state.expanded,
     });
   }
 
   togglePicker() {
     this.setState({
-      picker: !this.state.picker
+      picker: !this.state.picker,
     });
   }
 
   includedToggle(input) {
     this.props.updateTrans({
       ...this.props.transaction,
-      included: !this.props.transaction.included
+      included: !this.props.transaction.included,
     });
   }
 
   changeCategory(event) {
     this.props.updateTrans({
       ...this.props.transaction,
-      category1: event
+      category1: event,
     });
     this.setState({
-      picker: false
+      picker: false,
     });
   }
-
 
   render() {
     const icons = {
       up: 'chevron-up',
-      down: 'chevron-down'
+      down: 'chevron-down',
     };
 
     let icon = icons.down;
@@ -88,10 +79,6 @@ class Transaction extends React.Component {
 
     const info = (
       <View style={styles.transBody}>
-        <View style={styles.transDetail}>
-          <Text style={styles.transTextBold}> DATE: </Text>
-          <Text>{transaction.date}</Text>
-        </View>
         <View style={[styles.transDetail]}>
           <Text style={styles.transTextBold}> INCLUDED IN BUDGET: </Text>
           <Switch
@@ -101,19 +88,22 @@ class Transaction extends React.Component {
         </View>
         <View>
           <View style={[styles.transDetail]}>
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: 'row' }}>
               <Text style={styles.transTextBold}> CATEGORY: </Text>
               <Text>{transaction.category1}</Text>
             </View>
-            {(categories.indexOf(transaction.category1) >= 0 && this.state.picker === false) && (
-                <View style={{position: 'relative', left: 20, }}><Button
-            raised
-            buttonStyle={styles.editButton}
-            textStyle={{ textAlign: 'center' }}
-            title={`Edit`}
-            onPress={() => this.togglePicker()}
-          /></View>
-            )}
+            {categories.indexOf(transaction.category1) >= 0 &&
+              this.state.picker === false && (
+                <View style={{ position: 'relative', left: 20 }}>
+                  <Button
+                    raised
+                    buttonStyle={styles.editButton}
+                    textStyle={{ textAlign: 'center' }}
+                    title={`Edit`}
+                    onPress={() => this.togglePicker()}
+                  />
+                </View>
+              )}
           </View>
           {this.state.picker && (
             <CategoryPicker
@@ -135,7 +125,7 @@ class Transaction extends React.Component {
           onPress={() => this.toggleInfo()}
           rightIcon={<Icon name={icon} />}
           leftIcon={{
-            name: transactionIconType[transaction.category2]
+            name: transactionIconType[transaction.category2],
           }}
         />
 
@@ -148,7 +138,7 @@ class Transaction extends React.Component {
 const mapDispatch = dispatch => {
   return {
     updateTrans: trans => dispatch(updateTrans(trans)),
-    fetchAcctTransData: () => dispatch(fetchAcctTransData())
+    fetchAcctTransData: () => dispatch(fetchAcctTransData()),
   };
 };
 

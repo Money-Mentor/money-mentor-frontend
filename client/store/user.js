@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { server } from './index';
-import { fetchAcctTransData } from './acctTrans';
 
 /**
  * ACTION TYPES
@@ -57,10 +56,6 @@ export const signup = (email, password, pushToken) => dispatch => {
     .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr));
 };
 
-// Change .then to using await
-// Make it one function that accepts paramenter (signup v login)
-// Rather than hard coding, in secrets.js, process.env = server location
-// Set conflict object to have if process.env dev then localhost or production then heroku deployed
 
 export const logout = () => dispatch =>
   axios

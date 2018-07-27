@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { styles, colorTheme } from '../../common/styles';
 import IndividualAccount from './IndividualAccount';
@@ -27,9 +27,10 @@ class Accounts extends React.Component {
                   this.props.navigation.navigate('IndividualAccount', {
                     title: 'IndividualAccount',
                     accountId: account.account_id,
-                    accountName: account.name
+                    accountName: account.name,
                   })
                 }
+                containerStyle={styles.transactionContainerStyle}
               />
             ))}
         </List>
@@ -41,7 +42,7 @@ class Accounts extends React.Component {
 const mapState = state => {
   return {
     account: state.acctTrans.accounts,
-    trans: state.acctTrans.trans
+    trans: state.acctTrans.trans,
   };
 };
 
@@ -50,5 +51,5 @@ export default AccountsConnect;
 
 export const AccountStack = createStackNavigator({
   Accounts: { screen: AccountsConnect },
-  IndividualAccount: { screen: IndividualAccount }
+  IndividualAccount: { screen: IndividualAccount },
 });

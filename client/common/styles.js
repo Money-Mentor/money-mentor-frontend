@@ -411,6 +411,22 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: colorTheme.blue.medium,
   },
+  transactionContainerStyle: {
+    backgroundColor: 'white',
+  },
+  sectionContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.12)',
+    backgroundColor: colorTheme.orange.medium,
+  },
+  sectionTitle: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginLeft: 16,
+    marginRight: 16,
+  },
   categoryPieContainer: {
     marginTop: 21,
     backgroundColor: colorTheme.white.snow,

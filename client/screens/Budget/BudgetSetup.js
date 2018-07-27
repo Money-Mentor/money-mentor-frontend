@@ -32,6 +32,7 @@ class BudgetSetup extends React.Component {
         <Text style={styles.budgetSetupText}>What is your monthly income?</Text>
         <View style={styles.budgetContainer}>
           <TextInput
+           underlineColorAndroid="transparent"
             style={styles.budgetInput}
             placeholderTextColor={colorTheme.white.snow}
             onChangeText={income => this.setState({ income: +income })}
@@ -61,6 +62,7 @@ class BudgetSetup extends React.Component {
         </Text>
         <View style={styles.budgetContainer}>
           <TextInput
+           underlineColorAndroid="transparent"
             style={styles.budgetInput}
             placeholderTextColor={colorTheme.white.snow}
             onChangeText={staticCosts =>
@@ -89,6 +91,7 @@ class BudgetSetup extends React.Component {
         </Text>
         <View style={styles.budgetContainer}>
           <TextInput
+           underlineColorAndroid="transparent"
             style={styles.budgetInput}
             placeholderTextColor={colorTheme.white.snow}
             onChangeText={savings => this.setState({ savings: +savings })}
