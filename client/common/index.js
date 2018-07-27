@@ -156,9 +156,23 @@ export const MONTH_LABELS = {
   10: 'Nov',
   11: 'Dec',
 };
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 export const formatDate = date => {
-  var d = new Date(date),
+  let d = new Date(date),
     month = '' + (d.getMonth() + 1),
     day = '' + d.getDate(),
     year = d.getFullYear();
@@ -167,6 +181,17 @@ export const formatDate = date => {
   if (day.length < 2) day = '0' + day;
 
   return [year, month, day].join('-');
+};
+
+const formatDateForTransaction = date => {
+  let d = new Date(date),
+    month = monthNames[d.getMonth()],
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (day.length < 2) day = '0' + day;
+
+  return `${month} ${day}, ${year}`;
 };
 
 export function shiftDate(date, numDays) {
@@ -236,16 +261,13 @@ export function currentStreak(arr) {
 }
 
 function getSortedDateArr(arr) {
-  const startDate = startDateString();
   const dateArr = [];
   arr.forEach(transaction => {
     dateArr.push(transaction.date);
   });
 
   const sortedDateArr = dateArr
-    .filter(
-      (date, pos) => date >= startDate && dateArr.indexOf(date) === pos
-    )
+    .filter((date, pos) => dateArr.indexOf(date) === pos)
     .sort((a, b) => (a > b ? -1 : a < b ? 1 : 0));
 
   return sortedDateArr;
@@ -263,7 +285,10 @@ export function sectionData(arr) {
   });
 
   sortedDateArr.forEach(date => {
-    sectionDataArr.push({ title: date, data: dateObj[date] });
+    sectionDataArr.push({
+      title: formatDateForTransaction(date),
+      data: dateObj[date],
+    });
   });
 
   return sectionDataArr;

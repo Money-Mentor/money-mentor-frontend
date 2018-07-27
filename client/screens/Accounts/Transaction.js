@@ -2,14 +2,7 @@ import React from 'react';
 import { ListItem, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from '../../common/styles';
-import {
-  Text,
-  View,
-  Switch,
-  Animated,
-  Dimensions,
-  TouchableHighlight,
-} from 'react-native';
+import { Text, View, Switch } from 'react-native';
 import { transactionIconType } from '../../common/index';
 import { connect } from 'react-redux';
 import { updateTrans, fetchAcctTransData } from '../../store';
@@ -19,9 +12,6 @@ import { categories } from '../../common';
 class Transaction extends React.Component {
   constructor(props) {
     super(props);
-
-    const deviceWidth = Dimensions.get('window').width;
-    const deviceHeight = Dimensions.get('window').height;
 
     this.state = {
       expanded: false,
@@ -89,10 +79,6 @@ class Transaction extends React.Component {
 
     const info = (
       <View style={styles.transBody}>
-        <View style={styles.transDetail}>
-          <Text style={styles.transTextBold}> DATE: </Text>
-          <Text>{transaction.date}</Text>
-        </View>
         <View style={[styles.transDetail]}>
           <Text style={styles.transTextBold}> INCLUDED IN BUDGET: </Text>
           <Switch

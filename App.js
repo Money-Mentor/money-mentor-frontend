@@ -60,8 +60,7 @@ export default class App extends React.Component {
   // handles push notification
   handleNotification = ({ origin, data }) => {
     console.log(
-      // `Push notification ${origin} with data: ${JSON.stringify(data)}`
-      'hello'
+      `Push notification ${origin} with data: ${JSON.stringify(data)}`
     );
   };
 
